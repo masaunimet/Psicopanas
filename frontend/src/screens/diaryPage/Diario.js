@@ -1,27 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Accordion, Button, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
-import axios from "axios";
+import { Link } from "react-router-dom";
 
-const Diario = () => {
-  const [notes, setNotes] = useState([]);
-  const fetchEntrys = async () => {
-    const { data } = await axios.get("/api/entrys");
-    setNotes(data);
-  };
+import { useDispatch, useSelector } from "react-redux";
+import { listEntries } from "../../actions/entryActions";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
+
+const Diario = ({ history }) => {
+  const dispatch = useDispatch();
+
+  const entryList = useSelector((state) => state.entryList);
+  const { loading, error, entries } = entryList;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const entryCreate = useSelector((state) => state.entryCreate);
+  const { success: successCreate } = entryCreate;
+
+  const entryUpdate = useSelector((state) => state.entryUpdate);
+  const { success: successUpdate } = entryUpdate;
 
   useEffect(() => {
-    fetchEntrys();
-  }, []);
+    dispatch(listEntries());
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [dispatch, history, userInfo, successCreate, successUpdate]);
 
   return (
     <MainScreen title="Diario">
-      <Link to="/createEntry">
+      <Link to="/crearEntrada">
         <Button size="md">Crear Entrada</Button>
       </Link>
-      {notes.map((note) => (
-        <Accordion key={note._id}>
+      {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+      {loading && <Loading />}
+      {entries?.map((entry) => (
+        <Accordion key={entry._id}>
           <Card style={{ margin: 10 }}>
             <Card.Header style={{ display: "flex" }}>
               <Accordion.Toggle
@@ -35,16 +52,16 @@ const Diario = () => {
                 variant="link"
                 eventKey="0"
               >
-                {note.title}
+                {entry.title}
               </Accordion.Toggle>
               <div>
-                <Button href={`/note/${note._id}`}>Editar</Button>
+                <Button href={`/diario/${entry._id}`}>Editar</Button>
               </div>
             </Card.Header>
             <Accordion.Collapse eventKey="0">
               <Card.Body>
                 <blockquote className="blockquote mb-0">
-                  <p>{note.content}</p>
+                  <p>{entry.content}</p>
                 </blockquote>
               </Card.Body>
             </Accordion.Collapse>

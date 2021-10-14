@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import MainScreen from "../../components/mainscreen/MainScreen";
+import React, { useEffect, useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
-import ErrorMessage from "../../components/ErrorMessage";
-import Loading from "../../components/Loading";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
+import { register } from "../../actions/userActions";
+import MainScreen from "../../components/mainscreen/MainScreen";
 
-const RegisterPage = () => {
+const RegisterPage = ({ history }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [picture, setPicture] = useState(
@@ -16,45 +17,11 @@ const RegisterPage = () => {
   const [confirmpassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
   const [picMessage, setPicMessage] = useState(null);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    if (password !== confirmpassword) {
-      setMessage("Passwords do not match");
-    } else {
-      setMessage(null);
-      try {
-        const config = {
-          headers: {
-            "Content-type": "application/json",
-          },
-        };
+  const dispatch = useDispatch();
 
-        setLoading(true);
-
-        const { data } = await axios.post(
-          "/api/users",
-          {
-            name,
-            picture,
-            email,
-            password,
-          },
-          config
-        );
-
-        console.log(data);
-        localStorage.setItem("userInfo", JSON.stringify(data));
-
-        setLoading(false);
-      } catch (error) {
-        setError(error.response.data.message);
-        //dispatch(register(name, email, password, pic));
-      }
-    }
-  };
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading, error, userInfo } = userRegister;
 
   const postDetails = (pics) => {
     if (!pics) {
@@ -74,8 +41,25 @@ const RegisterPage = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          setPicture(data.url.toString());
+          setPicture(data.url);
         });
+    } else {
+      return setPicMessage("Por favor, selecciona una imagen");
+    }
+  };
+
+  useEffect(() => {
+    if (userInfo) {
+      history.push("/diario");
+    }
+  }, [history, userInfo]);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    if (password !== confirmpassword) {
+      setMessage("Las contraseñas no coinciden");
+    } else {
+      dispatch(register(name, email, password, picture));
     }
   };
 
@@ -126,13 +110,13 @@ const RegisterPage = () => {
             />
           </Form.Group>
 
-          {/*picMessage && (
+          {picMessage && (
             <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
-          )*/}
+          )}
           <Form.Group controlId="pic">
             <Form.Label>Profile Picture</Form.Label>
             <Form.File
-              //onChange={(e) => postDetails(e.target.files[0])}
+              onChange={(e) => postDetails(e.target.files[0])}
               id="custom-file"
               type="image/png"
               label="Upload Profile Picture"
