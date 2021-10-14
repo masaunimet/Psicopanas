@@ -14,11 +14,7 @@
   display: flex;
   align-items: center;
   background: rgb(131, 206, 210);
-  background: linear-gradient(
-    14deg,
-    rgba(131, 206, 210, 1) 0%,
-    rgba(246, 246, 246, 1) 100%
-  );
+  background: linear-gradient(#F6F6F6, #83CED2);
   background-position: center;
   background-size: cover;
 }
