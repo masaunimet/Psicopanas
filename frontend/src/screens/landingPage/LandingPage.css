@@ -1,3 +1,7 @@
+.welcome{
+
+  display:flex;
+}
 .title {
   font-size: 95px;
 }
