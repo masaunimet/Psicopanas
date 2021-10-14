@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Container, Row } from "react-bootstrap";
 import "../landingPage/LandingPage.css";
+import Goti from "../../images/Goti.png";
+
 const LandingPage = () => {
   //useEffect(() => {
   //const userInfo = localStorage.getItem("userInfo");
@@ -13,11 +15,15 @@ const LandingPage = () => {
   return (
     <div className="main">
       <Container>
-        <Row>
+        <Row> 
+        <div className="welcome"><img src={Goti} width="200" height="250"/>
           <div className="intro-text">
-            <h1 className="title">Bienvenido a PsicoPanas</h1>
-            <p className="subtitle">Una página para tu crecimiento personal</p>
+              <div>
+                <h1 className="title">Bienvenido a PsicoPanas</h1>
+                <p className="subtitle">Una página para tu crecimiento personal</p>
+              </div>
           </div>
+        </div>
           <div>
             <div className="buttonContainer">
               <a href="/login">
