@@ -44,6 +44,7 @@ const LandingPage = () => {
             </div>
           </div>
       </Container>
+      
     </div>
   );
 };
