@@ -24,6 +24,7 @@ const LandingPage = () => {
               </div>
           </div>
         </div>
+        </Row>
           <div>
             <div className="buttonContainer">
               <a href="/login">
@@ -42,7 +43,6 @@ const LandingPage = () => {
               </a>
             </div>
           </div>
-        </Row>
       </Container>
     </div>
   );
