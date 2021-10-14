@@ -3,6 +3,8 @@ import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { logout } from "../../actions/userActions";
+import LogoPP from "../../images/logoPP.png";
+import "../header/Header.css";
 
 const Header = () => {
   const history = useHistory();
@@ -21,56 +23,40 @@ const Header = () => {
   useEffect(() => {}, [userInfo]);
 
   return (
-    <Navbar bg="#d71b1b" expand="lg" variant="dark">
-      <Container fluid>
-        <Navbar.Brand href="/">
-          <img src={LogoPP} width="50" height="50" alt="" />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav>
-            {userInfo ? (
-              <>
-                <Nav.Link>
-                  <Link to="/diario">Diario</Link>
-                </Nav.Link>
-                <NavDropdown title="Mi cuenta" id="basic-nav-dropdowm">
-                  {/*<NavDropdown.Item href="#action3">Perfil</NavDropdown.Item>
-  <NavDropdown.Divider />*/}
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Cerrar sesión
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </>
-            ) : (
-              <Nav.Link href="/login">Iniciar sesión</Nav.Link>
-            )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-
-    // </Nav.Item >
-    // <Nav className="m-auto">
-    //   <Form inline>
-    //     <FormControl
-    //       type="text"
-    //       placeholder="Search"
-    //       className="nr-sm-2"
-    //     />
-    //   </Form>
-    // </Nav>
-    // <Nav>
-    //   <Nav.Link>
-    //     <Link to="/diario">Diario</Link>
-    //   </Nav.Link>
-    //   <NavDropdown title="Mi cuenta" id="basic-nav-dropdowm">
-    //     <NavDropdown.Item href="#action3">Perfil</NavDropdown.Item>
-
-    //     <NavDropdown.Divider />
-    //     <NavDropdown.Item href="#action5">Cerrar sesión</NavDropdown.Item>
-    //   </NavDropdown>
-    // </Nav>
+<Navbar bg="#f6f6f6" expand="lg" variant="dark">
+<Container fluid>
+  <Navbar.Brand href="/">
+    <img
+      src={LogoPP}
+      width="50"
+      height="50"
+      alt=""
+    />
+  </Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse className="justify-content-end">
+  {userInfo ? ( 
+    <Nav variant="pills" activeKey="1">
+      <Nav.Item className="padding_butons"><Nav.Link eventKey="disabled" disabled href="/diario" className="textnavbar">Metas</Nav.Link></Nav.Item>
+      <Nav.Item className="padding_butons" ><Nav.Link eventKey="disabled" disabled href="/diario" className="textnavbar">Foro</Nav.Link></Nav.Item>
+      <Nav.Item className="padding_butons"><Nav.Link eventKey="1" href="/diario" className="textnavbar">Diario</Nav.Link></Nav.Item>
+    <Nav.Item>
+      <NavDropdown title="Mi cuenta" id="basic-nav-dropdowm" className="textnavbar">
+        <NavDropdown.Item href="#action3">Perfil</NavDropdown.Item>
+        <NavDropdown.Divider />
+        <NavDropdown.Item onClick={logoutHandler}>Cerrar sesión</NavDropdown.Item>
+      </NavDropdown>
+    </Nav.Item>
+    </Nav>
+  ) :
+  (
+    <Nav variant="pills" activeKey="1">
+      <Nav.Item className="padding_butons"><Nav.Link href="/login" className="textnavbar" eventKey="1">Iniciar Seción</Nav.Link></Nav.Item>
+    </Nav>
+  )}
+  </Navbar.Collapse>
+</Container>
+</Navbar> 
   );
 };
 
