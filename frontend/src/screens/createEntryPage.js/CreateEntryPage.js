@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createEntryAction } from "../../actions/entryActions";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
-import {listEmotions} from "../../actions/emotionAction";
+import { listEmotions } from "../../actions/emotionAction";
 
 function CreateEntryPage({ history }) {
   const [title, setTitle] = useState("");
@@ -32,13 +32,12 @@ function CreateEntryPage({ history }) {
     history.push("/diario");
   };
 
+  const emotionList = useSelector((state) => state.emotionList);
+  const { emotions } = emotionList;
 
-  const emotionList = useSelector((state)=>state.emotionList);
-  const {emotions} = emotionList;
-
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(listEmotions());
-  },[dispatch]);
+  }, [dispatch]);
 
   return (
     <MainScreen title="Mi Entrada">
