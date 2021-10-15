@@ -25,7 +25,7 @@ const Header = () => {
   return (
 <Navbar bg="#f6f6f6" expand="lg" variant="dark">
 <Container fluid>
-  <Navbar.Brand href="/">
+  <Navbar.Brand>
     <img
       src={LogoPP}
       width="50"
