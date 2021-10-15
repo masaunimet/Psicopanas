@@ -15,6 +15,13 @@ const entrySchema = mongoose.Schema(
       required: true,
       ref: "User",
     },
+
+    emotion:{
+
+      type: mongoose.Schema.Types.ObjectId,
+      require:true,
+      ref:"Emotion",
+    },
   },
   {
     timestamps: true,
