@@ -15,6 +15,11 @@ const entrySchema = mongoose.Schema(
       required: true,
       ref: "User",
     },
+    tags: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "Tag",
+    },
   },
   {
     timestamps: true,

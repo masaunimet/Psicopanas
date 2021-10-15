@@ -9,12 +9,14 @@ import {
   entryListReducer,
   entryUpdateReducer,
 } from "./reducers/entryReducers";
+import { tagListReducer } from "./reducers/tagReducers";
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   entryList: entryListReducer,
   entryCreate: entryCreateReducer,
   entryUpdate: entryUpdateReducer,
+  tagList: tagListReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

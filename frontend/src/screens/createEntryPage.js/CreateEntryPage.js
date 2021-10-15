@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createEntryAction } from "../../actions/entryActions";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
+import { listTags } from "../../actions/tagActions";
 
 function CreateEntryPage({ history }) {
   const [title, setTitle] = useState("");
@@ -31,7 +32,14 @@ function CreateEntryPage({ history }) {
     history.push("/diario");
   };
 
-  useEffect(() => {}, []);
+  //useEffect(() => {}, []);
+
+  const tagList = useSelector((state) => state.tagList);
+  const { tags } = tagList;
+
+  useEffect(() => {
+    dispatch(listTags());
+  }, [dispatch]);
 
   return (
     <MainScreen title="Mi Entrada">
@@ -46,6 +54,24 @@ function CreateEntryPage({ history }) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
+            </Form.Group>
+
+            <Form.Group controlId="tag">
+              <Form.Label>¿Qué te hizo sentir así?</Form.Label>
+              <div style={{ display: "flex" }}>
+                {tags?.map((tag) => (
+                  <div className="mb-3">
+                    <Form.Check
+                      type="checkbox"
+                      id={tag._id}
+                      style={{ margin: 5 }}
+                    >
+                      <Form.Check.Input type="checkbox" isValid />
+                      <Form.Check.Label>{tag.name}</Form.Check.Label>
+                    </Form.Check>
+                  </div>
+                ))}
+              </div>
             </Form.Group>
 
             <Form.Group controlId="content">

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { listEntries } from "../../actions/entryActions";
+import { listTags } from "../../actions/tagActions";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 
@@ -13,6 +14,9 @@ const Diario = ({ history }) => {
 
   const entryList = useSelector((state) => state.entryList);
   const { loading, error, entries } = entryList;
+
+  const tagList = useSelector((state) => state.tagList);
+  const { tags } = tagList;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -25,6 +29,13 @@ const Diario = ({ history }) => {
 
   useEffect(() => {
     dispatch(listEntries());
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [dispatch, history, userInfo, successCreate, successUpdate]);
+
+  useEffect(() => {
+    dispatch(listTags());
     if (!userInfo) {
       history.push("/");
     }
