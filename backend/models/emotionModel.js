@@ -11,7 +11,7 @@ const emotionSchema = mongoose.Schema(
 
         value:{
 
-            type:Int32Array,
+            type:Number,
             require:true,
         },
 
