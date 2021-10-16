@@ -23,8 +23,7 @@ function CreateEntryPage({ history }) {
     setContent("");
   };
 
-  function SAS(){
-
+  function SAS() {
     console.log("hola");
   }
 
@@ -32,6 +31,13 @@ function CreateEntryPage({ history }) {
     e.preventDefault();
     dispatch(createEntryAction(title, content));
     if (!title || !content) return;
+
+    // emotions?.map((emotion) => {
+    //   if (document.getElementById(emotion._id).isSelected === true) {
+    //     console.log(emotion.name);
+    //   } else {
+    //   }
+    // });
 
     resetHandler();
     history.push("/diario");
@@ -58,17 +64,34 @@ function CreateEntryPage({ history }) {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
+
             <Form.Group controlId="title">
               <Form.Label>¿Como te sientes?</Form.Label>
-            </Form.Group>
-            <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
-              <div style={{width:"60%",display:"flex",justifyContent:"space-around",alignItems:"center",cursor:"pointer"}}>
-                {emotions?.map((emotion) => (
-                <div onClick={console.log("hola")}>
-                  <img src={emotion.icon} width="50" height="50"/>
-                </div>))}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <div
+                  style={{
+                    width: "60%",
+                    display: "flex",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    cursor: "pointer",
+                  }}
+                >
+                  {emotions?.map((emotion) => (
+                    <div onClick={(e) => alert(emotion.name)}>
+                      <img src={emotion.icon} width="50" height="50" />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </Form.Group>
+
             <Form.Group controlId="content">
               <Form.Label>Cuéntanos mas sobre tu día</Form.Label>
               <Form.Control
