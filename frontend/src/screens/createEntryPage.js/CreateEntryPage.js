@@ -16,12 +16,17 @@ function CreateEntryPage({ history }) {
   const entryCreate = useSelector((state) => state.entryCreate);
   const { loading, error, entry } = entryCreate;
 
-  console.log(entry);
+  //console.log(entry);
 
   const resetHandler = () => {
     setTitle("");
     setContent("");
   };
+
+  function SAS(){
+
+    console.log("hola");
+  }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -53,7 +58,17 @@ function CreateEntryPage({ history }) {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
-
+            <Form.Group controlId="title">
+              <Form.Label>¿Como te sientes?</Form.Label>
+            </Form.Group>
+            <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
+              <div style={{width:"60%",display:"flex",justifyContent:"space-around",alignItems:"center",cursor:"pointer"}}>
+                {emotions?.map((emotion) => (
+                <div onClick={console.log("hola")}>
+                  <img src={emotion.icon} width="50" height="50"/>
+                </div>))}
+              </div>
+            </div>
             <Form.Group controlId="content">
               <Form.Label>Cuéntanos mas sobre tu día</Form.Label>
               <Form.Control
