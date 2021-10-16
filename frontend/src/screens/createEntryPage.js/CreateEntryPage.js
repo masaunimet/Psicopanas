@@ -17,16 +17,12 @@ function CreateEntryPage({ history }) {
   const entryCreate = useSelector((state) => state.entryCreate);
   const { loading, error } = entryCreate;
 
-  //console.log(entry);
+  let setEmotion = "616b11858f059d3c912e9944";
 
   const resetHandler = () => {
     setTitle("");
     setContent("");
   };
-
-  function SAS() {
-    console.log("hola");
-  }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -40,7 +36,9 @@ function CreateEntryPage({ history }) {
       }
     });
 
-    dispatch(createEntryAction(title, content, entryTags));
+    alert(setEmotion);
+
+    dispatch(createEntryAction(title, content, entryTags, setEmotion));
     if (!title || !content) return;
 
     resetHandler();
@@ -97,9 +95,12 @@ function CreateEntryPage({ history }) {
                   }}
                 >
                   {emotions?.map((emotion) => (
-                    <div onClick={console.log("hola")}>
+                    <Button
+                      key={emotion._id}
+                      onClick={(e) => (setEmotion = emotion._id)}
+                    >
                       <img src={emotion.icon} width="50" height="50" />
-                    </div>
+                    </Button>
                   ))}
                 </div>
               </div>
