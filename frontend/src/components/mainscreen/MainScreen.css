@@ -13,10 +13,17 @@
   width: 100%;
 }
 .heading {
-  font-size: 60px;
-  /* font-family: "Ubuntu", sans-serif; */
-  font-family: "Work Sans", sans-serif;
+  font-size: 100px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #F92CA4;
+  font-style: normalF92CA4;
   padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+}
+.crearEntrada{
+  display: flex;
+  justify-content: center;
 }
 
 @media only screen and (min-width: 1200px) {
