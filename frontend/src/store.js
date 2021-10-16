@@ -1,7 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 
 import thunk from "redux-thunk";
-
 import { composeWithDevTools } from "redux-devtools-extension";
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducers";
 import {
@@ -10,6 +9,7 @@ import {
   entryUpdateReducer,
 } from "./reducers/entryReducers";
 import { tagListReducer } from "./reducers/tagReducers";
+import { emotionListReducer } from "./reducers/emotionReducers";
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
@@ -17,6 +17,7 @@ const reducer = combineReducers({
   entryCreate: entryCreateReducer,
   entryUpdate: entryUpdateReducer,
   tagList: tagListReducer,
+  emotionList: emotionListReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { listEntries } from "../../actions/entryActions";
 import { listTags } from "../../actions/tagActions";
+import { listEmotions } from "../../actions/emotionAction";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 

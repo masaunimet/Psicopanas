@@ -6,6 +6,7 @@ import { createEntryAction } from "../../actions/entryActions";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import { listTags } from "../../actions/tagActions";
+import { listEmotions } from "../../actions/emotionAction";
 
 function CreateEntryPage({ history }) {
   const [title, setTitle] = useState("");
@@ -16,10 +17,16 @@ function CreateEntryPage({ history }) {
   const entryCreate = useSelector((state) => state.entryCreate);
   const { loading, error } = entryCreate;
 
+  //console.log(entry);
+
   const resetHandler = () => {
     setTitle("");
     setContent("");
   };
+
+  function SAS() {
+    console.log("hola");
+  }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -35,6 +42,7 @@ function CreateEntryPage({ history }) {
 
     dispatch(createEntryAction(title, content, entryTags));
     if (!title || !content) return;
+
     resetHandler();
     history.push("/diario");
   };
@@ -43,6 +51,13 @@ function CreateEntryPage({ history }) {
 
   const tagList = useSelector((state) => state.tagList);
   const { tags } = tagList;
+
+  const emotionList = useSelector((state) => state.emotionList);
+  const { emotions } = emotionList;
+
+  useEffect(() => {
+    dispatch(listEmotions());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(listTags());
@@ -61,6 +76,33 @@ function CreateEntryPage({ history }) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
+            </Form.Group>
+
+            <Form.Group controlId="title">
+              <Form.Label>¿Como te sientes?</Form.Label>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <div
+                  style={{
+                    width: "60%",
+                    display: "flex",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    cursor: "pointer",
+                  }}
+                >
+                  {emotions?.map((emotion) => (
+                    <div onClick={console.log("hola")}>
+                      <img src={emotion.icon} width="50" height="50" />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </Form.Group>
 
             <Form.Group controlId="tag">
