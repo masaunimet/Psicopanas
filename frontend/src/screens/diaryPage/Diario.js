@@ -71,6 +71,9 @@ const Diario = ({ history }) => {
             </Card.Header>
             <Accordion.Collapse eventKey="0">
               <Card.Body>
+                {entry.tags.map((tag) => (
+                  <div>{tag}</div>
+                ))}
                 <blockquote className="blockquote mb-0">
                   <p>{entry.content}</p>
                 </blockquote>

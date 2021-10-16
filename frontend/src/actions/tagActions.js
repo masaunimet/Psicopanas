@@ -5,7 +5,7 @@ import {
 } from "../constants/tagsConstants";
 import axios from "axios";
 
-export const listTags = () => async (dispatch, getState) => {
+export const listTags = () => async (dispatch) => {
   try {
     dispatch({ type: TAG_LIST_REQUEST });
 

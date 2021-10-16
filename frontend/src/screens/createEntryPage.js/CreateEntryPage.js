@@ -14,9 +14,7 @@ function CreateEntryPage({ history }) {
   const dispatch = useDispatch();
 
   const entryCreate = useSelector((state) => state.entryCreate);
-  const { loading, error, entry } = entryCreate;
-
-  console.log(entry);
+  const { loading, error } = entryCreate;
 
   const resetHandler = () => {
     setTitle("");
@@ -25,9 +23,18 @@ function CreateEntryPage({ history }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(createEntryAction(title, content));
-    if (!title || !content) return;
 
+    const entryTags = [];
+
+    tags?.map((tag) => {
+      if (document.getElementById(tag._id).checked === true) {
+        entryTags.push(tag.name);
+      } else {
+      }
+    });
+
+    dispatch(createEntryAction(title, content, entryTags));
+    if (!title || !content) return;
     resetHandler();
     history.push("/diario");
   };

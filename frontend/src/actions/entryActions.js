@@ -46,7 +46,7 @@ export const listEntries = () => async (dispatch, getState) => {
 };
 
 export const createEntryAction =
-  (title, content) => async (dispatch, getState) => {
+  (title, content, tags) => async (dispatch, getState) => {
     try {
       dispatch({
         type: ENTRY_CREATE_REQUEST,
@@ -65,7 +65,7 @@ export const createEntryAction =
 
       const { data } = await axios.post(
         `/api/entries/create`,
-        { title, content },
+        { title, content, tags },
         config
       );
 

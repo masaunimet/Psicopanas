@@ -7,13 +7,13 @@ const getEntrys = asyncHandler(async (req, res) => {
 });
 
 const createEntry = asyncHandler(async (req, res) => {
-  const { title, content } = req.body;
+  const { title, content, tags } = req.body;
 
   if (!title || !content) {
     res.status(400);
     throw new Error("Por favor rellena todos los datos");
   } else {
-    const entry = new Entry({ user: req.user._id, title, content });
+    const entry = new Entry({ user: req.user._id, title, content, tags });
 
     const createdEntry = await entry.save();
 

@@ -75,7 +75,7 @@ const Header = () => {
             <Nav variant="pills" activeKey="1">
               <Nav.Item className="padding_butons">
                 <Nav.Link href="/login" className="textnavbar" eventKey="1">
-                  Iniciar Seción
+                  Iniciar Sesión
                 </Nav.Link>
               </Nav.Item>
             </Nav>
