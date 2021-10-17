@@ -7,6 +7,7 @@ import LoginPage from "./screens/loginPage/LoginPage";
 import RegisterPage from "./screens/registerPage/RegisterPage";
 import CreateEntryPage from "./screens/createEntryPage.js/CreateEntryPage";
 import UpdateEntryPage from "./screens/updateEntryPage.js/UpdateEntryPage";
+import Estadisticas from "./screens/Estadisticas/Estadisticas"
 
 const App = () => (
   <>
@@ -19,6 +20,7 @@ const App = () => (
         <Route path="/diario" component={Diario} exact />
         <Route path="/crearEntrada" component={CreateEntryPage} exact />
         <Route path="/diario/:id" component={UpdateEntryPage} exact />
+        <Route path="/estadisticas" component={Estadisticas} exact/>
       </main>
     </BrowserRouter>
   </>
