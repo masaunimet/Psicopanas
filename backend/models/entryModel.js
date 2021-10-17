@@ -21,7 +21,7 @@ const entrySchema = mongoose.Schema(
       ref: "Tag",
     },
     emotion: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       require: true,
       ref: "Emotion",
     },

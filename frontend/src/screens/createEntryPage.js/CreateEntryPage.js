@@ -8,6 +8,10 @@ import ErrorMessage from "../../components/ErrorMessage";
 import { listTags } from "../../actions/tagActions";
 import { listEmotions } from "../../actions/emotionAction";
 
+import moment from "moment";
+
+let setEmotion = "";
+
 function CreateEntryPage({ history }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -17,12 +21,30 @@ function CreateEntryPage({ history }) {
   const entryCreate = useSelector((state) => state.entryCreate);
   const { loading, error } = entryCreate;
 
-  let setEmotion = "616b11858f059d3c912e9944";
-
   const resetHandler = () => {
     setTitle("");
     setContent("");
   };
+
+  //useEffect(() => {}, []);
+
+  const tagList = useSelector((state) => state.tagList);
+  const loading2 = tagList.loading;
+  const { tags } = tagList;
+
+  const emotionList = useSelector((state) => state.emotionList);
+  const loading3 = emotionList.loading;
+  const { emotions } = emotionList;
+
+  const today = new Date();
+
+  useEffect(() => {
+    dispatch(listEmotions());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(listTags());
+  }, [dispatch]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -36,39 +58,46 @@ function CreateEntryPage({ history }) {
       }
     });
 
-    alert(setEmotion);
-
-    dispatch(createEntryAction(title, content, entryTags, setEmotion));
     if (!title || !content) return;
+    dispatch(createEntryAction(title, content, entryTags, setEmotion));
 
     resetHandler();
     history.push("/diario");
   };
 
-  //useEffect(() => {}, []);
-
-  const tagList = useSelector((state) => state.tagList);
-  const { tags } = tagList;
-
-  const emotionList = useSelector((state) => state.emotionList);
-  const { emotions } = emotionList;
-
-  useEffect(() => {
-    dispatch(listEmotions());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(listTags());
-  }, [dispatch]);
+  const visualButtons = (id, icon) => {
+    emotions?.map((emotion) => {
+      if (emotion._id != id) {
+        document.getElementById(emotion._id)?.setAttribute("width", "50");
+        document.getElementById(emotion._id)?.setAttribute("height", "50");
+      } else {
+        document.getElementById(emotion._id)?.setAttribute("width", "80");
+        document.getElementById(emotion._id)?.setAttribute("height", "80");
+      }
+    });
+  };
 
   return (
-    <MainScreen title="Mi Entrada">
-      <Card>
+    <MainScreen title={moment(today).format("YYYY-DD-MM")}>
+      <Card
+        style={{
+          background: "none",
+          border: "none",
+        }}
+      >
         <Card.Body>
           <Form onSubmit={submitHandler}>
             {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
             <Form.Group controlId="title">
-              <Form.Label>Ponle un nombre a tu día</Form.Label>
+              <Form.Label
+                style={{
+                  color: "#0A656B",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                }}
+              >
+                Ponle un título a tu día
+              </Form.Label>
               <Form.Control
                 type="title"
                 value={title}
@@ -77,7 +106,15 @@ function CreateEntryPage({ history }) {
             </Form.Group>
 
             <Form.Group controlId="title">
-              <Form.Label>¿Como te sientes?</Form.Label>
+              <Form.Label
+                style={{
+                  color: "#0A656B",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                }}
+              >
+                ¿Como te sientes?
+              </Form.Label>
               <div
                 style={{
                   width: "100%",
@@ -94,30 +131,61 @@ function CreateEntryPage({ history }) {
                     cursor: "pointer",
                   }}
                 >
+                  {loading3 && <Loading size={25} />}
                   {emotions?.map((emotion) => (
-                    <Button
-                      key={emotion._id}
-                      onClick={(e) => (setEmotion = emotion._id)}
+                    <div
+                      onClick={(e) => {
+                        visualButtons(emotion._id);
+                        setEmotion = emotion.icon;
+                      }}
                     >
-                      <img src={emotion.icon} width="50" height="50" />
-                    </Button>
+                      <img
+                        id={emotion._id}
+                        src={emotion.icon}
+                        width="50"
+                        height="50"
+                      />
+                      <p
+                        style={{
+                          textAlign: "center",
+                        }}
+                      >
+                        {emotion.name}
+                      </p>
+                      {document
+                        .getElementById("616b11858f059d3c912e9944")
+                        ?.click()}
+                    </div>
                   ))}
                 </div>
               </div>
             </Form.Group>
 
             <Form.Group controlId="tag">
-              <Form.Label>¿Qué te hizo sentir así?</Form.Label>
+              <Form.Label
+                style={{
+                  color: "#0A656B",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                }}
+              >
+                ¿Qué te hizo sentir así?
+              </Form.Label>
               <div style={{ display: "flex" }}>
+                {loading2 && <Loading size={25} />}
                 {tags?.map((tag) => (
                   <div className="mb-3">
                     <Form.Check
                       type="checkbox"
                       id={tag._id}
-                      style={{ margin: 5 }}
+                      style={{ marginLeft: "15px", marginTop: "5px" }}
                     >
                       <Form.Check.Input type="checkbox" isValid />
-                      <Form.Check.Label>{tag.name}</Form.Check.Label>
+                      <Form.Check.Label
+                        style={{ color: "#171717", fontSize: "15px" }}
+                      >
+                        {tag.name}
+                      </Form.Check.Label>
                     </Form.Check>
                   </div>
                 ))}
@@ -125,7 +193,15 @@ function CreateEntryPage({ history }) {
             </Form.Group>
 
             <Form.Group controlId="content">
-              <Form.Label>Cuéntanos mas sobre tu día</Form.Label>
+              <Form.Label
+                style={{
+                  color: "#0A656B",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                }}
+              >
+                Cuéntanos mas sobre tu día
+              </Form.Label>
               <Form.Control
                 as="textarea"
                 value={content}
