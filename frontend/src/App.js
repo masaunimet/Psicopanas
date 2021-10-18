@@ -5,8 +5,8 @@ import LandingPage from "./screens/landingPage/LandingPage";
 import Diario from "./screens/diaryPage/Diario";
 import LoginPage from "./screens/loginPage/LoginPage";
 import RegisterPage from "./screens/registerPage/RegisterPage";
-import CreateEntryPage from "./screens/createEntryPage.js/CreateEntryPage";
-import UpdateEntryPage from "./screens/updateEntryPage.js/UpdateEntryPage";
+import CreateEntryPage from "./screens/createEntryPage/CreateEntryPage";
+import UpdateEntryPage from "./screens/updateEntryPage/UpdateEntryPage";
 
 const App = () => (
   <>

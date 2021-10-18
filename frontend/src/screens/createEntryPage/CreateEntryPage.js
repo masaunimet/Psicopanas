@@ -7,6 +7,7 @@ import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import { listTags } from "../../actions/tagActions";
 import { listEmotions } from "../../actions/emotionAction";
+import "../createEntryPage/createEntryPage.css";
 
 import moment from "moment";
 
@@ -58,14 +59,18 @@ function CreateEntryPage({ history }) {
       }
     });
 
-    if (!title || !content) return;
+    if (!title || !content || !setEmotion) {
+      return alert(
+        "Por favor, llena todos los datos e indica cómo te sientes hoy"
+      );
+    }
     dispatch(createEntryAction(title, content, entryTags, setEmotion));
 
     resetHandler();
     history.push("/diario");
   };
 
-  const visualButtons = (id, icon) => {
+  const visualButtons = (id) => {
     emotions?.map((emotion) => {
       if (emotion._id != id) {
         document.getElementById(emotion._id)?.setAttribute("width", "50");
@@ -113,7 +118,7 @@ function CreateEntryPage({ history }) {
                   fontSize: "20px",
                 }}
               >
-                ¿Como te sientes?
+                ¿Cómo te sientes hoy?
               </Form.Label>
               <div
                 style={{
@@ -152,9 +157,6 @@ function CreateEntryPage({ history }) {
                       >
                         {emotion.name}
                       </p>
-                      {document
-                        .getElementById("616b11858f059d3c912e9944")
-                        ?.click()}
                     </div>
                   ))}
                 </div>
@@ -211,7 +213,7 @@ function CreateEntryPage({ history }) {
             </Form.Group>
 
             {loading && <Loading size={50} />}
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="primary" className="buttonSummit">
               Guardar entrada
             </Button>
           </Form>

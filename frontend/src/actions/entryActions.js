@@ -8,6 +8,9 @@ import {
   ENTRY_UPDATE_FAIL,
   ENTRY_UPDATE_REQUEST,
   ENTRY_UPDATE_SUCCESS,
+  LAST_ENTRY_FAIL,
+  LAST_ENTRY_REQUEST,
+  LAST_ENTRY_SUCCESS,
 } from "../constants/entriesConstants";
 import axios from "axios";
 
@@ -124,3 +127,31 @@ export const updateEntryAction =
       });
     }
   };
+
+export const lastEntry = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: LAST_ENTRY_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const { data } = await axios.get(`/api/entries/lastEntry/${userInfo._id}`);
+
+    dispatch({
+      type: LAST_ENTRY_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: LAST_ENTRY_FAIL,
+      payload: message,
+    });
+  }
+};
