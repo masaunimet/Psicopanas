@@ -39,12 +39,35 @@ const Estadisticas = () => {
     };
   }
 
+  const emotion = ()=>{
+
+    const max = datum[0]+ datum[1]+ datum[2]+ datum[3]+ datum[4];
+
+    const tempMB = datum[0]/max;
+    console.log(tempMB);
+    const tempB = datum[1]/max;
+    const tempN = datum[2]/max;
+    const tempM = datum[3]/max;
+    const tempMM = datum[4]/max;
+
+    const temp = Math.max(tempMB,tempB,tempN,tempM,tempMM);
+
+    if(temp===tempMB) return "Muy Bien";
+    else if(temp===tempB) return "Bien";
+    else if(temp===tempN) return "Normal";
+    else if(temp===tempM) return "Mal";
+    else if(temp===tempMM) return "Muy Mal";
+
+  };
+
   return (
     <MainScreen title="Estadisticas">
       {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
       {loading && <Loading />}
       <div style={{ margin: "80px" }}>
         {datum ? (
+          <>
+          <div style={{display:"flex",justifyContent:"center"}}><h3>Emocion promedio: {emotion()}</h3></div>
           <EstadisticaColumna
             chartData={jsonData}
             style={{
@@ -52,6 +75,7 @@ const Estadisticas = () => {
               margin: "0",
             }}
           />
+          </>
         ) : (
           <div></div>
         )}
