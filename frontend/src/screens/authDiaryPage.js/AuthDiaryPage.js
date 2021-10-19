@@ -1,0 +1,55 @@
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import MainScreen from "../../components/mainscreen/MainScreen";
+import ErrorMessage from "../../components/ErrorMessage";
+import { Button, Form } from "react-bootstrap";
+
+const AuthDiaryPage = ({ history }) => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  const { diaryPassword } = userInfo;
+  const [tryDiaryPassword, setTryDiaryPassword] = useState("");
+  const [message, setMessage] = useState(null);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    if (isEmpty(tryDiaryPassword)) {
+      setMessage("Ingrese la contraseña, no se aceptan caracteres en blanco");
+    } else if (diaryPassword !== tryDiaryPassword) {
+      setMessage("La contraseña no coincide");
+    } else {
+      setMessage(null);
+      history.push("/diario");
+    }
+  };
+
+  function isEmpty(str) {
+    if (/\s/.test(str)) {
+      return true;
+    }
+    return !str || 0 === str.length;
+  }
+
+  return (
+    <MainScreen title="Diario">
+      {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
+      <div className="loginContainer">
+        <Form onSubmit={submitHandler}>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Contraseña de mi diario</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder=""
+              onChange={(e) => setTryDiaryPassword(e.target.value)}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Continuar
+          </Button>
+        </Form>
+      </div>
+    </MainScreen>
+  );
+};
+
+export default AuthDiaryPage;

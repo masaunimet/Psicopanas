@@ -8,8 +8,9 @@ import ErrorMessage from "../../components/ErrorMessage";
 import { listTags } from "../../actions/tagActions";
 import { listEmotions } from "../../actions/emotionAction";
 import "../createEntryPage/createEntryPage.css";
+import { Link } from "react-router-dom";
 
-import moment from "moment";
+import moment, { parseTwoDigitYear } from "moment";
 
 let setEmotion = "";
 
@@ -37,6 +38,9 @@ function CreateEntryPage({ history }) {
   const loading3 = emotionList.loading;
   const { emotions } = emotionList;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const today = new Date();
 
   useEffect(() => {
@@ -55,7 +59,11 @@ function CreateEntryPage({ history }) {
     tags?.map((tag) => {
       if (document.getElementById(tag._id).checked === true) {
         entryTags.push(tag.name);
-      } else {
+      }
+    });
+    userInfo.personalTags?.map((ptag) => {
+      if (document.getElementById(ptag).checked === true) {
+        entryTags.push(ptag);
       }
     });
 
@@ -72,7 +80,7 @@ function CreateEntryPage({ history }) {
 
   const visualButtons = (id) => {
     emotions?.map((emotion) => {
-      if (emotion._id != id) {
+      if (emotion._id !== id) {
         document.getElementById(emotion._id)?.setAttribute("width", "50");
         document.getElementById(emotion._id)?.setAttribute("height", "50");
       } else {
@@ -149,6 +157,7 @@ function CreateEntryPage({ history }) {
                         src={emotion.icon}
                         width="50"
                         height="50"
+                        alt={emotion.name}
                       />
                       <p
                         style={{
@@ -192,6 +201,49 @@ function CreateEntryPage({ history }) {
                   </div>
                 ))}
               </div>
+              <div>
+                <div style={{ display: "flex" }}>
+                  <p
+                    style={{
+                      marginRight: "20px",
+                      marginLeft: "40px",
+                      color: "#AB2975",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Actividades Personalizadas
+                    <Link to="/ajustes-diario">
+                      <Button
+                        variant="secondary"
+                        style={{
+                          border: "none",
+                          marginLeft: "10px",
+                        }}
+                      >
+                        Editar
+                      </Button>
+                    </Link>
+                  </p>
+                </div>
+                <div style={{ display: "flex" }}>
+                  {userInfo.personalTags?.map((ptag) => (
+                    <div className="mb-3" style={{ marginRight: "10px" }}>
+                      <Form.Check
+                        type="checkbox"
+                        id={ptag}
+                        style={{ marginLeft: "15px", marginTop: "5px" }}
+                      >
+                        <Form.Check.Input type="checkbox" isValid />
+                        <Form.Check.Label
+                          style={{ color: "#2F2F2F", fontSize: "15px" }}
+                        >
+                          {ptag}
+                        </Form.Check.Label>
+                      </Form.Check>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </Form.Group>
 
             <Form.Group controlId="content">
@@ -213,7 +265,22 @@ function CreateEntryPage({ history }) {
             </Form.Group>
 
             {loading && <Loading size={50} />}
-            <Button type="submit" variant="primary" className="buttonSummit">
+
+            <Button
+              type="submit"
+              variant="secondary"
+              className="buttonSummit"
+              style={{ border: "none", marginRight: "10px" }}
+            >
+              Volver al diario
+            </Button>
+
+            <Button
+              type="submit"
+              variant="primary"
+              className="buttonSummit"
+              style={{ border: "none" }}
+            >
               Guardar entrada
             </Button>
           </Form>

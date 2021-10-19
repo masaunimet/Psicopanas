@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const generateToken = require("../utils/generateToken");
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, picture } = req.body;
+  const { name, email, password } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -16,7 +16,6 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password,
-    picture,
   });
 
   if (user) {
@@ -26,7 +25,9 @@ const registerUser = asyncHandler(async (req, res) => {
       email: user.email,
       password: user.password,
       isAdmin: user.isAdmin,
-      picture: user.picture,
+      personalTags: user.personalTags,
+      diarySecurity: user.diarySecurity,
+      diaryPassword: user.diaryPassword,
       token: generateToken(user.id),
     });
   } else {
@@ -46,7 +47,9 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      picture: user.picture,
+      personalTags: user.personalTags,
+      diarySecurity: user.diarySecurity,
+      diaryPassword: user.diaryPassword,
       token: generateToken(user.id),
     });
   } else {
@@ -55,4 +58,103 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, authUser };
+const securityUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.body._id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.personalTags = req.body.personalTags || user.personalTags;
+    user.diarySecurity = true;
+    user.diaryPassword = req.body.diaryPassword || user.diaryPassword;
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      personalTags: updatedUser.personalTags,
+      diarySecurity: updatedUser.diarySecurity,
+      diaryPassword: updatedUser.diaryPassword,
+      token: generateToken(updatedUser._id),
+    });
+  } else {
+    res.status(404);
+    throw new Error("User Not Found");
+  }
+});
+
+const noSecurityUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.body._id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.personalTags = req.body.personalTags || user.personalTags;
+    user.diarySecurity = false;
+    user.diaryPassword = req.body.diaryPassword || user.diaryPassword;
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      personalTags: updatedUser.personalTags,
+      diarySecurity: updatedUser.diarySecurity,
+      diaryPassword: updatedUser.diaryPassword,
+      token: generateToken(updatedUser._id),
+    });
+  } else {
+    res.status(404);
+    throw new Error("User Not Found");
+  }
+});
+
+const personalStatsUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.body._id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.personalTags = req.body.personalTags || user.personalTags;
+    user.diarySecurity = req.body.diarySecurity || user.diarySecurity;
+    user.diaryPassword = req.body.diaryPassword || user.diaryPassword;
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      personalTags: updatedUser.personalTags,
+      diarySecurity: updatedUser.diarySecurity,
+      diaryPassword: updatedUser.diaryPassword,
+      token: generateToken(updatedUser._id),
+    });
+  } else {
+    res.status(404);
+    throw new Error("User Not Found");
+  }
+});
+
+module.exports = {
+  registerUser,
+  authUser,
+  noSecurityUserProfile,
+  securityUserProfile,
+  personalStatsUserProfile,
+};

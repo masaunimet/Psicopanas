@@ -10,43 +10,14 @@ import MainScreen from "../../components/mainscreen/MainScreen";
 const RegisterPage = ({ history }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [picture, setPicture] = useState(
-    "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
-  );
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
-  const [picMessage, setPicMessage] = useState(null);
 
   const dispatch = useDispatch();
 
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, userInfo } = userRegister;
-
-  const postDetails = (pics) => {
-    if (!pics) {
-      return setPicMessage("Por favor, selecciona una imagen");
-    }
-    setPicMessage(null);
-
-    if (pics.type === "image/jpeg" || pics.type === "image/png") {
-      const data = new FormData();
-      data.append("file", pics);
-      data.append("update_preset", "psicopanas");
-      data.append("cloud_name", "psicopanas");
-      fetch("https://api.cloudinary.com/v1_1/psicopanas/image/upload", {
-        method: "post",
-        body: data,
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setPicture(data.url);
-        });
-    } else {
-      return setPicMessage("Por favor, selecciona una imagen");
-    }
-  };
 
   useEffect(() => {
     if (userInfo) {
@@ -59,7 +30,7 @@ const RegisterPage = ({ history }) => {
     if (password !== confirmpassword) {
       setMessage("Las contraseñas no coinciden");
     } else {
-      dispatch(register(name, email, password, picture));
+      dispatch(register(name, email, password));
     }
   };
 
@@ -107,20 +78,6 @@ const RegisterPage = ({ history }) => {
               value={confirmpassword}
               placeholder="Confirm Password"
               onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </Form.Group>
-
-          {picMessage && (
-            <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
-          )}
-          <Form.Group controlId="pic">
-            <Form.Label>Profile Picture</Form.Label>
-            <Form.File
-              onChange={(e) => postDetails(e.target.files[0])}
-              id="custom-file"
-              type="image/png"
-              label="Upload Profile Picture"
-              custom
             />
           </Form.Group>
 

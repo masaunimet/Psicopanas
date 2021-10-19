@@ -2432,33 +2432,32 @@ fieldset:disabled a.btn {
 }
 .btn-primary {
   color: #fff;
-  background-color: #158cba;
-  border-color: #158cba;
+  background-color: #0fa5ae;
+  border-color: #0fa5ae;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #117298;
-  border-color: #106a8c;
+  background-color: #0a656b;
+  border-color: #0a656b;
 }
 .btn-primary.focus,
 .btn-primary:focus {
   color: #fff;
-  background-color: #117298;
-  border-color: #106a8c;
-  box-shadow: 0 0 0 0.2rem rgba(56, 157, 196, 0.5);
+  background-color: #0a656b;
+  border-color: #0a656b;
 }
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: #fff;
-  background-color: #158cba;
-  border-color: #158cba;
+  background-color: #0fa5ae;
+  border-color: #0fa5ae;
 }
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #106a8c;
-  border-color: #0f6181;
+  background-color: #0fa5ae;
+  border-color: #0fa5ae;
 }
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -2466,34 +2465,34 @@ fieldset:disabled a.btn {
   box-shadow: 0 0 0 0.2rem rgba(56, 157, 196, 0.5);
 }
 .btn-secondary {
-  color: #222;
-  background-color: #f0f0f0;
-  border-color: #f0f0f0;
+  color: #fff;
+  background-color: #ab2975;
+  border-color: #ab2975;
 }
 .btn-secondary:hover {
-  color: #222;
-  background-color: #ddd;
-  border-color: #d7d7d7;
+  color: #fff;
+  background-color: #70174b;
+  border-color: #70174b;
 }
 .btn-secondary.focus,
 .btn-secondary:focus {
-  color: #222;
-  background-color: #ddd;
-  border-color: #d7d7d7;
+  color: #fff;
+  background-color: #70174b;
+  border-color: #70174b;
   box-shadow: 0 0 0 0.2rem rgba(209, 209, 209, 0.5);
 }
 .btn-secondary.disabled,
 .btn-secondary:disabled {
-  color: #222;
-  background-color: #f0f0f0;
-  border-color: #f0f0f0;
+  color: #fff;
+  background-color: #ab2975;
+  border-color: #ab2975;
 }
 .btn-secondary:not(:disabled):not(.disabled).active,
 .btn-secondary:not(:disabled):not(.disabled):active,
 .show > .btn-secondary.dropdown-toggle {
-  color: #222;
-  background-color: #d7d7d7;
-  border-color: #d0d0d0;
+  color: #fff;
+  background-color: #ab2975;
+  border-color: #ab2975;
 }
 .btn-secondary:not(:disabled):not(.disabled).active:focus,
 .btn-secondary:not(:disabled):not(.disabled):active:focus,

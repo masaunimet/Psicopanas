@@ -7,6 +7,8 @@ import LoginPage from "./screens/loginPage/LoginPage";
 import RegisterPage from "./screens/registerPage/RegisterPage";
 import CreateEntryPage from "./screens/createEntryPage/CreateEntryPage";
 import UpdateEntryPage from "./screens/updateEntryPage/UpdateEntryPage";
+import DiaryConfigPage from "./screens/diaryConfigPage/DiaryConfigPage";
+import AuthDiaryPage from "./screens/authDiaryPage.js/AuthDiaryPage";
 
 const App = () => (
   <>
@@ -19,6 +21,8 @@ const App = () => (
         <Route path="/diario" component={Diario} exact />
         <Route path="/crearEntrada" component={CreateEntryPage} exact />
         <Route path="/diario/:id" component={UpdateEntryPage} exact />
+        <Route path="/ajustes-diario" component={DiaryConfigPage} exact />
+        <Route path="/authDiario" component={AuthDiaryPage} exact />
       </main>
     </BrowserRouter>
   </>

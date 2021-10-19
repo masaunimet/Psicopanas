@@ -38,36 +38,52 @@ const Diario = ({ history }) => {
 
   useEffect(() => {
     dispatch(listTags());
-    if (!userInfo) {
-      history.push("/");
-    }
-  }, [dispatch, history, userInfo, successCreate, successUpdate]);
+  }, [dispatchEvent]);
 
   useEffect(() => {
     dispatch(listEmotions());
-    if (!userInfo) {
-      history.push("/");
-    }
-  }, [dispatch, history, userInfo, successCreate, successUpdate]);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(lastEntry());
-    if (!userInfo) {
-      history.push("/");
-    }
-  }, [dispatch, history, userInfo, successCreate, successUpdate]);
+  }, [dispatch]);
 
   useEffect(() => {}, [lastOne]);
   return (
     <MainScreen title="Diario">
-      {lastOne === null ? (
-        <Link to="/crearEntrada">
-          <Button size="md">Crear entrada</Button>
+      <div style={{ display: "flex" }}>
+        {lastOne === null ? (
+          <Link to="/crearEntrada">
+            <Button
+              size="md"
+              variant="primary"
+              style={{ marginRight: "10px", border: "none" }}
+            >
+              Crear entrada
+            </Button>
+          </Link>
+        ) : (
+          <div></div>
+        )}
+        <Link to="/estadisticas">
+          <Button
+            size="md"
+            variant="primary"
+            style={{ marginRight: "10px", border: "none" }}
+          >
+            Ver estadísticas
+          </Button>
         </Link>
-      ) : (
-        <div>Gracias por contarnos tu día</div>
-      )}
-
+        <Link to="/ajustes-diario">
+          <Button
+            size="md"
+            variant="secondary"
+            style={{ marginRight: "10px", border: "none" }}
+          >
+            Ajustes
+          </Button>
+        </Link>
+      </div>
       {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
       {loading && <Loading />}
       {entries
@@ -82,7 +98,7 @@ const Diario = ({ history }) => {
               }}
             >
               <Card.Header style={{ display: "flex" }}>
-                <img src={entry.emotion} width="50" height="50" />
+                <img src={entry.emotion} width="50" height="50" alt="" />
                 <Accordion.Toggle
                   style={{
                     flex: 1,
@@ -127,6 +143,7 @@ const Diario = ({ history }) => {
                       src="https://res.cloudinary.com/psicopanas/image/upload/v1634441688/iconPencil_zngxxh.png"
                       width="20px"
                       height="20px"
+                      alt="Editar"
                     />
                   </Button>
                 </div>

@@ -53,9 +53,19 @@ const Header = () => {
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item className="padding_butons">
-                <Nav.Link eventKey="1" href="/diario" className="textnavbar">
-                  Diario
-                </Nav.Link>
+                {userInfo.diarySecurity === true ? (
+                  <Nav.Link
+                    eventKey="1"
+                    href="/authDiario"
+                    className="textnavbar"
+                  >
+                    Diario
+                  </Nav.Link>
+                ) : (
+                  <Nav.Link eventKey="1" href="/diario" className="textnavbar">
+                    Diario
+                  </Nav.Link>
+                )}
               </Nav.Item>
               <Nav.Item>
                 <NavDropdown
