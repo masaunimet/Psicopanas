@@ -12,6 +12,7 @@ import {
   entryListReducer,
   entryUpdateReducer,
   lastEntryReducer,
+  getStatsReducer,
 } from "./reducers/entryReducers";
 import { tagListReducer } from "./reducers/tagReducers";
 import { emotionListReducer } from "./reducers/emotionReducers";
@@ -25,6 +26,7 @@ const reducer = combineReducers({
   emotionList: emotionListReducer,
   lastEntry: lastEntryReducer,
   userUpdate: userUpdateReducer,
+  stats: getStatsReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

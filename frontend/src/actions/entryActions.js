@@ -11,6 +11,9 @@ import {
   LAST_ENTRY_FAIL,
   LAST_ENTRY_REQUEST,
   LAST_ENTRY_SUCCESS,
+  STATS_FAIL,
+  STATS_REQUEST,
+  STATS_SUCCESS,
 } from "../constants/entriesConstants";
 import axios from "axios";
 
@@ -151,6 +154,34 @@ export const lastEntry = () => async (dispatch, getState) => {
         : error.message;
     dispatch({
       type: LAST_ENTRY_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const getStats = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: STATS_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const { data } = await axios.get(`/api/users/stats/${userInfo._id}`);
+
+    dispatch({
+      type: STATS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: STATS_FAIL,
       payload: message,
     });
   }

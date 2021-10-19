@@ -11,6 +11,9 @@ import {
   LAST_ENTRY_FAIL,
   LAST_ENTRY_SUCCESS,
   LAST_ENTRY_REQUEST,
+  STATS_REQUEST,
+  STATS_SUCCESS,
+  STATS_FAIL,
 } from "../constants/entriesConstants";
 
 export const entryListReducer = (state = { entries: [] }, action) => {
@@ -62,6 +65,17 @@ export const lastEntryReducer = (state = { lastEntry: [] }, action) => {
     case LAST_ENTRY_SUCCESS:
       return { loading: false, lastOne: action.payload };
     case LAST_ENTRY_FAIL:
+    default:
+      return state;
+  }
+};
+export const getStatsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case STATS_REQUEST:
+      return { loading: true };
+    case STATS_SUCCESS:
+      return { loading: false, data: action.payload };
+    case STATS_FAIL:
       return { loading: false, error: action.payload };
 
     default:

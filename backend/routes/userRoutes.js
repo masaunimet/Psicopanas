@@ -6,6 +6,8 @@ const {
   securityUserProfile,
   personalStatsUserProfile,
 } = require("../controllers/userControllers");
+const { getStats } = require("../controllers/statsControllers");
+const { registerUser, authUser } = require("../controllers/userControllers");
 
 const router = express.Router();
 
@@ -14,5 +16,6 @@ router.route("/login").post(authUser);
 router.route("/profile/noSecurity").post(noSecurityUserProfile);
 router.route("/profile/security").post(securityUserProfile);
 router.route("/profile/personalStats").post(personalStatsUserProfile);
+router.route("/stats/:id").get(getStats);
 
 module.exports = router;
