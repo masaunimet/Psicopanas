@@ -7,44 +7,55 @@ import { getStats } from "../../actions/entryActions";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 
-const Estadisticas = ({ history }) => {
+const Estadisticas = () => {
   const dispatch = useDispatch();
 
   const stats = useSelector((state) => state.stats);
-  const { loading, error, data } = stats;
+  const { loading, error, data: datum } = stats;
+
+  console.log(datum);
 
   useEffect(() => {
     dispatch(getStats());
   }, [dispatch]);
 
-  let jsonData = {
-    labels: ["Muy Feliz", "Feliz", "Normal", "Triste", "Muy Triste"],
-    datasets: [
-      {
-        label: "Numero de entradas",
-        data: [
-          stats.muyBien,
-          stats.bien,
-          stats.normal,
-          stats.mal,
-          stats.muyMal,
-        ],
-        backgroundColor: [
-          "rgba(255,0,0,0.6)",
-          "rgba(0,255,0,0.6)",
-          "rgba(0,0,255,0.6)",
-          "rgba(255,255,0,0.6)",
-          "rgba(0,255,255,0.6)",
-        ],
-      },
-    ],
-  };
+  let jsonData = null;
+  if (datum !== undefined) {
+    jsonData = {
+      labels: ["Muy bien", "Bien", "Normal", "Mal", "Muy mal"],
+      datasets: [
+        {
+          label: "Numero de entradas",
+          data: [datum[0], datum[1], datum[2], datum[3], datum[4]],
+          backgroundColor: [
+            "rgba(255,0,0,0.6)",
+            "rgba(0,255,0,0.6)",
+            "rgba(0,0,255,0.6)",
+            "rgba(255,255,0,0.6)",
+            "rgba(0,255,255,0.6)",
+          ],
+        },
+      ],
+    };
+  }
 
   return (
     <MainScreen title="Estadisticas">
       {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
       {loading && <Loading />}
-      {stats ? <EstadisticaColumna chartData={jsonData} /> : <div>Hola</div>}
+      <div style={{ margin: "80px" }}>
+        {datum ? (
+          <EstadisticaColumna
+            chartData={jsonData}
+            style={{
+              padding: "0",
+              margin: "0",
+            }}
+          />
+        ) : (
+          <div></div>
+        )}
+      </div>
     </MainScreen>
   );
 };
