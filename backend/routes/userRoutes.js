@@ -7,7 +7,6 @@ const {
   personalStatsUserProfile,
 } = require("../controllers/userControllers");
 const { getStats } = require("../controllers/statsControllers");
-const { registerUser, authUser } = require("../controllers/userControllers");
 
 const router = express.Router();
 
