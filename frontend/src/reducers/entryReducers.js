@@ -69,6 +69,7 @@ export const lastEntryReducer = (state = { lastEntry: [] }, action) => {
       return state;
   }
 };
+
 export const getStatsReducer = (state = {}, action) => {
   switch (action.type) {
     case STATS_REQUEST:
