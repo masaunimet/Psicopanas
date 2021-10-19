@@ -8,6 +8,9 @@ import {
   ENTRY_UPDATE_FAIL,
   ENTRY_UPDATE_REQUEST,
   ENTRY_UPDATE_SUCCESS,
+  STATS_FAIL,
+  STATS_REQUEST,
+  STATS_SUCCESS,
 } from "../constants/entriesConstants";
 import axios from "axios";
 
@@ -124,3 +127,31 @@ export const updateEntryAction =
       });
     }
   };
+
+export const getStats = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: STATS_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const { data } = await axios.get(`/api/users/stats/${userInfo._id}`);
+
+    dispatch({
+      type: STATS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: STATS_FAIL,
+      payload: message,
+    });
+  }
+};

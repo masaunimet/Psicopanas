@@ -8,6 +8,9 @@ import {
   ENTRY_LIST_FAIL,
   ENTRY_LIST_REQUEST,
   ENTRY_LIST_SUCCESS,
+  STATS_REQUEST,
+  STATS_SUCCESS,
+  STATS_FAIL,
 } from "../constants/entriesConstants";
 
 export const entryListReducer = (state = { entries: [] }, action) => {
@@ -46,6 +49,20 @@ export const entryUpdateReducer = (state = {}, action) => {
       return { loading: false, success: true };
     case ENTRY_UPDATE_FAIL:
       return { loading: false, error: action.payload, success: false };
+
+    default:
+      return state;
+  }
+};
+
+export const getStatsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case STATS_REQUEST:
+      return { loading: true };
+    case STATS_SUCCESS:
+      return { loading: false, data: action.payload };
+    case STATS_FAIL:
+      return { loading: false, error: action.payload };
 
     default:
       return state;
