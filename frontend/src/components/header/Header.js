@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 import LogoPP from "../../images/logoPP.png";
 import "../header/Header.css";
@@ -32,37 +32,41 @@ const Header = () => {
         <Navbar.Collapse className="justify-content-end">
           {userInfo ? (
             <Nav variant="pills" activeKey="1">
-              <Nav.Item className="padding_butons">
-                <Nav.Link
-                  eventKey="disabled"
-                  disabled
-                  href="/diario"
+              {/* <Nav.Item className="padding_butons">
+                <NavLink
+                  to="/diario"
                   className="textnavbar"
+                  activeStyle={{
+                    fontWeight: "bold",
+                    color: "#0FA5AE",
+                  }}
                 >
                   Metas
-                </Nav.Link>
+                </NavLink>
               </Nav.Item>
               <Nav.Item className="padding_butons">
-                <Nav.Link
-                  eventKey="disabled"
-                  disabled
-                  href="/diario"
+                <NavLink
+                  to="/diario"
                   className="textnavbar"
+                  activeStyle={{
+                    fontWeight: "bold",
+                    color: "#0FA5AE",
+                  }}
                 >
                   Foro
-                </Nav.Link>
-              </Nav.Item>
+                </NavLink>
+              </Nav.Item> */}
               <Nav.Item className="padding_butons">
                 {userInfo.diarySecurity === true ? (
                   <Nav.Link
-                    eventKey="1"
                     href="/authDiario"
                     className="textnavbar"
+                    eventKey="1"
                   >
                     Diario
                   </Nav.Link>
                 ) : (
-                  <Nav.Link eventKey="1" href="/diario" className="textnavbar">
+                  <Nav.Link href="/diario" className="textnavbar" eventKey="1">
                     Diario
                   </Nav.Link>
                 )}
@@ -84,9 +88,28 @@ const Header = () => {
           ) : (
             <Nav variant="pills" activeKey="1">
               <Nav.Item className="padding_butons">
-                <Nav.Link href="/login" className="textnavbar" eventKey="1">
+                <NavLink
+                  to="/login"
+                  className="textnavbar"
+                  activeStyle={{
+                    fontWeight: "bold",
+                    color: "#0FA5AE",
+                  }}
+                >
                   Iniciar Sesión
-                </Nav.Link>
+                </NavLink>
+              </Nav.Item>
+              <Nav.Item className="padding_butons">
+                <NavLink
+                  to="/registro"
+                  className="textnavbar"
+                  activeStyle={{
+                    fontWeight: "bold",
+                    color: "#0FA5AE",
+                  }}
+                >
+                  Registrarse
+                </NavLink>
               </Nav.Item>
             </Nav>
           )}

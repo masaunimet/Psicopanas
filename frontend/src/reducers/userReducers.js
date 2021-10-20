@@ -9,6 +9,18 @@ import {
   USER_UPDATE_FAIL,
   USER_UPDATE_REQUEST,
   USER_UPDATE_SUCCESS,
+  USER_DIARY_REQUEST,
+  USER_DIARY_SUCCESS,
+  USER_DIARY_FAIL,
+  USER_SECURITY_REQUEST,
+  USER_SECURITY_SUCCESS,
+  USER_SECURITY_FAIL,
+  USER_SETTAGS_REQUEST,
+  USER_SETTAGS_SUCCESS,
+  USER_SETTAGS_FAIL,
+  USER_NOSECURITY_REQUEST,
+  USER_NOSECURITY_SUCCESS,
+  USER_NOSECURITY_FAIL,
 } from "../constants/userConstants";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -47,6 +59,58 @@ export const userUpdateReducer = (state = {}, action) => {
       return { loading: false, userInfo: action.payload, success: true };
     case USER_UPDATE_FAIL:
       return { loading: false, error: action.payload, success: false };
+    default:
+      return state;
+  }
+};
+
+export const userSecurityReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_SECURITY_REQUEST:
+      return { loading: true };
+    case USER_SECURITY_SUCCESS:
+      return { loading: false, userInfo: action.payload, success: true };
+    case USER_SECURITY_FAIL:
+      return { loading: false, error: action.payload, success: false };
+    default:
+      return state;
+  }
+};
+
+export const userNoSecurityReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_NOSECURITY_REQUEST:
+      return { loading: true };
+    case USER_NOSECURITY_SUCCESS:
+      return { loading: false, userInfo: action.payload, success: true };
+    case USER_NOSECURITY_FAIL:
+      return { loading: false, error: action.payload, success: false };
+    default:
+      return state;
+  }
+};
+
+export const userSetTagsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_SETTAGS_REQUEST:
+      return { loading: true };
+    case USER_SETTAGS_SUCCESS:
+      return { loading: false, userInfo: action.payload, success: true };
+    case USER_SETTAGS_FAIL:
+      return { loading: false, error: action.payload, success: false };
+    default:
+      return state;
+  }
+};
+
+export const userDiaryReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_DIARY_REQUEST:
+      return { loading: true };
+    case USER_DIARY_SUCCESS:
+      return { loading: false, userInfo: action.payload, successDiary: true };
+    case USER_DIARY_FAIL:
+      return { loading: false, error: action.payload, successDiary: false };
     default:
       return state;
   }

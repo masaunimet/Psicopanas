@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Media from "react-media";
 import { Button, Container, Row } from "react-bootstrap";
 import "../landingPage/LandingPage.css";
 import Goti from "../../images/Goti.png";
+import { useSelector } from "react-redux";
 
-const LandingPage = () => {
-  //useEffect(() => {
-  //const userInfo = localStorage.getItem("userInfo");
+const LandingPage = ({ history }) => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
-  //if (userInfo) {
-  //history.push("/diario");
-  //}
-  //}, [history]);
+  useEffect(() => {
+    if (userInfo) {
+      history.push("/diario");
+    } else {
+      localStorage.removeItem("userInfo");
+      localStorage.removeItem("emotionsInfo");
+      localStorage.removeItem("tagsInfo");
+    }
+  }, [history, userInfo]);
 
   return (
     <div className="main">
@@ -67,7 +73,13 @@ const LandingPage = () => {
                 <div>
                   <div className="buttonContainer">
                     <a href="/login">
-                      <Button size="lg" className="landingButton">
+                      <Button
+                        size="lg"
+                        className="landingButton"
+                        style={{
+                          border: "none",
+                        }}
+                      >
                         Iniciar sesión
                       </Button>
                     </a>
@@ -76,6 +88,9 @@ const LandingPage = () => {
                         size="lg"
                         className="landingButton"
                         variant="outline-primary"
+                        style={{
+                          border: "none",
+                        }}
                       >
                         Crear una cuenta
                       </Button>

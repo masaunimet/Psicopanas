@@ -79,6 +79,7 @@ export const createEntryAction =
         type: ENTRY_CREATE_SUCCESS,
         payload: data,
       });
+      window.location.reload(true);
     } catch (error) {
       const message =
         error.response && error.response.data.message
@@ -92,7 +93,7 @@ export const createEntryAction =
   };
 
 export const updateEntryAction =
-  (id, title, content) => async (dispatch, getState) => {
+  (id, title, content, tags, emotion) => async (dispatch, getState) => {
     try {
       dispatch({
         type: ENTRY_UPDATE_REQUEST,
@@ -111,7 +112,7 @@ export const updateEntryAction =
 
       const { data } = await axios.put(
         `/api/entries/${id}`,
-        { title, content },
+        { title, content, tags, emotion },
         config
       );
 
