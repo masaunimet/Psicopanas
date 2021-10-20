@@ -29,16 +29,29 @@ const Diario = ({ history }) => {
   const last = useSelector((state) => state.lastEntry);
   const { lastOne } = last;
 
+  const diaryAuth = useSelector((state) => state.diaryAuth);
+  const { successDiary } = diaryAuth;
+
   useEffect(() => {
-    dispatch(listEntries());
     if (!userInfo) {
       history.push("/");
+    } else {
+      if (
+        (successDiary === false || !successDiary) &&
+        userInfo.diarySecurity === true
+      ) {
+        history.push("/authDiario");
+      }
     }
+  });
+
+  useEffect(() => {
+    dispatch(listEntries());
   }, [dispatch, history, userInfo, successCreate, successUpdate]);
 
   useEffect(() => {
     dispatch(listTags());
-  }, [dispatchEvent]);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(listEmotions());
@@ -49,6 +62,7 @@ const Diario = ({ history }) => {
   }, [dispatch]);
 
   useEffect(() => {}, [lastOne]);
+
   return (
     <MainScreen title="Diario">
       <div style={{ display: "flex" }}>

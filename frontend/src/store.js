@@ -3,8 +3,12 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
+  userDiaryReducer,
   userLoginReducer,
+  userNoSecurityReducer,
   userRegisterReducer,
+  userSecurityReducer,
+  userSetTagsReducer,
   userUpdateReducer,
 } from "./reducers/userReducers";
 import {
@@ -26,7 +30,11 @@ const reducer = combineReducers({
   emotionList: emotionListReducer,
   lastEntry: lastEntryReducer,
   userUpdate: userUpdateReducer,
+  userSecurity: userSecurityReducer,
+  userNoSecurity: userNoSecurityReducer,
+  userSetTags: userSetTagsReducer,
   stats: getStatsReducer,
+  diaryAuth: userDiaryReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

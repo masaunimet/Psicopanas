@@ -20,6 +20,10 @@ const LoginPage = ({ history }) => {
   useEffect(() => {
     if (userInfo) {
       history.push("/diario");
+    } else {
+      localStorage.removeItem("userInfo");
+      localStorage.removeItem("emotionsInfo");
+      localStorage.removeItem("tagsInfo");
     }
   }, [history, userInfo]);
 
@@ -35,11 +39,10 @@ const LoginPage = ({ history }) => {
       <div className="loginContainer">
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Correo electrónico</Form.Label>
             <Form.Control
               type="email"
               value={email}
-              placeholder="Enter email"
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
@@ -49,18 +52,17 @@ const LoginPage = ({ history }) => {
             <Form.Control
               type="password"
               value={password}
-              placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            Submit
+            Iniciar sesión
           </Button>
         </Form>
         <Row className="py-3">
           <Col>
-            New Customer ? <Link to="/registro">Register Here</Link>
+            ¿Eres nuevo? <Link to="/registro">Crea una cuenta aquí</Link>
           </Col>
         </Row>
       </div>

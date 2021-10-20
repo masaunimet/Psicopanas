@@ -1,6 +1,6 @@
 import "./styles/App.css";
 import Header from "./components/header/Header";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LandingPage from "./screens/landingPage/LandingPage";
 import Diario from "./screens/diaryPage/Diario";
 import LoginPage from "./screens/loginPage/LoginPage";
@@ -10,12 +10,15 @@ import UpdateEntryPage from "./screens/updateEntryPage/UpdateEntryPage";
 import DiaryConfigPage from "./screens/diaryConfigPage/DiaryConfigPage";
 import AuthDiaryPage from "./screens/authDiaryPage.js/AuthDiaryPage";
 import Estadisticas from "./screens/Estadisticas/Estadisticas";
+import MessageConfigDiaryPage from "./screens/messagePage.js/MessageConfigDiaryPage";
+import MessageBadStreak from "./screens/messagePage.js/MessageBadStreak";
+import Message404 from "./screens/messagePage.js/Message404";
 
 const App = () => (
   <>
-    <BrowserRouter>
+    <Router>
       <Header />
-      <main>
+      <Switch>
         <Route path="/" component={LandingPage} exact />
         <Route path="/login" component={LoginPage} exact />
         <Route path="/registro" component={RegisterPage} exact />
@@ -25,8 +28,15 @@ const App = () => (
         <Route path="/ajustes-diario" component={DiaryConfigPage} exact />
         <Route path="/authDiario" component={AuthDiaryPage} exact />
         <Route path="/estadisticas" component={Estadisticas} exact />
-      </main>
-    </BrowserRouter>
+        <Route
+          path="/mensaje-configurar-diario"
+          component={MessageConfigDiaryPage}
+          exact
+        />
+        <Route path="/mensaje-racha" component={MessageBadStreak} exact />
+        <Route path="*" component={Message404} />
+      </Switch>
+    </Router>
   </>
 );
 

@@ -40,7 +40,7 @@ const createEntry = asyncHandler(async (req, res) => {
 });
 
 const updateEntry = asyncHandler(async (req, res) => {
-  const { title, content } = req.body;
+  const { title, content, tags, emotion } = req.body;
 
   const entry = await Entry.findById(req.params.id);
 
@@ -52,6 +52,8 @@ const updateEntry = asyncHandler(async (req, res) => {
   if (entry) {
     entry.title = title;
     entry.content = content;
+    entry.tags = tags;
+    entry.emotion = emotion;
 
     const updatedEntry = await entry.save();
     res.json(updatedEntry);

@@ -14,9 +14,9 @@ import {
 const DiaryConfigPage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  const [password, setPassword] = useState("");
+  const [password] = useState("");
   const [message, setMessage] = useState(null);
-  const [message2, setMessage2] = useState(null);
+  const [message2] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [personalTags, setPersonalTags] = useState(null);
@@ -30,12 +30,21 @@ const DiaryConfigPage = ({ history }) => {
   const [dataTag4, setTag4] = useState("");
   const [dataTag5, setTag5] = useState("");
 
+  const diaryAuth = useSelector((state) => state.diaryAuth);
+  const { successDiary } = diaryAuth;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
     } else {
+      if (
+        (successDiary === false || !successDiary) &&
+        userInfo.diarySecurity === true
+      ) {
+        history.push("/authDiario");
+      }
       setName(userInfo.name);
       setEmail(userInfo.email);
       setPersonalTags(userInfo.personalTags);
@@ -47,7 +56,7 @@ const DiaryConfigPage = ({ history }) => {
       setTag4(userInfo.personalTags[3]);
       setTag5(userInfo.personalTags[4]);
     }
-  }, [history, userInfo]);
+  }, [history, userInfo, successDiary]);
 
   const submitHandlerSecurity = async (e) => {
     e.preventDefault();
@@ -67,7 +76,7 @@ const DiaryConfigPage = ({ history }) => {
         })
       );
       setMessage(null);
-      history.push("/diario");
+      history.push("/mensaje-configurar-diario");
     }
   };
 
@@ -84,8 +93,8 @@ const DiaryConfigPage = ({ history }) => {
           diaryPassword,
         })
       );
-      history.push("/diario");
       setMessage(null);
+      history.push("/mensaje-configurar-diario");
     } else {
       setMessage("Las contraseñas no coinciden");
     }
@@ -95,20 +104,31 @@ const DiaryConfigPage = ({ history }) => {
     e.preventDefault();
     const arrayTags = [];
     if (!isEmpty(dataTag1)) {
-      arrayTags.push(dataTag1);
+      if (!isEmpty(dataTag1.trim())) {
+        arrayTags.push(dataTag1.trim());
+      }
     }
     if (!isEmpty(dataTag2)) {
-      arrayTags.push(dataTag2);
+      if (!isEmpty(dataTag2.trim())) {
+        arrayTags.push(dataTag2.trim());
+      }
     }
     if (!isEmpty(dataTag3)) {
-      arrayTags.push(dataTag3);
+      if (!isEmpty(dataTag3.trim())) {
+        arrayTags.push(dataTag3.trim());
+      }
     }
     if (!isEmpty(dataTag4)) {
-      arrayTags.push(dataTag4);
+      if (!isEmpty(dataTag4.trim())) {
+        arrayTags.push(dataTag4.trim());
+      }
     }
     if (!isEmpty(dataTag5)) {
-      arrayTags.push(dataTag5);
+      if (!isEmpty(dataTag5.trim())) {
+        arrayTags.push(dataTag5.trim());
+      }
     }
+
     dispatch(
       diarySetPersonalStats({
         _id: userInfo._id,
@@ -119,13 +139,10 @@ const DiaryConfigPage = ({ history }) => {
         diaryPassword,
       })
     );
-    setMessage2("Se han guardado los cambios");
-    history.push("/diario");
+    history.push("/mensaje-configurar-diario");
   };
+
   function isEmpty(str) {
-    if (/\s/.test(str)) {
-      return true;
-    }
     return !str || 0 === str.length;
   }
 
@@ -247,6 +264,7 @@ const DiaryConfigPage = ({ history }) => {
                 value={dataTag1}
                 id="inputTag1"
                 onChange={(e) => setTag1(e.target.value)}
+                autocomplete="off"
               />
             </Form.Group>
             <Form.Group controlId="tag2">
@@ -255,6 +273,7 @@ const DiaryConfigPage = ({ history }) => {
                 value={dataTag2}
                 id="inputTag2"
                 onChange={(e) => setTag2(e.target.value)}
+                autocomplete="off"
               />
             </Form.Group>
             <Form.Group controlId="tag3">
@@ -263,6 +282,7 @@ const DiaryConfigPage = ({ history }) => {
                 value={dataTag3}
                 id="inputTag3"
                 onChange={(e) => setTag3(e.target.value)}
+                autocomplete="off"
               />
             </Form.Group>
             <Form.Group controlId="tag4">
@@ -271,6 +291,7 @@ const DiaryConfigPage = ({ history }) => {
                 value={dataTag4}
                 id="inputTag4"
                 onChange={(e) => setTag4(e.target.value)}
+                autocomplete="off"
               />
             </Form.Group>
             <Form.Group controlId="tag5">
@@ -279,6 +300,7 @@ const DiaryConfigPage = ({ history }) => {
                 value={dataTag5}
                 id="inputTag5"
                 onChange={(e) => setTag5(e.target.value)}
+                autocomplete="off"
               />
             </Form.Group>
 

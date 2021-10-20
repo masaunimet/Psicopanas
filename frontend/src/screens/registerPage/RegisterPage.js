@@ -17,11 +17,18 @@ const RegisterPage = ({ history }) => {
   const dispatch = useDispatch();
 
   const userRegister = useSelector((state) => state.userRegister);
-  const { loading, error, userInfo } = userRegister;
+  const { loading, error } = userRegister;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   useEffect(() => {
     if (userInfo) {
       history.push("/diario");
+    } else {
+      localStorage.removeItem("userInfo");
+      localStorage.removeItem("emotionsInfo");
+      localStorage.removeItem("tagsInfo");
     }
   }, [history, userInfo]);
 
@@ -42,52 +49,48 @@ const RegisterPage = ({ history }) => {
         {loading && <Loading />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
-            <Form.Label>Name</Form.Label>
+            <Form.Label>Nombre completo</Form.Label>
             <Form.Control
               type="name"
               value={name}
-              placeholder="Enter name"
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
 
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>Correo electrónico</Form.Label>
             <Form.Control
               type="email"
               value={email}
-              placeholder="Enter email"
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Contraseña</Form.Label>
             <Form.Control
               type="password"
               value={password}
-              placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
 
           <Form.Group controlId="confirmPassword">
-            <Form.Label>Confirm Password</Form.Label>
+            <Form.Label>Confirma la contraseña</Form.Label>
             <Form.Control
               type="password"
               value={confirmpassword}
-              placeholder="Confirm Password"
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            Register
+            Resgistrarse
           </Button>
         </Form>
         <Row className="py-3">
           <Col>
-            Have an Account ? <Link to="/login">Login</Link>
+            ¿ Ya tienes una cuenta ? <Link to="/login">Inicia sesión aquí</Link>
           </Col>
         </Row>
       </div>
