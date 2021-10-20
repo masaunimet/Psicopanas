@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Accordion, Button, Card } from "react-bootstrap";
+import { Accordion, Button, Card, Container, Row, Col } from "react-bootstrap";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import { Link } from "react-router-dom";
 import moment from "moment";
@@ -164,35 +164,41 @@ const Diario = ({ history }) => {
               </Card.Header>
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
-                  <div style={{ display: "flex" }}>
-                    {entry.tags?.map((tag) => (
-                      <div
-                        style={{
-                          marginRight: "5px",
-                          color: "#0a656b",
-                          background: "#bcf4fc",
-                          fontWeight: "bold",
-                          paddingLeft: "5px",
-                          paddingRight: "5px",
-                          borderRadius: "2px",
-                        }}
-                      >
-                        {tag}
-                      </div>
-                    ))}
-                  </div>
-                  <blockquote className="blockquote mb-0">
-                    <div
-                      style={{
-                        color: "#171717",
-                        marginTop: "10px",
-                        textAlign: "justify",
-                        fontSize: "15px",
-                      }}
-                    >
-                      {entry.content}
-                    </div>
-                  </blockquote>
+                  <Container>
+                    <Row>
+                      <Col style={{ width: "auto" }}>
+                        {entry.tags?.map((tag) => (
+                          <div
+                            style={{
+                              color: "#0a656b",
+                              background: "#bcf4fc",
+                              fontWeight: "bold",
+                              margin: "5px",
+                              paddingLeft: "5px",
+                              paddingRight: "5px",
+                              borderRadius: "2px",
+                            }}
+                          >
+                            {tag}
+                          </div>
+                        ))}
+                      </Col>
+                      <Col>
+                        <blockquote className="blockquote mb-0">
+                          <div
+                            style={{
+                              color: "#171717",
+                              marginTop: "10px",
+                              textAlign: "justify",
+                              fontSize: "15px",
+                            }}
+                          >
+                            {entry.content}
+                          </div>
+                        </blockquote>
+                      </Col>
+                    </Row>
+                  </Container>
                 </Card.Body>
               </Accordion.Collapse>
             </Card>

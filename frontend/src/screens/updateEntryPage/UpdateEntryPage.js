@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import axios from "axios";
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card, Row, Container, Col, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { updateEntryAction } from "../../actions/entryActions";
 import ErrorMessage from "../../components/ErrorMessage";
@@ -9,8 +9,6 @@ import Loading from "../../components/Loading";
 import moment from "moment";
 import { listTags } from "../../actions/tagActions";
 import { listEmotions } from "../../actions/emotionAction";
-
-import { Link } from "react-router-dom";
 
 function UpdateEntryPage({ match, history }) {
   const [title, setTitle] = useState();
@@ -221,79 +219,210 @@ function UpdateEntryPage({ match, history }) {
                 </div>
               </div>
             </Form.Group>
-
-            <Form.Group controlId="tag">
-              <Form.Label
-                style={{
-                  color: "#0A656B",
-                  fontWeight: "bold",
-                  fontSize: "20px",
-                }}
-              >
-                ¿Qué te hizo sentir así?
-              </Form.Label>
-              <div style={{ display: "flex" }}>
-                {loading2 && <Loading size={25} />}
-                {tags?.map((tag) => (
-                  <div className="mb-3">
-                    <Form.Check
-                      type="checkbox"
-                      id={tag._id}
-                      style={{ marginLeft: "15px", marginTop: "5px" }}
-                    >
-                      <Form.Check.Input type="checkbox" isValid />
-                      <Form.Check.Label
-                        style={{ color: "#171717", fontSize: "15px" }}
-                      >
-                        {tag.name}
-                      </Form.Check.Label>
-                    </Form.Check>
-                  </div>
-                ))}
-              </div>
-              <div>
-                <div style={{ display: "flex" }}>
-                  <p
-                    style={{
-                      marginRight: "20px",
-                      marginLeft: "40px",
-                      color: "#AB2975",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Actividades Personalizadas
-                    <Link to="/ajustes-diario">
-                      <Button
-                        variant="secondary"
+            <Form.Group controlId="title">
+              <Form.Label>¿Qué te hizo sentir así?</Form.Label>
+              {loading2 && <Loading size={25} />}
+              <Container>
+                <Row>
+                  <Col>
+                    <div style={{ display: "flex" }}>
+                      <p
                         style={{
-                          border: "none",
-                          marginLeft: "10px",
+                          marginRight: "20px",
+                          marginLeft: "40px",
+                          color: "#AB2975",
+                          fontWeight: "bold",
                         }}
                       >
-                        Editar
-                      </Button>
-                    </Link>
-                  </p>
-                </div>
-                <div style={{ display: "flex" }}>
-                  {userInfo?.personalTags?.map((ptag) => (
-                    <div className="mb-3" style={{ marginRight: "10px" }}>
-                      <Form.Check
-                        type="checkbox"
-                        id={ptag}
-                        style={{ marginLeft: "15px", marginTop: "5px" }}
-                      >
-                        <Form.Check.Input type="checkbox" isValid />
-                        <Form.Check.Label
-                          style={{ color: "#2F2F2F", fontSize: "15px" }}
-                        >
-                          {ptag}
-                        </Form.Check.Label>
-                      </Form.Check>
+                        Deberes
+                      </p>
                     </div>
-                  ))}
-                </div>
-              </div>
+                    {tags
+                      ?.filter((tag) => tag.group === "Deberes")
+                      .map((tag) => (
+                        <div>
+                          <Form.Check
+                            type="checkbox"
+                            id={tag._id}
+                            style={{ margin: "5px", cursor: "pointer" }}
+                          >
+                            <Form.Check.Input type="checkbox" isValid />
+                            <Form.Check.Label
+                              style={{
+                                color: "#2F2F2F",
+                              }}
+                            >
+                              {tag.name}
+                            </Form.Check.Label>
+                          </Form.Check>
+                        </div>
+                      ))}
+                  </Col>
+                  <Col>
+                    <div style={{ display: "flex" }}>
+                      <p
+                        style={{
+                          marginRight: "20px",
+                          marginLeft: "40px",
+                          color: "#AB2975",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Hobbies
+                      </p>
+                    </div>
+                    {tags
+                      ?.filter((tag) => tag.group === "Hobbies")
+                      .map((tag) => (
+                        <div>
+                          <Form.Check
+                            type="checkbox"
+                            id={tag._id}
+                            style={{ margin: "5px", cursor: "pointer" }}
+                          >
+                            <Form.Check.Input type="checkbox" isValid />
+                            <Form.Check.Label
+                              style={{
+                                color: "#2F2F2F",
+                              }}
+                            >
+                              {tag.name}
+                            </Form.Check.Label>
+                          </Form.Check>
+                        </div>
+                      ))}
+                  </Col>
+                  <Col>
+                    <div style={{ display: "flex" }}>
+                      <p
+                        style={{
+                          marginRight: "20px",
+                          marginLeft: "40px",
+                          color: "#AB2975",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Emociones
+                      </p>
+                    </div>
+                    {tags
+                      ?.filter((tag) => tag.group === "Emociones")
+                      .map((tag) => (
+                        <div>
+                          <Form.Check
+                            type="checkbox"
+                            id={tag._id}
+                            style={{ margin: "5px", cursor: "pointer" }}
+                          >
+                            <Form.Check.Input type="checkbox" isValid />
+                            <Form.Check.Label
+                              style={{
+                                color: "#2F2F2F",
+                              }}
+                            >
+                              {tag.name}
+                            </Form.Check.Label>
+                          </Form.Check>
+                        </div>
+                      ))}
+                  </Col>
+                  <Col>
+                    <div style={{ display: "flex" }}>
+                      <p
+                        style={{
+                          marginRight: "20px",
+                          marginLeft: "40px",
+                          color: "#AB2975",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Social
+                      </p>
+                    </div>
+                    {tags
+                      ?.filter((tag) => tag.group === "Social")
+                      .map((tag) => (
+                        <div>
+                          <Form.Check
+                            type="checkbox"
+                            id={tag._id}
+                            style={{ margin: "5px", cursor: "pointer" }}
+                          >
+                            <Form.Check.Input type="checkbox" isValid />
+                            <Form.Check.Label
+                              style={{
+                                color: "#2F2F2F",
+                              }}
+                            >
+                              {tag.name}
+                            </Form.Check.Label>
+                          </Form.Check>
+                        </div>
+                      ))}
+                  </Col>
+                  <Col>
+                    <div style={{ display: "flex" }}>
+                      <p
+                        style={{
+                          marginRight: "20px",
+                          marginLeft: "40px",
+                          color: "#AB2975",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Salud
+                      </p>
+                    </div>
+                    {tags
+                      ?.filter((tag) => tag.group === "Salud")
+                      .map((tag) => (
+                        <div>
+                          <Form.Check
+                            type="checkbox"
+                            id={tag._id}
+                            style={{ margin: "5px", cursor: "pointer" }}
+                          >
+                            <Form.Check.Input type="checkbox" isValid />
+                            <Form.Check.Label
+                              style={{
+                                color: "#2F2F2F",
+                              }}
+                            >
+                              {tag.name}
+                            </Form.Check.Label>
+                          </Form.Check>
+                        </div>
+                      ))}
+                  </Col>
+                  <Col>
+                    <div style={{ display: "flex" }}>
+                      <p
+                        style={{
+                          color: "#AB2975",
+                          fontWeight: "bold",
+                          display: "flex",
+                        }}
+                      >
+                        Mis actividades
+                      </p>
+                    </div>
+                    {userInfo?.personalTags?.map((ptag) => (
+                      <div>
+                        <Form.Check
+                          type="checkbox"
+                          id={ptag}
+                          style={{ margin: "5px", cursor: "pointer" }}
+                        >
+                          <Form.Check.Input type="checkbox" isValid />
+                          <Form.Check.Label style={{ color: "#2F2F2F" }}>
+                            {ptag}
+                          </Form.Check.Label>
+                        </Form.Check>
+                      </div>
+                    ))}
+                  </Col>
+                </Row>
+              </Container>
             </Form.Group>
 
             <Form.Group controlId="content">

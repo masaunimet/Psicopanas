@@ -10,6 +10,9 @@ const tagSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  group: {
+    type: String,
+  },
 });
 
 const Tag = mongoose.model("Tag", tagSchema);
