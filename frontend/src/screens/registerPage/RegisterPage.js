@@ -85,7 +85,7 @@ const RegisterPage = ({ history }) => {
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            Resgistrarse
+            Registrarse
           </Button>
         </Form>
         <Row className="py-3">

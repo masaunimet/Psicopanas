@@ -9,6 +9,7 @@ import Loading from "../../components/Loading";
 import moment from "moment";
 import { listTags } from "../../actions/tagActions";
 import { listEmotions } from "../../actions/emotionAction";
+import { Link } from "react-router-dom";
 
 function UpdateEntryPage({ match, history }) {
   const [title, setTitle] = useState();
@@ -37,13 +38,6 @@ function UpdateEntryPage({ match, history }) {
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
-    } else {
-      if (
-        (successDiary === false || !successDiary) &&
-        userInfo.diarySecurity === true
-      ) {
-        history.push("/authDiario");
-      }
     }
   }, [history, userInfo, successDiary]);
 
@@ -445,14 +439,15 @@ function UpdateEntryPage({ match, history }) {
 
             {loading && <Loading size={50} />}
 
-            <Button
-              type="submit"
-              variant="secondary"
-              className="buttonSummit"
-              style={{ border: "none", marginRight: "10px" }}
-            >
-              Volver al diario
-            </Button>
+            <Link to="/authDiario">
+              <Button
+                variant="secondary"
+                className="buttonSummit"
+                style={{ border: "none", marginRight: "10px" }}
+              >
+                Volver al diario
+              </Button>
+            </Link>
 
             <Button
               type="submit"

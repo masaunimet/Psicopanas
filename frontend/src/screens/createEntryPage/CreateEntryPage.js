@@ -9,8 +9,8 @@ import { listTags } from "../../actions/tagActions";
 import { listEmotions } from "../../actions/emotionAction";
 import "../createEntryPage/createEntryPage.css";
 import { Link } from "react-router-dom";
-
 import moment from "moment";
+import MessageAlreadyCreated from "../messagePage.js/MessageAlreadyCreated";
 
 let setEmotion = "";
 
@@ -451,14 +451,15 @@ function CreateEntryPage({ history }) {
 
                 {loading && <Loading size={50} />}
 
-                <Button
-                  type="submit"
-                  variant="secondary"
-                  className="buttonSummit"
-                  style={{ border: "none", marginRight: "10px" }}
-                >
-                  Volver al diario
-                </Button>
+                <Link to="/authDiario">
+                  <Button
+                    variant="secondary"
+                    className="buttonSummit"
+                    style={{ border: "none", marginRight: "10px" }}
+                  >
+                    Volver al diario
+                  </Button>
+                </Link>
 
                 <Button
                   type="submit"
@@ -473,13 +474,10 @@ function CreateEntryPage({ history }) {
           </Card>
         </MainScreen>
       ) : (
-        <MainScreen title="Anuncio">
-          {loadingLast && <Loading size={140} />}
-          <div>Ya has creado una entrada hoy</div>
-          <Link to="/authdiario">
-            <Button>Continuar</Button>
-          </Link>
-        </MainScreen>
+        <>
+          {loadingLast && <Loading size={500} />}
+          <MessageAlreadyCreated />
+        </>
       )}
     </>
   );
