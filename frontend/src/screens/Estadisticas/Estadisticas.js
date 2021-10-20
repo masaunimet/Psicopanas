@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import EstadisticaColumna from "../../components/Estadisticas/EstadisticasColumna";
+import { Button} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getStats } from "../../actions/entryActions";
@@ -41,22 +43,17 @@ const Estadisticas = () => {
 
   const emotion = ()=>{
 
-    const max = datum[0]+ datum[1]+ datum[2]+ datum[3]+ datum[4];
+    const pond = (5*datum[0])+ (4*datum[1])+ (3*datum[2])+ (2*datum[3])+ (1*datum[4]);
 
-    const tempMB = datum[0]/max;
-    console.log(tempMB);
-    const tempB = datum[1]/max;
-    const tempN = datum[2]/max;
-    const tempM = datum[3]/max;
-    const tempMM = datum[4]/max;
+    const sum = datum[0]+ datum[1]+ datum[2]+ datum[3]+ datum[4];
 
-    const temp = Math.max(tempMB,tempB,tempN,tempM,tempMM);
+    const promedio = Math.round(pond/sum);
 
-    if(temp===tempMB) return "Muy Bien";
-    else if(temp===tempB) return "Bien";
-    else if(temp===tempN) return "Normal";
-    else if(temp===tempM) return "Mal";
-    else if(temp===tempMM) return "Muy Mal";
+    if(promedio===5) return "Muy Bien";
+    else if(promedio===4) return "Bien";
+    else if(promedio===3) return "Normal";
+    else if(promedio===2) return "Mal";
+    else if(promedio===1) return "Muy Mal";
 
   };
 
@@ -75,6 +72,12 @@ const Estadisticas = () => {
               margin: "0",
             }}
           />
+          <Link to="/diario">
+          <Button
+            variant="secondary"
+            style={{ border: "none", fontSize: "15px" }}
+          >Volver a mi diario</Button>
+        </Link>
           </>
         ) : (
           <div></div>
