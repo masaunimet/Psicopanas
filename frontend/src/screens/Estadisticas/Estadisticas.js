@@ -37,7 +37,7 @@ const Estadisticas = ({ history }) => {
       labels: ["Muy bien", "Bien", "Normal", "Mal", "Muy mal"],
       datasets: [
         {
-          label: "Numero de entradas",
+          label: "Número de entradas",
           data: [datum[0], datum[1], datum[2], datum[3], datum[4]],
           backgroundColor: [
             "#11CBD6",
@@ -67,14 +67,14 @@ const Estadisticas = ({ history }) => {
   };
 
   return (
-    <MainScreen title="Estadisticas">
+    <MainScreen title="Estadísticas">
       {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
       {loading && <Loading />}
       <div style={{ margin: "80px" }}>
         {datum ? (
           <>
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <h3>Emocion promedio: {emotion()}</h3>
+              <h3>Emoción promedio: {emotion()}</h3>
             </div>
             <EstadisticaColumna
               chartData={jsonData}
