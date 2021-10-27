@@ -9,7 +9,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (userExists) {
     res.status(404);
-    throw new Error("User already exists");
+    throw new Error("Ese correo ya ha sido registrado. Por favor use otro");
   }
 
   const user = await User.create({
@@ -24,15 +24,17 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       password: user.password,
+      profilePicture: user.profilePicture,
       isAdmin: user.isAdmin,
       personalTags: user.personalTags,
       diarySecurity: user.diarySecurity,
       diaryPassword: user.diaryPassword,
       token: generateToken(user.id),
+      createdAt: user.createdAt,
     });
   } else {
     res.status(400);
-    throw new Error("User not found");
+    throw new Error("El usuario no existe");
   }
 });
 
@@ -46,15 +48,17 @@ const authUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      profilePicture: user.profilePicture,
       isAdmin: user.isAdmin,
       personalTags: user.personalTags,
       diarySecurity: user.diarySecurity,
       diaryPassword: user.diaryPassword,
       token: generateToken(user.id),
+      createdAt: user.createdAt,
     });
   } else {
     res.status(401);
-    throw new Error("Invalid Email or Password");
+    throw new Error("El correo o la contraseña son inválidos");
   }
 });
 
@@ -62,14 +66,8 @@ const securityUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.body._id);
 
   if (user) {
-    user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
-    user.personalTags = req.body.personalTags || user.personalTags;
     user.diarySecurity = true;
     user.diaryPassword = req.body.diaryPassword || user.diaryPassword;
-    if (req.body.password) {
-      user.password = req.body.password;
-    }
 
     const updatedUser = await user.save();
 
@@ -77,15 +75,17 @@ const securityUserProfile = asyncHandler(async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+      profilePicture: user.profilePicture,
       isAdmin: updatedUser.isAdmin,
       personalTags: updatedUser.personalTags,
       diarySecurity: updatedUser.diarySecurity,
       diaryPassword: updatedUser.diaryPassword,
       token: generateToken(updatedUser._id),
+      createdAt: user.createdAt,
     });
   } else {
     res.status(404);
-    throw new Error("User Not Found");
+    throw new Error("El usuario no existe");
   }
 });
 
@@ -93,14 +93,7 @@ const noSecurityUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.body._id);
 
   if (user) {
-    user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
-    user.personalTags = req.body.personalTags || user.personalTags;
     user.diarySecurity = false;
-    user.diaryPassword = req.body.diaryPassword || user.diaryPassword;
-    if (req.body.password) {
-      user.password = req.body.password;
-    }
 
     const updatedUser = await user.save();
 
@@ -108,15 +101,17 @@ const noSecurityUserProfile = asyncHandler(async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+      profilePicture: user.profilePicture,
       isAdmin: updatedUser.isAdmin,
       personalTags: updatedUser.personalTags,
       diarySecurity: updatedUser.diarySecurity,
       diaryPassword: updatedUser.diaryPassword,
       token: generateToken(updatedUser._id),
+      createdAt: user.createdAt,
     });
   } else {
     res.status(404);
-    throw new Error("User Not Found");
+    throw new Error("El usuario no existe");
   }
 });
 
@@ -124,11 +119,34 @@ const personalStatsUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.body._id);
 
   if (user) {
-    user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
     user.personalTags = req.body.personalTags || user.personalTags;
-    user.diarySecurity = req.body.diarySecurity || user.diarySecurity;
-    user.diaryPassword = req.body.diaryPassword || user.diaryPassword;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      profilePicture: user.profilePicture,
+      isAdmin: updatedUser.isAdmin,
+      personalTags: updatedUser.personalTags,
+      diarySecurity: updatedUser.diarySecurity,
+      diaryPassword: updatedUser.diaryPassword,
+      token: generateToken(updatedUser._id),
+      createdAt: user.createdAt,
+    });
+  } else {
+    res.status(404);
+    throw new Error("El usuario no existe");
+  }
+});
+
+const updateUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.profilePicture = req.body.profilePicture || user.profilePicture;
     if (req.body.password) {
       user.password = req.body.password;
     }
@@ -139,15 +157,17 @@ const personalStatsUserProfile = asyncHandler(async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+      profilePicture: user.profilePicture,
       isAdmin: updatedUser.isAdmin,
       personalTags: updatedUser.personalTags,
       diarySecurity: updatedUser.diarySecurity,
       diaryPassword: updatedUser.diaryPassword,
       token: generateToken(updatedUser._id),
+      createdAt: user.createdAt,
     });
   } else {
     res.status(404);
-    throw new Error("User Not Found");
+    throw new Error("El usuario no existe");
   }
 });
 
@@ -157,4 +177,5 @@ module.exports = {
   noSecurityUserProfile,
   securityUserProfile,
   personalStatsUserProfile,
+  updateUserProfile,
 };

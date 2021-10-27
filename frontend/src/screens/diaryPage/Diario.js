@@ -65,6 +65,7 @@ const Diario = ({ history }) => {
 
   return (
     <MainScreen title="Diario">
+      <h2 style={{}}>Bienvenido de vuelta {userInfo.name}</h2>
       <div style={{ display: "flex" }}>
         <Link to="/crearEntrada">
           <Button

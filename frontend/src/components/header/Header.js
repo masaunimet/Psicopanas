@@ -77,8 +77,8 @@ const Header = () => {
                   id="basic-nav-dropdowm"
                   className="textnavbar"
                 >
-                  {/* <NavDropdown.Item href="#action3">Perfil</NavDropdown.Item> */}
-                  {/* <NavDropdown.Divider /> */}
+                  <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
+                  <NavDropdown.Divider />
                   <NavDropdown.Item onClick={logoutHandler}>
                     Cerrar sesión
                   </NavDropdown.Item>
