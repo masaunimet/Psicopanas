@@ -10,6 +10,7 @@ const PaySreen = ({ history }) => {
     const [email, setEmail] = useState("");
     const [telefono, settelefono] = useState("");
     const [foto, setFoto] = useState("");
+    const [loading,setloading]=useState(false);
 
     const sendEmail = (e) => {
 
@@ -19,7 +20,7 @@ const PaySreen = ({ history }) => {
             nombre: nombre,
             email: email,
             telefono: telefono,
-            comprobante: "asasasas",}
+            comprobante: foto,}
         , 'user_5YxUS0Avd5jMNvVqxzLkf')
           .then((result) => {
               alert(result.text);
@@ -30,10 +31,24 @@ const PaySreen = ({ history }) => {
           e.target.reset();
       };
 
-    const sendInfo = () =>{
+    const uploadImage = async e => {
 
-
-    }
+        const data = new FormData()
+        data.append('file', e)
+        data.append('upload_preset', 'Comprobantes fotos')
+        setloading(true)
+        const res = await fetch(
+          '	https://api.cloudinary.com/v1_1/dufc61kxr/image/upload',
+          {
+            method: 'POST',
+            body: data
+          }
+        )
+        const file = await res.json()
+    
+        setFoto(file.secure_url)
+        setloading(false)
+      }
 
     return(
         <MainScreen title="Pago Premium">
@@ -73,11 +88,17 @@ const PaySreen = ({ history }) => {
                     </Form.Group>
                     <Form.Group controlId="formFileMultiple" className="mb-3">
                         <Form.Label>Foto del pago</Form.Label>
-                        <Form.Control type="file" name="comprobante" value={foto} onChange={(e) => setFoto(e.target.value)}/>
+                        <Form.Control type="file" name="file" onChange={(e) => uploadImage(e.target.files[0])}/>
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+
+                    {loading ? (
+
+                        <p>loading</p>
+                    ):
+                        <Button variant="primary" type="submit">
                         Enviar comprobante
-                    </Button>
+                        </Button>
+                    }
                     </Form>  
                 </Card.Body>
             </Card>
