@@ -1,10 +1,13 @@
-import React,{useRef, useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import emailjs from "emailjs-com";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, Container, Form, Row, Col } from "react-bootstrap";
+import { Button, Card, Form} from "react-bootstrap";
 import MainScreen from "../../components/mainscreen/MainScreen";
 
 const PaySreen = ({ history }) => {
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
 
     const [nombre, setnombre] = useState("");
     const [email, setEmail] = useState("");
@@ -12,12 +15,19 @@ const PaySreen = ({ history }) => {
     const [foto, setFoto] = useState("");
     const [loading,setloading]=useState(false);
 
+    useEffect(() => {
+        if (!userInfo) {
+          history.push("/");
+        }
+    });
+
     const sendEmail = (e) => {
 
         e.preventDefault();
     
         emailjs.send('service_tcenvkb', 'template_8lzky6r', {
             nombre: nombre,
+            id_user:userInfo._id,
             email: email,
             telefono: telefono,
             comprobante: foto,}
