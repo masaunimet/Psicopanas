@@ -14,6 +14,8 @@ import MessageConfigDiaryPage from "./screens/messagePage.js/MessageConfigDiaryP
 import MessageBadStreak from "./screens/messagePage.js/MessageBadStreak";
 import Message404 from "./screens/messagePage.js/Message404";
 import PaySreen from "./screens/PayScreen/paidScreen";
+import ProfilePage from "./screens/profilePage/ProfilePage";
+import UpdateProfilePage from "./screens/updateProfilePage/UpdateProfilePage";
 
 const App = () => (
   <>
@@ -30,6 +32,8 @@ const App = () => (
         <Route path="/authDiario" component={AuthDiaryPage} exact />
         <Route path="/estadisticas" component={Estadisticas} exact />
         <Route path="/pagos" component={PaySreen} exact />
+        <Route path="/perfil" component={ProfilePage} exact />
+        <Route path="/modificarPerfil" component={UpdateProfilePage} exact />
         <Route
           path="/mensaje-configurar-diario"
           component={MessageConfigDiaryPage}

@@ -67,14 +67,14 @@ const Estadisticas = ({ history }) => {
   };
 
   return (
-    <MainScreen title="Estadisticas">
+    <MainScreen title="Estadísticas de ánimo">
       {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
       {loading && <Loading />}
       <div style={{ margin: "80px" }}>
         {datum ? (
           <>
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <h3>Emocion promedio: {emotion()}</h3>
+              <h3>Emoción promedio: {emotion()}</h3>
             </div>
             <EstadisticaColumna
               chartData={jsonData}
@@ -86,7 +86,7 @@ const Estadisticas = ({ history }) => {
             <Link to="/diario">
               <Button
                 variant="secondary"
-                style={{ border: "none", fontSize: "15px" }}
+                style={{ border: "none", fontSize: "15px", margin: "10px" }}
               >
                 Volver a mi diario
               </Button>

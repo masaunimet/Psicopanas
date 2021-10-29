@@ -1,4 +1,4 @@
-const moment = require("moment");
+// const moment = require("moment");
 
 const asyncHandler = require("express-async-handler");
 const Entry = require("../models/entryModel");
@@ -8,15 +8,15 @@ const getEntrys = asyncHandler(async (req, res) => {
   res.json(entries);
 });
 
-const lastEntry = asyncHandler(async (req, res) => {
-  const start = moment().startOf("day").toDate(); // set to 12:00 am today
-  const end = moment().endOf("day").toDate(); // set to 23:59 pm today
-  const entry = await Entry.findOne({
-    user: req.params.id,
-    createdAt: { $gte: start, $lte: end },
-  });
-  res.json(entry);
-});
+// const lastEntry = asyncHandler(async (req, res) => {
+//   const start = moment().startOf("day").toDate(); // set to 12:00 am today
+//   const end = moment().endOf("day").toDate(); // set to 23:59 pm today
+//   const entry = await Entry.findOne({
+//     user: req.params.id,
+//     createdAt: { $gte: start, $lte: end },
+//   });
+//   res.json(entry);
+// });
 
 const createEntry = asyncHandler(async (req, res) => {
   const { title, content, tags, emotion } = req.body;
@@ -80,5 +80,5 @@ module.exports = {
   createEntry,
   getEntryById,
   updateEntry,
-  lastEntry,
+  // lastEntry,
 };

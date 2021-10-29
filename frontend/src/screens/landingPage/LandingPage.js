@@ -92,7 +92,7 @@ const LandingPage = ({ history }) => {
                           border: "none",
                         }}
                       >
-                        Crear una cuenta
+                        Regístrate aquí
                       </Button>
                     </a>
                   </div>

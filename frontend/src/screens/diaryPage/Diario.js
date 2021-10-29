@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 
 import { useDispatch, useSelector } from "react-redux";
-import { listEntries, lastEntry } from "../../actions/entryActions";
+import { listEntries } from "../../actions/entryActions";
 import { listTags } from "../../actions/tagActions";
 import { listEmotions } from "../../actions/emotionAction";
 import Loading from "../../components/Loading";
@@ -26,8 +26,8 @@ const Diario = ({ history }) => {
   const entryUpdate = useSelector((state) => state.entryUpdate);
   const { success: successUpdate } = entryUpdate;
 
-  const last = useSelector((state) => state.lastEntry);
-  const { lastOne } = last;
+  // const last = useSelector((state) => state.lastEntry);
+  // const { lastOne } = last;
 
   const diaryAuth = useSelector((state) => state.diaryAuth);
   const { successDiary } = diaryAuth;
@@ -57,28 +57,25 @@ const Diario = ({ history }) => {
     dispatch(listEmotions());
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(lastEntry());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(lastEntry());
+  // }, [dispatch]);
 
-  useEffect(() => {}, [lastOne]);
+  // useEffect(() => {}, [lastOne]);
 
   return (
     <MainScreen title="Diario">
+      <h2 style={{}}>Bienvenido de vuelta {userInfo.name}</h2>
       <div style={{ display: "flex" }}>
-        {lastOne === null ? (
-          <Link to="/crearEntrada">
-            <Button
-              size="md"
-              variant="primary"
-              style={{ marginRight: "10px", border: "none" }}
-            >
-              Crear entrada
-            </Button>
-          </Link>
-        ) : (
-          <div></div>
-        )}
+        <Link to="/crearEntrada">
+          <Button
+            size="md"
+            variant="primary"
+            style={{ marginRight: "10px", border: "none" }}
+          >
+            Crear entrada
+          </Button>
+        </Link>
         <Link to="/estadisticas">
           <Button
             size="md"

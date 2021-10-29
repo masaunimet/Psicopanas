@@ -15,7 +15,7 @@ import {
   entryCreateReducer,
   entryListReducer,
   entryUpdateReducer,
-  lastEntryReducer,
+  // lastEntryReducer,
   getStatsReducer,
 } from "./reducers/entryReducers";
 import { tagListReducer } from "./reducers/tagReducers";
@@ -28,7 +28,7 @@ const reducer = combineReducers({
   entryUpdate: entryUpdateReducer,
   tagList: tagListReducer,
   emotionList: emotionListReducer,
-  lastEntry: lastEntryReducer,
+  // lastEntry: lastEntryReducer,
   userUpdate: userUpdateReducer,
   userSecurity: userSecurityReducer,
   userNoSecurity: userNoSecurityReducer,
