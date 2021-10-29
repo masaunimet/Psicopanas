@@ -21,6 +21,9 @@ import {
   USER_NOSECURITY_REQUEST,
   USER_NOSECURITY_SUCCESS,
   USER_NOSECURITY_FAIL,
+  GET_USERS_REQUEST,
+  GET_USERS_SUCCESS,
+  GET_USERS_FAIL,
 } from "../constants/userConstants";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -111,6 +114,19 @@ export const userDiaryReducer = (state = {}, action) => {
       return { loading: false, userInfo: action.payload, successDiary: true };
     case USER_DIARY_FAIL:
       return { loading: false, error: action.payload, successDiary: false };
+    default:
+      return state;
+  }
+};
+
+export const getUsersReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_USERS_REQUEST:
+      return { loading: true };
+    case GET_USERS_SUCCESS:
+      return { loading: false, usersInfo: action.payload };
+    case GET_USERS_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

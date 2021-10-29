@@ -19,7 +19,11 @@ const LoginPage = ({ history }) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push("/diario");
+      if (userInfo?.isAdmin === false) {
+        history.push("/diario");
+      } else {
+        history.push("/admin");
+      }
     } else {
       localStorage.removeItem("userInfo");
       localStorage.removeItem("emotionsInfo");

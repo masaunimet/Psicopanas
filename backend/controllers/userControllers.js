@@ -171,6 +171,17 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+const getAllUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({}, { email: 1, isAdmin: 1 });
+
+  if (users) {
+    res.json(users);
+  } else {
+    res.status(404);
+    throw new Error("Ha ocurrido un error");
+  }
+});
+
 module.exports = {
   registerUser,
   authUser,
@@ -178,4 +189,5 @@ module.exports = {
   securityUserProfile,
   personalStatsUserProfile,
   updateUserProfile,
+  getAllUsers,
 };

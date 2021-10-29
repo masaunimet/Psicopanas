@@ -6,6 +6,7 @@ const {
   securityUserProfile,
   personalStatsUserProfile,
   updateUserProfile,
+  getAllUsers,
 } = require("../controllers/userControllers");
 const { getStats } = require("../controllers/statsControllers");
 const { protect } = require("../middlewares/authMiddleware");
@@ -19,5 +20,6 @@ router.route("/profile/security").post(securityUserProfile);
 router.route("/profile/personalStats").post(personalStatsUserProfile);
 router.route("/profile/update").post(protect, updateUserProfile);
 router.route("/stats/:id").get(getStats);
+router.route("/getAllUsers").get(getAllUsers);
 
 module.exports = router;

@@ -1,4 +1,6 @@
 import {
+  GET_USERS_REQUEST,
+  GET_USERS_SUCCESS,
   USER_DIARY_FAIL,
   USER_DIARY_REQUEST,
   USER_DIARY_SUCCESS,
@@ -193,6 +195,24 @@ export const updateProfile = (user) => async (dispatch, getState) => {
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 
     localStorage.setItem("userInfo", JSON.stringify(data));
+  } catch (error) {
+    dispatch({
+      type: USER_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getUsers = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: GET_USERS_REQUEST });
+
+    const { data } = await axios.get("/api/users/getAllUsers");
+
+    dispatch({ type: GET_USERS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: USER_UPDATE_FAIL,
