@@ -17,6 +17,9 @@ function CreateEntryPage({ history }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  const [mitad] = useState([]);
+  const [mitad2] = useState([]);
+
   const dispatch = useDispatch();
 
   const entryCreate = useSelector((state) => state.entryCreate);
@@ -49,6 +52,13 @@ function CreateEntryPage({ history }) {
     if (!userInfo) {
       history.push("/");
     }
+
+    const mitads = userInfo?.personalTags.slice(0, 5);
+    const mitads2 = userInfo?.personalTags.slice(5, 10);
+
+    mitads.map((element) => mitad.push(element));
+    mitads2.map((element) => mitad2.push(element));
+
     if (
       (successDiary === false || !successDiary) &&
       userInfo?.diarySecurity === true
@@ -368,18 +378,43 @@ function CreateEntryPage({ history }) {
                       <div style={{ display: "flex" }}>
                         <p
                           style={{
-                            marginRight: "20px",
-                            marginLeft: "40px",
                             color: "#AB2975",
                             fontWeight: "bold",
+                            display: "flex",
                           }}
                         >
-                          Salud
+                          Mis actividades
                         </p>
                       </div>
-                      {tags
-                        ?.filter((tag) => tag.group === "Salud")
-                        .map((tag) => (
+                      {mitad.map((ptag) => (
+                        <div>
+                          <Form.Check
+                            type="checkbox"
+                            id={ptag}
+                            style={{ margin: "5px", cursor: "pointer" }}
+                          >
+                            <Form.Check.Input type="checkbox" isValid />
+                            <Form.Check.Label style={{ color: "#2F2F2F" }}>
+                              {ptag}
+                            </Form.Check.Label>
+                          </Form.Check>
+                        </div>
+                      ))}
+                    </Col>
+                    {userInfo?.isPremium ? (
+                      <Col>
+                        <div style={{ display: "flex" }}>
+                          <p
+                            style={{
+                              color: "#AB2975",
+                              fontWeight: "bold",
+                              display: "flex",
+                            }}
+                          >
+                            Premium
+                          </p>
+                        </div>
+                        {mitad2.map((ptag) => (
                           <div>
                             <Form.Check
                               type="checkbox"
@@ -397,36 +432,30 @@ function CreateEntryPage({ history }) {
                             </Form.Check>
                           </div>
                         ))}
-                    </Col>
-                    <Col>
-                      <div style={{ display: "flex" }}>
-                        <p
-                          style={{
-                            color: "#AB2975",
-                            fontWeight: "bold",
-                            display: "flex",
-                          }}
-                        >
-                          Mis actividades
-                        </p>
-                      </div>
-                      {userInfo?.personalTags?.map((ptag) => (
-                        <div>
-                          <Form.Check
-                            type="checkbox"
-                            id={ptag}
-                            style={{ margin: "5px", cursor: "pointer" }}
-                          >
-                            <Form.Check.Input type="checkbox" isValid />
-                            <Form.Check.Label style={{ color: "#2F2F2F" }}>
-                              {ptag}
-                            </Form.Check.Label>
-                          </Form.Check>
-                        </div>
-                      ))}
-                    </Col>
+                      </Col>
+                    ) : (
+                      <div></div>
+                    )}
                   </Row>
                 </Container>
+              </Form.Group>
+
+              <Form.Group controlId="content">
+                <Form.Label
+                  style={{
+                    color: "#0A656B",
+                    fontWeight: "bold",
+                    fontSize: "20px",
+                  }}
+                >
+                  Cuéntanos mas sobre tu día
+                </Form.Label>
+                <Form.Control
+                  as="textarea"
+                  value={content}
+                  rows={4}
+                  onChange={(e) => setContent(e.target.value)}
+                />
               </Form.Group>
 
               <Form.Group controlId="content">

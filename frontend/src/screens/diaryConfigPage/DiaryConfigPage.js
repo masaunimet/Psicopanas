@@ -29,6 +29,11 @@ const DiaryConfigPage = ({ history }) => {
   const [dataTag3, setTag3] = useState("");
   const [dataTag4, setTag4] = useState("");
   const [dataTag5, setTag5] = useState("");
+  const [dataTag6, setTag6] = useState("");
+  const [dataTag7, setTag7] = useState("");
+  const [dataTag8, setTag8] = useState("");
+  const [dataTag9, setTag9] = useState("");
+  const [dataTag10, setTag10] = useState("");
 
   const diaryAuth = useSelector((state) => state.diaryAuth);
   const { successDiary } = diaryAuth;
@@ -55,6 +60,11 @@ const DiaryConfigPage = ({ history }) => {
       setTag3(userInfo.personalTags[2]);
       setTag4(userInfo.personalTags[3]);
       setTag5(userInfo.personalTags[4]);
+      setTag6(userInfo.personalTags[5]);
+      setTag7(userInfo.personalTags[6]);
+      setTag8(userInfo.personalTags[7]);
+      setTag9(userInfo.personalTags[8]);
+      setTag10(userInfo.personalTags[9]);
     }
   }, [history, userInfo, successDiary]);
 
@@ -126,6 +136,36 @@ const DiaryConfigPage = ({ history }) => {
     if (!isEmpty(dataTag5)) {
       if (!isEmpty(dataTag5.trim())) {
         arrayTags.push(dataTag5.trim());
+      }
+    }
+
+    if (!isEmpty(dataTag6)) {
+      if (!isEmpty(dataTag6.trim())) {
+        arrayTags.push(dataTag6.trim());
+      }
+    }
+
+    if (!isEmpty(dataTag7)) {
+      if (!isEmpty(dataTag7.trim())) {
+        arrayTags.push(dataTag7.trim());
+      }
+    }
+
+    if (!isEmpty(dataTag8)) {
+      if (!isEmpty(dataTag8.trim())) {
+        arrayTags.push(dataTag8.trim());
+      }
+    }
+
+    if (!isEmpty(dataTag9)) {
+      if (!isEmpty(dataTag9.trim())) {
+        arrayTags.push(dataTag9.trim());
+      }
+    }
+
+    if (!isEmpty(dataTag10)) {
+      if (!isEmpty(dataTag10.trim())) {
+        arrayTags.push(dataTag10.trim());
       }
     }
 
@@ -303,7 +343,57 @@ const DiaryConfigPage = ({ history }) => {
                 autocomplete="off"
               />
             </Form.Group>
-
+            {userInfo?.isPremium ? (
+              <>
+              <Form.Group controlId="tag6">
+              <Form.Control
+                type="text"
+                value={dataTag6}
+                id="inputTag6"
+                onChange={(e) => setTag6(e.target.value)}
+                autocomplete="off"
+              />
+            </Form.Group>
+            <Form.Group controlId="tag7">
+              <Form.Control
+                type="text"
+                value={dataTag7}
+                id="inputTag7"
+                onChange={(e) => setTag7(e.target.value)}
+                autocomplete="off"
+              />
+            </Form.Group>
+            <Form.Group controlId="tag8">
+              <Form.Control
+                type="text"
+                value={dataTag8}
+                id="inputTag8"
+                onChange={(e) => setTag8(e.target.value)}
+                autocomplete="off"
+              />
+            </Form.Group>
+            <Form.Group controlId="tag9">
+              <Form.Control
+                type="text"
+                value={dataTag9}
+                id="inputTag9"
+                onChange={(e) => setTag9(e.target.value)}
+                autocomplete="off"
+              />
+            </Form.Group>
+            <Form.Group controlId="tag10">
+              <Form.Control
+                type="text"
+                value={dataTag10}
+                id="inputTag10"
+                onChange={(e) => setTag10(e.target.value)}
+                autocomplete="off"
+              />
+            </Form.Group>
+            </>
+            ):(
+              <div></div>
+            )}
             <Button variant="primary" type="submit" style={{ border: "none" }}>
               Guardar cambios en mis actividades
             </Button>
