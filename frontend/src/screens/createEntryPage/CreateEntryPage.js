@@ -458,24 +458,6 @@ function CreateEntryPage({ history }) {
                 />
               </Form.Group>
 
-              <Form.Group controlId="content">
-                <Form.Label
-                  style={{
-                    color: "#0A656B",
-                    fontWeight: "bold",
-                    fontSize: "20px",
-                  }}
-                >
-                  Cuéntanos más sobre tu día
-                </Form.Label>
-                <Form.Control
-                  as="textarea"
-                  value={content}
-                  rows={4}
-                  onChange={(e) => setContent(e.target.value)}
-                />
-              </Form.Group>
-
               {loading && <Loading size={50} />}
 
               <Link to="/authDiario">
