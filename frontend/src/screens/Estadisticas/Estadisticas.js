@@ -81,65 +81,72 @@ const Estadisticas = ({ history }) => {
           <>
             <Container>
               <Row>
-                <Col>
-                  <Row>
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      <h3 style={{ color: "#AB2975", fontWeight: "bold" }}>
-                        Mis actividades
-                      </h3>
-                    </div>
-                  </Row>
-                  {tagStags ? (
-                    <>
-                      <Row>
-                        <Col>
-                          <div
-                            style={{
-                              color: "#0a656b",
-                              fontWeight: "bold",
-                              fontSize: "18px",
-                            }}
-                          >
-                            Nombre de la actividad
-                          </div>
-                        </Col>
-                        <Col>
-                          <div
-                            style={{
-                              color: "#0a656b",
-                              fontWeight: "bold",
-                              fontSize: "18px",
-                            }}
-                          >
-                            Cantidad de veces realizada
-                          </div>
-                        </Col>
-                      </Row>
-                      {tagStags
-                        .sort((a, b) => {
-                          if (a.value > b.value) {
-                            return -1;
-                          }
-                          if (a.value < b.value) {
-                            return 1;
-                          }
-                          return 0;
-                        })
-                        .map((ptag) => (
-                          <Row>
-                            <Col>
-                              <div>{ptag.name}</div>
-                            </Col>
-                            <Col>
-                              <div>{ptag.value} veces</div>
-                            </Col>
-                          </Row>
-                        ))}
-                    </>
-                  ) : (
-                    <Loading />
-                  )}
-                </Col>
+                {userInfo?.isPremium ? (
+                  <Col>
+                    <Row>
+                      <div
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <h3 style={{ color: "#AB2975", fontWeight: "bold" }}>
+                          Mis actividades
+                        </h3>
+                      </div>
+                    </Row>
+                    {tagStags ? (
+                      <>
+                        <Row>
+                          <Col>
+                            <div
+                              style={{
+                                color: "#0a656b",
+                                fontWeight: "bold",
+                                fontSize: "18px",
+                              }}
+                            >
+                              Nombre de la actividad
+                            </div>
+                          </Col>
+                          <Col>
+                            <div
+                              style={{
+                                color: "#0a656b",
+                                fontWeight: "bold",
+                                fontSize: "18px",
+                              }}
+                            >
+                              Cantidad de veces realizada
+                            </div>
+                          </Col>
+                        </Row>
+                        {tagStags
+                          .sort((a, b) => {
+                            if (a.value > b.value) {
+                              return -1;
+                            }
+                            if (a.value < b.value) {
+                              return 1;
+                            }
+                            return 0;
+                          })
+                          .map((ptag) => (
+                            <Row>
+                              <Col>
+                                <div>{ptag.name}</div>
+                              </Col>
+                              <Col>
+                                <div>{ptag.value} veces</div>
+                              </Col>
+                            </Row>
+                          ))}
+                      </>
+                    ) : (
+                      <Loading />
+                    )}
+                  </Col>
+                ) : (
+                  <></>
+                )}
+                ;
                 <Col>
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <h3>Emoción promedio: {emotion()}</h3>
