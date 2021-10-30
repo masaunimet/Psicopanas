@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Emotion = require("../models/emotionModel");
 const Entry = require("../models/entryModel");
+const Tag = require("../models/tagModel");
 
 const getStats = asyncHandler(async (req, res) => {
   const entries = await Entry.find({ user: req.params.id });
@@ -28,4 +29,41 @@ const getStats = asyncHandler(async (req, res) => {
   res.json(data);
 });
 
-module.exports = { getStats };
+const getTagsStats = asyncHandler(async (req, res) => {
+  const entries = await Entry.find(
+    { user: req.params.id },
+    { tags: 1, _id: 0 }
+  );
+
+  const identries = entries?.map((entry) => entry.tags);
+
+  const arrayTags = [];
+
+  identries.map((iden) => iden.map((idn) => arrayTags.push(idn)));
+
+  const repetidos = {};
+  const repetidosData = [];
+
+  arrayTags.forEach(function (numero) {
+    repetidos[numero] = (repetidos[numero] || 0) + 1;
+  });
+
+  arrayTags.forEach(function (numero) {
+    repetidosData.push({ name: numero, value: repetidos[numero] });
+  });
+
+  let sinRepetidos = repetidosData.filter(
+    (valorActual, indiceActual, arreglo) => {
+      return (
+        arreglo.findIndex(
+          (valorDelArreglo) =>
+            JSON.stringify(valorDelArreglo) === JSON.stringify(valorActual)
+        ) === indiceActual
+      );
+    }
+  );
+
+  res.json(sinRepetidos);
+});
+
+module.exports = { getStats, getTagsStats };

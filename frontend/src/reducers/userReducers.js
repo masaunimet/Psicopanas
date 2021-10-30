@@ -131,3 +131,16 @@ export const getUsersReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const changeUserStatusReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_USERS_REQUEST:
+      return { loading: true };
+    case GET_USERS_SUCCESS:
+      return { loading: false, success: true };
+    case GET_USERS_FAIL:
+      return { loading: false, error: action.payload, success: false };
+    default:
+      return state;
+  }
+};

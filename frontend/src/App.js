@@ -17,6 +17,7 @@ import PaySreen from "./screens/PayScreen/paidScreen";
 import ProfilePage from "./screens/profilePage/ProfilePage";
 import UpdateProfilePage from "./screens/updateProfilePage/UpdateProfilePage";
 import AdminPage from "./screens/adminPage.js/AdminPage";
+import UserUpdateFromAdmin from "./screens/userUpdateFromAdmin/UserUpdateFromAdmin";
 
 const App = () => (
   <>
@@ -36,6 +37,7 @@ const App = () => (
         <Route path="/perfil" component={ProfilePage} exact />
         <Route path="/modificarPerfil" component={UpdateProfilePage} exact />
         <Route path="/admin" component={AdminPage} exact />
+        <Route path="/admin/:id" component={UserUpdateFromAdmin} exact />
         <Route
           path="/mensaje-configurar-diario"
           component={MessageConfigDiaryPage}

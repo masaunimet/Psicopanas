@@ -32,7 +32,37 @@ const Header = () => {
         <Navbar.Collapse className="justify-content-end">
           {userInfo ? (
             <Nav variant="pills" activeKey="1">
-              {/* <Nav.Item className="padding_butons">
+              {userInfo.isAdmin === true ? (
+                <>
+                  <Nav.Item className="padding_butons">
+                    <NavLink
+                      to="/admin"
+                      className="textnavbar"
+                      activeStyle={{
+                        fontWeight: "bold",
+                        color: "#0FA5AE",
+                      }}
+                    >
+                      Usuarios
+                    </NavLink>
+                  </Nav.Item>
+                  <Nav.Item className="padding_butons">
+                    <NavLink
+                      to="/login"
+                      className="textnavbar"
+                      onClick={logoutHandler}
+                      activeStyle={{
+                        fontWeight: "bold",
+                        color: "#0FA5AE",
+                      }}
+                    >
+                      Log Out
+                    </NavLink>
+                  </Nav.Item>
+                </>
+              ) : (
+                <>
+                  {/* <Nav.Item className="padding_butons">
                 <NavLink
                   to="/diario"
                   className="textnavbar"
@@ -56,34 +86,40 @@ const Header = () => {
                   Foro
                 </NavLink>
               </Nav.Item> */}
-              <Nav.Item className="padding_butons">
-                {userInfo.diarySecurity === true ? (
-                  <Nav.Link
-                    href="/authDiario"
-                    className="textnavbar"
-                    eventKey="1"
-                  >
-                    Diario
-                  </Nav.Link>
-                ) : (
-                  <Nav.Link href="/diario" className="textnavbar" eventKey="1">
-                    Diario
-                  </Nav.Link>
-                )}
-              </Nav.Item>
-              <Nav.Item>
-                <NavDropdown
-                  title="Mi cuenta"
-                  id="basic-nav-dropdowm"
-                  className="textnavbar"
-                >
-                  <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Cerrar sesión
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </Nav.Item>
+                  <Nav.Item className="padding_butons">
+                    {userInfo.diarySecurity === true ? (
+                      <Nav.Link
+                        href="/authDiario"
+                        className="textnavbar"
+                        eventKey="1"
+                      >
+                        Diario
+                      </Nav.Link>
+                    ) : (
+                      <Nav.Link
+                        href="/diario"
+                        className="textnavbar"
+                        eventKey="1"
+                      >
+                        Diario
+                      </Nav.Link>
+                    )}
+                  </Nav.Item>
+                  <Nav.Item>
+                    <NavDropdown
+                      title="Mi cuenta"
+                      id="basic-nav-dropdowm"
+                      className="textnavbar"
+                    >
+                      <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item onClick={logoutHandler}>
+                        Cerrar sesión
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </Nav.Item>
+                </>
+              )}
             </Nav>
           ) : (
             <Nav variant="pills" activeKey="1">

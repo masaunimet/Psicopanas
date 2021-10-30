@@ -418,7 +418,7 @@ function CreateEntryPage({ history }) {
                           <div>
                             <Form.Check
                               type="checkbox"
-                              id={tag._id}
+                              id={ptag._id}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
                               <Form.Check.Input type="checkbox" isValid />
@@ -427,7 +427,7 @@ function CreateEntryPage({ history }) {
                                   color: "#2F2F2F",
                                 }}
                               >
-                                {tag.name}
+                                {ptag.name}
                               </Form.Check.Label>
                             </Form.Check>
                           </div>

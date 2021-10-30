@@ -1,4 +1,7 @@
 import {
+  CHANGE_USER_STATUS_FAIL,
+  CHANGE_USER_STATUS_REQUEST,
+  CHANGE_USER_STATUS_SUCCESS,
   GET_USERS_REQUEST,
   GET_USERS_SUCCESS,
   USER_DIARY_FAIL,
@@ -216,6 +219,26 @@ export const getUsers = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const changeUserStatus = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: CHANGE_USER_STATUS_REQUEST });
+
+    const { data } = await axios.post(`/api/users/changeUserStatus/${id}`);
+
+    dispatch({ type: CHANGE_USER_STATUS_SUCCESS, payload: data });
+
+    window.location.reload();
+  } catch (error) {
+    dispatch({
+      type: CHANGE_USER_STATUS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

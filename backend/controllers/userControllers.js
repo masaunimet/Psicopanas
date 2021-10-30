@@ -177,8 +177,38 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+const changeUserStatus = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    user.isPremium = !user.isPremium;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      profilePicture: user.profilePicture,
+      isPremium: user.isPremium,
+      isAdmin: updatedUser.isAdmin,
+      personalTags: updatedUser.personalTags,
+      diarySecurity: updatedUser.diarySecurity,
+      diaryPassword: updatedUser.diaryPassword,
+      token: generateToken(updatedUser._id),
+      createdAt: user.createdAt,
+    });
+  } else {
+    res.status(404);
+    throw new Error("El usuario no existe");
+  }
+});
+
 const getAllUsers = asyncHandler(async (req, res) => {
-  const users = await User.find({}, { email: 1, isAdmin: 1 });
+  const users = await User.find(
+    { isPremium: false },
+    { email: 1, isPremium: 1 }
+  );
 
   if (users) {
     res.json(users);
@@ -196,4 +226,5 @@ module.exports = {
   personalStatsUserProfile,
   updateUserProfile,
   getAllUsers,
+  changeUserStatus,
 };

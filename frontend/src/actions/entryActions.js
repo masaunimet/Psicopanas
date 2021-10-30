@@ -14,6 +14,9 @@ import {
   STATS_FAIL,
   STATS_REQUEST,
   STATS_SUCCESS,
+  TAGS_STATS_FAIL,
+  TAGS_STATS_REQUEST,
+  TAGS_STATS_SUCCESS,
 } from "../constants/entriesConstants";
 import axios from "axios";
 
@@ -185,5 +188,36 @@ export const getStats = () => async (dispatch, getState) => {
       type: STATS_FAIL,
       payload: message,
     });
+  }
+};
+
+export const getTagStats = () => async (dispatch, getState) => {
+  try {
+    localStorage.removeItem("statsTags");
+    dispatch({
+      type: TAGS_STATS_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const { data } = await axios.get(`/api/users/tagstats/${userInfo._id}`);
+
+    dispatch({
+      type: TAGS_STATS_SUCCESS,
+      payload: data,
+    });
+    localStorage.setItem("statsTags", JSON.stringify(data));
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: TAGS_STATS_FAIL,
+      payload: message,
+    });
+    localStorage.setItem("statsTags", JSON.stringify(message));
   }
 };

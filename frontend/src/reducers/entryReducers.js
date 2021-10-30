@@ -14,6 +14,9 @@ import {
   STATS_REQUEST,
   STATS_SUCCESS,
   STATS_FAIL,
+  TAGS_STATS_REQUEST,
+  TAGS_STATS_SUCCESS,
+  TAGS_STATS_FAIL,
 } from "../constants/entriesConstants";
 
 export const entryListReducer = (state = { entries: [] }, action) => {
@@ -77,6 +80,20 @@ export const getStatsReducer = (state = {}, action) => {
     case STATS_SUCCESS:
       return { loading: false, data: action.payload };
     case STATS_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const getTagStatsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case TAGS_STATS_REQUEST:
+      return { loading: true };
+    case TAGS_STATS_SUCCESS:
+      return { loading: false, data: action.payload };
+    case TAGS_STATS_FAIL:
       return { loading: false, error: action.payload };
 
     default:

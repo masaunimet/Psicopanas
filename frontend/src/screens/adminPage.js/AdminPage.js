@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../actions/userActions";
 import ErrorMessage from "../../components/ErrorMessage";
@@ -30,6 +30,9 @@ const AdminPage = ({ history }) => {
   return (
     <MainScreen title="Administrador">
       <Container>
+        <Row>
+          <h2>Lista de Usuarios</h2>
+        </Row>
         {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
         {loading && <Loading />}
         {usersInfo?.map((user) => (
@@ -37,14 +40,10 @@ const AdminPage = ({ history }) => {
             <Col>{user._id}</Col>
             <Col>{user.email}</Col>
             <Col>
-              {user.isAdmin === true ? (
-                <div>Es admin</div>
-              ) : (
-                <div>No admin</div>
-              )}
+              {user.isPremium === true ? <div>Premium</div> : <div>Free</div>}
             </Col>
             <Col>
-              <Button>Cambiar status</Button>
+              <Button href={`/admin/${user._id}`}>Cambiar status</Button>
             </Col>
             <Col>
               <Button>Eliminar</Button>
