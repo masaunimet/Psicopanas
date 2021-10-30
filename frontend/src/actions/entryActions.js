@@ -8,6 +8,9 @@ import {
   ENTRY_UPDATE_FAIL,
   ENTRY_UPDATE_REQUEST,
   ENTRY_UPDATE_SUCCESS,
+  MONTH_STATS_FAIL,
+  MONTH_STATS_REQUEST,
+  MONTH_STATS_SUCCESS,
   // LAST_ENTRY_FAIL,
   // LAST_ENTRY_REQUEST,
   // LAST_ENTRY_SUCCESS,
@@ -186,6 +189,34 @@ export const getStats = () => async (dispatch, getState) => {
         : error.message;
     dispatch({
       type: STATS_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const getMonthStats = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: MONTH_STATS_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const { data } = await axios.get(`/api/users/monthstats/${userInfo._id}`);
+
+    dispatch({
+      type: MONTH_STATS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: MONTH_STATS_FAIL,
       payload: message,
     });
   }

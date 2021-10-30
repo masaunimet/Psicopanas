@@ -1,10 +1,43 @@
 const asyncHandler = require("express-async-handler");
+const moment = require("moment");
 const Emotion = require("../models/emotionModel");
 const Entry = require("../models/entryModel");
-const Tag = require("../models/tagModel");
 
 const getStats = asyncHandler(async (req, res) => {
   const entries = await Entry.find({ user: req.params.id });
+  const emotions = await Emotion.find();
+
+  let muyBien = 0;
+  let bien = 0;
+  let normal = 0;
+  let mal = 0;
+  let muyMal = 0;
+
+  const idemotions = emotions?.map((emotion) => emotion.icon);
+  const identries = entries?.map((entry) => entry.emotion);
+
+  identries?.map((iden) => {
+    if (iden === idemotions[0]) muyBien++;
+    else if (iden === idemotions[1]) bien++;
+    else if (iden === idemotions[2]) normal++;
+    else if (iden === idemotions[3]) mal++;
+    else if (iden === idemotions[4]) muyMal++;
+  });
+
+  const data = [muyBien, bien, normal, mal, muyMal];
+
+  res.json(data);
+});
+
+const getMonthStats = asyncHandler(async (req, res) => {
+  const start = moment().startOf("month").toDate();
+  const end = moment().endOf("month").toDate();
+
+  const entries = await Entry.find({
+    user: req.params.id,
+    createdAt: { $gte: start, $lte: end },
+  });
+
   const emotions = await Emotion.find();
 
   let muyBien = 0;
@@ -66,4 +99,4 @@ const getTagsStats = asyncHandler(async (req, res) => {
   res.json(sinRepetidos);
 });
 
-module.exports = { getStats, getTagsStats };
+module.exports = { getStats, getTagsStats, getMonthStats };

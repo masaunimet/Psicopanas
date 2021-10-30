@@ -36,17 +36,23 @@ const AdminPage = ({ history }) => {
         {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
         {loading && <Loading />}
         {usersInfo?.map((user) => (
-          <Row>
+          <Row
+            style={{
+              margin: "10px",
+              backgroundColor: "#f6f6f6",
+              borderRadius: "10px",
+              padding: "10px",
+            }}
+          >
             <Col>{user._id}</Col>
             <Col>{user.email}</Col>
             <Col>
               {user.isPremium === true ? <div>Premium</div> : <div>Free</div>}
             </Col>
             <Col>
-              <Button href={`/admin/${user._id}`}>Cambiar status</Button>
-            </Col>
-            <Col>
-              <Button>Eliminar</Button>
+              <Button style={{ border: "none" }} href={`/admin/${user._id}`}>
+                Hacer premium
+              </Button>
             </Col>
           </Row>
         ))}

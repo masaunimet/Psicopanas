@@ -5,7 +5,11 @@ import { Button, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getStats, getTagStats } from "../../actions/entryActions";
+import {
+  getStats,
+  getTagStats,
+  getMonthStats,
+} from "../../actions/entryActions";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 
@@ -14,7 +18,12 @@ const Estadisticas = ({ history }) => {
 
   const stats = useSelector((state) => state.stats);
   const { loading, error, data: datum } = stats;
-  // const tagStags = useSelector((state) => state.tagStags);
+  const monthStats = useSelector((state) => state.monthStats);
+  const {
+    loading: loadingMonth,
+    error: errorMonth,
+    data: datumMonth,
+  } = monthStats;
   const tagStags = JSON.parse(localStorage.getItem("statsTags"));
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -37,6 +46,10 @@ const Estadisticas = ({ history }) => {
     dispatch(getTagStats());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getMonthStats());
+  }, [dispatch]);
+
   let jsonData = null;
   if (datum !== undefined) {
     jsonData = {
@@ -45,6 +58,32 @@ const Estadisticas = ({ history }) => {
         {
           label: "Numero de entradas",
           data: [datum[0], datum[1], datum[2], datum[3], datum[4]],
+          backgroundColor: [
+            "#11CBD6",
+            "#0FA5AE",
+            "#0a656b",
+            "#053a3f",
+            "#171717",
+          ],
+        },
+      ],
+    };
+  }
+
+  let jsonData2 = null;
+  if (datumMonth !== undefined) {
+    jsonData2 = {
+      labels: ["Muy bien", "Bien", "Normal", "Mal", "Muy mal"],
+      datasets: [
+        {
+          label: "Numero de entradas",
+          data: [
+            datumMonth[0],
+            datumMonth[1],
+            datumMonth[2],
+            datumMonth[3],
+            datumMonth[4],
+          ],
           backgroundColor: [
             "#11CBD6",
             "#0FA5AE",
@@ -70,6 +109,30 @@ const Estadisticas = ({ history }) => {
     else if (promedio === 3) return "Normal";
     else if (promedio === 2) return "Mal";
     else if (promedio === 1) return "Muy Mal";
+  };
+
+  const emotion2 = () => {
+    const pond2 =
+      5 * datumMonth[0] +
+      4 * datumMonth[1] +
+      3 * datumMonth[2] +
+      2 * datumMonth[3] +
+      1 * datumMonth[4];
+
+    const sum2 =
+      datumMonth[0] +
+      datumMonth[1] +
+      datumMonth[2] +
+      datumMonth[3] +
+      datumMonth[4];
+
+    const promedio2 = Math.round(pond2 / sum2);
+
+    if (promedio2 === 5) return "Muy Bien";
+    else if (promedio2 === 4) return "Bien";
+    else if (promedio2 === 3) return "Normal";
+    else if (promedio2 === 2) return "Mal";
+    else if (promedio2 === 1) return "Muy Mal";
   };
 
   return (
@@ -158,6 +221,24 @@ const Estadisticas = ({ history }) => {
                       margin: "0",
                     }}
                   />
+                  {userInfo?.isPremium === true && datumMonth !== undefined ? (
+                    <>
+                      <div
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <h3>Emoción promedio del mes: {emotion2()}</h3>
+                      </div>
+                      <EstadisticaColumna
+                        chartData={jsonData2}
+                        style={{
+                          padding: "0",
+                          margin: "0",
+                        }}
+                      />
+                    </>
+                  ) : (
+                    <></>
+                  )}
                   <Link to="/diario">
                     <Button
                       variant="secondary"
