@@ -1,5 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap");
 
+.spacer{
+
+  min-height: 93vh;
+  display: flex;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  align-items: center;
+}
+
+.layer1{
+
+  background-image: url("../../images/stacked-waves-haikei\ \(2\).svg");
+}
+
 .mainback {
   min-height: 93vh;
   display: flex;
