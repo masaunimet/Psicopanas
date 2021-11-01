@@ -4,6 +4,7 @@ import { Button, Container, Row } from "react-bootstrap";
 import "../landingPage/LandingPage.css";
 import Goti from "../../images/Goti.png";
 import { useSelector } from "react-redux";
+import MainScreen from "../../components/mainscreen/MainScreen";
 
 const LandingPage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -21,7 +22,7 @@ const LandingPage = ({ history }) => {
   }, [history, userInfo]);
 
   return (
-    <div className="main">
+    <MainScreen>
       <Container>
         <Media query={{ maxWidth: 800 }}>
           {(matches) =>
@@ -103,7 +104,7 @@ const LandingPage = ({ history }) => {
           }
         </Media>
       </Container>
-    </div>
+    </MainScreen>
   );
 };
 

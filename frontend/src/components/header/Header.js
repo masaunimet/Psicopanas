@@ -23,7 +23,8 @@ const Header = () => {
   useEffect(() => {}, [userInfo]);
 
   return (
-    <Navbar bg="#f6f6f6" expand="lg" variant="dark">
+    <div className="all">
+    <Navbar bg="#f6f6f6" expand="lg" variant="dark" className="all">
       <Container fluid>
         <Navbar.Brand>
           <img src={LogoPP} width="50" height="50" alt="" />
@@ -86,6 +87,18 @@ const Header = () => {
                   Foro
                 </NavLink>
               </Nav.Item> */}
+                  <Nav.Item className="padding_butons">
+                    {!userInfo.isPremium ?(
+
+                      <Nav.Link 
+                      href="/pagos"
+                      className="textnavbar"
+                      eventKey="1"
+                      >
+                        Pagos
+                      </Nav.Link>
+                    ):(<></>)}
+                  </Nav.Item>
                   <Nav.Item className="padding_butons">
                     {userInfo.diarySecurity === true ? (
                       <Nav.Link
@@ -152,6 +165,7 @@ const Header = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    </div>
   );
 };
 

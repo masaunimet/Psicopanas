@@ -416,27 +416,22 @@ function CreateEntryPage({ history }) {
                           </p>
                         </div>
                         {mitad2.map((ptag) => (
+                          
                           <div>
                             <Form.Check
                               type="checkbox"
-                              id={ptag._id}
+                              id={ptag}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
                               <Form.Check.Input type="checkbox" isValid />
-                              <Form.Check.Label
-                                style={{
-                                  color: "#2F2F2F",
-                                }}
-                              >
-                                {ptag.name}
+                              <Form.Check.Label style={{ color: "#2F2F2F" }}>
+                                {ptag}
                               </Form.Check.Label>
                             </Form.Check>
                           </div>
                         ))}
                       </Col>
-                    ) : (
-                      <div></div>
-                    )}
+                      ):(<div></div>)}
                   </Row>
                 </Container>
               </Form.Group>

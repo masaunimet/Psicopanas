@@ -1,10 +1,13 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import "./MainScreen.css";
+import Media from "react-media";
 
 function MainScreen({ children, title }) {
   return (
-    <div className="mainback">
+    <>
+    <div style={{height:"10vh", background:"#F6F6F6"}}></div>
+    <div className="spacer layer1">
       <Container>
         <Row>
           <div className="page">
@@ -18,6 +21,7 @@ function MainScreen({ children, title }) {
         </Row>
       </Container>
     </div>
+    </>
   );
 }
 
