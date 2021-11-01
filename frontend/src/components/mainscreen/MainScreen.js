@@ -4,6 +4,8 @@ import "./MainScreen.css";
 
 function MainScreen({ children, title }) {
   return (
+    <>
+    <div style={{height:"10vh"}}></div>
     <div className="spacer layer1">
       <Container>
         <Row>
@@ -18,6 +20,7 @@ function MainScreen({ children, title }) {
         </Row>
       </Container>
     </div>
+    </>
   );
 }
 

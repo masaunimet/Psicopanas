@@ -2,7 +2,7 @@
 
 .spacer{
 
-  min-height: 93vh;
+  min-height: 100vh;
   display: flex;
   width: 100%;
   background-repeat: no-repeat;
@@ -33,6 +33,7 @@
   font-size: 60px;
   /* font-family: "Ubuntu", sans-serif; */
   font-family: "Work Sans", sans-serif;
+  font-weight: bold;
   padding: 5px 10px;
 }
 

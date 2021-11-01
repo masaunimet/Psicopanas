@@ -13,3 +13,11 @@
 
     color:rgb(24, 24, 24);
 }
+
+.all{
+
+    position:fixed;
+    width: 100%;
+    background-color: #F6F6F6;
+    z-index: 12;
+}
