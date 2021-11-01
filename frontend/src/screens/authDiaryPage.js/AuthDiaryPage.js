@@ -17,7 +17,9 @@ const AuthDiaryPage = ({ history }) => {
     if (!userInfo) {
       history.push("/");
     } else {
-      if (userInfo.diarySecurity === false) {
+      if (userInfo.isAdmin === true) {
+        history.push("/admin");
+      } else if (userInfo.diarySecurity === false) {
         dispatch(authDiary(true));
         history.push("/diario");
       } else {

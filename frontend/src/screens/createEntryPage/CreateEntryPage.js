@@ -51,19 +51,20 @@ function CreateEntryPage({ history }) {
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
-    }
+    } else {
+      if (userInfo.isAdmin === true) {
+        history.push("/admin");
+      } else if (
+        (successDiary === false || !successDiary) &&
+        userInfo?.diarySecurity === true
+      ) {
+        history.push("/authDiario");
+      }
+      const mitads = userInfo?.personalTags.slice(0, 5);
+      const mitads2 = userInfo?.personalTags.slice(5, 10);
 
-    const mitads = userInfo?.personalTags.slice(0, 5);
-    const mitads2 = userInfo?.personalTags.slice(5, 10);
-
-    mitads.map((element) => mitad.push(element));
-    mitads2.map((element) => mitad2.push(element));
-
-    if (
-      (successDiary === false || !successDiary) &&
-      userInfo?.diarySecurity === true
-    ) {
-      history.push("/authDiario");
+      mitads.map((element) => mitad.push(element));
+      mitads2.map((element) => mitad2.push(element));
     }
   }, [history, successDiary, userInfo]);
 

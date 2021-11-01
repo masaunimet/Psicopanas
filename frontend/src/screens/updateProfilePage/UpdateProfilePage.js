@@ -25,8 +25,12 @@ const UpdateProfilePage = ({ history }) => {
     if (!userInfo) {
       history.push("/");
     } else {
-      setName(userInfo.name);
-      setProfilePicture(userInfo.profilePicture);
+      if (userInfo.isAdmin === true) {
+        history.push("/admin");
+      } else {
+        setName(userInfo.name);
+        setProfilePicture(userInfo.profilePicture);
+      }
     }
   }, [history, userInfo]);
 

@@ -19,11 +19,7 @@ const Estadisticas = ({ history }) => {
   const stats = useSelector((state) => state.stats);
   const { loading, error, data: datum } = stats;
   const monthStats = useSelector((state) => state.monthStats);
-  const {
-    loading: loadingMonth,
-    error: errorMonth,
-    data: datumMonth,
-  } = monthStats;
+  const { data: datumMonth } = monthStats;
   const tagStags = JSON.parse(localStorage.getItem("statsTags"));
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -34,11 +30,15 @@ const Estadisticas = ({ history }) => {
     dispatch(getStats());
     if (!userInfo) {
       history.push("/");
-    } else if (
-      (successDiary === false || !successDiary) &&
-      userInfo.diarySecurity === true
-    ) {
-      history.push("/authDiario");
+    } else {
+      if (userInfo.isAdmin === true) {
+        history.push("/admin");
+      } else if (
+        (successDiary === false || !successDiary) &&
+        userInfo.diarySecurity === true
+      ) {
+        history.push("/authDiario");
+      }
     }
   }, [dispatch, history, userInfo, successDiary]);
 

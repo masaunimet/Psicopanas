@@ -16,6 +16,7 @@ const LandingPage = ({ history }) => {
       localStorage.removeItem("userInfo");
       localStorage.removeItem("emotionsInfo");
       localStorage.removeItem("tagsInfo");
+      localStorage.removeItem("statsTags");
     }
   }, [history, userInfo]);
 

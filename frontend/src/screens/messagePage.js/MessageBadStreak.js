@@ -11,6 +11,10 @@ const MessageBadStreak = ({ history }) => {
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
+    } else {
+      if (userInfo.isAdmin === true) {
+        history.push("/admin");
+      }
     }
   });
   return (

@@ -41,14 +41,17 @@ function UpdateEntryPage({ match, history }) {
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
+    } else {
+      if (userInfo.isAdmin === true) {
+        history.push("/admin");
+      }
     }
 
-    const mitads = userInfo?.personalTags.slice(0,5);
-    const mitads2 = userInfo?.personalTags.slice(5,10);
+    const mitads = userInfo?.personalTags.slice(0, 5);
+    const mitads2 = userInfo?.personalTags.slice(5, 10);
 
-    mitads.map((element)=> mitad.push(element));
-    mitads2.map((element)=> mitad2.push(element));
-
+    mitads.map((element) => mitad.push(element));
+    mitads2.map((element) => mitad2.push(element));
   }, [history, userInfo, successDiary]);
 
   useEffect(() => {
@@ -426,35 +429,36 @@ function UpdateEntryPage({ match, history }) {
                     ))}
                   </Col>
                   {userInfo?.isPremium ? (
-                        <Col>
-                        <div style={{ display: "flex" }}>
-                          <p
-                            style={{
-                              color: "#AB2975",
-                              fontWeight: "bold",
-                              display: "flex",
-                            }}
+                    <Col>
+                      <div style={{ display: "flex" }}>
+                        <p
+                          style={{
+                            color: "#AB2975",
+                            fontWeight: "bold",
+                            display: "flex",
+                          }}
+                        >
+                          Premium
+                        </p>
+                      </div>
+                      {mitad2.map((ptag) => (
+                        <div>
+                          <Form.Check
+                            type="checkbox"
+                            id={ptag}
+                            style={{ margin: "5px", cursor: "pointer" }}
                           >
-                            Premium
-                          </p>
+                            <Form.Check.Input type="checkbox" isValid />
+                            <Form.Check.Label style={{ color: "#2F2F2F" }}>
+                              {ptag}
+                            </Form.Check.Label>
+                          </Form.Check>
                         </div>
-                        {mitad2.map((ptag) => (
-                          
-                          <div>
-                            <Form.Check
-                              type="checkbox"
-                              id={ptag}
-                              style={{ margin: "5px", cursor: "pointer" }}
-                            >
-                              <Form.Check.Input type="checkbox" isValid />
-                              <Form.Check.Label style={{ color: "#2F2F2F" }}>
-                                {ptag}
-                              </Form.Check.Label>
-                            </Form.Check>
-                          </div>
-                        ))}
-                      </Col>
-                      ):(<div></div>)}
+                      ))}
+                    </Col>
+                  ) : (
+                    <div></div>
+                  )}
                 </Row>
               </Container>
             </Form.Group>
