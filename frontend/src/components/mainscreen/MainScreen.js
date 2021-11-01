@@ -1,11 +1,12 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import "./MainScreen.css";
+import Media from "react-media";
 
 function MainScreen({ children, title }) {
   return (
     <>
-    <div style={{height:"10vh"}}></div>
+    <div style={{height:"10vh", background:"#F6F6F6"}}></div>
     <div className="spacer layer1">
       <Container>
         <Row>

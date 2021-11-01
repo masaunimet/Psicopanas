@@ -47,3 +47,9 @@
     justify-content: center;
   }
 }
+
+.white{
+
+  height:"10vh";
+  background-color: #f6f6f6;
+}
