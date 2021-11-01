@@ -36,7 +36,9 @@ const Diario = ({ history }) => {
     if (!userInfo) {
       history.push("/");
     } else {
-      if (
+      if (userInfo.isAdmin === true) {
+        history.push("/admin");
+      } else if (
         (successDiary === false || !successDiary) &&
         userInfo.diarySecurity === true
       ) {
@@ -98,7 +100,16 @@ const Diario = ({ history }) => {
       {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
       {loading && <Loading />}
       {entries
-        ?.map((entry) => (
+        ?.sort((a, b) => {
+          if (a.createdAt < b.createdAt) {
+            return -1;
+          }
+          if (a.createdAt > b.createdAt) {
+            return 1;
+          }
+          return 0;
+        })
+        .map((entry) => (
           <Accordion key={entry._id}>
             <Card
               style={{

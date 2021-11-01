@@ -20,9 +20,6 @@
   min-height: 93vh;
   display: flex;
   align-items: center;
-  /* background-color: #f6f6f6; */
-  background: linear-gradient(#f6f6f6, #83ced2);
-  /* background-image: url("https://res.cloudinary.com/psicopanas/image/upload/v1634830276/Fondo2_gkuike.png"); */
   background-position: center;
   background-size: cover;
 }

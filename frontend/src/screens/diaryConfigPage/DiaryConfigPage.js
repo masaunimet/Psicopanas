@@ -44,7 +44,9 @@ const DiaryConfigPage = ({ history }) => {
     if (!userInfo) {
       history.push("/");
     } else {
-      if (
+      if (userInfo.isAdmin === true) {
+        history.push("/admin");
+      } else if (
         (successDiary === false || !successDiary) &&
         userInfo.diarySecurity === true
       ) {
@@ -345,53 +347,53 @@ const DiaryConfigPage = ({ history }) => {
             </Form.Group>
             {userInfo?.isPremium ? (
               <>
-              <Form.Group controlId="tag6">
-              <Form.Control
-                type="text"
-                value={dataTag6}
-                id="inputTag6"
-                onChange={(e) => setTag6(e.target.value)}
-                autocomplete="off"
-              />
-            </Form.Group>
-            <Form.Group controlId="tag7">
-              <Form.Control
-                type="text"
-                value={dataTag7}
-                id="inputTag7"
-                onChange={(e) => setTag7(e.target.value)}
-                autocomplete="off"
-              />
-            </Form.Group>
-            <Form.Group controlId="tag8">
-              <Form.Control
-                type="text"
-                value={dataTag8}
-                id="inputTag8"
-                onChange={(e) => setTag8(e.target.value)}
-                autocomplete="off"
-              />
-            </Form.Group>
-            <Form.Group controlId="tag9">
-              <Form.Control
-                type="text"
-                value={dataTag9}
-                id="inputTag9"
-                onChange={(e) => setTag9(e.target.value)}
-                autocomplete="off"
-              />
-            </Form.Group>
-            <Form.Group controlId="tag10">
-              <Form.Control
-                type="text"
-                value={dataTag10}
-                id="inputTag10"
-                onChange={(e) => setTag10(e.target.value)}
-                autocomplete="off"
-              />
-            </Form.Group>
-            </>
-            ):(
+                <Form.Group controlId="tag6">
+                  <Form.Control
+                    type="text"
+                    value={dataTag6}
+                    id="inputTag6"
+                    onChange={(e) => setTag6(e.target.value)}
+                    autocomplete="off"
+                  />
+                </Form.Group>
+                <Form.Group controlId="tag7">
+                  <Form.Control
+                    type="text"
+                    value={dataTag7}
+                    id="inputTag7"
+                    onChange={(e) => setTag7(e.target.value)}
+                    autocomplete="off"
+                  />
+                </Form.Group>
+                <Form.Group controlId="tag8">
+                  <Form.Control
+                    type="text"
+                    value={dataTag8}
+                    id="inputTag8"
+                    onChange={(e) => setTag8(e.target.value)}
+                    autocomplete="off"
+                  />
+                </Form.Group>
+                <Form.Group controlId="tag9">
+                  <Form.Control
+                    type="text"
+                    value={dataTag9}
+                    id="inputTag9"
+                    onChange={(e) => setTag9(e.target.value)}
+                    autocomplete="off"
+                  />
+                </Form.Group>
+                <Form.Group controlId="tag10">
+                  <Form.Control
+                    type="text"
+                    value={dataTag10}
+                    id="inputTag10"
+                    onChange={(e) => setTag10(e.target.value)}
+                    autocomplete="off"
+                  />
+                </Form.Group>
+              </>
+            ) : (
               <div></div>
             )}
             <Button variant="primary" type="submit" style={{ border: "none" }}>
