@@ -87,6 +87,18 @@ const Header = () => {
                 </NavLink>
               </Nav.Item> */}
                   <Nav.Item className="padding_butons">
+                    {!userInfo.isPremium ?(
+
+                      <Nav.Link 
+                      href="/pagos"
+                      className="textnavbar"
+                      eventKey="1"
+                      >
+                        Pagos
+                      </Nav.Link>
+                    ):(<></>)}
+                  </Nav.Item>
+                  <Nav.Item className="padding_butons">
                     {userInfo.diarySecurity === true ? (
                       <Nav.Link
                         href="/authDiario"

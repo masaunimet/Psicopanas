@@ -13,7 +13,7 @@ const PaySreen = ({ history }) => {
     const [email, setEmail] = useState("");
     const [telefono, settelefono] = useState("");
     const [foto, setFoto] = useState("");
-    const [loading,setloading]=useState(false);
+    const [loading,setloading]=useState(true);
 
     useEffect(() => {
         if (!userInfo) {
@@ -43,6 +43,8 @@ const PaySreen = ({ history }) => {
 
     const uploadImage = async e => {
 
+        if (e.type === "image/jpeg" || e.type === "image/png") {
+
         const data = new FormData()
         data.append('file', e)
         data.append('upload_preset', 'Comprobantes fotos')
@@ -60,8 +62,38 @@ const PaySreen = ({ history }) => {
         setloading(false)
       }
 
+      else{
+        console.log("error, no imagen");
+      }
+    }
+
     return(
         <MainScreen title="Pago Premium">
+
+            <div style={{display:"flex", justifyContent:"space-between"}}>
+                <div>
+                    <h3>Instrucciones</h3>
+                    <ol>
+                        <li>Hacer el pago por: 2$</li>
+                        <li>Llenar los campos de texto</li>
+                        <li>Enviar un comprobante del pago por medio de una foto</li>
+                        <li>Esperar que cargue la imagen</li>
+                        <li>Esperar 1 a 2 dias a que se haga pago y aprovechar los beneficios</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3>Especificaciones de la cuenta bancaria</h3>
+                    <ul>
+                        <li>Número de cuenta:</li>
+                        <li>Tipo de banco:</li>
+                        <li>Cedula:</li>
+                        <li>Nombre:</li>
+                        <li>Telefono:</li>
+                        <li>Correo:</li>
+                    </ul>
+                </div>
+            </div>
+
             <Card
             style={{
               background: "white",
