@@ -18,6 +18,11 @@ import ProfilePage from "./screens/profilePage/ProfilePage";
 import UpdateProfilePage from "./screens/updateProfilePage/UpdateProfilePage";
 import AdminPage from "./screens/adminPage.js/AdminPage";
 import UserUpdateFromAdmin from "./screens/userUpdateFromAdmin/UserUpdateFromAdmin";
+import MessagePositive from "./screens/messagePage.js/MessagePositive";
+import MessageSad from "./screens/messagePage.js/MessageSad";
+import MessageHappy from "./screens/messagePage.js/MessageHappy";
+import MessageVeryHappy from "./screens/messagePage.js/MessageVeryHappy";
+
 
 const App = () => (
   <>
@@ -43,8 +48,15 @@ const App = () => (
           component={MessageConfigDiaryPage}
           exact
         />
+        
         <Route path="/mensaje-racha" component={MessageBadStreak} exact />
+        <Route path="/mensaje-positivo" component={MessagePositive} />
+        <Route path="/mensaje-triste" component={MessageSad} />
+        <Route path="/mensaje-feliz" component={MessageHappy} />
+        <Route path="/mensaje-muy-feliz" component={MessageVeryHappy} />
+
         <Route path="*" component={Message404} />
+        
       </Switch>
     </Router>
   </>
