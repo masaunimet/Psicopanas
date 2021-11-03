@@ -10,6 +10,7 @@ import moment from "moment";
 import { listTags } from "../../actions/tagActions";
 import { listEmotions } from "../../actions/emotionAction";
 import { Link } from "react-router-dom";
+import "../../styles/App.css";
 
 function UpdateEntryPage({ match, history }) {
   const [title, setTitle] = useState();
@@ -147,58 +148,28 @@ function UpdateEntryPage({ match, history }) {
 
   return (
     <MainScreen title={moment(date).format("YYYY-DD-MM")}>
-      <Card
-        style={{
-          background: "none",
-          border: "none",
-        }}
-      >
+      <Card className="no-background">
         <Card.Body>
           <Form onSubmit={updateHandler}>
             {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
             <Form.Group controlId="title">
-              <Form.Label
-                style={{
-                  color: "#0A656B",
-                  fontWeight: "bold",
-                  fontSize: "20px",
-                }}
-              >
-                Ponle un título a tu día
+              <Form.Label className="subtitle-text-blue">
+                Ponle un título a tu entrada
               </Form.Label>
               <Form.Control
                 type="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                className="plain-text"
               />
             </Form.Group>
 
             <Form.Group controlId="title">
-              <Form.Label
-                style={{
-                  color: "#0A656B",
-                  fontWeight: "bold",
-                  fontSize: "20px",
-                }}
-              >
-                ¿Cómo te sientes hoy?
+              <Form.Label className="subtitle-text-blue">
+                ¿Cómo te sientes?
               </Form.Label>
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <div
-                  style={{
-                    width: "60%",
-                    display: "flex",
-                    justifyContent: "space-around",
-                    alignItems: "center",
-                    cursor: "pointer",
-                  }}
-                >
+              <div className="box-emotions-container">
+                <div className="box-emotions">
                   {loading3 && <Loading size={25} />}
                   {emotions?.map((emotion) => (
                     <div
@@ -214,35 +185,22 @@ function UpdateEntryPage({ match, history }) {
                         height="50"
                         alt={emotion.name}
                       />
-                      <p
-                        style={{
-                          textAlign: "center",
-                        }}
-                      >
-                        {emotion.name}
-                      </p>
+                      <div className="centered-text">{emotion.name}</div>
                     </div>
                   ))}
                 </div>
               </div>
             </Form.Group>
             <Form.Group controlId="title">
-              <Form.Label>¿Qué te hizo sentir así?</Form.Label>
+              <Form.Label className="subtitle-text-blue">
+                ¿Qué te hizo sentir así?
+              </Form.Label>
               {loading2 && <Loading size={25} />}
-              <Container>
+              <Container className="white-background">
                 <Row>
                   <Col>
-                    <div style={{ display: "flex" }}>
-                      <p
-                        style={{
-                          marginRight: "20px",
-                          marginLeft: "40px",
-                          color: "#AB2975",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        Deberes
-                      </p>
+                    <div className="flex-container">
+                      <p className="subtitle-text-soft-blue">Deberes</p>
                     </div>
                     {tags
                       ?.filter((tag) => tag.group === "Deberes")
@@ -253,30 +211,23 @@ function UpdateEntryPage({ match, history }) {
                             id={tag._id}
                             style={{ margin: "5px", cursor: "pointer" }}
                           >
-                            <Form.Check.Input type="checkbox" isValid />
                             <Form.Check.Label
                               style={{
-                                color: "#2F2F2F",
+                                color: "#2c2c2c",
+                                fontWeight: "bold",
                               }}
+                              className="checkbox"
                             >
-                              {tag.name}
+                              <Form.Check.Input type="checkbox" isValid />
+                              <span class="check">{tag.name}</span>
                             </Form.Check.Label>
                           </Form.Check>
                         </div>
                       ))}
                   </Col>
                   <Col>
-                    <div style={{ display: "flex" }}>
-                      <p
-                        style={{
-                          marginRight: "20px",
-                          marginLeft: "40px",
-                          color: "#AB2975",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        Hobbies
-                      </p>
+                    <div className="flex-container">
+                      <p className="subtitle-text-soft-blue">Hobbies</p>
                     </div>
                     {tags
                       ?.filter((tag) => tag.group === "Hobbies")
@@ -287,30 +238,23 @@ function UpdateEntryPage({ match, history }) {
                             id={tag._id}
                             style={{ margin: "5px", cursor: "pointer" }}
                           >
-                            <Form.Check.Input type="checkbox" isValid />
                             <Form.Check.Label
                               style={{
-                                color: "#2F2F2F",
+                                color: "#2c2c2c",
+                                fontWeight: "bold",
                               }}
+                              className="checkbox"
                             >
-                              {tag.name}
+                              <Form.Check.Input type="checkbox" isValid />
+                              <span class="check">{tag.name}</span>
                             </Form.Check.Label>
                           </Form.Check>
                         </div>
                       ))}
                   </Col>
                   <Col>
-                    <div style={{ display: "flex" }}>
-                      <p
-                        style={{
-                          marginRight: "20px",
-                          marginLeft: "40px",
-                          color: "#AB2975",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        Emociones
-                      </p>
+                    <div className="flex-container">
+                      <p className="subtitle-text-soft-blue">Emociones</p>
                     </div>
                     {tags
                       ?.filter((tag) => tag.group === "Emociones")
@@ -321,30 +265,23 @@ function UpdateEntryPage({ match, history }) {
                             id={tag._id}
                             style={{ margin: "5px", cursor: "pointer" }}
                           >
-                            <Form.Check.Input type="checkbox" isValid />
                             <Form.Check.Label
                               style={{
-                                color: "#2F2F2F",
+                                color: "#2c2c2c",
+                                fontWeight: "bold",
                               }}
+                              className="checkbox"
                             >
-                              {tag.name}
+                              <Form.Check.Input type="checkbox" isValid />
+                              <span class="check">{tag.name}</span>
                             </Form.Check.Label>
                           </Form.Check>
                         </div>
                       ))}
                   </Col>
                   <Col>
-                    <div style={{ display: "flex" }}>
-                      <p
-                        style={{
-                          marginRight: "20px",
-                          marginLeft: "40px",
-                          color: "#AB2975",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        Social
-                      </p>
+                    <div className="flex-container">
+                      <p className="subtitle-text-soft-blue">Social</p>
                     </div>
                     {tags
                       ?.filter((tag) => tag.group === "Social")
@@ -355,30 +292,23 @@ function UpdateEntryPage({ match, history }) {
                             id={tag._id}
                             style={{ margin: "5px", cursor: "pointer" }}
                           >
-                            <Form.Check.Input type="checkbox" isValid />
                             <Form.Check.Label
                               style={{
-                                color: "#2F2F2F",
+                                color: "#2c2c2c",
+                                fontWeight: "bold",
                               }}
+                              className="checkbox"
                             >
-                              {tag.name}
+                              <Form.Check.Input type="checkbox" isValid />
+                              <span class="check">{tag.name}</span>
                             </Form.Check.Label>
                           </Form.Check>
                         </div>
                       ))}
                   </Col>
                   <Col>
-                    <div style={{ display: "flex" }}>
-                      <p
-                        style={{
-                          marginRight: "20px",
-                          marginLeft: "40px",
-                          color: "#AB2975",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        Salud
-                      </p>
+                    <div className="flex-container">
+                      <p className="subtitle-text-soft-blue">Salud</p>
                     </div>
                     {tags
                       ?.filter((tag) => tag.group === "Salud")
@@ -389,29 +319,23 @@ function UpdateEntryPage({ match, history }) {
                             id={tag._id}
                             style={{ margin: "5px", cursor: "pointer" }}
                           >
-                            <Form.Check.Input type="checkbox" isValid />
                             <Form.Check.Label
                               style={{
-                                color: "#2F2F2F",
+                                color: "#2c2c2c",
+                                fontWeight: "bold",
                               }}
+                              className="checkbox"
                             >
-                              {tag.name}
+                              <Form.Check.Input type="checkbox" isValid />
+                              <span class="check">{tag.name}</span>
                             </Form.Check.Label>
                           </Form.Check>
                         </div>
                       ))}
                   </Col>
                   <Col>
-                    <div style={{ display: "flex" }}>
-                      <p
-                        style={{
-                          color: "#AB2975",
-                          fontWeight: "bold",
-                          display: "flex",
-                        }}
-                      >
-                        Mis actividades
-                      </p>
+                    <div className="flex-container">
+                      <p className="subtitle-text-soft-blue">Personalizadas</p>
                     </div>
                     {mitad.map((ptag) => (
                       <div>
@@ -420,9 +344,15 @@ function UpdateEntryPage({ match, history }) {
                           id={ptag}
                           style={{ margin: "5px", cursor: "pointer" }}
                         >
-                          <Form.Check.Input type="checkbox" isValid />
-                          <Form.Check.Label style={{ color: "#2F2F2F" }}>
-                            {ptag}
+                          <Form.Check.Label
+                            style={{
+                              color: "#2c2c2c",
+                              fontWeight: "bold",
+                            }}
+                            className="checkbox"
+                          >
+                            <Form.Check.Input type="checkbox" isValid />
+                            <span class="check">{ptag}</span>
                           </Form.Check.Label>
                         </Form.Check>
                       </div>
@@ -430,16 +360,8 @@ function UpdateEntryPage({ match, history }) {
                   </Col>
                   {userInfo?.isPremium ? (
                     <Col>
-                      <div style={{ display: "flex" }}>
-                        <p
-                          style={{
-                            color: "#AB2975",
-                            fontWeight: "bold",
-                            display: "flex",
-                          }}
-                        >
-                          Premium
-                        </p>
+                      <div className="flex-container">
+                        <p className="subtitle-text-soft-blue">Premium</p>
                       </div>
                       {mitad2.map((ptag) => (
                         <div>
@@ -448,9 +370,15 @@ function UpdateEntryPage({ match, history }) {
                             id={ptag}
                             style={{ margin: "5px", cursor: "pointer" }}
                           >
-                            <Form.Check.Input type="checkbox" isValid />
-                            <Form.Check.Label style={{ color: "#2F2F2F" }}>
-                              {ptag}
+                            <Form.Check.Label
+                              style={{
+                                color: "#2c2c2c",
+                                fontWeight: "bold",
+                              }}
+                              className="checkbox"
+                            >
+                              <Form.Check.Input type="checkbox" isValid />
+                              <span class="check">{ptag}</span>
                             </Form.Check.Label>
                           </Form.Check>
                         </div>
@@ -464,43 +392,38 @@ function UpdateEntryPage({ match, history }) {
             </Form.Group>
 
             <Form.Group controlId="content">
-              <Form.Label
-                style={{
-                  color: "#0A656B",
-                  fontWeight: "bold",
-                  fontSize: "20px",
-                }}
-              >
-                Cuéntanos mas sobre tu día
+              <Form.Label className="subtitle-text-blue">
+                Cuéntanos mas sobre eso
               </Form.Label>
               <Form.Control
                 as="textarea"
                 value={content}
                 rows={4}
                 onChange={(e) => setContent(e.target.value)}
+                className="plain-text"
               />
             </Form.Group>
 
             {loading && <Loading size={50} />}
 
-            <Link to="/authDiario">
-              <Button
-                variant="secondary"
-                className="buttonSummit"
-                style={{ border: "none", marginRight: "10px" }}
-              >
-                Volver al diario
-              </Button>
-            </Link>
-
-            <Button
-              type="submit"
-              variant="primary"
-              className="buttonSummit"
-              style={{ border: "none" }}
-            >
-              Guardar cambios
-            </Button>
+            <Row>
+              <Col>
+                <Link to="/authDiario">
+                  <Button variant="primary" className="button-all-page">
+                    Volver al diario
+                  </Button>
+                </Link>
+              </Col>
+              <Col>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className="button-all-page"
+                >
+                  Guardar cambios
+                </Button>
+              </Col>
+            </Row>
           </Form>
         </Card.Body>
       </Card>

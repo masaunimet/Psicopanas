@@ -5,6 +5,7 @@ import { updateProfile } from "../../actions/userActions";
 import { Form, Button, Row, Col, Image } from "react-bootstrap";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
+import "../../styles/App.css";
 
 const UpdateProfilePage = ({ history }) => {
   const [name, setName] = useState("");
@@ -66,81 +67,94 @@ const UpdateProfilePage = ({ history }) => {
 
   return (
     <MainScreen title="Modificar Perfil">
-      <div>
-        <Row className="profileContainer">
-          <Col md={6}>
-            <Form onSubmit={submitHandler}>
-              {loading && <Loading />}
-              {success && (
-                <ErrorMessage variant="success">
-                  Se han actualizado los datos
-                </ErrorMessage>
-              )}
-              {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-              <Form.Group controlId="name">
-                <Form.Label>Nombre de usuario</Form.Label>
-                <Form.Control
-                  type="text"
-                  onChange={(e) => setName(e.target.value)}
-                  autocomplete="off"
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="password">
-                <Form.Label>Contraseña nueva</Form.Label>
-                <Form.Control
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  autocomplete="off"
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="confirmPassword">
-                <Form.Label>Confirme la nueva contraseña</Form.Label>
-                <Form.Control
-                  type="password"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  autocomplete="off"
-                ></Form.Control>
-              </Form.Group>{" "}
-              {picMessage && (
-                <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
-              )}
-              <Form.Group controlId="pic">
-                <Form.Label>Cambie la foto de perfil</Form.Label>
-                <Form.File
-                  onChange={(e) => postDetails(e.target.files[0])}
-                  id="custom-file"
-                  type="image/png"
-                  label="Seleccione una imagen de perfil"
-                  custom
-                />
-              </Form.Group>
-              <div>
-                <Button type="submit" varient="primary">
+      <Row>
+        <Col md={6}>
+          <Form onSubmit={submitHandler}>
+            {loading && <Loading />}
+            {success && (
+              <ErrorMessage variant="success">
+                Se han actualizado los datos
+              </ErrorMessage>
+            )}
+            {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+            <Form.Group controlId="name">
+              <Form.Label className="plain-text">Nombre de usuario</Form.Label>
+              <Form.Control
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+                autocomplete="off"
+                className="plain-text"
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="password">
+              <Form.Label className="plain-text">Contraseña nueva</Form.Label>
+              <Form.Control
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                autocomplete="off"
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="confirmPassword">
+              <Form.Label className="plain-text">
+                Confirme la nueva contraseña
+              </Form.Label>
+              <Form.Control
+                type="password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                autocomplete="off"
+              ></Form.Control>
+            </Form.Group>{" "}
+            {picMessage && (
+              <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
+            )}
+            <Form.Group controlId="pic">
+              <Form.Label className="plain-text">
+                Cambie la foto de perfil
+              </Form.Label>
+              <Form.File
+                onChange={(e) => postDetails(e.target.files[0])}
+                id="custom-file"
+                type="image/png"
+                label="Seleccione una imagen de perfil"
+                custom
+              />
+            </Form.Group>
+            <Row>
+              <Col>
+                <Button href="perfil" className="button-all-page">
+                  Volver al perfil
+                </Button>
+              </Col>
+              <Col>
+                <Button
+                  type="submit"
+                  varient="primary"
+                  className="button-all-page"
+                >
                   Guardar cambios
                 </Button>
-                <Button href="perfil">Volver al perfil</Button>
-              </div>
-            </Form>
-          </Col>
-          <Col
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Image
-              src={profilePicture}
-              alt={name}
-              className="profilePic"
-              width="300"
-              height="300"
-              alt="Foto de perfil"
-              roundedCircle
-            />
-          </Col>
-        </Row>
-      </div>
+              </Col>
+            </Row>
+          </Form>
+        </Col>
+        <Col
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Image
+            src={profilePicture}
+            alt={name}
+            className="profilePic"
+            width="300"
+            height="300"
+            alt="Foto de perfil"
+            roundedCircle
+          />
+        </Col>
+      </Row>
     </MainScreen>
   );
 };

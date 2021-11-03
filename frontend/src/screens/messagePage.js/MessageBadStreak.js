@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
+import "../../styles/App.css";
 
 const MessageBadStreak = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -22,15 +23,7 @@ const MessageBadStreak = ({ history }) => {
       <Container>
         <Row>
           <div className="Centrado">
-            <p
-              style={{
-                color: "#0FA5AE",
-                fontWeight: "bold",
-                fontSize: "25px",
-              }}
-            >
-              No dudes en buscar apoyo
-            </p>
+            <p className="subtitle-text-blue">No dudes en buscar apoyo</p>
           </div>
           <div className="Centrado">
             <img src={Goti} width="200" height="250" alt="Goti" />
@@ -38,7 +31,7 @@ const MessageBadStreak = ({ history }) => {
         </Row>
         <Row>
           <Link to="/authdiario">
-            <Button style={{ border: "none" }}>Continuar</Button>
+            <Button className="button-all-page">Continuar</Button>
           </Link>
         </Row>
       </Container>

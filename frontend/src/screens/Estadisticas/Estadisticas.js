@@ -12,6 +12,7 @@ import {
 } from "../../actions/entryActions";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
+import "../../styles/App.css";
 
 const Estadisticas = ({ history }) => {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ const Estadisticas = ({ history }) => {
       labels: ["Muy bien", "Bien", "Normal", "Mal", "Muy mal"],
       datasets: [
         {
-          label: "Numero de entradas",
+          label: "Numero de entradas por emoción",
           data: [datum[0], datum[1], datum[2], datum[3], datum[4]],
           backgroundColor: [
             "#11CBD6",
@@ -76,7 +77,7 @@ const Estadisticas = ({ history }) => {
       labels: ["Muy bien", "Bien", "Normal", "Mal", "Muy mal"],
       datasets: [
         {
-          label: "Numero de entradas",
+          label: "Numero de entradas por emoción",
           data: [
             datumMonth[0],
             datumMonth[1],
@@ -142,42 +143,26 @@ const Estadisticas = ({ history }) => {
       <div>
         {datum ? (
           <>
-            <Container>
+            <Container className="white-background">
               <Row>
                 {userInfo?.isPremium ? (
-                  <Col>
-                    <Row>
-                      <div
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <h3 style={{ color: "#AB2975", fontWeight: "bold" }}>
-                          Mis actividades
-                        </h3>
+                  <Col md="auto" className="blue-background">
+                    <Row style={{ display: "flex", justifyContent: "center" }}>
+                      <div className="subtitle-centered-text-white">
+                        Histórico de actividades
                       </div>
                     </Row>
                     {tagStags ? (
                       <>
                         <Row>
                           <Col>
-                            <div
-                              style={{
-                                color: "#0a656b",
-                                fontWeight: "bold",
-                                fontSize: "18px",
-                              }}
-                            >
-                              Nombre de la actividad
+                            <div className="subtitle-text-soft-white-right">
+                              Nombre
                             </div>
                           </Col>
                           <Col>
-                            <div
-                              style={{
-                                color: "#0a656b",
-                                fontWeight: "bold",
-                                fontSize: "18px",
-                              }}
-                            >
-                              Cantidad de veces realizada
+                            <div className="subtitle-text-soft-white">
+                              Veces realizada
                             </div>
                           </Col>
                         </Row>
@@ -192,11 +177,11 @@ const Estadisticas = ({ history }) => {
                             return 0;
                           })
                           .map((ptag) => (
-                            <Row>
-                              <Col>
+                            <Row style={{ borderTop: "solid 1px #f6f6f6" }}>
+                              <Col className="plain-white-text-right">
                                 <div>{ptag.name}</div>
                               </Col>
-                              <Col>
+                              <Col className="plain-white-text">
                                 <div>{ptag.value} veces</div>
                               </Col>
                             </Row>
@@ -209,24 +194,14 @@ const Estadisticas = ({ history }) => {
                 ) : (
                   <></>
                 )}
-                ;
                 <Col>
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <h3>Emoción promedio: {emotion()}</h3>
-                  </div>
-                  <EstadisticaColumna
-                    chartData={jsonData}
-                    style={{
-                      padding: "0",
-                      margin: "0",
-                    }}
-                  />
                   {userInfo?.isPremium === true && datumMonth !== undefined ? (
                     <>
-                      <div
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <h3>Emoción promedio del mes: {emotion2()}</h3>
+                      <div className="subtitle-centered-text-blue">
+                        Estadísticas del Mes
+                      </div>
+                      <div className="subtitle-centered-text-soft-blue">
+                        Emoción promedio: {emotion2()}
                       </div>
                       <EstadisticaColumna
                         chartData={jsonData2}
@@ -239,15 +214,21 @@ const Estadisticas = ({ history }) => {
                   ) : (
                     <></>
                   )}
+                  <div className="subtitle-centered-text-blue">
+                    Estadísticas del Año
+                  </div>
+                  <div className="subtitle-centered-text-soft-blue">
+                    Emoción promedio: {emotion()}
+                  </div>
+                  <EstadisticaColumna
+                    chartData={jsonData}
+                    style={{
+                      padding: "0",
+                      margin: "0",
+                    }}
+                  />
                   <Link to="/diario">
-                    <Button
-                      variant="secondary"
-                      style={{
-                        border: "none",
-                        fontSize: "15px",
-                        margin: "10px",
-                      }}
-                    >
+                    <Button variant="primary" className="button-all-page">
                       Volver a mi diario
                     </Button>
                   </Link>

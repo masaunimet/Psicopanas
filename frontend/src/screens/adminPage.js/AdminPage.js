@@ -5,6 +5,7 @@ import { getUsers } from "../../actions/userActions";
 import ErrorMessage from "../../components/ErrorMessage";
 import Loading from "../../components/Loading";
 import MainScreen from "../../components/mainscreen/MainScreen";
+import "../../styles/App.css";
 
 const AdminPage = ({ history }) => {
   const dispatch = useDispatch();
@@ -29,28 +30,19 @@ const AdminPage = ({ history }) => {
 
   return (
     <MainScreen title="Administrador">
-      <Container>
+      <Container className="container-no-bg">
         <Row>
-          <h2>Lista de Usuarios</h2>
+          <div className="subtitle-text-blue">Lista de Usuarios</div>
         </Row>
         {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
         {loading && <Loading />}
         {usersInfo?.map((user) => (
-          <Row
-            style={{
-              margin: "10px",
-              backgroundColor: "#f6f6f6",
-              borderRadius: "10px",
-              padding: "10px",
-            }}
-          >
-            <Col>{user._id}</Col>
-            <Col>{user.email}</Col>
+          <Row className="div-admin-page">
+            <Col className="plain-text">{user._id}</Col>
+            <Col className="plain-text">{user.email}</Col>
+            <Col className="plain-text">Free</Col>
             <Col>
-              {user.isPremium === true ? <div>Premium</div> : <div>Free</div>}
-            </Col>
-            <Col>
-              <Button style={{ border: "none" }} href={`/admin/${user._id}`}>
+              <Button className="button" href={`/admin/${user._id}`}>
                 Hacer premium
               </Button>
             </Col>

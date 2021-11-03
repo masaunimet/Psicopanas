@@ -2433,8 +2433,8 @@ fieldset:disabled a.btn {
 }
 .btn-primary {
   color: #fff;
-  background-color: #0fa5ae;
-  border-color: #0fa5ae;
+  background-color: #053a3f;
+  border-color: #053a3f;
 }
 .btn-primary:hover {
   color: #fff;
@@ -2444,21 +2444,21 @@ fieldset:disabled a.btn {
 .btn-primary.focus,
 .btn-primary:focus {
   color: #fff;
-  background-color: #0a656b;
-  border-color: #0a656b;
+  background-color: #053a3f;
+  border-color: #053a3f;
 }
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: #fff;
-  background-color: #0fa5ae;
-  border-color: #0fa5ae;
+  background-color: #053a3f;
+  border-color: #053a3f;
 }
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #0fa5ae;
-  border-color: #0fa5ae;
+  background-color: #053a3f;
+  border-color: #053a3f;
 }
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -2711,13 +2711,13 @@ fieldset:disabled a.btn {
   box-shadow: 0 0 0 0.2rem rgba(111, 111, 111, 0.5);
 }
 .btn-outline-primary {
-  color: #158cba;
-  border-color: #158cba;
+  color: #053a3f;
+  border-color: #053a3f;
 }
 .btn-outline-primary:hover {
   color: #fff;
-  background-color: #158cba;
-  border-color: #158cba;
+  background-color: #053a3f;
+  border-color: #053a3f;
 }
 .btn-outline-primary.focus,
 .btn-outline-primary:focus {
@@ -2725,15 +2725,15 @@ fieldset:disabled a.btn {
 }
 .btn-outline-primary.disabled,
 .btn-outline-primary:disabled {
-  color: #158cba;
+  color: #053a3f;
   background-color: transparent;
 }
 .btn-outline-primary:not(:disabled):not(.disabled).active,
 .btn-outline-primary:not(:disabled):not(.disabled):active,
 .show > .btn-outline-primary.dropdown-toggle {
   color: #fff;
-  background-color: #158cba;
-  border-color: #158cba;
+  background-color: #053a3f;
+  border-color: #053a3f;
 }
 .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
 .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
@@ -4427,7 +4427,7 @@ input[type="submit"].btn-block {
 .navbar-dark .navbar-toggler {
   color: rgba(255, 255, 255, 0.5);
   border-color: rgba(255, 255, 255, 0.1);
-  background-color:rgb(0 0 0);
+  background-color: rgb(0 0 0);
 }
 .navbar-dark .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");

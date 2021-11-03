@@ -4,6 +4,7 @@ import MainScreen from "../../components/mainscreen/MainScreen";
 import ErrorMessage from "../../components/ErrorMessage";
 import { Button, Form } from "react-bootstrap";
 import { authDiary } from "../../actions/userActions";
+import "../../styles/App.css";
 
 const AuthDiaryPage = ({ history }) => {
   const dispatch = useDispatch();
@@ -51,17 +52,20 @@ const AuthDiaryPage = ({ history }) => {
   return (
     <MainScreen title="Diario">
       {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
-      <div className="loginContainer">
+      <div className="subtitle-text-blue">Bienvenido {userInfo.name}</div>
+      <div>
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Contraseña de mi diario</Form.Label>
+            <Form.Label className="plain-text">
+              Introduzca la contraseña de su diario
+            </Form.Label>
             <Form.Control
               type="password"
               placeholder=""
               onChange={(e) => setTryDiaryPassword(e.target.value)}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button className="button" variant="primary" type="submit">
             Continuar
           </Button>
         </Form>

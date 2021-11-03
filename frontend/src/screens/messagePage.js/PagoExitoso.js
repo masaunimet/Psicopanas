@@ -6,7 +6,7 @@ import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
 import "../../styles/App.css";
 
-const Message404 = ({ history }) => {
+const PagoExitoso = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   useEffect(() => {
@@ -15,7 +15,7 @@ const Message404 = ({ history }) => {
     }
   });
   return (
-    <MainScreen title="¿Te has perdido?">
+    <MainScreen title="¡El mensaje fue enviado con exito!">
       <Container>
         <Row>
           <div className="Centrado">
@@ -35,4 +35,4 @@ const Message404 = ({ history }) => {
   );
 };
 
-export default Message404;
+export default PagoExitoso;

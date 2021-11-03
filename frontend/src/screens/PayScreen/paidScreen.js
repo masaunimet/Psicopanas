@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import emailjs from "emailjs-com";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button, Card, Form } from "react-bootstrap";
 import MainScreen from "../../components/mainscreen/MainScreen";
+import "../../styles/App.css";
+import Loading from "../../components/Loading";
 
 const PaySreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -27,7 +29,14 @@ const PaySreen = ({ history }) => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs
+    if(nombre==="" ||email===""||telefono===""||foto===""){
+
+      alert("ingresa bien todos los campos");
+    }
+
+    else{
+
+      emailjs
       .send(
         "service_tcenvkb",
         "template_8lzky6r",
@@ -42,7 +51,7 @@ const PaySreen = ({ history }) => {
       )
       .then(
         (result) => {
-          alert(result.text);
+          history.push("/mensaje_enviado");
         },
         (error) => {
           alert(error.text);
@@ -50,6 +59,7 @@ const PaySreen = ({ history }) => {
       );
 
     e.target.reset();
+    }
   };
 
   const uploadImage = async (e) => {
@@ -78,9 +88,9 @@ const PaySreen = ({ history }) => {
     <MainScreen title="Pago Premium">
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>
-          <h3>Instrucciones</h3>
-          <ol>
-            <li>Hacer el pago por: 2$</li>
+          <div className="subtitle-text-blue">Instrucciones</div>
+          <ol className="plain-text">
+            <li>Hacer el pago por: 10Bs</li>
             <li>Llenar los campos de texto</li>
             <li>Enviar un comprobante del pago por medio de una foto</li>
             <li>Esperar que cargue la imagen</li>
@@ -90,8 +100,10 @@ const PaySreen = ({ history }) => {
           </ol>
         </div>
         <div>
-          <h3>Especificaciones de la cuenta bancaria</h3>
-          <ul>
+          <div className="subtitle-text-blue">
+            Especificaciones de la cuenta bancaria
+          </div>
+          <ul className="plain-text">
             <li>Número de cuenta:</li>
             <li>Tipo de banco:</li>
             <li>Cedula:</li>
@@ -102,43 +114,41 @@ const PaySreen = ({ history }) => {
         </div>
       </div>
 
-      <Card
-        style={{
-          background: "white",
-          border: "none",
-        }}
-      >
+      <Card>
         <Card.Body>
           <Form onSubmit={sendEmail}>
             <Form.Group controlId="title">
-              <Form.Label>Nombre</Form.Label>
+              <Form.Label className="plain-text">Nombre</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Marco Polo"
                 value={nombre}
                 onChange={(e) => setnombre(e.target.value)}
+                autoComplete="off"
               />
             </Form.Group>
             <Form.Group controlId="title">
-              <Form.Label>Correo electronico</Form.Label>
+              <Form.Label className="plain-text">Correo electronico</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="correo@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                autoComplete="off"
               />
             </Form.Group>
             <Form.Group controlId="title">
-              <Form.Label>telefono</Form.Label>
+              <Form.Label className="plain-text">telefono</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="04## 222 2222"
                 value={telefono}
                 onChange={(e) => settelefono(e.target.value)}
+                autoComplete="off"
               />
             </Form.Group>
             <Form.Group controlId="formFileMultiple" className="mb-3">
-              <Form.Label>Foto del pago</Form.Label>
+              <Form.Label className="plain-text">Foto del pago</Form.Label>
               <Form.Control
                 type="file"
                 name="file"
@@ -147,9 +157,18 @@ const PaySreen = ({ history }) => {
             </Form.Group>
 
             {loading ? (
-              <p>loading</p>
+              <>
+                <div className="plain-centered-text">
+                  Esperaremos a que subas la imagen
+                </div>
+                <Loading size={25} />
+              </>
             ) : (
-              <Button variant="primary" type="submit">
+              <Button
+                variant="primary"
+                type="submit"
+                className="button-all-page"
+              >
                 Enviar comprobante
               </Button>
             )}
