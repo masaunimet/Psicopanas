@@ -7,9 +7,9 @@ import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import { listTags } from "../../actions/tagActions";
 import { listEmotions } from "../../actions/emotionAction";
-import "../createEntryPage/createEntryPage.css";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import "../../styles/App.css";
 
 let setEmotion = "";
 
@@ -125,132 +125,124 @@ function CreateEntryPage({ history }) {
     return !str || 0 === str.length;
   }
 
-  const visualButtons = (id) => {
+  const visualButtons = (id, icon) => {
     emotions?.forEach((emotion) => {
       if (emotion._id !== id) {
         document.getElementById(emotion._id)?.setAttribute("width", "50");
         document.getElementById(emotion._id)?.setAttribute("height", "50");
+        if (emotion._id === "6169efd6152f0e9299ff6810") {
+          document
+            .getElementById(emotion._id)
+            ?.setAttribute(
+              "src",
+              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+            );
+        } else if (emotion._id === "616b11348f059d3c912e9943") {
+          document
+            .getElementById(emotion._id)
+            ?.setAttribute(
+              "src",
+              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+            );
+        } else if (emotion._id === "616b11858f059d3c912e9944") {
+          document
+            .getElementById(emotion._id)
+            ?.setAttribute(
+              "src",
+              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+            );
+        } else if (emotion._id === "616b11b48f059d3c912e9945") {
+          document
+            .getElementById(emotion._id)
+            ?.setAttribute(
+              "src",
+              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+            );
+        } else if (emotion._id === "616b11ec8f059d3c912e9946") {
+          document
+            .getElementById(emotion._id)
+            ?.setAttribute(
+              "src",
+              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+            );
+        }
       } else {
         document.getElementById(emotion._id)?.setAttribute("width", "80");
         document.getElementById(emotion._id)?.setAttribute("height", "80");
+        document.getElementById(emotion._id)?.setAttribute("src", icon);
       }
     });
   };
+
   const visualButtons2 = () => {
     emotions?.forEach((emotion) => {
-      document.getElementById(emotion._id)?.setAttribute("width", "50");
-      document.getElementById(emotion._id)?.setAttribute("height", "50");
+      // document.getElementById(emotion._id)?.setAttribute("width", "50");
+      // document.getElementById(emotion._id)?.setAttribute("height", "50");
     });
   };
 
   return (
     <>
       <MainScreen title={moment(today).format("YYYY-DD-MM")}>
-        <Card
-          style={{
-            background: "none",
-            border: "none",
-          }}
-        >
+        <Card className="no-background">
           <Card.Body>
             <Form onSubmit={submitHandler}>
               {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
               <Form.Group controlId="title">
-                <Form.Label
-                  style={{
-                    color: "#0A656B",
-                    fontWeight: "bold",
-                    fontSize: "20px",
-                  }}
-                >
-                  Ponle un título a tu día
+                <Form.Label className="subtitle-text-blue">
+                  Ponle un título a tu entrada
                 </Form.Label>
                 <Form.Control
                   type="title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
+                  className="plain-text"
                 />
               </Form.Group>
 
               <Form.Group controlId="title">
-                <Form.Label
-                  style={{
-                    color: "#0A656B",
-                    fontWeight: "bold",
-                    fontSize: "20px",
-                  }}
-                >
-                  ¿Cómo te sientes hoy?
+                <Form.Label className="subtitle-text-blue">
+                  ¿Cómo te sientes?
                 </Form.Label>
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "60%",
-                      display: "flex",
-                      justifyContent: "space-around",
-                      alignItems: "center",
-                      cursor: "pointer",
-                    }}
-                  >
+                <div className="box-emotions-container">
+                  <div className="box-emotions">
                     {loading3 && <Loading size={25} />}
                     {emotions?.map((emotion) => (
-                      <div
-                        onClick={(e) => {
-                          visualButtons(emotion._id);
-                          setEmotion = emotion.icon;
-                        }}
-                      >
-                        <img
-                          id={emotion._id}
-                          src={emotion.icon}
-                          width="50"
-                          height="50"
-                          alt={emotion.name}
-                        />
-                        <p
-                          style={{
-                            textAlign: "center",
+                      <>
+                        <div
+                          onClick={(e) => {
+                            visualButtons(emotion._id, emotion.icon);
+                            setEmotion = emotion.icon;
                           }}
+                          className="emotion-holder"
                         >
-                          {emotion.name}
-                        </p>
-                      </div>
+                          <>
+                            <img
+                              id={emotion._id}
+                              src={emotion.icon}
+                              width="50"
+                              height="50"
+                              alt={emotion.name}
+                            />
+                            <div className="centered-text">{emotion.name}</div>
+                          </>
+                        </div>
+                      </>
                     ))}
                   </div>
                 </div>
               </Form.Group>
 
               <Form.Group controlId="tag">
-                <Form.Label
-                  style={{
-                    color: "#0A656B",
-                    fontWeight: "bold",
-                    fontSize: "20px",
-                  }}
-                >
+                <Form.Label className="subtitle-text-blue">
                   ¿Qué te hizo sentir así?
                 </Form.Label>
                 {loading2 && <Loading size={25} />}
-                <Container>
+                <Container className="white-background">
                   <Row>
                     <Col>
-                      <div style={{ display: "flex" }}>
-                        <p
-                          style={{
-                            marginRight: "20px",
-                            marginLeft: "40px",
-                            color: "#AB2975",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Deberes
-                        </p>
+                      <div className="flex-container">
+                        <p className="subtitle-text-soft-blue">Deberes</p>
                       </div>
                       {tags
                         ?.filter((tag) => tag.group === "Deberes")
@@ -261,30 +253,23 @@ function CreateEntryPage({ history }) {
                               id={tag._id}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
-                              <Form.Check.Input type="checkbox" isValid />
                               <Form.Check.Label
                                 style={{
-                                  color: "#2F2F2F",
+                                  color: "#2c2c2c",
+                                  fontWeight: "bold",
                                 }}
+                                className="checkbox"
                               >
-                                {tag.name}
+                                <Form.Check.Input type="checkbox" isValid />
+                                <span class="check">{tag.name}</span>
                               </Form.Check.Label>
                             </Form.Check>
                           </div>
                         ))}
                     </Col>
                     <Col>
-                      <div style={{ display: "flex" }}>
-                        <p
-                          style={{
-                            marginRight: "20px",
-                            marginLeft: "40px",
-                            color: "#AB2975",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Hobbies
-                        </p>
+                      <div className="flex-container">
+                        <p className="subtitle-text-soft-blue">Hobbies</p>
                       </div>
                       {tags
                         ?.filter((tag) => tag.group === "Hobbies")
@@ -295,30 +280,23 @@ function CreateEntryPage({ history }) {
                               id={tag._id}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
-                              <Form.Check.Input type="checkbox" isValid />
                               <Form.Check.Label
                                 style={{
-                                  color: "#2F2F2F",
+                                  color: "#2c2c2c",
+                                  fontWeight: "bold",
                                 }}
+                                className="checkbox"
                               >
-                                {tag.name}
+                                <Form.Check.Input type="checkbox" isValid />
+                                <span class="check">{tag.name}</span>
                               </Form.Check.Label>
                             </Form.Check>
                           </div>
                         ))}
                     </Col>
                     <Col>
-                      <div style={{ display: "flex" }}>
-                        <p
-                          style={{
-                            marginRight: "20px",
-                            marginLeft: "40px",
-                            color: "#AB2975",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Emociones
-                        </p>
+                      <div className="flex-container">
+                        <p className="subtitle-text-soft-blue">Emociones</p>
                       </div>
                       {tags
                         ?.filter((tag) => tag.group === "Emociones")
@@ -329,30 +307,23 @@ function CreateEntryPage({ history }) {
                               id={tag._id}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
-                              <Form.Check.Input type="checkbox" isValid />
                               <Form.Check.Label
                                 style={{
-                                  color: "#2F2F2F",
+                                  color: "#2c2c2c",
+                                  fontWeight: "bold",
                                 }}
+                                className="checkbox"
                               >
-                                {tag.name}
+                                <Form.Check.Input type="checkbox" isValid />
+                                <span class="check">{tag.name}</span>
                               </Form.Check.Label>
                             </Form.Check>
                           </div>
                         ))}
                     </Col>
                     <Col>
-                      <div style={{ display: "flex" }}>
-                        <p
-                          style={{
-                            marginRight: "20px",
-                            marginLeft: "40px",
-                            color: "#AB2975",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Social
-                        </p>
+                      <div className="flex-container">
+                        <p className="subtitle-text-soft-blue">Social</p>
                       </div>
                       {tags
                         ?.filter((tag) => tag.group === "Social")
@@ -363,28 +334,24 @@ function CreateEntryPage({ history }) {
                               id={tag._id}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
-                              <Form.Check.Input type="checkbox" isValid />
                               <Form.Check.Label
                                 style={{
-                                  color: "#2F2F2F",
+                                  color: "#2c2c2c",
+                                  fontWeight: "bold",
                                 }}
+                                className="checkbox"
                               >
-                                {tag.name}
+                                <Form.Check.Input type="checkbox" isValid />
+                                <span class="check">{tag.name}</span>
                               </Form.Check.Label>
                             </Form.Check>
                           </div>
                         ))}
                     </Col>
                     <Col>
-                      <div style={{ display: "flex" }}>
-                        <p
-                          style={{
-                            color: "#AB2975",
-                            fontWeight: "bold",
-                            display: "flex",
-                          }}
-                        >
-                          Mis actividades
+                      <div className="flex-container">
+                        <p className="subtitle-text-soft-blue">
+                          Personalizadas
                         </p>
                       </div>
                       {mitad.map((ptag) => (
@@ -394,9 +361,15 @@ function CreateEntryPage({ history }) {
                             id={ptag}
                             style={{ margin: "5px", cursor: "pointer" }}
                           >
-                            <Form.Check.Input type="checkbox" isValid />
-                            <Form.Check.Label style={{ color: "#2F2F2F" }}>
-                              {ptag}
+                            <Form.Check.Label
+                              style={{
+                                color: "#2c2c2c",
+                                fontWeight: "bold",
+                              }}
+                              className="checkbox"
+                            >
+                              <Form.Check.Input type="checkbox" isValid />
+                              <span class="check">{ptag}</span>
                             </Form.Check.Label>
                           </Form.Check>
                         </div>
@@ -404,74 +377,59 @@ function CreateEntryPage({ history }) {
                     </Col>
                     {userInfo?.isPremium ? (
                       <Col>
-                        <div style={{ display: "flex" }}>
-                          <p
-                            style={{
-                              color: "#AB2975",
-                              fontWeight: "bold",
-                              display: "flex",
-                            }}
-                          >
-                            Premium
-                          </p>
+                        <div className="flex-container">
+                          <p className="subtitle-text-soft-blue">Premium</p>
                         </div>
                         {mitad2.map((ptag) => (
-                          
                           <div>
                             <Form.Check
                               type="checkbox"
                               id={ptag}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
-                              <Form.Check.Input type="checkbox" isValid />
-                              <Form.Check.Label style={{ color: "#2F2F2F" }}>
-                                {ptag}
+                              <Form.Check.Label
+                                style={{
+                                  color: "#2c2c2c",
+                                  fontWeight: "bold",
+                                }}
+                                className="checkbox"
+                              >
+                                <Form.Check.Input type="checkbox" isValid />
+                                <span class="check">{ptag}</span>
                               </Form.Check.Label>
                             </Form.Check>
                           </div>
                         ))}
                       </Col>
-                      ):(<div></div>)}
+                    ) : (
+                      <div></div>
+                    )}
                   </Row>
                 </Container>
               </Form.Group>
 
               <Form.Group controlId="content">
-                <Form.Label
-                  style={{
-                    color: "#0A656B",
-                    fontWeight: "bold",
-                    fontSize: "20px",
-                  }}
-                >
-                  Cuéntanos mas sobre tu día
+                <Form.Label className="subtitle-text-blue">
+                  Cuéntanos mas sobre eso
                 </Form.Label>
                 <Form.Control
                   as="textarea"
                   value={content}
                   rows={4}
                   onChange={(e) => setContent(e.target.value)}
+                  className="plain-text"
                 />
               </Form.Group>
 
               {loading && <Loading size={50} />}
 
               <Link to="/authDiario">
-                <Button
-                  variant="secondary"
-                  className="buttonSummit"
-                  style={{ border: "none", marginRight: "10px" }}
-                >
+                <Button variant="primary" className="button">
                   Volver al diario
                 </Button>
               </Link>
 
-              <Button
-                type="submit"
-                variant="primary"
-                className="buttonSummit"
-                style={{ border: "none" }}
-              >
+              <Button type="submit" variant="primary" className="button">
                 Guardar entrada
               </Button>
             </Form>

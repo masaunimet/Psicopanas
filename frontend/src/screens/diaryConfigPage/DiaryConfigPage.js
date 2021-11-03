@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import { Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "../../components/ErrorMessage";
 import {
@@ -10,6 +9,7 @@ import {
   diarySetPersonalStats,
   diarySetSecurity,
 } from "../../actions/userActions";
+import "../../styles/App.css";
 
 const DiaryConfigPage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -191,42 +191,21 @@ const DiaryConfigPage = ({ history }) => {
   return (
     <MainScreen title="Configuración de mi diario">
       <Link to="/diario">
-        <Button
-          variant="secondary"
-          style={{ border: "none", width: "100%", fontSize: "15px" }}
-        >
+        <Button variant="secondary" className="button-all-page">
           Volver a mi diario
         </Button>
       </Link>
-      <Card
-        style={{
-          background: "none",
-          border: "none",
-        }}
-      >
-        <Card.Header style={{ display: "flex", background: "none" }}>
-          <div
-            style={{
-              marginRight: "10px",
-              color: "#AB2975",
-              fontSize: "20px",
-              fontWeight: "bold",
-              background: "none",
-            }}
-          >
-            Seguridad de mi diario
-          </div>
+      <Card className="no-background">
+        <Card.Header className="no-background-bb">
+          <div className="subtitle-text-blue">Seguridad de mi diario</div>
         </Card.Header>
 
         {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
         {diarySecurity === false ? (
-          <div className="loginContainer">
-            <Form
-              onSubmit={submitHandlerSecurity}
-              style={{ background: "none" }}
-            >
+          <div>
+            <Form onSubmit={submitHandlerSecurity} className="no-background">
               <Form.Group controlId="formBasicPassword">
-                <Form.Label>Contraseña</Form.Label>
+                <Form.Label className="plain-text">Contraseña</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder=""
@@ -235,7 +214,9 @@ const DiaryConfigPage = ({ history }) => {
               </Form.Group>
 
               <Form.Group controlId="confirmPassword">
-                <Form.Label>Confirmar contraseña</Form.Label>
+                <Form.Label className="plain-text">
+                  Confirmar contraseña
+                </Form.Label>
                 <Form.Control
                   type="password"
                   placeholder=""
@@ -246,20 +227,19 @@ const DiaryConfigPage = ({ history }) => {
               <Button
                 variant="primary"
                 type="submit"
-                style={{ border: "none" }}
+                className="button-all-page"
               >
                 Activar seguridad
               </Button>
             </Form>
           </div>
         ) : (
-          <div className="loginContainer">
-            <Form
-              onSubmit={submitHandlerNoSecurity}
-              style={{ background: "none" }}
-            >
+          <div>
+            <Form onSubmit={submitHandlerNoSecurity} className="no-background">
               <Form.Group controlId="formBasicPassword">
-                <Form.Label>Contraseña de mi diario</Form.Label>
+                <Form.Label className="plain-text">
+                  Contraseña de mi diario
+                </Form.Label>
                 <Form.Control
                   type="password"
                   placeholder=""
@@ -270,7 +250,7 @@ const DiaryConfigPage = ({ history }) => {
               <Button
                 variant="primary"
                 type="submit"
-                style={{ border: "none" }}
+                className="button-all-page"
               >
                 Desactivar seguridad
               </Button>
@@ -278,23 +258,10 @@ const DiaryConfigPage = ({ history }) => {
           </div>
         )}
       </Card>
-      <Card
-        style={{
-          background: "none",
-          border: "none",
-        }}
-      >
+      <Card className="no-background">
         {message2 && <ErrorMessage variant="info">{message2}</ErrorMessage>}
-        <Card.Header style={{ display: "flex", background: "none" }}>
-          <div
-            style={{
-              marginRight: "10px",
-              color: "#AB2975",
-              fontSize: "20px",
-              fontWeight: "bold",
-              background: "none",
-            }}
-          >
+        <Card.Header className="no-background-bb">
+          <div className="subtitle-text-blue">
             Mis actividades personalizadas
           </div>
         </Card.Header>
@@ -307,6 +274,7 @@ const DiaryConfigPage = ({ history }) => {
                 id="inputTag1"
                 onChange={(e) => setTag1(e.target.value)}
                 autocomplete="off"
+                className="plain-text"
               />
             </Form.Group>
             <Form.Group controlId="tag2">
@@ -316,6 +284,7 @@ const DiaryConfigPage = ({ history }) => {
                 id="inputTag2"
                 onChange={(e) => setTag2(e.target.value)}
                 autocomplete="off"
+                className="plain-text"
               />
             </Form.Group>
             <Form.Group controlId="tag3">
@@ -325,6 +294,7 @@ const DiaryConfigPage = ({ history }) => {
                 id="inputTag3"
                 onChange={(e) => setTag3(e.target.value)}
                 autocomplete="off"
+                className="plain-text"
               />
             </Form.Group>
             <Form.Group controlId="tag4">
@@ -334,6 +304,7 @@ const DiaryConfigPage = ({ history }) => {
                 id="inputTag4"
                 onChange={(e) => setTag4(e.target.value)}
                 autocomplete="off"
+                className="plain-text"
               />
             </Form.Group>
             <Form.Group controlId="tag5">
@@ -343,6 +314,7 @@ const DiaryConfigPage = ({ history }) => {
                 id="inputTag5"
                 onChange={(e) => setTag5(e.target.value)}
                 autocomplete="off"
+                className="plain-text"
               />
             </Form.Group>
             {userInfo?.isPremium ? (
@@ -354,6 +326,7 @@ const DiaryConfigPage = ({ history }) => {
                     id="inputTag6"
                     onChange={(e) => setTag6(e.target.value)}
                     autocomplete="off"
+                    className="plain-text"
                   />
                 </Form.Group>
                 <Form.Group controlId="tag7">
@@ -363,6 +336,7 @@ const DiaryConfigPage = ({ history }) => {
                     id="inputTag7"
                     onChange={(e) => setTag7(e.target.value)}
                     autocomplete="off"
+                    className="plain-text"
                   />
                 </Form.Group>
                 <Form.Group controlId="tag8">
@@ -372,6 +346,7 @@ const DiaryConfigPage = ({ history }) => {
                     id="inputTag8"
                     onChange={(e) => setTag8(e.target.value)}
                     autocomplete="off"
+                    className="plain-text"
                   />
                 </Form.Group>
                 <Form.Group controlId="tag9">
@@ -381,6 +356,7 @@ const DiaryConfigPage = ({ history }) => {
                     id="inputTag9"
                     onChange={(e) => setTag9(e.target.value)}
                     autocomplete="off"
+                    className="plain-text"
                   />
                 </Form.Group>
                 <Form.Group controlId="tag10">
@@ -390,13 +366,14 @@ const DiaryConfigPage = ({ history }) => {
                     id="inputTag10"
                     onChange={(e) => setTag10(e.target.value)}
                     autocomplete="off"
+                    className="plain-text"
                   />
                 </Form.Group>
               </>
             ) : (
               <div></div>
             )}
-            <Button variant="primary" type="submit" style={{ border: "none" }}>
+            <Button variant="primary" type="submit" className="button-all-page">
               Guardar cambios en mis actividades
             </Button>
           </Form>

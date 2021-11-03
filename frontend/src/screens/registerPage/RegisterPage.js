@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import { register } from "../../actions/userActions";
 import MainScreen from "../../components/mainscreen/MainScreen";
+import "../../styles/App.css";
 
 const RegisterPage = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -43,13 +44,13 @@ const RegisterPage = ({ history }) => {
 
   return (
     <MainScreen title="Registro">
-      <div className="loginContainer">
+      <div>
         {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
         {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
         {loading && <Loading />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
-            <Form.Label>Nombre completo</Form.Label>
+            <Form.Label className="plain-text">Nombre de usuario</Form.Label>
             <Form.Control
               type="name"
               value={name}
@@ -58,7 +59,7 @@ const RegisterPage = ({ history }) => {
           </Form.Group>
 
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Correo electrónico</Form.Label>
+            <Form.Label className="plain-text">Correo electrónico</Form.Label>
             <Form.Control
               type="email"
               value={email}
@@ -67,7 +68,7 @@ const RegisterPage = ({ history }) => {
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Contraseña</Form.Label>
+            <Form.Label className="plain-text">Contraseña</Form.Label>
             <Form.Control
               type="password"
               value={password}
@@ -76,23 +77,27 @@ const RegisterPage = ({ history }) => {
           </Form.Group>
 
           <Form.Group controlId="confirmPassword">
-            <Form.Label>Confirma la contraseña</Form.Label>
+            <Form.Label className="plain-text">
+              Confirma la contraseña
+            </Form.Label>
             <Form.Control
               type="password"
               value={confirmpassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </Form.Group>
-
-          <Button variant="primary" type="submit">
-            Registrarse
-          </Button>
+          <div className="flex-container">
+            <Button className="button" variant="primary" type="submit">
+              Registrarse
+            </Button>
+            <Col>
+              <div className="plain-text">¿ Ya tienes una cuenta ?</div>
+              <Link to="/login" className="plain-text">
+                Inicia sesión aquí
+              </Link>
+            </Col>
+          </div>
         </Form>
-        <Row className="py-3">
-          <Col>
-            ¿ Ya tienes una cuenta ? <Link to="/login">Inicia sesión aquí</Link>
-          </Col>
-        </Row>
       </div>
     </MainScreen>
   );

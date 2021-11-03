@@ -24,46 +24,53 @@ const Header = () => {
 
   return (
     <div className="all">
-    <Navbar bg="#f6f6f6" expand="lg" variant="dark" className="all">
-      <Container fluid>
-        <Navbar.Brand>
-          <img src={LogoPP} width="50" height="50" alt="" />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse className="justify-content-end">
+      <Navbar bg="#f6f6f6" expand="lg" variant="dark" className="all">
+        <Container fluid>
           {userInfo ? (
-            <Nav variant="pills" activeKey="1">
-              {userInfo.isAdmin === true ? (
-                <>
-                  <Nav.Item className="padding_butons">
-                    <NavLink
-                      to="/admin"
-                      className="textnavbar"
-                      activeStyle={{
-                        fontWeight: "bold",
-                        color: "#0FA5AE",
-                      }}
-                    >
-                      Usuarios
-                    </NavLink>
-                  </Nav.Item>
-                  <Nav.Item className="padding_butons">
-                    <NavLink
-                      to="/login"
-                      className="textnavbar"
-                      onClick={logoutHandler}
-                      activeStyle={{
-                        fontWeight: "bold",
-                        color: "#0FA5AE",
-                      }}
-                    >
-                      Log Out
-                    </NavLink>
-                  </Nav.Item>
-                </>
-              ) : (
-                <>
-                  {/* <Nav.Item className="padding_butons">
+            <Navbar.Brand>
+              <img src={LogoPP} width="50" height="50" alt="" />
+            </Navbar.Brand>
+          ) : (
+            <Navbar.Brand href="/">
+              <img src={LogoPP} width="50" height="50" alt="" />
+            </Navbar.Brand>
+          )}
+
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse className="justify-content-end">
+            {userInfo ? (
+              <Nav variant="pills" activeKey="1">
+                {userInfo.isAdmin === true ? (
+                  <>
+                    <Nav.Item className="padding_butons">
+                      <NavLink
+                        to="/admin"
+                        className="textnavbar"
+                        activeStyle={{
+                          fontWeight: "bold",
+                          color: "#0FA5AE",
+                        }}
+                      >
+                        Usuarios
+                      </NavLink>
+                    </Nav.Item>
+                    <Nav.Item className="padding_butons">
+                      <NavLink
+                        to="/login"
+                        className="textnavbar"
+                        onClick={logoutHandler}
+                        activeStyle={{
+                          fontWeight: "bold",
+                          color: "#0FA5AE",
+                        }}
+                      >
+                        Log Out
+                      </NavLink>
+                    </Nav.Item>
+                  </>
+                ) : (
+                  <>
+                    {/* <Nav.Item className="padding_butons">
                 <NavLink
                   to="/diario"
                   className="textnavbar"
@@ -87,84 +94,87 @@ const Header = () => {
                   Foro
                 </NavLink>
               </Nav.Item> */}
-                  <Nav.Item className="padding_butons">
-                    {!userInfo.isPremium ?(
-
-                      <Nav.Link 
-                      href="/pagos"
-                      className="textnavbar"
-                      eventKey="1"
-                      >
-                        Pagos
-                      </Nav.Link>
-                    ):(<></>)}
-                  </Nav.Item>
-                  <Nav.Item className="padding_butons">
-                    {userInfo.diarySecurity === true ? (
-                      <Nav.Link
-                        href="/authDiario"
+                    <Nav.Item className="padding_butons">
+                      {!userInfo.isPremium ? (
+                        <Nav.Link
+                          href="/pagos"
+                          className="textnavbar"
+                          eventKey="1"
+                        >
+                          Pagos
+                        </Nav.Link>
+                      ) : (
+                        <></>
+                      )}
+                    </Nav.Item>
+                    <Nav.Item className="padding_butons">
+                      {userInfo.diarySecurity === true ? (
+                        <Nav.Link
+                          href="/authDiario"
+                          className="textnavbar"
+                          eventKey="1"
+                        >
+                          Diario
+                        </Nav.Link>
+                      ) : (
+                        <Nav.Link
+                          href="/diario"
+                          className="textnavbar"
+                          eventKey="1"
+                        >
+                          Diario
+                        </Nav.Link>
+                      )}
+                    </Nav.Item>
+                    <Nav.Item>
+                      <NavDropdown
+                        title="Mi cuenta"
+                        id="basic-nav-dropdowm"
                         className="textnavbar"
-                        eventKey="1"
                       >
-                        Diario
-                      </Nav.Link>
-                    ) : (
-                      <Nav.Link
-                        href="/diario"
-                        className="textnavbar"
-                        eventKey="1"
-                      >
-                        Diario
-                      </Nav.Link>
-                    )}
-                  </Nav.Item>
-                  <Nav.Item>
-                    <NavDropdown
-                      title="Mi cuenta"
-                      id="basic-nav-dropdowm"
-                      className="textnavbar"
-                    >
-                      <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
-                      <NavDropdown.Divider />
-                      <NavDropdown.Item onClick={logoutHandler}>
-                        Cerrar sesión
-                      </NavDropdown.Item>
-                    </NavDropdown>
-                  </Nav.Item>
-                </>
-              )}
-            </Nav>
-          ) : (
-            <Nav variant="pills" activeKey="1">
-              <Nav.Item className="padding_butons">
-                <NavLink
-                  to="/login"
-                  className="textnavbar"
-                  activeStyle={{
-                    fontWeight: "bold",
-                    color: "#0FA5AE",
-                  }}
-                >
-                  Iniciar Sesión
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item className="padding_butons">
-                <NavLink
-                  to="/registro"
-                  className="textnavbar"
-                  activeStyle={{
-                    fontWeight: "bold",
-                    color: "#0FA5AE",
-                  }}
-                >
-                  Registrarse
-                </NavLink>
-              </Nav.Item>
-            </Nav>
-          )}
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+                        <NavDropdown.Item href="/perfil">
+                          Perfil
+                        </NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item onClick={logoutHandler}>
+                          Cerrar sesión
+                        </NavDropdown.Item>
+                      </NavDropdown>
+                    </Nav.Item>
+                  </>
+                )}
+              </Nav>
+            ) : (
+              <Nav variant="pills" activeKey="1">
+                <Nav.Item className="padding_butons">
+                  <NavLink
+                    to="/login"
+                    className="textnavbar"
+                    activeStyle={{
+                      fontWeight: "bold",
+                      color: "#0FA5AE",
+                    }}
+                  >
+                    Iniciar Sesión
+                  </NavLink>
+                </Nav.Item>
+                <Nav.Item className="padding_butons">
+                  <NavLink
+                    to="/registro"
+                    className="textnavbar"
+                    activeStyle={{
+                      fontWeight: "bold",
+                      color: "#0FA5AE",
+                    }}
+                  >
+                    Registrarse
+                  </NavLink>
+                </Nav.Item>
+              </Nav>
+            )}
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </div>
   );
 };

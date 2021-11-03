@@ -67,32 +67,20 @@ const Diario = ({ history }) => {
 
   return (
     <MainScreen title="Diario">
-      <h2 style={{}}>Bienvenido de vuelta {userInfo.name}</h2>
-      <div style={{ display: "flex" }}>
+      <div className="subtitle-text-blue">Bienvenido {userInfo.name}</div>
+      <div className="flex-container">
         <Link to="/crearEntrada">
-          <Button
-            size="md"
-            variant="primary"
-            style={{ marginRight: "10px", border: "none" }}
-          >
+          <Button size="md" variant="primary" className="button">
             Crear entrada
           </Button>
         </Link>
         <Link to="/estadisticas">
-          <Button
-            size="md"
-            variant="primary"
-            style={{ marginRight: "10px", border: "none" }}
-          >
+          <Button size="md" variant="primary" className="button">
             Ver estadísticas
           </Button>
         </Link>
         <Link to="/ajustes-diario">
-          <Button
-            size="md"
-            variant="secondary"
-            style={{ marginRight: "10px", border: "none" }}
-          >
+          <Button size="md" variant="secondary" className="button">
             Ajustes
           </Button>
         </Link>
@@ -111,56 +99,33 @@ const Diario = ({ history }) => {
         })
         .map((entry) => (
           <Accordion key={entry._id}>
-            <Card
-              style={{
-                margin: 10,
-                borderColor: "#11CBD6",
-                background: "#f6f6f6",
-                borderRadius: "10px",
-              }}
-            >
-              <Card.Header style={{ display: "flex" }}>
-                <img src={entry.emotion} width="50" height="50" alt="" />
+            <Card className="container-entry">
+              <Card.Header className="container-entry-header">
                 <Accordion.Toggle
                   style={{
                     flex: 1,
                     cursor: "pointer",
                     alignSelf: "center",
                     fontSize: 18,
+                    display: "flex",
                   }}
                   as={Card.Text}
                   variant="link"
                   eventKey="0"
                 >
                   <div
-                    style={{
-                      marginLeft: "10px",
-                      color: "#797979",
-                      fontWeight: "bold",
-                    }}
+                    style={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    {moment(entry.createdAt).format("YYYY-DD-MM")}{" "}
+                    <img src={entry.emotion} width="50" height="50" alt="" />
+                    <div className="subtitle-text-gray">
+                      {moment(entry.createdAt).format("YYYY-DD-MM")}{" "}
+                    </div>
+                    <div className="subtitle-text-pink">{entry.title}</div>
                   </div>
                 </Accordion.Toggle>
-                <div
-                  style={{
-                    color: "#AB2975",
-                    marginRight: "10px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {entry.title}
-                </div>
+
                 <div>
-                  <Button
-                    href={`/diario/${entry._id}`}
-                    style={{
-                      background: "#f6f6f6",
-                      padding: "0",
-                      margin: "0",
-                      border: "none",
-                    }}
-                  >
+                  <Button href={`/diario/${entry._id}`} className="edit-button">
                     <img
                       src="https://res.cloudinary.com/psicopanas/image/upload/v1634441688/iconPencil_zngxxh.png"
                       width="20px"
@@ -172,38 +137,17 @@ const Diario = ({ history }) => {
               </Card.Header>
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
-                  <Container>
+                  <Container style={{ margin: 0, padding: 0 }}>
                     <Row>
                       <Col style={{ width: "auto" }}>
                         {entry.tags?.map((tag) => (
-                          <div
-                            style={{
-                              color: "#0a656b",
-                              background: "#bcf4fc",
-                              fontWeight: "bold",
-                              margin: "5px",
-                              paddingLeft: "5px",
-                              paddingRight: "5px",
-                              borderRadius: "2px",
-                            }}
-                          >
-                            {tag}
-                          </div>
+                          <div className="container-entry-tag">{tag}</div>
                         ))}
                       </Col>
                       <Col>
-                        <blockquote className="blockquote mb-0">
-                          <div
-                            style={{
-                              color: "#171717",
-                              marginTop: "10px",
-                              textAlign: "justify",
-                              fontSize: "15px",
-                            }}
-                          >
-                            {entry.content}
-                          </div>
-                        </blockquote>
+                        <div>
+                          <div className="plain-text">{entry.content}</div>
+                        </div>
                       </Col>
                     </Row>
                   </Container>

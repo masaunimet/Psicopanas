@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
+import "../../styles/App.css";
 
 const Message404 = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -18,23 +19,15 @@ const Message404 = ({ history }) => {
       <Container>
         <Row>
           <div className="Centrado">
-            <p
-              style={{
-                color: "#0FA5AE",
-                fontWeight: "bold",
-                fontSize: "25px",
-              }}
-            >
-              Vuelve a tu diario
-            </p>
+            <p className="subtitle-text-blue">Vuelve a tu diario</p>
           </div>
           <div className="Centrado">
             <img src={Goti} width="200" height="250" alt="Goti" />
           </div>
         </Row>
         <Row>
-          <Link to="/authdiario">
-            <Button style={{ border: "none" }}>Continuar</Button>
+          <Link to="/authdiario" className="button-all-page">
+            <Button>Continuar</Button>
           </Link>
         </Row>
       </Container>
