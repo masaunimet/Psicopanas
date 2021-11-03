@@ -26,8 +26,8 @@ const Message404 = ({ history }) => {
           </div>
         </Row>
         <Row>
-          <Link to="/authdiario" className="button-all-page">
-            <Button>Continuar</Button>
+          <Link to="/authdiario">
+            <Button className="button-all-page">Continuar</Button>
           </Link>
         </Row>
       </Container>
