@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
 
-const MessagePositive = () => {
+const MessageHappy = () => {
   return (
     <MainScreen title="¡¡¡Me alegro por tiii =) !!!">
       <Container>
@@ -34,4 +34,4 @@ const MessagePositive = () => {
   );
 };
 
-export default MessagePositive;
+export default MessageHappy;

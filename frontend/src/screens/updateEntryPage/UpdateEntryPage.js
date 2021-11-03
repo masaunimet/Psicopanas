@@ -128,9 +128,46 @@ function UpdateEntryPage({ match, history }) {
       if (emotion._id !== id) {
         document.getElementById(emotion._id)?.setAttribute("width", "50");
         document.getElementById(emotion._id)?.setAttribute("height", "50");
+        if (emotion._id === "6169efd6152f0e9299ff6810") {
+          document
+            .getElementById(emotion._id)
+            ?.setAttribute(
+              "src",
+              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+            );
+        } else if (emotion._id === "616b11348f059d3c912e9943") {
+          document
+            .getElementById(emotion._id)
+            ?.setAttribute(
+              "src",
+              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+            );
+        } else if (emotion._id === "616b11858f059d3c912e9944") {
+          document
+            .getElementById(emotion._id)
+            ?.setAttribute(
+              "src",
+              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+            );
+        } else if (emotion._id === "616b11b48f059d3c912e9945") {
+          document
+            .getElementById(emotion._id)
+            ?.setAttribute(
+              "src",
+              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+            );
+        } else if (emotion._id === "616b11ec8f059d3c912e9946") {
+          document
+            .getElementById(emotion._id)
+            ?.setAttribute(
+              "src",
+              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+            );
+        }
       } else {
         document.getElementById(emotion._id)?.setAttribute("width", "80");
         document.getElementById(emotion._id)?.setAttribute("height", "80");
+        document.getElementById(emotion._id)?.setAttribute("src", icon);
       }
     });
   };

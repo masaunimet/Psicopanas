@@ -115,23 +115,17 @@ function CreateEntryPage({ history }) {
       "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
     ) {
       history.push("/mensaje-racha");
-    } 
-    else if (
+    } else if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
-    )
-    {
+    ) {
       history.push("/mensaje-triste");
-    }
-    else if (
+    } else if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
-    )
-    {
+    ) {
       history.push("/mensaje-positivo");
-    }
-    else{
-
+    } else {
       history.push("/mensaje-feliz");
     }
     resetHandler();
@@ -192,8 +186,8 @@ function CreateEntryPage({ history }) {
 
   const visualButtons2 = () => {
     emotions?.forEach((emotion) => {
-      // document.getElementById(emotion._id)?.setAttribute("width", "50");
-      // document.getElementById(emotion._id)?.setAttribute("height", "50");
+      document.getElementById(emotion._id)?.setAttribute("width", "50");
+      document.getElementById(emotion._id)?.setAttribute("height", "50");
     });
   };
 
