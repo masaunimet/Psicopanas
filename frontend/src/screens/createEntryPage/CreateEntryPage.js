@@ -115,8 +115,24 @@ function CreateEntryPage({ history }) {
       "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
     ) {
       history.push("/mensaje-racha");
-    } else {
-      history.push("/diario");
+    } 
+    else if (
+      setEmotion ===
+      "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+    )
+    {
+      history.push("/mensaje-triste");
+    }
+    else if (
+      setEmotion ===
+      "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+    )
+    {
+      history.push("/mensaje-positivo");
+    }
+    else{
+
+      history.push("/mensaje-feliz");
     }
     resetHandler();
   };

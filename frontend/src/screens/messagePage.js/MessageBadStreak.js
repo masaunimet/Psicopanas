@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
@@ -19,16 +19,25 @@ const MessageBadStreak = ({ history }) => {
     }
   });
   return (
-    <MainScreen title="Sentimos que te sientas así">
+    <MainScreen title="Siento que te sientas así">
       <Container>
-        <Row>
+        <Col>
           <div className="Centrado">
-            <p className="subtitle-text-blue">No dudes en buscar apoyo</p>
+            <p
+              style={{
+                color: "#0FA5AE",
+                fontWeight: "bold",
+                fontSize: "25px",
+              }}
+            >
+              No dudes en buscar apoyo. Recuerda darte tu tiempo para digerir lo
+              que está sucediendo. Y trata de llevar las cosas con calma
+            </p>
           </div>
           <div className="Centrado">
             <img src={Goti} width="200" height="250" alt="Goti" />
           </div>
-        </Row>
+        </Col>
         <Row>
           <Link to="/authdiario">
             <Button className="button-all-page">Continuar</Button>
