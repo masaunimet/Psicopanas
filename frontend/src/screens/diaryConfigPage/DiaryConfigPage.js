@@ -191,7 +191,7 @@ const DiaryConfigPage = ({ history }) => {
   return (
     <MainScreen title="Configuración de mi diario">
       <Link to="/diario">
-        <Button variant="secondary" className="button-all-page">
+        <Button variant="primary" className="button-all-page">
           Volver a mi diario
         </Button>
       </Link>

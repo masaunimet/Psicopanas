@@ -80,7 +80,7 @@ const Diario = ({ history }) => {
           </Button>
         </Link>
         <Link to="/ajustes-diario">
-          <Button size="md" variant="secondary" className="button">
+          <Button size="md" variant="primary" className="button">
             Ajustes
           </Button>
         </Link>

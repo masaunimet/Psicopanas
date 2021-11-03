@@ -423,15 +423,24 @@ function CreateEntryPage({ history }) {
 
               {loading && <Loading size={50} />}
 
-              <Link to="/authDiario">
-                <Button variant="primary" className="button">
-                  Volver al diario
-                </Button>
-              </Link>
-
-              <Button type="submit" variant="primary" className="button">
-                Guardar entrada
-              </Button>
+              <Row>
+                <Col>
+                  <Link to="/authDiario">
+                    <Button variant="primary" className="button-all-page">
+                      Volver al diario
+                    </Button>
+                  </Link>
+                </Col>
+                <Col>
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    className="button-all-page"
+                  >
+                    Guardar entrada
+                  </Button>
+                </Col>
+              </Row>
             </Form>
           </Card.Body>
         </Card>

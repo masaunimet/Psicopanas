@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { Button, Col, Container, Image, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import MainScreen from "../../components/mainscreen/MainScreen";
-import "./ProfilePage.css";
 import moment from "moment";
 
 const ProfilePage = ({ history }) => {
@@ -23,29 +22,73 @@ const ProfilePage = ({ history }) => {
     <MainScreen title="Perfil">
       <Container>
         <Row>
-          <Image
-            src={userInfo?.profilePicture}
-            width="150"
-            height="150"
-            alt="Foto de perfil"
-            roundedCircle
-          />
-        </Row>
-        <Row className="profileData">
-          <span>Nombre de usuario:</span> {userInfo?.name}
-        </Row>
-        <Row className="profileData">
-          <span>Correo electrónico: </span> {userInfo?.email}
-        </Row>
-        <Row className="profileData">
-          <span>Fecha de registro:</span>
-          {moment(userInfo?.createdAt).format("YYYY-DD-MM")}
-        </Row>
+          <Col md={6}>
+            <Form>
+              <Form.Group controlId="name">
+                <Form.Label className="plain-text">
+                  Nombre de usuario
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  value={userInfo?.name}
+                  disabled
+                  className="plain-text"
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="password">
+                <Form.Label className="plain-text">
+                  Correo electrónico
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  value={userInfo?.email}
+                  disabled
+                  className="plain-text"
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="confirmPassword">
+                <Form.Label className="plain-text">
+                  Fecha de registro
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  value={moment(userInfo?.createdAt).format("YYYY-DD-MM")}
+                  disabled
+                  className="plain-text"
+                ></Form.Control>
+              </Form.Group>
 
-        <Row>
-          <Button className="button" href="/modificarPerfil">
-            Modificar Perfil
-          </Button>
+              <Row>
+                <Col>
+                  <Button href="perfil" className="button-all-page">
+                    Volver al perfil
+                  </Button>
+                </Col>
+                <Col>
+                  <Button className="button-all-page" href="/modificarPerfil">
+                    Modificar Perfil
+                  </Button>
+                </Col>
+              </Row>
+            </Form>
+          </Col>
+          <Col
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Image
+              src={userInfo?.profilePicture}
+              alt=""
+              className="profilePic"
+              width="300"
+              height="300"
+              alt="Foto de perfil"
+              roundedCircle
+            />
+          </Col>
         </Row>
       </Container>
     </MainScreen>
