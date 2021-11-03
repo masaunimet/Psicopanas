@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
+import "../../styles/App.css";
 
 const MessageConfigDiaryPage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -22,15 +23,7 @@ const MessageConfigDiaryPage = ({ history }) => {
       <Container>
         <Row>
           <div className="Centrado">
-            <p
-              style={{
-                color: "#0FA5AE",
-                fontWeight: "bold",
-                fontSize: "25px",
-              }}
-            >
-              Se han guardado tus cambios
-            </p>
+            <p className="subtitle-text-blue">Se han guardado tus cambios</p>
           </div>
           <div className="Centrado">
             <img src={Goti} width="200" height="250" alt="Goti" />
@@ -38,7 +31,7 @@ const MessageConfigDiaryPage = ({ history }) => {
         </Row>
         <Row>
           <Link to="/authdiario">
-            <Button style={{ border: "none" }}>Continuar</Button>
+            <Button className="button-all-page">Continuar</Button>
           </Link>
         </Row>
       </Container>
