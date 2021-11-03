@@ -6,7 +6,7 @@ import Goti from "../../images/Goti.png";
 
 const MessagePositive = () => {
   return (
-    <MainScreen title="¡¡¡Tiempo de actitudes proactivas!!!">
+    <MainScreen title="¡¡¡Me alegro por tiii =) !!!">
       <Container>
         <Col>
           <div className="Centrado">
@@ -17,8 +17,7 @@ const MessagePositive = () => {
                 fontSize: "25px",
               }}
             >
-              Te recomiendo que te organices y pienses qué quieres hacer que te
-              anime y distribuye descansos de cosas que te gusten.
+              Disfruta tu momentooooo, te lo mereces.
             </p>
           </div>
           <div className="Centrado">

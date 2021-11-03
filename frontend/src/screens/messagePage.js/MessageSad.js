@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
 
-const MessagePositive = () => {
+const MessageSad = () => {
   return (
-    <MainScreen title="¡¡¡Tiempo de actitudes proactivas!!!">
+    <MainScreen title="¿Te puedo enviar un abrazo?">
       <Container>
         <Col>
           <div className="Centrado">
@@ -17,8 +17,8 @@ const MessagePositive = () => {
                 fontSize: "25px",
               }}
             >
-              Te recomiendo que te organices y pienses qué quieres hacer que te
-              anime y distribuye descansos de cosas que te gusten.
+              Todo pasa, no hay mal que dure cien años ni gota que lo aguante.
+              Respira y sé paciente que todo va a mejorar. Ya verás.
             </p>
           </div>
           <div className="Centrado">
@@ -35,4 +35,4 @@ const MessagePositive = () => {
   );
 };
 
-export default MessagePositive;
+export default MessageSad;
