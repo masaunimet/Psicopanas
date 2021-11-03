@@ -14,7 +14,7 @@ const PaySreen = ({ history }) => {
   const [email, setEmail] = useState("");
   const [telefono, settelefono] = useState("");
   const [foto, setFoto] = useState("");
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
 
   useEffect(() => {
     if (!userInfo) {
@@ -29,7 +29,14 @@ const PaySreen = ({ history }) => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs
+    if(nombre==="" ||email===""||telefono===""||foto===""){
+
+      alert("ingresa bien todos los campos");
+    }
+
+    else{
+
+      emailjs
       .send(
         "service_tcenvkb",
         "template_8lzky6r",
@@ -44,7 +51,7 @@ const PaySreen = ({ history }) => {
       )
       .then(
         (result) => {
-          alert(result.text);
+          history.push("/mensaje_enviado");
         },
         (error) => {
           alert(error.text);
@@ -52,6 +59,7 @@ const PaySreen = ({ history }) => {
       );
 
     e.target.reset();
+    }
   };
 
   const uploadImage = async (e) => {

@@ -18,6 +18,7 @@ import ProfilePage from "./screens/profilePage/ProfilePage";
 import UpdateProfilePage from "./screens/updateProfilePage/UpdateProfilePage";
 import AdminPage from "./screens/adminPage.js/AdminPage";
 import UserUpdateFromAdmin from "./screens/userUpdateFromAdmin/UserUpdateFromAdmin";
+import PagoExitoso from "./screens/messagePage.js/PagoExitoso";
 
 const App = () => (
   <>
@@ -43,6 +44,7 @@ const App = () => (
           component={MessageConfigDiaryPage}
           exact
         />
+        <Route path="/mensaje_enviado" component={PagoExitoso} exact />
         <Route path="/mensaje-racha" component={MessageBadStreak} exact />
         <Route path="*" component={Message404} />
       </Switch>
