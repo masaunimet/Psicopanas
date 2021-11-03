@@ -112,27 +112,34 @@ function CreateEntryPage({ history }) {
 
     if (
       setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+      "https://res.cloudinary.com/psicopanas/image/upload/v1635980382/muy_triste_igug5p.png"
     ) {
       history.push("/mensaje-racha");
     } 
     else if (
       setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+      "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/triste_q55oyc.png"
     )
     {
       history.push("/mensaje-triste");
     }
     else if (
       setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+      "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/regular_wr2r0j.png"
     )
     {
       history.push("/mensaje-positivo");
     }
+    else if (
+      setEmotion ===
+      "https://res.cloudinary.com/psicopanas/image/upload/v1635980381/feliz_vw1muh.png"
+    )
+    {
+      history.push("/mensaje-feliz");
+    }
     else{
 
-      history.push("/mensaje-feliz");
+      history.push("/mensaje-muy-feliz");
     }
     resetHandler();
   };

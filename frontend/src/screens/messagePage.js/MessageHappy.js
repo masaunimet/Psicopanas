@@ -6,7 +6,7 @@ import Goti from "../../images/Goti.png";
 
 const MessagePositive = () => {
   return (
-    <MainScreen title="¡¡¡Me alegro por tiii =) !!!">
+    <MainScreen title="¡Me alegro por tiii =) !">
       <Container>
         <Col>
           <div className="Centrado">
