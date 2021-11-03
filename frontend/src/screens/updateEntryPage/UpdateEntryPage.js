@@ -123,7 +123,7 @@ function UpdateEntryPage({ match, history }) {
     resetHandler();
   };
 
-  const visualButtons = (id) => {
+  const visualButtons = (id, icon) => {
     emotions?.forEach((emotion) => {
       if (emotion._id !== id) {
         document.getElementById(emotion._id)?.setAttribute("width", "50");
@@ -211,7 +211,7 @@ function UpdateEntryPage({ match, history }) {
                   {emotions?.map((emotion) => (
                     <div
                       onClick={(e) => {
-                        visualButtons(emotion._id);
+                        visualButtons(emotion._id, emotion.icon);
                         setEmotion(emotion.icon);
                       }}
                     >
