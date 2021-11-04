@@ -112,11 +112,26 @@ function CreateEntryPage({ history }) {
 
     if (
       setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+      "https://res.cloudinary.com/psicopanas/image/upload/v1635980382/muy_triste_igug5p.png"
     ) {
       history.push("/mensaje-racha");
+    } else if (
+      setEmotion ===
+      "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/triste_q55oyc.png"
+    ) {
+      history.push("/mensaje-triste");
+    } else if (
+      setEmotion ===
+      "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/regular_wr2r0j.png"
+    ) {
+      history.push("/mensaje-positivo");
+    } else if (
+      setEmotion ===
+      "https://res.cloudinary.com/psicopanas/image/upload/v1635980381/feliz_vw1muh.png"
+    ) {
+      history.push("/mensaje-feliz");
     } else {
-      history.push("/diario");
+      history.push("/mensaje-muy-feliz");
     }
     resetHandler();
   };
@@ -135,35 +150,35 @@ function CreateEntryPage({ history }) {
             .getElementById(emotion._id)
             ?.setAttribute(
               "src",
-              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+              "https://res.cloudinary.com/psicopanas/image/upload/v1635985141/1_1_vnfebt.png"
             );
         } else if (emotion._id === "616b11348f059d3c912e9943") {
           document
             .getElementById(emotion._id)
             ?.setAttribute(
               "src",
-              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+              "https://res.cloudinary.com/psicopanas/image/upload/v1635985141/2_1_vvg93g.png"
             );
         } else if (emotion._id === "616b11858f059d3c912e9944") {
           document
             .getElementById(emotion._id)
             ?.setAttribute(
               "src",
-              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+              "https://res.cloudinary.com/psicopanas/image/upload/v1635985145/3_1_gzqzm7.png"
             );
         } else if (emotion._id === "616b11b48f059d3c912e9945") {
           document
             .getElementById(emotion._id)
             ?.setAttribute(
               "src",
-              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+              "https://res.cloudinary.com/psicopanas/image/upload/v1635985142/4_1_ztqqc8.png"
             );
         } else if (emotion._id === "616b11ec8f059d3c912e9946") {
           document
             .getElementById(emotion._id)
             ?.setAttribute(
               "src",
-              "https://res.cloudinary.com/psicopanas/image/upload/v1634436672/iconTooBad_cdqh4z.png"
+              "https://res.cloudinary.com/psicopanas/image/upload/v1635985142/5_1_pvoqjq.png"
             );
         }
       } else {
@@ -176,8 +191,44 @@ function CreateEntryPage({ history }) {
 
   const visualButtons2 = () => {
     emotions?.forEach((emotion) => {
-      // document.getElementById(emotion._id)?.setAttribute("width", "50");
-      // document.getElementById(emotion._id)?.setAttribute("height", "50");
+      document.getElementById(emotion._id)?.setAttribute("width", "50");
+      document.getElementById(emotion._id)?.setAttribute("height", "50");
+      if (emotion._id === "6169efd6152f0e9299ff6810") {
+        document
+          .getElementById(emotion._id)
+          ?.setAttribute(
+            "src",
+            "https://res.cloudinary.com/psicopanas/image/upload/v1635980383/muy_feliz_cycatm.png"
+          );
+      } else if (emotion._id === "616b11348f059d3c912e9943") {
+        document
+          .getElementById(emotion._id)
+          ?.setAttribute(
+            "src",
+            "https://res.cloudinary.com/psicopanas/image/upload/v1635980381/feliz_vw1muh.png"
+          );
+      } else if (emotion._id === "616b11858f059d3c912e9944") {
+        document
+          .getElementById(emotion._id)
+          ?.setAttribute(
+            "src",
+            "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/regular_wr2r0j.png"
+          );
+      } else if (emotion._id === "616b11b48f059d3c912e9945") {
+        document
+          .getElementById(emotion._id)
+          ?.setAttribute(
+            "src",
+            "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/triste_q55oyc.png"
+          );
+      } else if (emotion._id === "616b11ec8f059d3c912e9946") {
+        document
+          .getElementById(emotion._id)
+          ?.setAttribute(
+            "src",
+            "https://res.cloudinary.com/psicopanas/image/upload/v1635980382/muy_triste_igug5p.png"
+          );
+      }
     });
   };
 

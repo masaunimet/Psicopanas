@@ -60,8 +60,8 @@ const ProfilePage = ({ history }) => {
 
               <Row>
                 <Col>
-                  <Button href="perfil" className="button-all-page">
-                    Volver al perfil
+                  <Button href="authDiario" className="button-all-page">
+                    Volver al diario
                   </Button>
                 </Col>
                 <Col>

@@ -21,6 +21,7 @@
     "moment": "^2.29.1",
     "mongoose": "^6.0.10",
     "nodemon": "^2.0.13",
+    "pip": "0.0.1",
     "redux-devtools-extension": "^2.13.9"
   }
 }

@@ -1,25 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
-import "../../styles/App.css";
 
-const MessageBadStreak = ({ history }) => {
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-  useEffect(() => {
-    if (!userInfo) {
-      history.push("/");
-    } else {
-      if (userInfo.isAdmin === true) {
-        history.push("/admin");
-      }
-    }
-  });
+const MessageHappy = () => {
   return (
-    <MainScreen title="Siento que te sientas así">
+    <MainScreen title="¡Me alegro por tiii =) !">
       <Container>
         <Col>
           <div className="Centrado">
@@ -30,8 +17,7 @@ const MessageBadStreak = ({ history }) => {
                 fontSize: "25px",
               }}
             >
-              No dudes en buscar apoyo. Recuerda darte tu tiempo para digerir lo
-              que está sucediendo. Y trata de llevar las cosas con calma
+              Disfruta tu momentooooo, te lo mereces.
             </p>
           </div>
           <div className="Centrado">
@@ -40,7 +26,7 @@ const MessageBadStreak = ({ history }) => {
         </Col>
         <Row>
           <Link to="/authdiario">
-            <Button className="button-all-page">Continuar</Button>
+            <Button style={{ border: "none" }}>Continuar</Button>
           </Link>
         </Row>
       </Container>
@@ -48,4 +34,4 @@ const MessageBadStreak = ({ history }) => {
   );
 };
 
-export default MessageBadStreak;
+export default MessageHappy;
