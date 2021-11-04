@@ -7,12 +7,12 @@ import "../../styles/App.css";
 
 const MessageHappy2 = () => {
   return (
-    <MainScreen title="¡Echoo =) !">
+    <MainScreen title="¡Esoooo =) !">
       <Container>
         <Col>
           <div className="Centrado">
             <p className="subtitle-text-blue">
-              La vida es solo una, rumbéate, celébrate y agradécete. Que eres
+              La vida es solo una, rumbéate, celébrate y agradécete, porque eres
               grande.
             </p>
           </div>

@@ -25,7 +25,7 @@ const MessageBadStreak = ({ history }) => {
           <div className="Centrado">
             <p className="subtitle-text-blue">
               No dudes en buscar apoyo. Recuerda darte tu tiempo para digerir lo
-              que está sucediendo.
+              que está sucediendo
             </p>
           </div>
           <div className="Centrado">

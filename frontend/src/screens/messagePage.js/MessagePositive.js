@@ -12,8 +12,8 @@ const MessagePositive = () => {
         <Col>
           <div className="Centrado">
             <p className="subtitle-text-blue">
-              Te recomiendo que te organices y pienses qué quieres hacer que te
-              anime y distribuye descansos de cosas que te gusten.
+              Te recomiendo que te organices y pienses qué puedes hacer para
+              animarte y emplea tus descansos en cosas que te gusten.
             </p>
           </div>
           <div className="Centrado">
