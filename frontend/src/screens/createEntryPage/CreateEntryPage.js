@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import "../../styles/App.css";
 
+
 let setEmotion = "";
 
 function CreateEntryPage({ history }) {
@@ -110,36 +111,87 @@ function CreateEntryPage({ history }) {
       createEntryAction(title.trim(), content.trim(), entryTags, setEmotion)
     );
 
+
+    var num = Math.floor(Math.random() * ((3+1) - 1) + 1)
+
     if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980382/muy_triste_igug5p.png"
     ) {
-      history.push("/mensaje-racha");
+      alert(num)
+      if (num === 1){
+        history.push("/mensaje-racha");
+      } else if(num === 2){
+        history.push("/mensaje-racha2");
+      }else if(num === 3){
+        history.push("/mensaje-racha3");
+      }else{
+        history.push("/mensaje-racha");
+      }
+        
     } 
     else if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/triste_q55oyc.png"
     )
     {
-      history.push("/mensaje-triste");
+      
+
+      if (num === 1){
+        history.push("/mensaje-triste");
+      } else if(num === 2){
+        history.push("/mensaje-triste2");
+      }else if(num === 3){
+        history.push("/mensaje-triste3");
+      }else{
+        history.push("/mensaje-triste");
+      }
     }
     else if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/regular_wr2r0j.png"
     )
     {
-      history.push("/mensaje-positivo");
+      
+
+      
+      if (num === 1){
+        history.push("/mensaje-positivo");
+      } else if(num === 2){
+        history.push("/mensaje-positivo2");
+      }else if(num === 3){
+        history.push("/mensaje-positivo3");
+      }else{
+        history.push("/mensaje-positivo");
+      }
     }
     else if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980381/feliz_vw1muh.png"
     )
     {
-      history.push("/mensaje-feliz");
-    }
+      
+      if (num === 1){
+        history.push("/mensaje-feliz");
+      } else if(num === 2){
+        history.push("/mensaje-feliz2");
+      }else if(num === 3){
+        history.push("/mensaje-feliz3");
+      }else{
+        history.push("/mensaje-feliz");
+    } 
+  }
     else{
 
-      history.push("/mensaje-muy-feliz");
+      if (num === 1){
+        history.push("/mensaje-muy-feliz");
+      } else if(num === 2){
+        history.push("/mensaje-muy-feliz2");
+      }else if(num === 3){
+        history.push("/mensaje-muy-feliz3");
+      }else{
+        history.push("/mensaje-muy-feliz");
+    } 
     }
     resetHandler();
   };

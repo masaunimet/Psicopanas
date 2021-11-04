@@ -6,7 +6,7 @@ import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
 import "../../styles/App.css";
 
-const MessageBadStreak = ({ history }) => {
+const MessageBadStreak3 = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   useEffect(() => {
@@ -30,8 +30,7 @@ const MessageBadStreak = ({ history }) => {
                 fontSize: "25px",
               }}
             >
-              No dudes en buscar apoyo. Recuerda darte tu tiempo para digerir lo
-              que está sucediendo. 
+              No dudes en buscar apoyo. Trata de llevar las cosas con calma. 
             </p>
           </div>
           <div className="Centrado">
@@ -48,4 +47,4 @@ const MessageBadStreak = ({ history }) => {
   );
 };
 
-export default MessageBadStreak;
+export default MessageBadStreak3;
