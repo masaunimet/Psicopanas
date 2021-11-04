@@ -23,14 +23,9 @@ const MessageBadStreak2 = ({ history }) => {
       <Container>
         <Col>
           <div className="Centrado">
-            <p
-              style={{
-                color: "#0FA5AE",
-                fontWeight: "bold",
-                fontSize: "25px",
-              }}
-            >
-              No dudes en buscar apoyo. Hay un mar de posibilidades en esta vida, tómatelo con calma y respira.
+            <p className="subtitle-text-blue">
+              No dudes en buscar apoyo. Hay un mar de posibilidades en esta
+              vida, tómatelo con calma y respira.
             </p>
           </div>
           <div className="Centrado">

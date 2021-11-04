@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import "../../styles/App.css";
 
-
 let setEmotion = "";
 
 function CreateEntryPage({ history }) {
@@ -111,87 +110,70 @@ function CreateEntryPage({ history }) {
       createEntryAction(title.trim(), content.trim(), entryTags, setEmotion)
     );
 
-
-    var num = Math.floor(Math.random() * ((3+1) - 1) + 1)
+    var num = Math.floor(Math.random() * (3 + 1 - 1) + 1);
 
     if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980382/muy_triste_igug5p.png"
     ) {
-      alert(num)
-      if (num === 1){
+      if (num === 1) {
         history.push("/mensaje-racha");
-      } else if(num === 2){
+      } else if (num === 2) {
         history.push("/mensaje-racha2");
-      }else if(num === 3){
+      } else if (num === 3) {
         history.push("/mensaje-racha3");
-      }else{
+      } else {
         history.push("/mensaje-racha");
       }
-        
-    } 
-    else if (
+    } else if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/triste_q55oyc.png"
-    )
-    {
-      
-
-      if (num === 1){
+    ) {
+      if (num === 1) {
         history.push("/mensaje-triste");
-      } else if(num === 2){
+      } else if (num === 2) {
         history.push("/mensaje-triste2");
-      }else if(num === 3){
+      } else if (num === 3) {
         history.push("/mensaje-triste3");
-      }else{
+      } else {
         history.push("/mensaje-triste");
       }
-    }
-    else if (
+    } else if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/regular_wr2r0j.png"
-    )
-    {
-      
-
-      
-      if (num === 1){
+    ) {
+      if (num === 1) {
         history.push("/mensaje-positivo");
-      } else if(num === 2){
+      } else if (num === 2) {
         history.push("/mensaje-positivo2");
-      }else if(num === 3){
+      } else if (num === 3) {
         history.push("/mensaje-positivo3");
-      }else{
+      } else {
         history.push("/mensaje-positivo");
       }
-    }
-    else if (
+    } else if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980381/feliz_vw1muh.png"
-    )
-    {
-      
-      if (num === 1){
+    ) {
+      if (num === 1) {
         history.push("/mensaje-feliz");
-      } else if(num === 2){
+      } else if (num === 2) {
         history.push("/mensaje-feliz2");
-      }else if(num === 3){
+      } else if (num === 3) {
         history.push("/mensaje-feliz3");
-      }else{
+      } else {
         history.push("/mensaje-feliz");
-    } 
-  }
-    else{
-
-      if (num === 1){
+      }
+    } else {
+      if (num === 1) {
         history.push("/mensaje-muy-feliz");
-      } else if(num === 2){
+      } else if (num === 2) {
         history.push("/mensaje-muy-feliz2");
-      }else if(num === 3){
+      } else if (num === 3) {
         history.push("/mensaje-muy-feliz3");
-      }else{
+      } else {
         history.push("/mensaje-muy-feliz");
-    } 
+      }
     }
     resetHandler();
   };

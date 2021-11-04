@@ -3,21 +3,17 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
+import "../../styles/App.css";
 
-const MessagePositive = () => {
+const MessageHappy3 = () => {
   return (
     <MainScreen title="¡SOLECITO DE LA MAÑANA =) !">
       <Container>
         <Col>
           <div className="Centrado">
-            <p
-              style={{
-                color: "#0FA5AE",
-                fontWeight: "bold",
-                fontSize: "25px",
-              }}
-            >
-              Mi luminoso sol, así es, me alegro muchísimo por ti. Disfruta tu momento 
+            <p className="subtitle-text-blue">
+              Mi luminoso sol, así es, me alegro muchísimo por ti. Disfruta tu
+              momento
             </p>
           </div>
           <div className="Centrado">
@@ -34,4 +30,4 @@ const MessagePositive = () => {
   );
 };
 
-export default MessagePositive;
+export default MessageHappy3;

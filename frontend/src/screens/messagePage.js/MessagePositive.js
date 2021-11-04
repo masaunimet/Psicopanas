@@ -3,6 +3,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
+import "../../styles/App.css";
 
 const MessagePositive = () => {
   return (
@@ -10,13 +11,7 @@ const MessagePositive = () => {
       <Container>
         <Col>
           <div className="Centrado">
-            <p
-              style={{
-                color: "#0FA5AE",
-                fontWeight: "bold",
-                fontSize: "25px",
-              }}
-            >
+            <p className="subtitle-text-blue">
               Te recomiendo que te organices y pienses qué quieres hacer que te
               anime y distribuye descansos de cosas que te gusten.
             </p>

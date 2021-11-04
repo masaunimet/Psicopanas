@@ -3,21 +3,17 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
+import "../../styles/App.css";
 
-const MessagePositive = () => {
+const MessageHappy2 = () => {
   return (
     <MainScreen title="¡Echoo =) !">
       <Container>
         <Col>
           <div className="Centrado">
-            <p
-              style={{
-                color: "#0FA5AE",
-                fontWeight: "bold",
-                fontSize: "25px",
-              }}
-            >
-              La vida es solo una, rumbéate, celébrate y agradécete. Que eres grande. 
+            <p className="subtitle-text-blue">
+              La vida es solo una, rumbéate, celébrate y agradécete. Que eres
+              grande.
             </p>
           </div>
           <div className="Centrado">
@@ -34,4 +30,4 @@ const MessagePositive = () => {
   );
 };
 
-export default MessagePositive;
+export default MessageHappy2;

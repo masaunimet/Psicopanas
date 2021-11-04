@@ -3,22 +3,18 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
+import "../../styles/App.css";
 
-const MessageSad = () => {
+const MessageSad2 = () => {
   return (
     <MainScreen title="Estaré a tu lado en esto">
       <Container>
         <Col>
           <div className="Centrado">
-            <p
-              style={{
-                color: "#0FA5AE",
-                fontWeight: "bold",
-                fontSize: "25px",
-              }}
-            >
-              Dedica tiempo contigo, imagina que es una cita, quizás necesitas descansar. 
-              Recuerda: No estás solo. ATT: Goti, una gota de bienestar. 
+            <p className="subtitle-text-blue">
+              Dedica tiempo contigo, imagina que es una cita, quizás necesitas
+              descansar. Recuerda: No estás solo. ATT: Goti, una gota de
+              bienestar.
             </p>
           </div>
           <div className="Centrado">
@@ -35,4 +31,4 @@ const MessageSad = () => {
   );
 };
 
-export default MessageSad;
+export default MessageSad2;
