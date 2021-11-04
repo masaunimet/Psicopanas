@@ -6,7 +6,7 @@ import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
 import "../../styles/App.css";
 
-const MessageBadStreak = ({ history }) => {
+const MessageBadStreak2 = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   useEffect(() => {
@@ -19,13 +19,13 @@ const MessageBadStreak = ({ history }) => {
     }
   });
   return (
-    <MainScreen title="Siento que te sientas así">
+    <MainScreen title="Lamento que te sientas así">
       <Container>
         <Col>
           <div className="Centrado">
             <p className="subtitle-text-blue">
-              No dudes en buscar apoyo. Recuerda darte tu tiempo para digerir lo
-              que está sucediendo
+              No dudes en buscar apoyo. Hay un mar de posibilidades en esta
+              vida, tómatelo con calma y respira.
             </p>
           </div>
           <div className="Centrado">
@@ -42,4 +42,4 @@ const MessageBadStreak = ({ history }) => {
   );
 };
 
-export default MessageBadStreak;
+export default MessageBadStreak2;

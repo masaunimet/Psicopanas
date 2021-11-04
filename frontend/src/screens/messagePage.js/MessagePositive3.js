@@ -5,14 +5,16 @@ import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
 import "../../styles/App.css";
 
-const MessageVeryHappy = () => {
+const MessagePositive3 = () => {
   return (
-    <MainScreen title="¡ ESOOOOOOOOOOO XD !">
+    <MainScreen title="¡SÚBELE 2!">
       <Container>
         <Col>
           <div className="Centrado">
             <p className="subtitle-text-blue">
-              EH EH EH ¡¡Estamos celebrando contigoooo!!
+              Mañana será mejor, hoy fue un día a lo mejor sin mucho saboor,
+              pero recuerda que solo tú te puedes animar y yo siempre te voy a
+              apoyar.
             </p>
           </div>
           <div className="Centrado">
@@ -29,4 +31,4 @@ const MessageVeryHappy = () => {
   );
 };
 
-export default MessageVeryHappy;
+export default MessagePositive3;

@@ -3,6 +3,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
+import "../../styles/App.css";
 
 const MessageSad = () => {
   return (
@@ -10,13 +11,7 @@ const MessageSad = () => {
       <Container>
         <Col>
           <div className="Centrado">
-            <p
-              style={{
-                color: "#0FA5AE",
-                fontWeight: "bold",
-                fontSize: "25px",
-              }}
-            >
+            <p className="subtitle-text-blue">
               Todo pasa, no hay mal que dure cien años ni gota que lo aguante.
               Respira y sé paciente que todo va a mejorar. Ya verás.
             </p>

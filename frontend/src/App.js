@@ -19,10 +19,25 @@ import UpdateProfilePage from "./screens/updateProfilePage/UpdateProfilePage";
 import AdminPage from "./screens/adminPage.js/AdminPage";
 import UserUpdateFromAdmin from "./screens/userUpdateFromAdmin/UserUpdateFromAdmin";
 import PagoExitoso from "./screens/messagePage.js/PagoExitoso";
+
 import MessagePositive from "./screens/messagePage.js/MessagePositive";
+import MessagePositive2 from "./screens/messagePage.js/MessagePositive2";
+import MessagePositive3 from "./screens/messagePage.js/MessagePositive3";
+
 import MessageSad from "./screens/messagePage.js/MessageSad";
+import MessageSad2 from "./screens/messagePage.js/MessageSad2";
+import MessageSad3 from "./screens/messagePage.js/MessageSad3";
+
 import MessageHappy from "./screens/messagePage.js/MessageHappy";
+import MessageHappy2 from "./screens/messagePage.js/MessageHappy2";
+import MessageHappy3 from "./screens/messagePage.js/MessageHappy3";
+
 import MessageVeryHappy from "./screens/messagePage.js/MessageVeryHappy";
+import MessageVeryHappy2 from "./screens/messagePage.js/MessageVeryHappy2";
+import MessageVeryHappy3 from "./screens/messagePage.js/MessageVeryHappy3";
+
+import MessageBadStreak2 from "./screens/messagePage.js/MessageBadStreak2";
+import MessageBadStreak3 from "./screens/messagePage.js/MessageBadStreak3";
 
 const App = () => (
   <>
@@ -50,10 +65,24 @@ const App = () => (
         />
         <Route path="/mensaje_enviado" component={PagoExitoso} exact />
         <Route path="/mensaje-racha" component={MessageBadStreak} exact />
+        <Route path="/mensaje-racha2" component={MessageBadStreak2} exact />
+        <Route path="/mensaje-racha3" component={MessageBadStreak3} exact />
+
         <Route path="/mensaje-positivo" component={MessagePositive} />
+        <Route path="/mensaje-positivo2" component={MessagePositive2} />
+        <Route path="/mensaje-positivo3" component={MessagePositive3} />
+
         <Route path="/mensaje-triste" component={MessageSad} />
+        <Route path="/mensaje-triste2" component={MessageSad2} />
+        <Route path="/mensaje-triste3" component={MessageSad3} />
+
         <Route path="/mensaje-feliz" component={MessageHappy} />
+        <Route path="/mensaje-feliz2" component={MessageHappy2} />
+        <Route path="/mensaje-feliz3" component={MessageHappy3} />
+
         <Route path="/mensaje-muy-feliz" component={MessageVeryHappy} />
+        <Route path="/mensaje-muy-feliz2" component={MessageVeryHappy2} />
+        <Route path="/mensaje-muy-feliz3" component={MessageVeryHappy3} />
 
         <Route path="*" component={Message404} />
       </Switch>
