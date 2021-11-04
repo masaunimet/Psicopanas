@@ -111,9 +111,8 @@ function UpdateEntryPage({ match, history }) {
       updateEntryAction(match.params.id, title, content, entryTags, emotion)
     );
     var num = Math.floor(Math.random() * (3 + 1 - 1) + 1);
-
     if (
-      setEmotion ===
+      emotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980382/muy_triste_igug5p.png"
     ) {
       if (num === 1) {
@@ -126,7 +125,7 @@ function UpdateEntryPage({ match, history }) {
         history.push("/mensaje-racha");
       }
     } else if (
-      setEmotion ===
+      emotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/triste_q55oyc.png"
     ) {
       if (num === 1) {
@@ -139,7 +138,7 @@ function UpdateEntryPage({ match, history }) {
         history.push("/mensaje-triste");
       }
     } else if (
-      setEmotion ===
+      emotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/regular_wr2r0j.png"
     ) {
       if (num === 1) {
@@ -152,7 +151,7 @@ function UpdateEntryPage({ match, history }) {
         history.push("/mensaje-positivo");
       }
     } else if (
-      setEmotion ===
+      emotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980381/feliz_vw1muh.png"
     ) {
       if (num === 1) {
