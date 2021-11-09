@@ -38,6 +38,7 @@ import MessageVeryHappy3 from "./screens/messagePage.js/MessageVeryHappy3";
 
 import MessageBadStreak2 from "./screens/messagePage.js/MessageBadStreak2";
 import MessageBadStreak3 from "./screens/messagePage.js/MessageBadStreak3";
+import GoalsPage from "./screens/goalsPage/GoalsPage";
 
 const App = () => (
   <>
@@ -63,6 +64,9 @@ const App = () => (
           component={MessageConfigDiaryPage}
           exact
         />
+
+        <Route path="/metas" component={GoalsPage} exact />
+
         <Route path="/mensaje_enviado" component={PagoExitoso} exact />
         <Route path="/mensaje-racha" component={MessageBadStreak} exact />
         <Route path="/mensaje-racha2" component={MessageBadStreak2} exact />
