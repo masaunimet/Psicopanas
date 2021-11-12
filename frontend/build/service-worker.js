@@ -17,3 +17,15 @@ workbox.routing.registerRoute(
     ({request})=>request.destination ==='image',
     new workbox.strategies.CacheFirst()
 );
+
+workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+
+// Catch routing errors, like if the user is offline
+workbox.routing.setCatchHandler(async ({ event }) => {
+  // Return the precached offline page if a document is being requested
+  if (event.request.destination === 'document') {
+    return matchPrecache('/offline.html');
+  }
+
+  return Response.error();
+});
