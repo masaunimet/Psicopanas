@@ -19,6 +19,7 @@ import UpdateProfilePage from "./screens/updateProfilePage/UpdateProfilePage";
 import AdminPage from "./screens/adminPage.js/AdminPage";
 import UserUpdateFromAdmin from "./screens/userUpdateFromAdmin/UserUpdateFromAdmin";
 import PagoExitoso from "./screens/messagePage.js/PagoExitoso";
+import ForoPage from "./screens/ForoPage/ForoPage";
 
 import MessagePositive from "./screens/messagePage.js/MessagePositive";
 import MessagePositive2 from "./screens/messagePage.js/MessagePositive2";
@@ -58,6 +59,7 @@ const App = () => (
         <Route path="/modificarPerfil" component={UpdateProfilePage} exact />
         <Route path="/admin" component={AdminPage} exact />
         <Route path="/admin/:id" component={UserUpdateFromAdmin} exact />
+        <Route path="/foro" component={ForoPage} exact />
         <Route
           path="/mensaje-configurar-diario"
           component={MessageConfigDiaryPage}
