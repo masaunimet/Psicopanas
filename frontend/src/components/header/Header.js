@@ -56,6 +56,18 @@ const Header = () => {
                     </Nav.Item>
                     <Nav.Item className="padding_butons">
                       <NavLink
+                        to="/admin-lecturas"
+                        className="textnavbar"
+                        activeStyle={{
+                          fontWeight: "bold",
+                          color: "#0FA5AE",
+                        }}
+                      >
+                        Lecturas
+                      </NavLink>
+                    </Nav.Item>
+                    <Nav.Item className="padding_butons">
+                      <NavLink
                         to="/login"
                         className="textnavbar"
                         onClick={logoutHandler}
