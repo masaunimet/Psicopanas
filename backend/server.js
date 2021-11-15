@@ -6,7 +6,7 @@ const userRoutes = require("./routes/userRoutes");
 const entryRoutes = require("./routes/entryRoutes");
 const tagRoutes = require("./routes/tagRoutes");
 const emotionRoutes = require("./routes/emotionRoutes");
-const foromessageRoutes = require("./routes/foromenssageRoutes");
+const foromessageRoutes = require("./routes/foromessageRoutes");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 const path = require("path");
 const { dirname } = require("path");
@@ -20,7 +20,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/entries", entryRoutes);
 app.use("/api/tags", tagRoutes);
 app.use("/api/emotions", emotionRoutes);
-app.use("/api/foromenssages",foromessageRoutes);
+app.use("/api/foromessages",foromessageRoutes);
 
 //---------------Deployment----------------
 

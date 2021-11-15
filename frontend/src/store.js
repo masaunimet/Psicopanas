@@ -24,6 +24,7 @@ import {
 } from "./reducers/entryReducers";
 import { tagListReducer } from "./reducers/tagReducers";
 import { emotionListReducer } from "./reducers/emotionReducers";
+import { foromessagereducer } from "./reducers/foromessageReducers";
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
@@ -32,6 +33,7 @@ const reducer = combineReducers({
   entryUpdate: entryUpdateReducer,
   tagList: tagListReducer,
   emotionList: emotionListReducer,
+  foromessageList:foromessagereducer,
   // lastEntry: lastEntryReducer,
   userUpdate: userUpdateReducer,
   userSecurity: userSecurityReducer,
