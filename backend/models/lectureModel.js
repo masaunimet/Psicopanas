@@ -10,12 +10,12 @@ const lectureSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  publicationDate: {
+  image: {
     type: String,
     required: true,
   },
-  image: {
-    type: String,
+  publicationDate: {
+    type: Date,
     required: true,
   },
 });
