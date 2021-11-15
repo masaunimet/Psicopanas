@@ -24,7 +24,12 @@ import {
 } from "./reducers/entryReducers";
 import { tagListReducer } from "./reducers/tagReducers";
 import { emotionListReducer } from "./reducers/emotionReducers";
-import { createLectureReducer } from "./reducers/lectureReducers";
+import {
+  createLectureReducer,
+  lectureUpdateReducer,
+  listNonPublicatedLecturesReducer,
+  listPublicatedLecturesReducer,
+} from "./reducers/lectureReducers";
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
@@ -45,6 +50,9 @@ const reducer = combineReducers({
   getAllUsers: getUsersReducer,
   changeUserStatus: changeUserStatusReducer,
   lectureCreate: createLectureReducer,
+  getPublicatedLectures: listPublicatedLecturesReducer,
+  getNonPublicatedLectures: listNonPublicatedLecturesReducer,
+  lectureUpdate: lectureUpdateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

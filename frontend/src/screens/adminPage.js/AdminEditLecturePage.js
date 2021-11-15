@@ -1,23 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { createLectureAction } from "../../actions/lectureActions";
+import { updateLectureAction } from "../../actions/lectureActions";
 import ErrorMessage from "../../components/ErrorMessage";
-import Loading from "../../components/Loading";
 import MainScreen from "../../components/mainscreen/MainScreen";
+import axios from "axios";
 import moment from "moment";
 import "../../styles/App.css";
 
-const AdminCreateLecturePage = ({ history }) => {
+const AdminEditLecturePage = ({ match, history }) => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
   const [publicationDate, setPublicationDate] = useState("");
   const [picMessage, setPicMessage] = useState();
-  const [loading, setloading] = useState(true);
 
-  const createLecture = (e) => {
+  useEffect(() => {
+    const fetching = async () => {
+      const { data } = await axios.get(`/api/lectures/edit/${match.params.id}`);
+
+      setTitle(data.title);
+      setContent(data.content);
+      setImage(data.image);
+      setPublicationDate(data.publicationDate);
+    };
+    fetching();
+  }, [match.params.id]);
+
+  const updateLecture = (e) => {
     e.preventDefault();
     if (
       title === "" ||
@@ -28,9 +39,10 @@ const AdminCreateLecturePage = ({ history }) => {
       setPicMessage("No hay llenado todos los campos");
     } else {
       dispatch(
-        createLectureAction(
-          title.trim(),
-          content.trim(),
+        updateLectureAction(
+          match.params.id,
+          title,
+          content,
           image,
           moment(publicationDate).add(0, "days")
         )
@@ -41,7 +53,6 @@ const AdminCreateLecturePage = ({ history }) => {
 
   const postDetails = (pics) => {
     setPicMessage(null);
-    setloading(true);
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
@@ -55,7 +66,6 @@ const AdminCreateLecturePage = ({ history }) => {
         .then((data) => {
           setImage(data.url.toString());
           console.log(setImage);
-          setloading(false);
           setPicMessage("Se ha subido la imagen");
         })
         .catch((err) => {
@@ -78,7 +88,7 @@ const AdminCreateLecturePage = ({ history }) => {
               Formulario de Creación de Lecturas
             </Card.Header>
             <Card.Body>
-              <Form onSubmit={createLecture}>
+              <Form onSubmit={updateLecture}>
                 {picMessage && (
                   <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
                 )}
@@ -121,22 +131,13 @@ const AdminCreateLecturePage = ({ history }) => {
                     custom
                   />
                 </Form.Group>
-                {loading ? (
-                  <>
-                    <div className="plain-centered-text">
-                      Esperaremos a que subas la imagen
-                    </div>
-                    <Loading size={25} />
-                  </>
-                ) : (
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    className="button-all-page"
-                  >
-                    CREAR ENTRADA
-                  </Button>
-                )}
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="button-all-page"
+                >
+                  Editar Lectura
+                </Button>
               </Form>
             </Card.Body>
           </Card>
@@ -146,4 +147,4 @@ const AdminCreateLecturePage = ({ history }) => {
   );
 };
 
-export default AdminCreateLecturePage;
+export default AdminEditLecturePage;

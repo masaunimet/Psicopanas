@@ -5,6 +5,9 @@
 
 .textnavbar {
   font-size: 24px;
+  display: flex;
+  height: 100%;
+  align-items: center;
 }
 
 .navbar-dark .navbar-nav .nav-link {

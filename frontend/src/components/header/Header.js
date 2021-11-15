@@ -55,16 +55,25 @@ const Header = () => {
                       </NavLink>
                     </Nav.Item>
                     <Nav.Item className="padding_butons">
-                      <NavLink
-                        to="/admin-lecturas"
+                      <NavDropdown
+                        title="Lecturas"
+                        id="basic-nav-dropdowm"
                         className="textnavbar"
-                        activeStyle={{
-                          fontWeight: "bold",
-                          color: "#0FA5AE",
-                        }}
                       >
-                        Lecturas
-                      </NavLink>
+                        <NavDropdown.Item
+                          href="/admin-listar-lecturas"
+                          className="textnavbar"
+                        >
+                          Listar
+                        </NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item
+                          href="/admin-crear-lectura"
+                          className="textnavbar"
+                        >
+                          Crear
+                        </NavDropdown.Item>
+                      </NavDropdown>
                     </Nav.Item>
                     <Nav.Item className="padding_butons">
                       <NavLink
