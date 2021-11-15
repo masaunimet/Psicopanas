@@ -24,6 +24,7 @@ import {
 } from "./reducers/entryReducers";
 import { tagListReducer } from "./reducers/tagReducers";
 import { emotionListReducer } from "./reducers/emotionReducers";
+import { createLectureReducer } from "./reducers/lectureReducers";
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
@@ -43,6 +44,7 @@ const reducer = combineReducers({
   diaryAuth: userDiaryReducer,
   getAllUsers: getUsersReducer,
   changeUserStatus: changeUserStatusReducer,
+  lectureCreate: createLectureReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

@@ -39,7 +39,7 @@ import MessageVeryHappy3 from "./screens/messagePage.js/MessageVeryHappy3";
 import MessageBadStreak2 from "./screens/messagePage.js/MessageBadStreak2";
 import MessageBadStreak3 from "./screens/messagePage.js/MessageBadStreak3";
 import GoalsPage from "./screens/goalsPage/GoalsPage";
-import AdminLecturesPage from "./screens/adminPage.js/AdminLecturesPage";
+import AdminCreateLecturePage from "./screens/adminPage.js/AdminCreateLecturePage";
 
 const App = () => (
   <>
@@ -60,7 +60,11 @@ const App = () => (
         <Route path="/modificarPerfil" component={UpdateProfilePage} exact />
         <Route path="/admin" component={AdminPage} exact />
         <Route path="/admin/:id" component={UserUpdateFromAdmin} exact />
-        <Route path="/admin-lecturas" component={AdminLecturesPage} exact />
+        <Route
+          path="/admin-lecturas"
+          component={AdminCreateLecturePage}
+          exact
+        />
         <Route
           path="/mensaje-configurar-diario"
           component={MessageConfigDiaryPage}

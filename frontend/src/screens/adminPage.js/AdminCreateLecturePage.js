@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Button, Card, Col, Container, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { createLectureAction } from "../../actions/lectureActions";
 import ErrorMessage from "../../components/ErrorMessage";
 import Loading from "../../components/Loading";
 import MainScreen from "../../components/mainscreen/MainScreen";
-import moment from "moment";
 import "../../styles/App.css";
 
-const AdminLecturesPage = () => {
+const AdminCreateLecturePage = ({ history }) => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
@@ -24,8 +26,13 @@ const AdminLecturesPage = () => {
     ) {
       setPicMessage("No hay llenado todos los campos");
     } else {
-      setPicMessage(
-        title + "," + content + "," + image + "," + moment(publicationDate)
+      dispatch(
+        createLectureAction(
+          title.trim(),
+          content.trim(),
+          image,
+          publicationDate
+        )
       );
     }
   };
@@ -137,4 +144,4 @@ const AdminLecturesPage = () => {
   );
 };
 
-export default AdminLecturesPage;
+export default AdminCreateLecturePage;
