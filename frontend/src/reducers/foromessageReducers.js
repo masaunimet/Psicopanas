@@ -21,7 +21,7 @@ export const foromessagereducer = (state = { foromessages: [] }, action) => {
     }
   };
 
-  export const Createforomessage = (state = {}, action) => {
+  export const Createforomessagereducer = (state = {}, action) => {
     switch (action.type) {
       case FOROMESSAGE_CREATE_REQUEST:
         return { loading: true };

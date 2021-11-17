@@ -317,3 +317,8 @@
 .chat::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
+
+foro_mensajes{
+
+  display: flex;
+}

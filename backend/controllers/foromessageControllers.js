@@ -13,14 +13,14 @@ const getForomessages = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error("Por favor rellena todos los datos");
     } else {
-      const entry = new Entry({
-        user: req.user._id,
+      const foromessage = new foromessage({
+        //user: req.user._id,
         username,
         menssage,
         icon,
       });
   
-      const createdForomenssage = await entry.save();
+      const createdForomenssage = await foromessage.save();
   
       res.status(201).json(createdForomessage);
     }
