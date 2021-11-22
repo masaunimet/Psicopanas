@@ -27,7 +27,7 @@ const Header = () => {
       <Navbar bg="#f6f6f6" expand="lg" variant="dark" className="all">
         <Container fluid>
           {userInfo ? (
-            <Navbar.Brand>
+            <Navbar.Brand href="/diario">
               <img src={LogoPP} width="50" height="50" alt="" />
             </Navbar.Brand>
           ) : (
