@@ -115,65 +115,31 @@ function CreateEntryPage({ history }) {
     if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980382/muy_triste_igug5p.png"
-    ) {
-      if (num === 1) {
-        history.push("/mensaje-racha");
-      } else if (num === 2) {
-        history.push("/mensaje-racha2");
-      } else if (num === 3) {
-        history.push("/mensaje-racha3");
-      } else {
-        history.push("/mensaje-racha");
-      }
+    ){
+      history.push("/mensaje-racha");
+      
     } else if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/triste_q55oyc.png"
-    ) {
-      if (num === 1) {
-        history.push("/mensaje-triste");
-      } else if (num === 2) {
-        history.push("/mensaje-triste2");
-      } else if (num === 3) {
-        history.push("/mensaje-triste3");
-      } else {
-        history.push("/mensaje-triste");
-      }
+    ){
+      history.push("/mensaje-triste");
+      
     } else if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/regular_wr2r0j.png"
-    ) {
-      if (num === 1) {
-        history.push("/mensaje-positivo");
-      } else if (num === 2) {
-        history.push("/mensaje-positivo2");
-      } else if (num === 3) {
-        history.push("/mensaje-positivo3");
-      } else {
-        history.push("/mensaje-positivo");
-      }
+    ){
+      
+      history.push("/mensaje-positivo");
+      
     } else if (
       setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980381/feliz_vw1muh.png"
-    ) {
-      if (num === 1) {
-        history.push("/mensaje-feliz");
-      } else if (num === 2) {
-        history.push("/mensaje-feliz2");
-      } else if (num === 3) {
-        history.push("/mensaje-feliz3");
-      } else {
-        history.push("/mensaje-feliz");
-      }
-    } else {
-      if (num === 1) {
+    ){
+      history.push("/mensaje-feliz");
+      
+    } else 
+    {
         history.push("/mensaje-muy-feliz");
-      } else if (num === 2) {
-        history.push("/mensaje-muy-feliz2");
-      } else if (num === 3) {
-        history.push("/mensaje-muy-feliz3");
-      } else {
-        history.push("/mensaje-muy-feliz");
-      }
     }
     resetHandler();
   };
@@ -410,6 +376,16 @@ function CreateEntryPage({ history }) {
                         <p className="subtitle-text-soft-blue">
                           Personalizadas
                         </p>
+                        <Link to="/ajustes-diario">
+                          <Button className="edit-button">
+                            <img
+                              src="https://res.cloudinary.com/psicopanas/image/upload/v1634441688/iconPencil_zngxxh.png"
+                              width="20px"
+                              height="20px"
+                              alt="Editar"
+                            />
+                          </Button>
+                        </Link>
                       </div>
                       {mitad.map((ptag) => (
                         <div>

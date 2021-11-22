@@ -10,11 +10,35 @@ const MessageVeryHappy = () => {
     <MainScreen title="¡ ESOOOOOOOOOOO XD !">
       <Container>
         <Col>
-          <div className="Centrado">
+          
+          var num = Math.floor(Math.random() * (3 + 1 - 1) + 1);
+            
+            if (num === 1) {
+              <div className="Centrado">
             <p className="subtitle-text-blue">
               EH EH EH ¡¡Estamos celebrando contigoooo!!
+            </p> 
+            </div>
+            } 
+            else if(num === 2){
+              <div className="Centrado">
+            <p className="subtitle-text-blue">
+              RUMBÉATE y CELÉBRATE, porque vida no hay 2 y como tú tampoco hay
+              2.
             </p>
-          </div>
+            </div>
+            }else {
+              <div className="Centrado">
+            <p className="subtitle-text-blue">
+              Báilale a la vida mientras la puedas cantar, la vida es como el
+              mar, las olas las debes aprovechar, no esquivar.
+            </p>
+            
+            </div>
+            }
+
+          
+
           <div className="Centrado">
             <img src={Goti} width="200" height="250" alt="Goti" />
           </div>

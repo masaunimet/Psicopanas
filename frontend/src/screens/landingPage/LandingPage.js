@@ -30,7 +30,7 @@ const LandingPage = ({ history }) => {
               <>
                 <Row>
                   <div className="Centrado">
-                    <h2 className="title">Te damos la bienvenida a PsicoPanas</h2>
+                    <h2 className="title">Bienvenido a PsicoPanas</h2>
                     <p className="subtitle">
                       Este es tu espacio, tu diario personal. 
                       Donde Goti te aconseja. 
@@ -69,7 +69,7 @@ const LandingPage = ({ history }) => {
                     <img src={Goti} width="200" height="250" alt="Goti" />
                     <div className="intro-text">
                       <div>
-                        <h1 className="title">Te damos la bienvenida a PsicoPanas</h1>
+                        <h1 className="title">Bienvenido a PsicoPanas</h1>
                         <h4 className="subtitle">Tu gota de bienestar</h4>
                         <p className="subtitle">
                         Este ahora es tu espacio, donde tienes tu diario personal. 
