@@ -146,14 +146,14 @@ const Header = () => {
                     </Nav.Item>
                     <Nav.Item className="padding_butons">
                       <NavLink
-                        to="/metas"
+                        to="/lecturas"
                         className="textnavbar"
                         activeStyle={{
                           fontWeight: "bold",
                           color: "#0FA5AE",
                         }}
                       >
-                        Metas
+                        Lecturas
                       </NavLink>
                     </Nav.Item>
                     <Nav.Item>

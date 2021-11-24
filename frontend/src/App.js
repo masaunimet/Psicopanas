@@ -38,7 +38,7 @@ import MessageVeryHappy3 from "./screens/messagePage.js/MessageVeryHappy3";
 
 import MessageBadStreak2 from "./screens/messagePage.js/MessageBadStreak2";
 import MessageBadStreak3 from "./screens/messagePage.js/MessageBadStreak3";
-import GoalsPage from "./screens/goalsPage/GoalsPage";
+import LecturesPage from "./screens/lecturesPage/LecturesPage";
 import AdminCreateLecturePage from "./screens/adminPage.js/AdminCreateLecturePage";
 import AdminListLecturesPage from "./screens/adminPage.js/AdminListLecturesPage";
 import AdminEditLecturePage from "./screens/adminPage.js/AdminEditLecturePage";
@@ -85,7 +85,8 @@ const App = () => (
           exact
         />
 
-        <Route path="/metas" component={GoalsPage} exact />
+        <Route path="/lecturas" component={LecturesPage} exact />
+
         <Route path="/mensaje_enviado" component={PagoExitoso} exact />
         <Route path="/mensaje-racha" component={MessageBadStreak} exact />
         <Route path="/mensaje-racha2" component={MessageBadStreak2} exact />

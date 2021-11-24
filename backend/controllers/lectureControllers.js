@@ -40,6 +40,20 @@ const getLectureByID = asyncHandler(async (req, res) => {
   }
 });
 
+const getActualLecture = asyncHandler(async (req, res) => {
+  const start = moment().startOf("Day").toDate();
+  const publicatedLectures = await Lecture.find({
+    publicationDate: { $lte: start },
+  });
+
+  if (publicatedLectures) {
+    res.json(publicatedLectures);
+  } else {
+    res.status(404);
+    throw new Error("Ha ocurrido un error");
+  }
+});
+
 const updateLectureByID = asyncHandler(async (req, res) => {
   const { title, content, image, publicationDate } = req.body;
   const lecture = await Lecture.findById(req.params.id);
@@ -59,7 +73,7 @@ const updateLectureByID = asyncHandler(async (req, res) => {
 });
 
 const listPublicatedLectures = asyncHandler(async (req, res) => {
-  const start = moment().startOf("week").toDate();
+  const start = moment().startOf("Day").toDate();
   const publicatedLectures = await Lecture.find({
     publicationDate: { $lte: start },
   });
@@ -73,7 +87,7 @@ const listPublicatedLectures = asyncHandler(async (req, res) => {
 });
 
 const listNonPublicatedLectures = asyncHandler(async (req, res) => {
-  const start = moment().startOf("week").toDate();
+  const start = moment().startOf("Day").toDate();
   const nonPublicatedLectures = await Lecture.find({
     publicationDate: { $gte: start },
   });
@@ -92,4 +106,5 @@ module.exports = {
   listPublicatedLectures,
   listNonPublicatedLectures,
   updateLectureByID,
+  getActualLecture,
 };

@@ -9,6 +9,12 @@
   font-weight: bold;
 }
 
+.plain-justify-text {
+  color: #2f2f2f;
+  font-size: 15px;
+  text-align: justify;
+}
+
 .plain-centered-text {
   color: #2f2f2f;
   font-size: 15px;
