@@ -55,6 +55,27 @@ const Header = () => {
                       </NavLink>
                     </Nav.Item>
                     <Nav.Item className="padding_butons">
+                      <NavDropdown
+                        title="Lecturas"
+                        id="basic-nav-dropdowm"
+                        className="textnavbar"
+                      >
+                        <NavDropdown.Item
+                          href="/admin-listar-lecturas"
+                          className="textnavbar"
+                        >
+                          Listar
+                        </NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item
+                          href="/admin-crear-lectura"
+                          className="textnavbar"
+                        >
+                          Crear
+                        </NavDropdown.Item>
+                      </NavDropdown>
+                    </Nav.Item>
+                    <Nav.Item className="padding_butons">
                       <NavLink
                         to="/login"
                         className="textnavbar"
@@ -79,30 +100,21 @@ const Header = () => {
                     color: "#0FA5AE",
                   }}
                 >
-                  Metas
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item className="padding_butons">
-                <NavLink
-                  to="/diario"
-                  className="textnavbar"
-                  activeStyle={{
-                    fontWeight: "bold",
-                    color: "#0FA5AE",
-                  }}
-                >
                   Foro
                 </NavLink>
               </Nav.Item> */}
                     <Nav.Item className="padding_butons">
                       {!userInfo.isPremium ? (
-                        <Nav.Link
-                          href="/pagos"
+                        <NavLink
+                          to="/pagos"
                           className="textnavbar"
-                          eventKey="1"
+                          activeStyle={{
+                            fontWeight: "bold",
+                            color: "#0FA5AE",
+                          }}
                         >
                           Pagos
-                        </Nav.Link>
+                        </NavLink>
                       ) : (
                         <></>
                       )}
@@ -118,22 +130,40 @@ const Header = () => {
                     </Nav.Item>
                     <Nav.Item className="padding_butons">
                       {userInfo.diarySecurity === true ? (
-                        <Nav.Link
-                          href="/authDiario"
+                        <NavLink
+                          to="/authDiario"
                           className="textnavbar"
-                          eventKey="1"
+                          activeStyle={{
+                            fontWeight: "bold",
+                            color: "#0FA5AE",
+                          }}
                         >
                           Diario
-                        </Nav.Link>
+                        </NavLink>
                       ) : (
-                        <Nav.Link
-                          href="/diario"
+                        <NavLink
+                          to="/diario"
                           className="textnavbar"
-                          eventKey="1"
+                          activeStyle={{
+                            fontWeight: "bold",
+                            color: "#0FA5AE",
+                          }}
                         >
                           Diario
-                        </Nav.Link>
+                        </NavLink>
                       )}
+                    </Nav.Item>
+                    <Nav.Item className="padding_butons">
+                      <NavLink
+                        to="/lecturas"
+                        className="textnavbar"
+                        activeStyle={{
+                          fontWeight: "bold",
+                          color: "#0FA5AE",
+                        }}
+                      >
+                        Lecturas
+                      </NavLink>
                     </Nav.Item>
                     <Nav.Item>
                       <NavDropdown
@@ -141,11 +171,14 @@ const Header = () => {
                         id="basic-nav-dropdowm"
                         className="textnavbar"
                       >
-                        <NavDropdown.Item href="/perfil">
+                        <NavDropdown.Item href="/perfil" className="textnavbar">
                           Perfil
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item onClick={logoutHandler}>
+                        <NavDropdown.Item
+                          onClick={logoutHandler}
+                          className="textnavbar"
+                        >
                           Cerrar sesión
                         </NavDropdown.Item>
                       </NavDropdown>

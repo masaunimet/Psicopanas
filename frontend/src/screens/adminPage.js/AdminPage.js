@@ -42,7 +42,7 @@ const AdminPage = ({ history }) => {
             <Col className="plain-text">{user.email}</Col>
             <Col className="plain-text">Free</Col>
             <Col>
-              <Button className="button" href={`/admin/${user._id}`}>
+              <Button className="button-all-page" href={`/admin/${user._id}`}>
                 Hacer premium
               </Button>
             </Col>

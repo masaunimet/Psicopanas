@@ -120,7 +120,9 @@ const Diario = ({ history }) => {
                     <div className="subtitle-text-gray">
                       {moment(entry.createdAt).format("YYYY-DD-MM")}{" "}
                     </div>
-                    <div className="subtitle-text-pink">{entry.title}</div>
+                    <div className="subtitle-text-pink">
+                      {entry.title.slice(0, 30)}
+                    </div>
                   </div>
                 </Accordion.Toggle>
 
