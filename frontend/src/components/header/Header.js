@@ -108,6 +108,15 @@ const Header = () => {
                       )}
                     </Nav.Item>
                     <Nav.Item className="padding_butons">
+                        <Nav.Link
+                          href="/foro"
+                          className="textnavbar"
+                          eventKey="1"
+                        >
+                          Foro
+                        </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item className="padding_butons">
                       {userInfo.diarySecurity === true ? (
                         <Nav.Link
                           href="/authDiario"

@@ -1,6 +1,9 @@
 import React, {useEffect,  useState } from "react";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import {listForomessages, createForoMessage} from "../../actions/foromessageAction";
+import {listForomessagessalud,createForoMessagesalud} from "../../actions/foromessagesaludAction";
+import {listForomessagesvivencias,createForoMessagevivencia} from "../../actions/foromessagevivenciaAction";
+import {listForomessageshobbies,createForoMessagehobbie} from "../../actions/foromessagehobbieAction";
 import { useDispatch, useSelector } from "react-redux";
 import { InputGroup, Button, FormGroup, Container, FormControl } from "react-bootstrap";
 import Loading from "../../components/Loading";
@@ -12,8 +15,19 @@ const ForoPage = ({ history }) => {
 
     const [content, setContent] = useState("");
 
+    const imgs = ["https://image.flaticon.com/icons/png/512/16/16363.png"];
+
     const foromessageList = useSelector((state) => state.foromessageList);
-    const { loading, error, foromessages } = foromessageList;
+    const { foromessages } = foromessageList;
+
+    const foromessagesaludList = useSelector((state) => state.foromessagesaludList);
+    const { foromessagessalud } = foromessagesaludList;
+
+    const foromessagevivenciaList = useSelector((state) => state.foromessagevivenciaList);
+    const { foromessagesvivencias} = foromessagevivenciaList;
+
+    const foromessagehobbieList = useSelector((state) => state.foromessagehobbieList);
+    const { foromessageshobbies} = foromessagehobbieList;
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
@@ -32,9 +46,37 @@ const ForoPage = ({ history }) => {
         dispatch(listForomessages());
       }, [dispatch]);
 
+      useEffect(() => {
+        dispatch(listForomessagessalud());
+      }, [dispatch]);
+
+      useEffect(() => {
+        dispatch(listForomessagesvivencias());
+      }, [dispatch]);
+
+      useEffect(() => {
+        dispatch(listForomessageshobbies());
+      }, [dispatch]);
+
       function isEmpty(str) {
         return !str || 0 === str.length;
       }
+
+
+    const submitHandlerAnon= (e) => {
+      e.preventDefault();
+
+      if (isEmpty(content.trim())) {}
+
+      else{
+
+        dispatch(
+          createForoMessagehobbie("Anon",content,imgs[0])
+        );
+
+        setContent("");
+      }
+    }
 
     const submitHandler = (e) => {
       e.preventDefault();
@@ -44,7 +86,7 @@ const ForoPage = ({ history }) => {
       else{
 
         dispatch(
-          createForoMessage(userInfo.name,content,userInfo.profilePicture)
+          createForoMessagehobbie(userInfo.name,content,userInfo.profilePicture)
         );
 
         setContent("");
@@ -54,12 +96,18 @@ const ForoPage = ({ history }) => {
     return (
 
         <MainScreen title="foro">
+            <div style={{display:"flex", justifyContent:"center"}}>
+              <Button variant="secondary" >General</Button>
+              <Button variant="secondary">Vivencias</Button>
+              <Button variant="secondary" >Salud</Button>
+              <Button variant="secondary">Hobbies</Button>
+            </div>
             <div className="foro_main_window">
                 <div className="chat">
-                {foromessages?.map((message)=>
+                {foromessageshobbies?.map((message)=>
                     <div key={message._id} style={{display:"flex", margin:"10px"}}>
                       <div>
-                        <img src="https://static.wikia.nocookie.net/sonic/images/2/2d/TSR_Sonic.png/revision/latest?cb=20200114015342&path-prefix=es" width="50" height="50" style={{borderRadius:"50%"}}/>
+                        <img src={message.icon} width="50" height="50" style={{borderRadius:"50%"}}/>
                       </div>
                       <div style={{display:"flex", alignItems:"flex-start",marginLeft:"10px",marginRight:"5px",marginLeft:"5px"}}>
                         <div>
@@ -82,6 +130,9 @@ const ForoPage = ({ history }) => {
                 />
                 <Button id="button-addon2" onClick={submitHandler}>
                     Enviar
+                </Button>
+                <Button id="button-addon2" onClick={submitHandlerAnon}>
+                    Enviar como anon
                 </Button>
             </InputGroup>
         </MainScreen>
