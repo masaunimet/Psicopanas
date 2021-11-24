@@ -29,6 +29,8 @@ const ForoPage = ({ history }) => {
     const foromessagehobbieList = useSelector((state) => state.foromessagehobbieList);
     const { foromessageshobbies} = foromessagehobbieList;
 
+    const [option, setOption] = useState(0);
+
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
@@ -70,9 +72,33 @@ const ForoPage = ({ history }) => {
 
       else{
 
-        dispatch(
-          createForoMessagehobbie("Anon",content,imgs[0])
-        );
+        if(option===0){
+
+          dispatch(
+            createForoMessage("Anon",content,imgs[0])
+          );
+        }
+
+        else if(option===1){
+
+          dispatch(
+            createForoMessagesalud("Anon",content,imgs[0])
+          );
+        }
+
+        else if(option===2){
+
+          dispatch(
+            createForoMessagevivencia("Anon",content,imgs[0])
+          );
+        }
+
+        else if(option===3){
+
+          dispatch(
+            createForoMessagehobbie("Anon",content,imgs[0])
+          );
+        }
 
         setContent("");
       }
@@ -85,11 +111,102 @@ const ForoPage = ({ history }) => {
 
       else{
 
-        dispatch(
-          createForoMessagehobbie(userInfo.name,content,userInfo.profilePicture)
-        );
+        if(option===0){
+
+          dispatch(
+            createForoMessage(userInfo.name,content,userInfo.profilePicture)
+          );
+        }
+
+        else if(option===1){
+
+          dispatch(
+            createForoMessagesalud(userInfo.name,content,userInfo.profilePicture)
+          );
+        }
+
+        else if(option===2){
+
+          dispatch(
+            createForoMessagevivencia(userInfo.name,content,userInfo.profilePicture)
+          );
+        }
+
+        else if(option===3){
+
+          dispatch(
+            createForoMessagehobbie(userInfo.name,content,userInfo.profilePicture)
+          );
+        }
 
         setContent("");
+      }
+    }
+
+    const forodisplay=()=>{
+
+      if(option===0){
+        return foromessages?.map((message)=>
+        <div key={message._id} style={{display:"flex", margin:"10px"}}>
+          <div>
+            <img src={message.icon} width="50" height="50" style={{borderRadius:"50%"}}/>
+          </div>
+          <div style={{display:"flex", alignItems:"flex-start",marginLeft:"10px",marginRight:"5px",marginLeft:"5px"}}>
+            <div>
+            <p style={{display:"flex", alignItems:"flex-start",margin:"0px"}}>{message.username}</p>
+            <p style={{display:"flex", alignItems:"flex-start",margin:"0px",backgroundColor:"grey",borderRadius:"15%",paddingLeft:"5px",paddingRight:"5px"}}>{message.message}</p>
+            </div>
+          </div>
+        </div>
+        )
+      }
+
+      else if(option===1){
+        return foromessagessalud?.map((message)=>
+        <div key={message._id} style={{display:"flex", margin:"10px"}}>
+          <div>
+            <img src={message.icon} width="50" height="50" style={{borderRadius:"50%"}}/>
+          </div>
+          <div style={{display:"flex", alignItems:"flex-start",marginLeft:"10px",marginRight:"5px",marginLeft:"5px"}}>
+            <div>
+            <p style={{display:"flex", alignItems:"flex-start",margin:"0px"}}>{message.username}</p>
+            <p style={{display:"flex", alignItems:"flex-start",margin:"0px",backgroundColor:"grey",borderRadius:"15%",paddingLeft:"5px",paddingRight:"5px"}}>{message.message}</p>
+            </div>
+          </div>
+        </div>
+        )
+      }
+
+      else if(option===2){
+        return foromessagesvivencias?.map((message)=>
+        <div key={message._id} style={{display:"flex", margin:"10px"}}>
+          <div>
+            <img src={message.icon} width="50" height="50" style={{borderRadius:"50%"}}/>
+          </div>
+          <div style={{display:"flex", alignItems:"flex-start",marginLeft:"10px",marginRight:"5px",marginLeft:"5px"}}>
+            <div>
+            <p style={{display:"flex", alignItems:"flex-start",margin:"0px"}}>{message.username}</p>
+            <p style={{display:"flex", alignItems:"flex-start",margin:"0px",backgroundColor:"grey",borderRadius:"15%",paddingLeft:"5px",paddingRight:"5px"}}>{message.message}</p>
+            </div>
+          </div>
+        </div>
+        )
+      }
+
+      else if(option===3){
+        return foromessageshobbies?.map((message)=>
+        <div key={message._id} style={{display:"flex", margin:"10px"}}>
+          <div>
+            <img src={message.icon} width="50" height="50" style={{borderRadius:"50%"}}/>
+          </div>
+          <div style={{display:"flex", alignItems:"flex-start",marginLeft:"10px",marginRight:"5px",marginLeft:"5px"}}>
+            <div>
+            <p style={{display:"flex", alignItems:"flex-start",margin:"0px"}}>{message.username}</p>
+            <p style={{display:"flex", alignItems:"flex-start",margin:"0px",backgroundColor:"grey",borderRadius:"15%",paddingLeft:"5px",paddingRight:"5px"}}>{message.message}</p>
+            </div>
+          </div>
+        </div>
+        )
       }
     }
 
@@ -97,26 +214,14 @@ const ForoPage = ({ history }) => {
 
         <MainScreen title="foro">
             <div style={{display:"flex", justifyContent:"center"}}>
-              <Button variant="secondary" >General</Button>
-              <Button variant="secondary">Vivencias</Button>
-              <Button variant="secondary" >Salud</Button>
-              <Button variant="secondary">Hobbies</Button>
+              <Button variant="secondary" onClick={(e) => {setOption(0);}}>General</Button>
+              <Button variant="secondary" onClick={(e) => {setOption(1);}}>Vivencias</Button>
+              <Button variant="secondary" onClick={(e) => {setOption(2);}}>Salud</Button>
+              <Button variant="secondary" onClick={(e) => {setOption(3);}}>Hobbies</Button>
             </div>
             <div className="foro_main_window">
                 <div className="chat">
-                {foromessageshobbies?.map((message)=>
-                    <div key={message._id} style={{display:"flex", margin:"10px"}}>
-                      <div>
-                        <img src={message.icon} width="50" height="50" style={{borderRadius:"50%"}}/>
-                      </div>
-                      <div style={{display:"flex", alignItems:"flex-start",marginLeft:"10px",marginRight:"5px",marginLeft:"5px"}}>
-                        <div>
-                        <p style={{display:"flex", alignItems:"flex-start",margin:"0px"}}>{message.username}</p>
-                        <p style={{display:"flex", alignItems:"flex-start",margin:"0px",backgroundColor:"grey",borderRadius:"15%",paddingLeft:"5px",paddingRight:"5px"}}>{message.message}</p>
-                        </div>
-                      </div>
-                    </div>
-                    )}
+                  {forodisplay()}
                 </div>
             </div>
             <InputGroup className="mb-3">
