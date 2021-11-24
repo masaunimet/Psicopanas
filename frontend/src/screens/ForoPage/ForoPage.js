@@ -1,5 +1,6 @@
 import React, {useEffect,  useState } from "react";
 import MainScreen from "../../components/mainscreen/MainScreen";
+import Media from "react-media";
 import {listForomessages, createForoMessage} from "../../actions/foromessageAction";
 import {listForomessagessalud,createForoMessagesalud} from "../../actions/foromessagesaludAction";
 import {listForomessagesvivencias,createForoMessagevivencia} from "../../actions/foromessagevivenciaAction";
@@ -224,22 +225,46 @@ const ForoPage = ({ history }) => {
                   {forodisplay()}
                 </div>
             </div>
-            <InputGroup className="mb-3">
+
+            <Media query={{ maxWidth: 800 }}>
+                {(matches) =>
+                matches ? (
+              <>
+              <InputGroup className="mb-3">
                 <FormControl
-                placeholder="Escriba aqui"
-                aria-label="Recipient's username"
-                aria-describedby="basic-addon2"
-                value={content}
-                rows={2}
-                onChange={(e) => setContent(e.target.value)}
+                  placeholder="Escriba aqui"
+                  aria-label="Recipient's username"
+                  aria-describedby="basic-addon2"
+                  value={content}
+                  rows={2}
+                  onChange={(e) => setContent(e.target.value)}
                 />
-                <Button id="button-addon2" onClick={submitHandler}>
-                    Enviar
-                </Button>
-                <Button id="button-addon2" onClick={submitHandlerAnon}>
-                    Enviar como anon
-                </Button>
-            </InputGroup>
+              </InputGroup>
+              <Button id="button-addon2" onClick={submitHandler}>
+                  Enviar
+              </Button>
+              <Button id="button-addon2" onClick={submitHandlerAnon}>
+                  Enviar como anon
+              </Button>
+            </>
+                ):(
+                  <InputGroup className="mb-3">
+                  <FormControl
+                    placeholder="Escriba aqui"
+                    aria-label="Recipient's username"
+                    aria-describedby="basic-addon2"
+                    value={content}
+                    rows={2}
+                    onChange={(e) => setContent(e.target.value)}
+                  />
+                  <Button id="button-addon2" onClick={submitHandler}>
+                      Enviar
+                  </Button>
+                  <Button id="button-addon2" onClick={submitHandlerAnon}>
+                      Enviar como anon
+                  </Button>
+              </InputGroup>
+                )}</Media>
         </MainScreen>
     );
 };
