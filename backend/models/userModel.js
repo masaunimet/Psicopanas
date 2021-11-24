@@ -16,10 +16,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    isPremium:{
-      type:Boolean,
+    isPremium: {
+      type: Boolean,
       required: true,
-      default:false,
+      default: false,
     },
     isAdmin: {
       type: Boolean,
@@ -45,7 +45,7 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
       default:
-        "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+        "https://res.cloudinary.com/psicopanas/image/upload/v1637791867/Anonimo_h4g8dj.png",
     },
   },
   {

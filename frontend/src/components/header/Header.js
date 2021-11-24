@@ -91,18 +91,6 @@ const Header = () => {
                   </>
                 ) : (
                   <>
-                    {/* <Nav.Item className="padding_butons">
-                <NavLink
-                  to="/diario"
-                  className="textnavbar"
-                  activeStyle={{
-                    fontWeight: "bold",
-                    color: "#0FA5AE",
-                  }}
-                >
-                  Foro
-                </NavLink>
-              </Nav.Item> */}
                     <Nav.Item className="padding_butons">
                       {!userInfo.isPremium ? (
                         <NavLink
@@ -116,17 +104,17 @@ const Header = () => {
                           Pagos
                         </NavLink>
                       ) : (
-                        <></>
-                      )}
-                    </Nav.Item>
-                    <Nav.Item className="padding_butons">
-                        <Nav.Link
-                          href="/foro"
+                        <NavLink
+                          to="/foro"
                           className="textnavbar"
-                          eventKey="1"
+                          activeStyle={{
+                            fontWeight: "bold",
+                            color: "#0FA5AE",
+                          }}
                         >
                           Foro
-                        </Nav.Link>
+                        </NavLink>
+                      )}
                     </Nav.Item>
                     <Nav.Item className="padding_butons">
                       {userInfo.diarySecurity === true ? (

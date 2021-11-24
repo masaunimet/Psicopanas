@@ -80,7 +80,7 @@ const LecturesPage = ({ history }) => {
                           justifyContent: "space-between",
                         }}
                       >
-                        <div className="subtitle-text-pink">
+                        <div className="subtitle-text-blue">
                           {lecture.title.slice(0, 15)}
                         </div>
                       </div>
