@@ -192,7 +192,7 @@ const DiaryConfigPage = ({ history }) => {
     <MainScreen title="Configuración de mi diario">
       <Card className="no-background" style={{ margin: "10px" }}>
         <Link to="/diario">
-          <Button variant="primary" className="button-all-page">
+          <Button variant="primary" className="button" style={{alignSelf:"end"}}>
             Volver a mi diario
           </Button>
         </Link>
@@ -234,7 +234,7 @@ const DiaryConfigPage = ({ history }) => {
                 <Button
                   variant="primary"
                   type="submit"
-                  className="button-all-page"
+                  className="button"
                 >
                   Activar seguridad
                 </Button>
@@ -281,6 +281,8 @@ const DiaryConfigPage = ({ history }) => {
           <div className="subtitle-text-blue">
             Mis actividades personalizadas
           </div>
+
+          
         </Card.Header>
         <Card.Body>
           <Form onSubmit={submitHandler}>
@@ -396,7 +398,7 @@ const DiaryConfigPage = ({ history }) => {
                 )}
               </Col>
             </Row>
-            <Button variant="primary" type="submit" className="button-all-page">
+            <Button variant="secondary" type="submit" className="button">
               Guardar cambios en mis actividades
             </Button>
           </Form>
