@@ -1,34 +1,31 @@
 const mongoose = require("mongoose");
 
 const foromessageSchema = mongoose.Schema(
-    {
+  {
+    // user: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     required: true,
+    //     ref: "User",
+    // },
 
-        // user: {
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     required: true,
-        //     ref: "User",
-        // },
+    username: {
+      type: String,
+      require: true,
+    },
 
-        username:{
+    message: {
+      type: String,
+      require: true,
+    },
 
-            type:String,
-            require:true,
-        },
-
-        message:{
-
-            type:String,
-            require:true,
-        },
-
-        icon:{
-
-            type: String,
-            require:true
-        }
-    }
+    icon: {
+      type: String,
+      require: true,
+    },
+  },
+  { timestamps: true }
 );
 
-const Foromessage = mongoose.model("Foromessage",foromessageSchema);
+const Foromessage = mongoose.model("Foromessage", foromessageSchema);
 
 module.exports = Foromessage;

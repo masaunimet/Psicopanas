@@ -18,23 +18,18 @@ import {
   createForoMessagehobbie,
 } from "../../actions/foromessagehobbieAction";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  InputGroup,
-  Button,
-  FormControl,
-  Image,
-  Navbar,
-  Nav,
-} from "react-bootstrap";
+import { InputGroup, Button, FormControl, Image } from "react-bootstrap";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
+import moment from "moment";
+import "moment/locale/es";
 import "../../styles/App.css";
 
 const ForoPage = ({ history }) => {
   const dispatch = useDispatch();
 
   const [content, setContent] = useState("");
-
+  moment.locale("es");
   const imgs = [
     "https://res.cloudinary.com/psicopanas/image/upload/v1637791867/Anonimo_h4g8dj.png",
   ];
@@ -170,209 +165,285 @@ const ForoPage = ({ history }) => {
 
   const forodisplay = () => {
     if (option === 0) {
-      return foromessages?.map((message) => (
-        <div key={message._id} style={{ display: "flex", margin: "10px" }}>
-          <div>
-            <Image
-              src={message.icon}
-              width="50"
-              height="50"
-              style={{ borderRadius: "100px" }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              marginLeft: "10px",
-              marginRight: "5px",
-              marginLeft: "5px",
-            }}
-          >
+      return foromessages
+        ?.sort((a, b) => {
+          if (a.createdAt > b.createdAt) {
+            return -1;
+          }
+          if (a.createdAt < b.createdAt) {
+            return 1;
+          }
+          return 0;
+        })
+        .map((message) => (
+          <div key={message._id} style={{ display: "flex", margin: "10px" }}>
             <div>
-              <p
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  margin: "0px",
-                  color: "#053a3f",
-                  fontWeight: "bold",
-                  fontSize: "15px",
-                }}
-              >
-                {message.username}
-              </p>
-              <p
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  margin: "0px",
-                  fontWeight: "bold",
-                  backgroundColor: "#bcf4fc",
-                  borderRadius: "15%",
-                  paddingLeft: "5px",
-                  paddingRight: "5px",
-                }}
-              >
-                {message.message}
-              </p>
+              <Image
+                src={message.icon}
+                width="50"
+                height="50"
+                style={{ borderRadius: "100px" }}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                marginLeft: "10px",
+                marginRight: "5px",
+                marginLeft: "5px",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    margin: "0px",
+                    color: "#053a3f",
+                    fontWeight: "bold",
+                    fontSize: "15px",
+                  }}
+                >
+                  {message.username}
+                  <span
+                    style={{
+                      color: "#555",
+                      fontWeight: "normal",
+                      marginLeft: "10px",
+                    }}
+                  >
+                    {moment(message.createdAt).fromNow()}
+                  </span>
+                </p>
+                <p
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    margin: "0px",
+                    fontWeight: "bold",
+                    backgroundColor: "#bcf4fc",
+                    borderRadius: "15%",
+                    paddingLeft: "5px",
+                    paddingRight: "5px",
+                  }}
+                >
+                  {message.message}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      ));
+        ));
     } else if (option === 1) {
-      return foromessagessalud?.map((message) => (
-        <div key={message._id} style={{ display: "flex", margin: "10px" }}>
-          <div>
-            <Image
-              src={message.icon}
-              width="50"
-              height="50"
-              style={{ borderRadius: "100px" }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              marginLeft: "10px",
-              marginRight: "5px",
-              marginLeft: "5px",
-            }}
-          >
+      return foromessagessalud
+        ?.sort((a, b) => {
+          if (a.createdAt > b.createdAt) {
+            return -1;
+          }
+          if (a.createdAt < b.createdAt) {
+            return 1;
+          }
+          return 0;
+        })
+        .map((message) => (
+          <div key={message._id} style={{ display: "flex", margin: "10px" }}>
             <div>
-              <p
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  margin: "0px",
-                  color: "#053a3f",
-                  fontWeight: "bold",
-                  fontSize: "15px",
-                }}
-              >
-                {message.username}
-              </p>
-              <p
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  margin: "0px",
-                  borderRadius: "15%",
-                  paddingLeft: "5px",
-                  paddingRight: "5px",
-                  fontWeight: "bold",
-                  backgroundColor: "#bcf4fc",
-                }}
-              >
-                {message.message}
-              </p>
+              <Image
+                src={message.icon}
+                width="50"
+                height="50"
+                style={{ borderRadius: "100px" }}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                marginLeft: "10px",
+                marginRight: "5px",
+                marginLeft: "5px",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    margin: "0px",
+                    color: "#053a3f",
+                    fontWeight: "bold",
+                    fontSize: "15px",
+                  }}
+                >
+                  {message.username}
+                  <span
+                    style={{
+                      color: "#555",
+                      fontWeight: "normal",
+                      marginLeft: "10px",
+                    }}
+                  >
+                    {moment(message.createdAt).fromNow()}
+                  </span>
+                </p>
+                <p
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    margin: "0px",
+                    borderRadius: "15%",
+                    paddingLeft: "5px",
+                    paddingRight: "5px",
+                    fontWeight: "bold",
+                    backgroundColor: "#bcf4fc",
+                  }}
+                >
+                  {message.message}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      ));
+        ));
     } else if (option === 2) {
-      return foromessagesvivencias?.map((message) => (
-        <div key={message._id} style={{ display: "flex", margin: "10px" }}>
-          <div>
-            <Image
-              src={message.icon}
-              width="50"
-              height="50"
-              style={{ borderRadius: "100px" }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              marginLeft: "10px",
-              marginRight: "5px",
-              marginLeft: "5px",
-            }}
-          >
+      return foromessagesvivencias
+        ?.sort((a, b) => {
+          if (a.createdAt > b.createdAt) {
+            return -1;
+          }
+          if (a.createdAt < b.createdAt) {
+            return 1;
+          }
+          return 0;
+        })
+        .map((message) => (
+          <div key={message._id} style={{ display: "flex", margin: "10px" }}>
             <div>
-              <p
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  margin: "0px",
-                  color: "#053a3f",
-                  fontWeight: "bold",
-                  fontSize: "15px",
-                }}
-              >
-                {message.username}
-              </p>
-              <p
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  margin: "0px",
-                  fontWeight: "bold",
-                  backgroundColor: "#bcf4fc",
-                  borderRadius: "15%",
-                  paddingLeft: "5px",
-                  paddingRight: "5px",
-                }}
-              >
-                {message.message}
-              </p>
+              <Image
+                src={message.icon}
+                width="50"
+                height="50"
+                style={{ borderRadius: "100px" }}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                marginLeft: "10px",
+                marginRight: "5px",
+                marginLeft: "5px",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    margin: "0px",
+                    color: "#053a3f",
+                    fontWeight: "bold",
+                    fontSize: "15px",
+                  }}
+                >
+                  {message.username}
+                  <span
+                    style={{
+                      color: "#555",
+                      fontWeight: "normal",
+                      marginLeft: "10px",
+                    }}
+                  >
+                    {moment(message.createdAt).fromNow()}
+                  </span>
+                </p>
+                <p
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    margin: "0px",
+                    fontWeight: "bold",
+                    backgroundColor: "#bcf4fc",
+                    borderRadius: "15%",
+                    paddingLeft: "5px",
+                    paddingRight: "5px",
+                  }}
+                >
+                  {message.message}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      ));
+        ));
     } else if (option === 3) {
-      return foromessageshobbies?.map((message) => (
-        <div key={message._id} style={{ display: "flex", margin: "10px" }}>
-          <div>
-            <Image
-              src={message.icon}
-              width="50"
-              height="50"
-              style={{ borderRadius: "100px" }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              marginLeft: "10px",
-              marginRight: "5px",
-              marginLeft: "5px",
-            }}
-          >
+      return foromessageshobbies
+        ?.sort((a, b) => {
+          if (a.createdAt > b.createdAt) {
+            return -1;
+          }
+          if (a.createdAt < b.createdAt) {
+            return 1;
+          }
+          return 0;
+        })
+        .map((message) => (
+          <div key={message._id} style={{ display: "flex", margin: "10px" }}>
             <div>
-              <p
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  margin: "0px",
-                  color: "#053a3f",
-                  fontWeight: "bold",
-                  fontSize: "15px",
-                }}
-              >
-                {message.username}
-              </p>
-              <p
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  margin: "0px",
-                  fontWeight: "bold",
-                  backgroundColor: "#bcf4fc",
-                  borderRadius: "15%",
-                  paddingLeft: "5px",
-                  paddingRight: "5px",
-                }}
-              >
-                {message.message}
-              </p>
+              <Image
+                src={message.icon}
+                width="50"
+                height="50"
+                style={{ borderRadius: "100px" }}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                marginLeft: "10px",
+                marginRight: "5px",
+                marginLeft: "5px",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    margin: "0px",
+                    color: "#053a3f",
+                    fontWeight: "bold",
+                    fontSize: "15px",
+                  }}
+                >
+                  {message.username}
+                  <span
+                    style={{
+                      color: "#555",
+                      fontWeight: "normal",
+                      marginLeft: "10px",
+                    }}
+                  >
+                    {moment(message.createdAt).fromNow()}
+                  </span>
+                </p>
+                <p
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    margin: "0px",
+                    fontWeight: "bold",
+                    backgroundColor: "#bcf4fc",
+                    borderRadius: "15%",
+                    paddingLeft: "5px",
+                    paddingRight: "5px",
+                  }}
+                >
+                  {message.message}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      ));
+        ));
     }
   };
 
