@@ -23,10 +23,24 @@ const MessageBadStreak = ({ history }) => {
       <Container>
         <Col>
           <div className="Centrado">
+            var num = Math.floor(Math.random() * (3 + 1 - 1) + 1);
+            
+            if (num === 1) {
             <p className="subtitle-text-blue">
               No dudes en buscar apoyo. Recuerda darte tu tiempo para digerir lo
               que está sucediendo
+            </p> }
+            else if (num === 2) {
+              <p className="subtitle-text-blue">
+              No dudes en buscar apoyo. Hay un mar de posibilidades en esta
+              vida, tómatelo con calma y respira.
             </p>
+             }else{
+              <p className="subtitle-text-blue">
+              No dudes en buscar apoyo. Trata de llevar las cosas con calma.
+              </p>
+             }
+             
           </div>
           <div className="Centrado">
             <img src={Goti} width="200" height="250" alt="Goti" />
