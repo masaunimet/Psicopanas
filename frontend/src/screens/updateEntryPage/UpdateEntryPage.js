@@ -111,68 +111,29 @@ function UpdateEntryPage({ match, history }) {
       updateEntryAction(match.params.id, title, content, entryTags, emotion)
     );
     var num = Math.floor(Math.random() * (3 + 1 - 1) + 1);
+
     if (
-      emotion ===
+      setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980382/muy_triste_igug5p.png"
     ) {
-      if (num === 1) {
-        history.push("/mensaje-racha");
-      } else if (num === 2) {
-        history.push("/mensaje-racha2");
-      } else if (num === 3) {
-        history.push("/mensaje-racha3");
-      } else {
-        history.push("/mensaje-racha");
-      }
+      history.push("/mensaje-racha");
     } else if (
-      emotion ===
+      setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/triste_q55oyc.png"
     ) {
-      if (num === 1) {
-        history.push("/mensaje-triste");
-      } else if (num === 2) {
-        history.push("/mensaje-triste2");
-      } else if (num === 3) {
-        history.push("/mensaje-triste3");
-      } else {
-        history.push("/mensaje-triste");
-      }
+      history.push("/mensaje-triste");
     } else if (
-      emotion ===
+      setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/regular_wr2r0j.png"
     ) {
-      if (num === 1) {
-        history.push("/mensaje-positivo");
-      } else if (num === 2) {
-        history.push("/mensaje-positivo2");
-      } else if (num === 3) {
-        history.push("/mensaje-positivo3");
-      } else {
-        history.push("/mensaje-positivo");
-      }
+      history.push("/mensaje-positivo");
     } else if (
-      emotion ===
+      setEmotion ===
       "https://res.cloudinary.com/psicopanas/image/upload/v1635980381/feliz_vw1muh.png"
     ) {
-      if (num === 1) {
-        history.push("/mensaje-feliz");
-      } else if (num === 2) {
-        history.push("/mensaje-feliz2");
-      } else if (num === 3) {
-        history.push("/mensaje-feliz3");
-      } else {
-        history.push("/mensaje-feliz");
-      }
+      history.push("/mensaje-feliz");
     } else {
-      if (num === 1) {
-        history.push("/mensaje-muy-feliz");
-      } else if (num === 2) {
-        history.push("/mensaje-muy-feliz2");
-      } else if (num === 3) {
-        history.push("/mensaje-muy-feliz3");
-      } else {
-        history.push("/mensaje-muy-feliz");
-      }
+      history.push("/mensaje-muy-feliz");
     }
     resetHandler();
   };
@@ -180,8 +141,6 @@ function UpdateEntryPage({ match, history }) {
   const visualButtons = (id, icon) => {
     emotions?.forEach((emotion) => {
       if (emotion._id !== id) {
-        document.getElementById(emotion._id)?.setAttribute("width", "50");
-        document.getElementById(emotion._id)?.setAttribute("height", "50");
         if (emotion._id === "6169efd6152f0e9299ff6810") {
           document
             .getElementById(emotion._id)
@@ -219,8 +178,6 @@ function UpdateEntryPage({ match, history }) {
             );
         }
       } else {
-        document.getElementById(emotion._id)?.setAttribute("width", "80");
-        document.getElementById(emotion._id)?.setAttribute("height", "80");
         document.getElementById(emotion._id)?.setAttribute("src", icon);
       }
     });
@@ -228,8 +185,6 @@ function UpdateEntryPage({ match, history }) {
 
   const visualButtons2 = () => {
     emotions?.forEach((emotion) => {
-      document.getElementById(emotion._id)?.setAttribute("width", "50");
-      document.getElementById(emotion._id)?.setAttribute("height", "50");
       if (emotion._id === "6169efd6152f0e9299ff6810") {
         document
           .getElementById(emotion._id)
@@ -323,175 +278,153 @@ function UpdateEntryPage({ match, history }) {
               <Form.Label className="subtitle-text-blue">
                 ¿Qué te hizo sentir así?
               </Form.Label>
-              {loading2 && <Loading size={25} />}
-              <Container className="white-background">
-                <Row>
-                  <Col>
-                    <div className="flex-container">
-                      <p className="subtitle-text-soft-blue">Deberes</p>
-                    </div>
-                    {tags
-                      ?.filter((tag) => tag.group === "Deberes")
-                      .map((tag) => (
-                        <div>
-                          <Form.Check
-                            type="checkbox"
-                            id={tag._id}
-                            style={{ margin: "5px", cursor: "pointer" }}
-                          >
-                            <Form.Check.Label
-                              style={{
-                                color: "#2c2c2c",
-                                fontWeight: "bold",
-                              }}
-                              className="checkbox"
-                            >
-                              <Form.Check.Input type="checkbox" isValid />
-                              <span class="check">{tag.name}</span>
-                            </Form.Check.Label>
-                          </Form.Check>
-                        </div>
-                      ))}
-                  </Col>
-                  <Col>
-                    <div className="flex-container">
-                      <p className="subtitle-text-soft-blue">Hobbies</p>
-                    </div>
-                    {tags
-                      ?.filter((tag) => tag.group === "Hobbies")
-                      .map((tag) => (
-                        <div>
-                          <Form.Check
-                            type="checkbox"
-                            id={tag._id}
-                            style={{ margin: "5px", cursor: "pointer" }}
-                          >
-                            <Form.Check.Label
-                              style={{
-                                color: "#2c2c2c",
-                                fontWeight: "bold",
-                              }}
-                              className="checkbox"
-                            >
-                              <Form.Check.Input type="checkbox" isValid />
-                              <span class="check">{tag.name}</span>
-                            </Form.Check.Label>
-                          </Form.Check>
-                        </div>
-                      ))}
-                  </Col>
-                  <Col>
-                    <div className="flex-container">
-                      <p className="subtitle-text-soft-blue">Emociones</p>
-                    </div>
-                    {tags
-                      ?.filter((tag) => tag.group === "Emociones")
-                      .map((tag) => (
-                        <div>
-                          <Form.Check
-                            type="checkbox"
-                            id={tag._id}
-                            style={{ margin: "5px", cursor: "pointer" }}
-                          >
-                            <Form.Check.Label
-                              style={{
-                                color: "#2c2c2c",
-                                fontWeight: "bold",
-                              }}
-                              className="checkbox"
-                            >
-                              <Form.Check.Input type="checkbox" isValid />
-                              <span class="check">{tag.name}</span>
-                            </Form.Check.Label>
-                          </Form.Check>
-                        </div>
-                      ))}
-                  </Col>
-                  <Col>
-                    <div className="flex-container">
-                      <p className="subtitle-text-soft-blue">Social</p>
-                    </div>
-                    {tags
-                      ?.filter((tag) => tag.group === "Social")
-                      .map((tag) => (
-                        <div>
-                          <Form.Check
-                            type="checkbox"
-                            id={tag._id}
-                            style={{ margin: "5px", cursor: "pointer" }}
-                          >
-                            <Form.Check.Label
-                              style={{
-                                color: "#2c2c2c",
-                                fontWeight: "bold",
-                              }}
-                              className="checkbox"
-                            >
-                              <Form.Check.Input type="checkbox" isValid />
-                              <span class="check">{tag.name}</span>
-                            </Form.Check.Label>
-                          </Form.Check>
-                        </div>
-                      ))}
-                  </Col>
-                  <Col>
-                    <div className="flex-container">
-                      <p className="subtitle-text-soft-blue">Salud</p>
-                    </div>
-                    {tags
-                      ?.filter((tag) => tag.group === "Salud")
-                      .map((tag) => (
-                        <div>
-                          <Form.Check
-                            type="checkbox"
-                            id={tag._id}
-                            style={{ margin: "5px", cursor: "pointer" }}
-                          >
-                            <Form.Check.Label
-                              style={{
-                                color: "#2c2c2c",
-                                fontWeight: "bold",
-                              }}
-                              className="checkbox"
-                            >
-                              <Form.Check.Input type="checkbox" isValid />
-                              <span class="check">{tag.name}</span>
-                            </Form.Check.Label>
-                          </Form.Check>
-                        </div>
-                      ))}
-                  </Col>
-                  <Col>
-                    <div className="flex-container">
-                      <p className="subtitle-text-soft-blue">Personalizadas</p>
-                    </div>
-                    {mitad.map((ptag) => (
-                      <div>
-                        <Form.Check
-                          type="checkbox"
-                          id={ptag}
-                          style={{ margin: "5px", cursor: "pointer" }}
-                        >
-                          <Form.Check.Label
-                            style={{
-                              color: "#2c2c2c",
-                              fontWeight: "bold",
-                            }}
-                            className="checkbox"
-                          >
-                            <Form.Check.Input type="checkbox" isValid />
-                            <span class="check">{ptag}</span>
-                          </Form.Check.Label>
-                        </Form.Check>
-                      </div>
-                    ))}
-                  </Col>
-                  {userInfo?.isPremium ? (
+              {loading2 ? (
+                <Loading size={25} />
+              ) : (
+                <Container className="white-background">
+                  <Row>
                     <Col>
                       <div className="flex-container">
-                        <p className="subtitle-text-soft-blue">Premium</p>
+                        <p className="subtitle-text-soft-blue">Deberes</p>
                       </div>
-                      {mitad2.map((ptag) => (
+                      {tags
+                        ?.filter((tag) => tag.group === "Deberes")
+                        .map((tag) => (
+                          <div>
+                            <Form.Check
+                              type="checkbox"
+                              id={tag._id}
+                              style={{ margin: "5px", cursor: "pointer" }}
+                            >
+                              <Form.Check.Label
+                                style={{
+                                  color: "#2c2c2c",
+                                  fontWeight: "bold",
+                                }}
+                                className="checkbox"
+                              >
+                                <Form.Check.Input type="checkbox" isValid />
+                                <span class="check">{tag.name}</span>
+                              </Form.Check.Label>
+                            </Form.Check>
+                          </div>
+                        ))}
+                    </Col>
+                    <Col>
+                      <div className="flex-container">
+                        <p className="subtitle-text-soft-blue">Hobbies</p>
+                      </div>
+                      {tags
+                        ?.filter((tag) => tag.group === "Hobbies")
+                        .map((tag) => (
+                          <div>
+                            <Form.Check
+                              type="checkbox"
+                              id={tag._id}
+                              style={{ margin: "5px", cursor: "pointer" }}
+                            >
+                              <Form.Check.Label
+                                style={{
+                                  color: "#2c2c2c",
+                                  fontWeight: "bold",
+                                }}
+                                className="checkbox"
+                              >
+                                <Form.Check.Input type="checkbox" isValid />
+                                <span class="check">{tag.name}</span>
+                              </Form.Check.Label>
+                            </Form.Check>
+                          </div>
+                        ))}
+                    </Col>
+                    <Col>
+                      <div className="flex-container">
+                        <p className="subtitle-text-soft-blue">Emociones</p>
+                      </div>
+                      {tags
+                        ?.filter((tag) => tag.group === "Emociones")
+                        .map((tag) => (
+                          <div>
+                            <Form.Check
+                              type="checkbox"
+                              id={tag._id}
+                              style={{ margin: "5px", cursor: "pointer" }}
+                            >
+                              <Form.Check.Label
+                                style={{
+                                  color: "#2c2c2c",
+                                  fontWeight: "bold",
+                                }}
+                                className="checkbox"
+                              >
+                                <Form.Check.Input type="checkbox" isValid />
+                                <span class="check">{tag.name}</span>
+                              </Form.Check.Label>
+                            </Form.Check>
+                          </div>
+                        ))}
+                    </Col>
+                    <Col>
+                      <div className="flex-container">
+                        <p className="subtitle-text-soft-blue">Social</p>
+                      </div>
+                      {tags
+                        ?.filter((tag) => tag.group === "Social")
+                        .map((tag) => (
+                          <div>
+                            <Form.Check
+                              type="checkbox"
+                              id={tag._id}
+                              style={{ margin: "5px", cursor: "pointer" }}
+                            >
+                              <Form.Check.Label
+                                style={{
+                                  color: "#2c2c2c",
+                                  fontWeight: "bold",
+                                }}
+                                className="checkbox"
+                              >
+                                <Form.Check.Input type="checkbox" isValid />
+                                <span class="check">{tag.name}</span>
+                              </Form.Check.Label>
+                            </Form.Check>
+                          </div>
+                        ))}
+                    </Col>
+                    <Col>
+                      <div className="flex-container">
+                        <p className="subtitle-text-soft-blue">Salud</p>
+                      </div>
+                      {tags
+                        ?.filter((tag) => tag.group === "Salud")
+                        .map((tag) => (
+                          <div>
+                            <Form.Check
+                              type="checkbox"
+                              id={tag._id}
+                              style={{ margin: "5px", cursor: "pointer" }}
+                            >
+                              <Form.Check.Label
+                                style={{
+                                  color: "#2c2c2c",
+                                  fontWeight: "bold",
+                                }}
+                                className="checkbox"
+                              >
+                                <Form.Check.Input type="checkbox" isValid />
+                                <span class="check">{tag.name}</span>
+                              </Form.Check.Label>
+                            </Form.Check>
+                          </div>
+                        ))}
+                    </Col>
+                    <Col>
+                      <div className="flex-container">
+                        <p className="subtitle-text-soft-blue">
+                          Personalizadas
+                        </p>
+                      </div>
+                      {mitad.map((ptag) => (
                         <div>
                           <Form.Check
                             type="checkbox"
@@ -512,11 +445,38 @@ function UpdateEntryPage({ match, history }) {
                         </div>
                       ))}
                     </Col>
-                  ) : (
-                    <div></div>
-                  )}
-                </Row>
-              </Container>
+                    {userInfo?.isPremium ? (
+                      <Col>
+                        <div className="flex-container">
+                          <p className="subtitle-text-soft-blue">Premium</p>
+                        </div>
+                        {mitad2.map((ptag) => (
+                          <div>
+                            <Form.Check
+                              type="checkbox"
+                              id={ptag}
+                              style={{ margin: "5px", cursor: "pointer" }}
+                            >
+                              <Form.Check.Label
+                                style={{
+                                  color: "#2c2c2c",
+                                  fontWeight: "bold",
+                                }}
+                                className="checkbox"
+                              >
+                                <Form.Check.Input type="checkbox" isValid />
+                                <span class="check">{ptag}</span>
+                              </Form.Check.Label>
+                            </Form.Check>
+                          </div>
+                        ))}
+                      </Col>
+                    ) : (
+                      <div></div>
+                    )}
+                  </Row>
+                </Container>
+              )}
             </Form.Group>
 
             <Form.Group controlId="content">

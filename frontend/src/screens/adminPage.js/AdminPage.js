@@ -34,7 +34,11 @@ const AdminPage = ({ history }) => {
         <Row>
           <div className="subtitle-text-blue">Lista de Usuarios</div>
         </Row>
-        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {error && (
+          <ErrorMessage variant="danger">
+            {"Ocurrió un error al cargar la data. Por favor recargue la página"}
+          </ErrorMessage>
+        )}
         {loading && <Loading />}
         {usersInfo?.map((user) => (
           <Row className="div-admin-page">
@@ -42,7 +46,7 @@ const AdminPage = ({ history }) => {
             <Col className="plain-text">{user.email}</Col>
             <Col className="plain-text">Free</Col>
             <Col>
-              <Button className="button" href={`/admin/${user._id}`}>
+              <Button className="button-all-page" href={`/admin/${user._id}`}>
                 Hacer premium
               </Button>
             </Col>

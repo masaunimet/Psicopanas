@@ -9,6 +9,12 @@
   font-weight: bold;
 }
 
+.plain-justify-text {
+  color: #2f2f2f;
+  font-size: 15px;
+  text-align: justify;
+}
+
 .plain-centered-text {
   color: #2f2f2f;
   font-size: 15px;
@@ -187,7 +193,7 @@
   align-items: center;
   align-self: center;
   flex-direction: column;
-  background-color: #f6f6f6;
+  background-color: #ffffff;
   border-radius: 5px;
   width: 100px;
   height: auto;
@@ -200,9 +206,9 @@
   align-self: center;
   flex-direction: column;
   border-radius: 5px;
-  width: 100px;
   height: auto;
 }
+
 .no-background {
   background: none;
   border: none;
@@ -215,11 +221,15 @@
 }
 
 .box-emotions {
-  width: 60%;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
+}
+
+.box-emotions :hover {
+  background-color: #ffffff;
 }
 
 .flex-container {
@@ -280,4 +290,55 @@
   margin: 0;
   border: solid;
   border-color: #f6f6f6;
+}
+
+.foro_main_window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+.chat {
+  background-color: #f6f6f6;
+  width: 90%;
+  height: 90%;
+  padding: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.chat::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chat::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.chat::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.chat::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.textnavbar-chat {
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.padding-buttons-chat {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+foro_mensajes {
+  display: flex;
 }

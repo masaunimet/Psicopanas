@@ -70,7 +70,12 @@ const Diario = ({ history }) => {
       <div className="subtitle-text-blue">Bienvenido {userInfo.name}</div>
       <div className="flex-container">
         <Link to="/crearEntrada">
-          <Button size="md" variant="primary" className="button">
+          <Button
+            size="md"
+            variant="primary"
+            className="button"
+            style={{ marginLeft: "10px" }}
+          >
             Crear entrada
           </Button>
         </Link>
@@ -85,7 +90,11 @@ const Diario = ({ history }) => {
           </Button>
         </Link>
       </div>
-      {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+      {error && (
+        <ErrorMessage variant="danger">
+          {"Ocurrió un error al cargar el diario. Por favor recargue la página"}
+        </ErrorMessage>
+      )}
       {loading && <Loading />}
       {entries
         ?.sort((a, b) => {
@@ -117,10 +126,12 @@ const Diario = ({ history }) => {
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <img src={entry.emotion} width="50" height="50" alt="" />
-                    <div className="subtitle-text-gray">
-                      {moment(entry.createdAt).format("YYYY-DD-MM")}{" "}
+                    <div>
+                      <div className="subtitle-text-gray">
+                        {moment(entry.createdAt).format("LL")}
+                      </div>
+                      <div className="subtitle-text-pink">{entry.title}</div>
                     </div>
-                    <div className="subtitle-text-pink">{entry.title}</div>
                   </div>
                 </Accordion.Toggle>
 

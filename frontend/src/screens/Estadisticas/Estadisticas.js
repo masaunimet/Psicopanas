@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import EstadisticaColumna from "../../components/Estadisticas/EstadisticasColumna";
 import { Button, Container, Row, Col } from "react-bootstrap";
@@ -26,6 +26,8 @@ const Estadisticas = ({ history }) => {
   const { userInfo } = userLogin;
   const diaryAuth = useSelector((state) => state.diaryAuth);
   const { successDiary } = diaryAuth;
+
+  const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
     dispatch(getStats());
@@ -138,62 +140,135 @@ const Estadisticas = ({ history }) => {
 
   return (
     <MainScreen title="Estadísticas de ánimo">
-      {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+      {error && (
+        <ErrorMessage variant="danger">
+          {
+            "Ocurrió un error al cargar las estadísticas. Por favor recargue la página"
+          }
+        </ErrorMessage>
+      )}
       {loading && <Loading />}
       <div>
         {datum ? (
           <>
             <Container className="white-background">
               <Row>
-                {userInfo?.isPremium ? (
-                  <Col md="auto" className="blue-background">
-                    <Row style={{ display: "flex", justifyContent: "center" }}>
-                      <div className="subtitle-centered-text-white">
-                        Histórico de actividades
-                      </div>
-                    </Row>
-                    {tagStags ? (
-                      <>
-                        <Row>
-                          <Col>
-                            <div className="subtitle-text-soft-white-right">
-                              Nombre
-                            </div>
-                          </Col>
-                          <Col>
-                            <div className="subtitle-text-soft-white">
-                              Veces realizada
-                            </div>
-                          </Col>
-                        </Row>
-                        {tagStags
-                          .sort((a, b) => {
-                            if (a.value > b.value) {
-                              return -1;
-                            }
-                            if (a.value < b.value) {
-                              return 1;
-                            }
-                            return 0;
-                          })
-                          .map((ptag) => (
-                            <Row style={{ borderTop: "solid 1px #f6f6f6" }}>
-                              <Col className="plain-white-text-right">
-                                <div>{ptag.name}</div>
-                              </Col>
-                              <Col className="plain-white-text">
-                                <div>{ptag.value} veces</div>
-                              </Col>
-                            </Row>
-                          ))}
-                      </>
-                    ) : (
-                      <Loading />
-                    )}
-                  </Col>
-                ) : (
-                  <></>
-                )}
+                <Col md={3} className="blue-background">
+                  {userInfo?.isPremium && !showTop ? (
+                    <Col md="auto" className="blue-background">
+                      <Button
+                        onClick={(e) => {
+                          setShowTop(true);
+                        }}
+                        className="button-all-page"
+                      >
+                        Mostrar más
+                      </Button>
+                      <Row
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <div className="subtitle-centered-text-white">
+                          Top 10 de Actividades
+                        </div>
+                      </Row>
+                      {tagStags ? (
+                        <>
+                          <Row>
+                            <Col>
+                              <div className="subtitle-text-soft-white-right">
+                                Nombre
+                              </div>
+                            </Col>
+                            <Col>
+                              <div className="subtitle-text-soft-white">
+                                Veces realizada
+                              </div>
+                            </Col>
+                          </Row>
+                          {tagStags
+                            .sort((a, b) => {
+                              if (a.value > b.value) {
+                                return -1;
+                              }
+                              if (a.value < b.value) {
+                                return 1;
+                              }
+                              return 0;
+                            })
+                            .slice(0, 9)
+                            .map((ptag) => (
+                              <Row style={{ borderTop: "solid 1px #f6f6f6" }}>
+                                <Col className="plain-white-text-right">
+                                  <div>{ptag.name}</div>
+                                </Col>
+                                <Col className="plain-white-text">
+                                  <div>{ptag.value} veces</div>
+                                </Col>
+                              </Row>
+                            ))}
+                        </>
+                      ) : (
+                        <Loading />
+                      )}
+                    </Col>
+                  ) : (
+                    <Col md="auto" className="blue-background">
+                      <Button
+                        onClick={(e) => {
+                          setShowTop(false);
+                        }}
+                        className="button-all-page"
+                      >
+                        Mostrar menos
+                      </Button>
+                      <Row
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <div className="subtitle-centered-text-white">
+                          Todas las Actividades
+                        </div>
+                      </Row>
+                      {tagStags ? (
+                        <>
+                          <Row>
+                            <Col>
+                              <div className="subtitle-text-soft-white-right">
+                                Nombre
+                              </div>
+                            </Col>
+                            <Col>
+                              <div className="subtitle-text-soft-white">
+                                Veces realizada
+                              </div>
+                            </Col>
+                          </Row>
+                          {tagStags
+                            .sort((a, b) => {
+                              if (a.value > b.value) {
+                                return -1;
+                              }
+                              if (a.value < b.value) {
+                                return 1;
+                              }
+                              return 0;
+                            })
+                            .map((ptag) => (
+                              <Row style={{ borderTop: "solid 1px #f6f6f6" }}>
+                                <Col className="plain-white-text-right">
+                                  <div>{ptag.name}</div>
+                                </Col>
+                                <Col className="plain-white-text">
+                                  <div>{ptag.value} veces</div>
+                                </Col>
+                              </Row>
+                            ))}
+                        </>
+                      ) : (
+                        <Loading />
+                      )}
+                    </Col>
+                  )}
+                </Col>
                 <Col>
                   {userInfo?.isPremium === true && datumMonth !== undefined ? (
                     <>
