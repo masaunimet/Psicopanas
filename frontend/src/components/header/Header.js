@@ -30,11 +30,12 @@ const Header = () => {
             <Navbar.Brand href="/diario">
               <img src={LogoPP} width="50" height="50" alt="" />
             </Navbar.Brand>
-          ) : (
+          )  : (
             <Navbar.Brand href="/">
               <img src={LogoPP} width="50" height="50" alt="" />
             </Navbar.Brand>
-          )}
+          )
+          }
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end">
@@ -107,6 +108,20 @@ const Header = () => {
                         <></>
                       )}
                     </Nav.Item>
+                    
+                    <Nav.Item className="padding_butons">
+                  <NavLink
+                    to="/sobre-Psico-Panas"
+                    className="textnavbar"
+                    activeStyle={{
+                      fontWeight: "bold",
+                      color: "#0FA5AE",
+                    }}
+                  >
+                    Sobre PsicoP
+                  </NavLink>
+                </Nav.Item>
+
                     <Nav.Item className="padding_butons">
                       {userInfo.diarySecurity === true ? (
                         <Nav.Link

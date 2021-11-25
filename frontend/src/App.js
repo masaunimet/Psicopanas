@@ -30,6 +30,8 @@ import MessageHappy from "./screens/messagePage.js/MessageHappy";
 
 import MessageVeryHappy from "./screens/messagePage.js/MessageVeryHappy";
 
+import sobrePsicoP from "./screens/we_are/sobrePsicoP.js";
+
 const App = () => (
   <>
     <Router>
@@ -65,6 +67,8 @@ const App = () => (
         <Route path="/mensaje-feliz" component={MessageHappy} />
 
         <Route path="/mensaje-muy-feliz" component={MessageVeryHappy} />
+
+        <Route path="/sobre-Psico-Panas" component={sobrePsicoP} />
 
         <Route path="*" component={Message404} />
       </Switch>
