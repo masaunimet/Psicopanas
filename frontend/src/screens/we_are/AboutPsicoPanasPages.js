@@ -1,22 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import "../landingPage/LandingPage.css";
-import { useSelector } from "react-redux";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import i1 from "../../images/instrucc_paso1.png";
 import i2 from "../../images/Configuracion.png";
 import i3 from "../../images/Foro.png";
 
-const SobrePsicoP = ({ history }) => {
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
-  useEffect(() => {
-    if (!userInfo) {
-      history.push("/");
-    }
-  });
-
+const AboutPsicoPanasPages = () => {
   return (
     <MainScreen title="Sobre PsicoPanas">
       <Container className="white-background">
@@ -155,4 +145,4 @@ const SobrePsicoP = ({ history }) => {
   );
 };
 
-export default SobrePsicoP;
+export default AboutPsicoPanasPages;

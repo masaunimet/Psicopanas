@@ -35,7 +35,7 @@ import LecturesPage from "./screens/lecturesPage/LecturesPage";
 import AdminCreateLecturePage from "./screens/adminPage.js/AdminCreateLecturePage";
 import AdminListLecturesPage from "./screens/adminPage.js/AdminListLecturesPage";
 import AdminEditLecturePage from "./screens/adminPage.js/AdminEditLecturePage";
-import sobrePsicoP from "./screens/we_are/SobrePsicoP.js";
+import AboutPsicoPanasPages from "./screens/we_are/AboutPsicoPanasPages";
 
 const App = () => (
   <>
@@ -90,7 +90,7 @@ const App = () => (
         <Route path="/mensaje-feliz" component={MessageHappy} />
         <Route path="/mensaje-muy-feliz" component={MessageVeryHappy} />
 
-        <Route path="/sobre-Psico-Panas" component={sobrePsicoP} />
+        <Route path="/sobre-Psico-Panas" component={AboutPsicoPanasPages} />
 
         <Route path="*" component={Message404} />
       </Switch>
