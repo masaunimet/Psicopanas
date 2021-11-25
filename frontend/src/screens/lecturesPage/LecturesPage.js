@@ -51,10 +51,10 @@ const LecturesPage = ({ history }) => {
           {loadingPublicated && <Loading />}
           {publicatedLecturesInfo
             ?.sort((a, b) => {
-              if (a.publicationDate < b.publicationDate) {
+              if (a.publicationDate > b.publicationDate) {
                 return -1;
               }
-              if (a.publicationDate > b.publicationDate) {
+              if (a.publicationDate < b.publicationDate) {
                 return 1;
               }
               return 0;
@@ -86,7 +86,7 @@ const LecturesPage = ({ history }) => {
                         }}
                       >
                         <div className="subtitle-text-blue">
-                          {lecture.title.slice(0, 15)}
+                          {lecture.title}
                         </div>
                       </div>
                     </Accordion.Toggle>
@@ -110,7 +110,10 @@ const LecturesPage = ({ history }) => {
                             </div>
                           </Col>
                           <Col md={9}>
-                            <div className="plain-justify-text">
+                            <div
+                              className="plain-justify-text"
+                              style={{ fontSize: "16px", fontWeight: "bold" }}
+                            >
                               {lecture.content}
                             </div>
                           </Col>
