@@ -18,30 +18,26 @@ const MessageBadStreak = ({ history }) => {
       }
     }
   });
+
+  const consejo = () => {
+    var num = Math.floor(Math.random() * (3 + 1 - 1) + 1);
+    if (num === 1) {
+      return "No dudes en buscar apoyo. Recuerda darte tu tiempo para digerir lo que está sucediendo";
+    } else if (num === 2) {
+      return "No dudes en buscar apoyo. Hay un mar de posibilidades en esta vida, tómatelo con calma y respira";
+    } else {
+      return "No dudes en buscar apoyo. Trata de llevar las cosas con calma";
+    }
+  };
+
   return (
     <MainScreen title="Siento que te sientas así">
       <Container>
         <Col>
           <div className="Centrado">
-            var num = Math.floor(Math.random() * (3 + 1 - 1) + 1);
-            
-            if (num === 1) {
-            <p className="subtitle-text-blue">
-              No dudes en buscar apoyo. Recuerda darte tu tiempo para digerir lo
-              que está sucediendo
-            </p> }
-            else if (num === 2) {
-              <p className="subtitle-text-blue">
-              No dudes en buscar apoyo. Hay un mar de posibilidades en esta
-              vida, tómatelo con calma y respira.
-            </p>
-             }else{
-              <p className="subtitle-text-blue">
-              No dudes en buscar apoyo. Trata de llevar las cosas con calma.
-              </p>
-             }
-             
+            <p className="subtitle-text-blue">{consejo()}</p>
           </div>
+
           <div className="Centrado">
             <img src={Goti} width="200" height="250" alt="Goti" />
           </div>
