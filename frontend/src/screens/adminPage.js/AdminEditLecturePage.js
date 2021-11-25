@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateLectureAction } from "../../actions/lectureActions";
 import ErrorMessage from "../../components/ErrorMessage";
 import MainScreen from "../../components/mainscreen/MainScreen";
@@ -15,6 +15,19 @@ const AdminEditLecturePage = ({ match, history }) => {
   const [image, setImage] = useState("");
   const [publicationDate, setPublicationDate] = useState("");
   const [picMessage, setPicMessage] = useState();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  useEffect(() => {
+    if (!userInfo) {
+      history.push("/");
+    } else {
+      if (userInfo?.isAdmin === false) {
+        history.push("/");
+      }
+    }
+  }, [dispatch, history, userInfo]);
 
   useEffect(() => {
     const fetching = async () => {

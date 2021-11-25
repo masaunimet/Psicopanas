@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MainScreen from "../../components/mainscreen/MainScreen";
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card, Form, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "../../components/ErrorMessage";
@@ -190,76 +190,93 @@ const DiaryConfigPage = ({ history }) => {
 
   return (
     <MainScreen title="Configuración de mi diario">
-      <Link to="/diario">
-        <Button variant="primary" className="button-all-page">
-          Volver a mi diario
-        </Button>
-      </Link>
-      <Card className="no-background">
-        <Card.Header className="no-background-bb">
-          <div className="subtitle-text-blue">Seguridad de mi diario</div>
-        </Card.Header>
+      <Card className="no-background" style={{ margin: "10px" }}>
+        <Link to="/diario">
+          <Button variant="primary" className="button-all-page">
+            Volver a mi diario
+          </Button>
+        </Link>
+        <Card className="no-background">
+          <Card.Header className="no-background-bb">
+            <div className="subtitle-text-blue">Seguridad de mi diario</div>
+          </Card.Header>
 
-        {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
-        {diarySecurity === false ? (
-          <div>
-            <Form onSubmit={submitHandlerSecurity} className="no-background">
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label className="plain-text">Contraseña</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder=""
-                  onChange={(e) => setDiaryPassword(e.target.value)}
-                />
-              </Form.Group>
+          {message && (
+            <ErrorMessage variant="danger">
+              {
+                "Ha ocurrido un error al cargar los datos de seguridad. Por favor recargue la página"
+              }
+            </ErrorMessage>
+          )}
+          {diarySecurity === false ? (
+            <div>
+              <Form onSubmit={submitHandlerSecurity} className="no-background">
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label className="plain-text">Contraseña</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder=""
+                    onChange={(e) => setDiaryPassword(e.target.value)}
+                  />
+                </Form.Group>
 
-              <Form.Group controlId="confirmPassword">
-                <Form.Label className="plain-text">
-                  Confirmar contraseña
-                </Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder=""
-                  onChange={(e) => setConfirmDiaryPassword(e.target.value)}
-                />
-              </Form.Group>
+                <Form.Group controlId="confirmPassword">
+                  <Form.Label className="plain-text">
+                    Confirmar contraseña
+                  </Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder=""
+                    onChange={(e) => setConfirmDiaryPassword(e.target.value)}
+                  />
+                </Form.Group>
 
-              <Button
-                variant="primary"
-                type="submit"
-                className="button-all-page"
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="button-all-page"
+                >
+                  Activar seguridad
+                </Button>
+              </Form>
+            </div>
+          ) : (
+            <div>
+              <Form
+                onSubmit={submitHandlerNoSecurity}
+                className="no-background"
               >
-                Activar seguridad
-              </Button>
-            </Form>
-          </div>
-        ) : (
-          <div>
-            <Form onSubmit={submitHandlerNoSecurity} className="no-background">
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label className="plain-text">
-                  Contraseña de mi diario
-                </Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder=""
-                  onChange={(e) => setUpdateDiaryPassword(e.target.value)}
-                />
-              </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label className="plain-text">
+                    Contraseña de mi diario
+                  </Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder=""
+                    onChange={(e) => setUpdateDiaryPassword(e.target.value)}
+                  />
+                </Form.Group>
 
-              <Button
-                variant="primary"
-                type="submit"
-                className="button-all-page"
-              >
-                Desactivar seguridad
-              </Button>
-            </Form>
-          </div>
-        )}
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="button-all-page"
+                >
+                  Desactivar seguridad
+                </Button>
+              </Form>
+            </div>
+          )}
+        </Card>
       </Card>
-      <Card className="no-background">
-        {message2 && <ErrorMessage variant="info">{message2}</ErrorMessage>}
+      <Card className="no-background" style={{ margin: "10px" }}>
+        {message2 && (
+          <ErrorMessage variant="info">
+            {
+              "Ocurrió un error al cargar las actividades. Por favor recargue la página"
+            }
+          </ErrorMessage>
+        )}
         <Card.Header className="no-background-bb">
           <div className="subtitle-text-blue">
             Mis actividades personalizadas
@@ -267,112 +284,118 @@ const DiaryConfigPage = ({ history }) => {
         </Card.Header>
         <Card.Body>
           <Form onSubmit={submitHandler}>
-            <Form.Group controlId="tag1">
-              <Form.Control
-                type="text"
-                value={dataTag1}
-                id="inputTag1"
-                onChange={(e) => setTag1(e.target.value)}
-                autocomplete="off"
-                className="plain-text"
-              />
-            </Form.Group>
-            <Form.Group controlId="tag2">
-              <Form.Control
-                type="text"
-                value={dataTag2}
-                id="inputTag2"
-                onChange={(e) => setTag2(e.target.value)}
-                autocomplete="off"
-                className="plain-text"
-              />
-            </Form.Group>
-            <Form.Group controlId="tag3">
-              <Form.Control
-                type="text"
-                value={dataTag3}
-                id="inputTag3"
-                onChange={(e) => setTag3(e.target.value)}
-                autocomplete="off"
-                className="plain-text"
-              />
-            </Form.Group>
-            <Form.Group controlId="tag4">
-              <Form.Control
-                type="text"
-                value={dataTag4}
-                id="inputTag4"
-                onChange={(e) => setTag4(e.target.value)}
-                autocomplete="off"
-                className="plain-text"
-              />
-            </Form.Group>
-            <Form.Group controlId="tag5">
-              <Form.Control
-                type="text"
-                value={dataTag5}
-                id="inputTag5"
-                onChange={(e) => setTag5(e.target.value)}
-                autocomplete="off"
-                className="plain-text"
-              />
-            </Form.Group>
-            {userInfo?.isPremium ? (
-              <>
-                <Form.Group controlId="tag6">
+            <Row>
+              <Col>
+                <Form.Group controlId="tag1">
                   <Form.Control
                     type="text"
-                    value={dataTag6}
-                    id="inputTag6"
-                    onChange={(e) => setTag6(e.target.value)}
+                    value={dataTag1}
+                    id="inputTag1"
+                    onChange={(e) => setTag1(e.target.value)}
                     autocomplete="off"
                     className="plain-text"
                   />
                 </Form.Group>
-                <Form.Group controlId="tag7">
+                <Form.Group controlId="tag2">
                   <Form.Control
                     type="text"
-                    value={dataTag7}
-                    id="inputTag7"
-                    onChange={(e) => setTag7(e.target.value)}
+                    value={dataTag2}
+                    id="inputTag2"
+                    onChange={(e) => setTag2(e.target.value)}
                     autocomplete="off"
                     className="plain-text"
                   />
                 </Form.Group>
-                <Form.Group controlId="tag8">
+                <Form.Group controlId="tag3">
                   <Form.Control
                     type="text"
-                    value={dataTag8}
-                    id="inputTag8"
-                    onChange={(e) => setTag8(e.target.value)}
+                    value={dataTag3}
+                    id="inputTag3"
+                    onChange={(e) => setTag3(e.target.value)}
                     autocomplete="off"
                     className="plain-text"
                   />
                 </Form.Group>
-                <Form.Group controlId="tag9">
+                <Form.Group controlId="tag4">
                   <Form.Control
                     type="text"
-                    value={dataTag9}
-                    id="inputTag9"
-                    onChange={(e) => setTag9(e.target.value)}
+                    value={dataTag4}
+                    id="inputTag4"
+                    onChange={(e) => setTag4(e.target.value)}
                     autocomplete="off"
                     className="plain-text"
                   />
                 </Form.Group>
-                <Form.Group controlId="tag10">
+                <Form.Group controlId="tag5">
                   <Form.Control
                     type="text"
-                    value={dataTag10}
-                    id="inputTag10"
-                    onChange={(e) => setTag10(e.target.value)}
+                    value={dataTag5}
+                    id="inputTag5"
+                    onChange={(e) => setTag5(e.target.value)}
                     autocomplete="off"
                     className="plain-text"
                   />
                 </Form.Group>
-              </>
-            ) : (
-              <div></div>
-            )}
+              </Col>
+              <Col>
+                {userInfo?.isPremium ? (
+                  <>
+                    <Form.Group controlId="tag6">
+                      <Form.Control
+                        type="text"
+                        value={dataTag6}
+                        id="inputTag6"
+                        onChange={(e) => setTag6(e.target.value)}
+                        autocomplete="off"
+                        className="plain-text"
+                      />
+                    </Form.Group>
+                    <Form.Group controlId="tag7">
+                      <Form.Control
+                        type="text"
+                        value={dataTag7}
+                        id="inputTag7"
+                        onChange={(e) => setTag7(e.target.value)}
+                        autocomplete="off"
+                        className="plain-text"
+                      />
+                    </Form.Group>
+                    <Form.Group controlId="tag8">
+                      <Form.Control
+                        type="text"
+                        value={dataTag8}
+                        id="inputTag8"
+                        onChange={(e) => setTag8(e.target.value)}
+                        autocomplete="off"
+                        className="plain-text"
+                      />
+                    </Form.Group>
+                    <Form.Group controlId="tag9">
+                      <Form.Control
+                        type="text"
+                        value={dataTag9}
+                        id="inputTag9"
+                        onChange={(e) => setTag9(e.target.value)}
+                        autocomplete="off"
+                        className="plain-text"
+                      />
+                    </Form.Group>
+                    <Form.Group controlId="tag10">
+                      <Form.Control
+                        type="text"
+                        value={dataTag10}
+                        id="inputTag10"
+                        onChange={(e) => setTag10(e.target.value)}
+                        autocomplete="off"
+                        className="plain-text"
+                      />
+                    </Form.Group>
+                  </>
+                ) : (
+                  <div></div>
+                )}
+              </Col>
+            </Row>
             <Button variant="primary" type="submit" className="button-all-page">
               Guardar cambios en mis actividades
             </Button>

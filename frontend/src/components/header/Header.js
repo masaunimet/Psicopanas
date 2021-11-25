@@ -92,31 +92,6 @@ const Header = () => {
                 ) : (
                   <>
                     <Nav.Item className="padding_butons">
-                      {!userInfo.isPremium ? (
-                        <NavLink
-                          to="/pagos"
-                          className="textnavbar"
-                          activeStyle={{
-                            fontWeight: "bold",
-                            color: "#0FA5AE",
-                          }}
-                        >
-                          Pagos
-                        </NavLink>
-                      ) : (
-                        <NavLink
-                          to="/foro"
-                          className="textnavbar"
-                          activeStyle={{
-                            fontWeight: "bold",
-                            color: "#0FA5AE",
-                          }}
-                        >
-                          Foro
-                        </NavLink>
-                      )}
-                    </Nav.Item>
-                    <Nav.Item className="padding_butons">
                       {userInfo.diarySecurity === true ? (
                         <NavLink
                           to="/authDiario"
@@ -152,6 +127,31 @@ const Header = () => {
                       >
                         Lecturas
                       </NavLink>
+                    </Nav.Item>
+                    <Nav.Item className="padding_butons">
+                      {!userInfo.isPremium ? (
+                        <NavLink
+                          to="/pagos"
+                          className="textnavbar"
+                          activeStyle={{
+                            fontWeight: "bold",
+                            color: "#0FA5AE",
+                          }}
+                        >
+                          Pagos
+                        </NavLink>
+                      ) : (
+                        <NavLink
+                          to="/foro"
+                          className="textnavbar"
+                          activeStyle={{
+                            fontWeight: "bold",
+                            color: "#0FA5AE",
+                          }}
+                        >
+                          Foro
+                        </NavLink>
+                      )}
                     </Nav.Item>
                     <Nav.Item>
                       <NavDropdown

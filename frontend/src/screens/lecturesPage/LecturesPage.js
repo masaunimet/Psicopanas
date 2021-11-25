@@ -42,7 +42,11 @@ const LecturesPage = ({ history }) => {
       <Container>
         <Row>
           {errorPublicated && (
-            <ErrorMessage variant="danger">{errorPublicated}</ErrorMessage>
+            <ErrorMessage variant="danger">
+              {
+                "Ocurrió un error al cargar las lecturas. Por favor recargue la página"
+              }
+            </ErrorMessage>
           )}
           {loadingPublicated && <Loading />}
           {publicatedLecturesInfo
@@ -55,6 +59,7 @@ const LecturesPage = ({ history }) => {
               }
               return 0;
             })
+            .slice(0, 5)
             .map((lecture) => (
               <Accordion key={lecture._id} style={{ width: "100%" }}>
                 <Card className="container-entry">

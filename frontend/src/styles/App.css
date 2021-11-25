@@ -193,7 +193,7 @@
   align-items: center;
   align-self: center;
   flex-direction: column;
-  background-color: #f6f6f6;
+  background-color: #ffffff;
   border-radius: 5px;
   width: 100px;
   height: auto;
@@ -206,9 +206,9 @@
   align-self: center;
   flex-direction: column;
   border-radius: 5px;
-  width: 100px;
   height: auto;
 }
+
 .no-background {
   background: none;
   border: none;
@@ -221,11 +221,15 @@
 }
 
 .box-emotions {
-  width: 60%;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
+}
+
+.box-emotions :hover {
+  background-color: #ffffff;
 }
 
 .flex-container {

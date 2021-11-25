@@ -63,9 +63,11 @@ const AdminListLecturesPage = ({ history }) => {
               </div>
             </Row>
             {errorNonPublicated && (
-              <ErrorMessage variant="danger">{errorNonPublicated}</ErrorMessage>
+              <ErrorMessage variant="danger">
+                {"Ocurrió un error al cargar. Por favor refresque la página"}
+              </ErrorMessage>
             )}
-            {loadingNonPublicated && <Loading size={25} />}
+            {loadingNonPublicated && <Loading size={100} />}
             {nonPublicatedLecturesInfo
               ?.sort((a, b) => {
                 if (a.publicationDate < b.publicationDate) {
@@ -80,7 +82,7 @@ const AdminListLecturesPage = ({ history }) => {
                 <Row className="div-admin-page">
                   <Col className="plain-text">{lecture.title.slice(0, 15)}</Col>
                   <Col className="plain-text">
-                    {moment(lecture.publicationDate).format("LL")}
+                    {moment(lecture.publicationDate).format("ll")}
                   </Col>
                   <Col>
                     <Button
@@ -100,9 +102,11 @@ const AdminListLecturesPage = ({ history }) => {
               </div>
             </Row>
             {errorPublicated && (
-              <ErrorMessage variant="danger">{errorPublicated}</ErrorMessage>
+              <ErrorMessage variant="danger">
+                {"Ocurrió un error al cargar. Por favor refresque la página"}
+              </ErrorMessage>
             )}
-            {loadingPublicated && <Loading size={25} />}
+            {loadingPublicated && <Loading size={100} />}
             {publicatedLecturesInfo
               ?.sort((a, b) => {
                 if (a.publicationDate > b.publicationDate) {
@@ -117,7 +121,7 @@ const AdminListLecturesPage = ({ history }) => {
                 <Row className="div-admin-page">
                   <Col className="plain-text">{lecture.title.slice(0, 15)}</Col>
                   <Col className="plain-text">
-                    {moment(lecture.publicationDate).format("LL")}
+                    {moment(lecture.publicationDate).format("ll")}
                   </Col>
                   <Col>
                     <Button

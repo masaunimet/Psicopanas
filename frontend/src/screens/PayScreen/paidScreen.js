@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import emailjs from "emailjs-com";
 import { useSelector } from "react-redux";
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card, Container, Form, Col, Row } from "react-bootstrap";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import "../../styles/App.css";
 import Loading from "../../components/Loading";
@@ -82,95 +82,119 @@ const PaySreen = ({ history }) => {
 
   return (
     <MainScreen title="Pago Premium">
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div>
-          <div className="subtitle-text-blue">Instrucciones</div>
-          <ol className="plain-text">
-            <li>Hacer el pago por: 10Bs</li>
-            <li>Llenar los campos de texto</li>
-            <li>Enviar un comprobante del pago por medio de una foto</li>
-            <li>Esperar que cargue la imagen</li>
-            <li>
-              Esperar 1 a 2 dias a que se haga pago y aprovechar los beneficios
-            </li>
-          </ol>
-        </div>
-        <div>
-          <div className="subtitle-text-blue">
-            Especificaciones de la cuenta bancaria
-          </div>
-          <ul className="plain-text">
-            <li>Número de cuenta:</li>
-            <li>Tipo de banco:</li>
-            <li>Cedula:</li>
-            <li>Nombre:</li>
-            <li>Telefono:</li>
-            <li>Correo:</li>
-          </ul>
-        </div>
-      </div>
-
-      <Card>
-        <Card.Body>
-          <Form onSubmit={sendEmail}>
-            <Form.Group controlId="title">
-              <Form.Label className="plain-text">Nombre</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Marco Polo"
-                value={nombre}
-                onChange={(e) => setnombre(e.target.value)}
-                autoComplete="off"
-              />
-            </Form.Group>
-            <Form.Group controlId="title">
-              <Form.Label className="plain-text">Correo electronico</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="correo@gmail.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="off"
-              />
-            </Form.Group>
-            <Form.Group controlId="title">
-              <Form.Label className="plain-text">telefono</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="04## 222 2222"
-                value={telefono}
-                onChange={(e) => settelefono(e.target.value)}
-                autoComplete="off"
-              />
-            </Form.Group>
-            <Form.Group controlId="formFileMultiple" className="mb-3">
-              <Form.Label className="plain-text">Foto del pago</Form.Label>
-              <Form.Control
-                type="file"
-                name="file"
-                onChange={(e) => uploadImage(e.target.files[0])}
-              />
-            </Form.Group>
-
-            {loading ? (
-              <>
-                <div className="plain-centered-text">
-                  Esperaremos a que subas la imagen
+      <Container>
+        <Row style={{ background: "#ffffff", border: "none" }}>
+          <Col md={3}>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div>
+                <div
+                  className="subtitle-text-blue"
+                  style={{ marginTop: "10px", marginBottom: "10px" }}
+                >
+                  ¿Cómo me hago Premium?
                 </div>
-                <Loading size={25} />
-              </>
-            ) : (
-              <Button
-                variant="primary"
-                type="submit"
-                className="button-all-page"
-              >
-                Enviar comprobante
-              </Button>
-            )}
-          </Form>
-        </Card.Body>
-      </Card>
+                <div
+                  className="plain-justify-text"
+                  style={{ fontWeight: "bold" }}
+                >
+                  <div>
+                    Haz una transferencia bancaria de 10Bs a la siguiente
+                    cuenta:
+                  </div>
+                  <p></p>
+                  <div>-Número de cuenta: XXXX-XXXX-XXXX-XXXX-XXXX</div>
+                  <div>-Tipo de banco: Mercantil</div>
+                  <div>-Cedula: 27.516.407</div>
+                  <div>-Nombre: PsicoPanas</div>
+                  <div>-Telefono: 0414 XXX XXXX</div>
+                  <div>-Correo: psicopanasdmt@gmail.com</div>
+                  <p></p>
+                </div>
+                <div
+                  className="plain-justify-text"
+                  style={{ fontWeight: "bold" }}
+                >
+                  <div>
+                    Llenar el formulario y adjunta el comprobante de pago. Te
+                    informaremos a tu correo cuando el pago esté confirmado y
+                    podrás disfrutar los beneficios
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Col>
+          <Col>
+            <Card style={{ background: "none", border: "none" }}>
+              <Card.Body style={{ background: "none", border: "none" }}>
+                <Form
+                  onSubmit={sendEmail}
+                  style={{ background: "none", border: "none" }}
+                >
+                  <Form.Group controlId="title">
+                    <Form.Label className="plain-text">Nombre</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Marco Polo"
+                      value={nombre}
+                      onChange={(e) => setnombre(e.target.value)}
+                      autoComplete="off"
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="title">
+                    <Form.Label className="plain-text">
+                      Correo electrónico
+                    </Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="correo@gmail.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      autoComplete="off"
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="title">
+                    <Form.Label className="plain-text">Teléfono</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="04## 222 2222"
+                      value={telefono}
+                      onChange={(e) => settelefono(e.target.value)}
+                      autoComplete="off"
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formFileMultiple" className="mb-3">
+                    <Form.Label className="plain-text">
+                      Foto del pago
+                    </Form.Label>
+                    <Form.Control
+                      type="file"
+                      name="file"
+                      onChange={(e) => uploadImage(e.target.files[0])}
+                    />
+                  </Form.Group>
+
+                  {loading ? (
+                    <>
+                      <div className="plain-centered-text">
+                        Esperaremos a que subas la imagen
+                      </div>
+                      <Loading size={25} />
+                    </>
+                  ) : (
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      className="button-all-page"
+                    >
+                      Enviar comprobante
+                    </Button>
+                  )}
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     </MainScreen>
   );
 };

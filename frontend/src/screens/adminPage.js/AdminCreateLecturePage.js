@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createLectureAction } from "../../actions/lectureActions";
 import ErrorMessage from "../../components/ErrorMessage";
 import Loading from "../../components/Loading";
@@ -16,6 +16,19 @@ const AdminCreateLecturePage = ({ history }) => {
   const [publicationDate, setPublicationDate] = useState("");
   const [picMessage, setPicMessage] = useState();
   const [loading, setloading] = useState(true);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  useEffect(() => {
+    if (!userInfo) {
+      history.push("/");
+    } else {
+      if (userInfo?.isAdmin === false) {
+        history.push("/");
+      }
+    }
+  }, [dispatch, history, userInfo]);
 
   const createLecture = (e) => {
     e.preventDefault();
@@ -80,7 +93,11 @@ const AdminCreateLecturePage = ({ history }) => {
             <Card.Body>
               <Form onSubmit={createLecture}>
                 {picMessage && (
-                  <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
+                  <ErrorMessage variant="danger">
+                    {
+                      "Ocurrió un error al cargar la imagen. Asegúrese de que sea .png o .jpeg e inténtelo nuevamente"
+                    }
+                  </ErrorMessage>
                 )}
                 <Form.Group controlId="title">
                   <Form.Label className="plain-text">Título</Form.Label>
