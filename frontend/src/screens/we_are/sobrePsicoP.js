@@ -48,7 +48,7 @@ const SobrePsicoP = ({ history }) => {
                 para contar tus experiencias en el día a día y cómo te has
                 sentido. Puedes crear cuantas entradas desees y podrás ver un
                 resumen de tus cambios de ánimo del mes a través de las
-                estadísticas y configurar tu diario como desees.
+                estadísticas y configurar tu diario como desees
               </p>
             </div>
           </Col>
