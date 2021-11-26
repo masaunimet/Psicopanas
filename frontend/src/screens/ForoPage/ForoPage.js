@@ -448,13 +448,16 @@ const ForoPage = ({ history }) => {
   };
 
   return (
-    <MainScreen title="Foro">
+    <MainScreen >
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Button
+        
+        variant="secondary"
           className="button"
           onClick={(e) => {
             setOption(0);
             setChatActual("General");
+            
           }}
         >
           General
@@ -534,6 +537,7 @@ const ForoPage = ({ history }) => {
                 </Button>
                 <Button
                   id="button-addon2"
+                  variant="secondary"
                   className="button"
                   onClick={submitHandlerAnon}
                 >
@@ -563,6 +567,7 @@ const ForoPage = ({ history }) => {
                 <Button
                   id="button-addon2"
                   className="button"
+                  variant="secondary"
                   onClick={submitHandlerAnon}
                 >
                   Enviar Anónimo

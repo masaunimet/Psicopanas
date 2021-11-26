@@ -72,7 +72,7 @@ const Diario = ({ history }) => {
         <Link to="/crearEntrada">
           <Button
             size="md"
-            variant="primary"
+            variant="secondary"
             className="button"
             style={{ marginLeft: "10px" }}
           >

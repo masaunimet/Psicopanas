@@ -521,7 +521,7 @@ function CreateEntryPage({ history }) {
                 <Col>
                   <Button
                     type="submit"
-                    variant="primary"
+                    variant="secondary"
                     className="button-all-page"
                   >
                     Guardar

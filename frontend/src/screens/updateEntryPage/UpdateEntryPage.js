@@ -423,6 +423,16 @@ function UpdateEntryPage({ match, history }) {
                         <p className="subtitle-text-soft-blue">
                           Personalizadas
                         </p>
+                        <Link to="/ajustes-diario">
+                            <Button className="edit-button">
+                              <img
+                                src="https://res.cloudinary.com/psicopanas/image/upload/v1634441688/iconPencil_zngxxh.png"
+                                width="20px"
+                                height="20px"
+                                alt="Editar"
+                              />
+                            </Button>
+                          </Link>
                       </div>
                       {mitad.map((ptag) => (
                         <div>
@@ -505,7 +515,7 @@ function UpdateEntryPage({ match, history }) {
               <Col>
                 <Button
                   type="submit"
-                  variant="primary"
+                  variant="secondary"
                   className="button-all-page"
                 >
                   Guardar cambios

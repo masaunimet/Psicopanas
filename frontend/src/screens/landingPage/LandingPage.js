@@ -31,6 +31,8 @@ const LandingPage = ({ history }) => {
                 <Row>
                   <div className="Centrado">
                     <h2 className="title">Bienvenido a PsicoPanas</h2>
+                    </div>
+                    <div className="Centrado">
                     <p className="subtitle">
                       Este es tu espacio, tu diario personal. 
                       Donde Goti te aconseja. 
