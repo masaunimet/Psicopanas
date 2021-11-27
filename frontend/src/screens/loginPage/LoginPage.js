@@ -8,6 +8,11 @@ import { login } from "../../actions/userActions";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import "../../styles/App.css";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de Login
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const LoginPage = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +22,7 @@ const LoginPage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (userInfo) {
       if (userInfo?.isAdmin === false) {
@@ -31,6 +37,11 @@ const LoginPage = ({ history }) => {
     }
   }, [history, userInfo]);
 
+  /**
+  * @desc La funcion se encarga de verificar si se puede logear 
+  * con la funcion importada login
+  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+  */
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));

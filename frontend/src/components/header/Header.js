@@ -6,6 +6,9 @@ import { logout } from "../../actions/userActions";
 import LogoPP from "../../images/logoPP.png";
 import "../header/Header.css";
 
+/**
+  * @desc Es un componente que sirve para ser el navbar
+*/
 const Header = () => {
   const history = useHistory();
 
@@ -15,6 +18,7 @@ const Header = () => {
 
   const { userInfo } = userLogin;
 
+  /**@desc es una funcion que sirve para deslogerse con logout e ir al home*/
   const logoutHandler = () => {
     dispatch(logout());
     history.push("/");

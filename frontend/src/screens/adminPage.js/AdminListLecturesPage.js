@@ -11,6 +11,11 @@ import MainScreen from "../../components/mainscreen/MainScreen";
 import moment from "moment";
 import "../../styles/App.css";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de ver todas las lecturas del Admin
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const AdminListLecturesPage = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -34,6 +39,7 @@ const AdminListLecturesPage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -44,10 +50,12 @@ const AdminListLecturesPage = ({ history }) => {
     }
   }, [dispatch, history, userInfo]);
 
+  //trae la informacion de getPublicatedLecturesAction a redux
   useEffect(() => {
     dispatch(getPublicatedLecturesAction());
   }, [dispatch]);
 
+  //trae la informacion de getNonPublicatedLecturesAction a redux
   useEffect(() => {
     dispatch(getNonPublicatedLecturesAction());
   }, [dispatch]);

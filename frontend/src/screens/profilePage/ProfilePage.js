@@ -4,10 +4,16 @@ import { useSelector } from "react-redux";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import moment from "moment";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de ver la informacion del perfil
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const ProfilePage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (!userInfo) {
       history.push("/");

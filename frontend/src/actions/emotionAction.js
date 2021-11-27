@@ -5,6 +5,9 @@ import {
 } from "../constants/emotionsConstants";
 import axios from "axios";
 
+/**
+  * @desc 
+*/
 export const listEmotions = () => async (dispatch, getState) => {
   try {
     dispatch({ type: EMOTION_LIST_REQUEST });

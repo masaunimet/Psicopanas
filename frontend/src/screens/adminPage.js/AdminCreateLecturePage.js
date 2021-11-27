@@ -8,6 +8,11 @@ import MainScreen from "../../components/mainscreen/MainScreen";
 import moment from "moment";
 import "../../styles/App.css";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de creaar lecturas del Admin
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const AdminCreateLecturePage = ({ history }) => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
@@ -20,6 +25,7 @@ const AdminCreateLecturePage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -30,6 +36,11 @@ const AdminCreateLecturePage = ({ history }) => {
     }
   }, [dispatch, history, userInfo]);
 
+  /**
+  * @desc Llama al import Action, en especifico, createLectureAction
+  * para crear una lectura en el backend
+  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+  */
   const createLecture = (e) => {
     e.preventDefault();
     if (
@@ -52,6 +63,10 @@ const AdminCreateLecturePage = ({ history }) => {
     }
   };
 
+  /**
+  * @desc Permite subir la imagen al servicio de backend de imagenes llamada cloudinary
+  * @param pics imagen que se subira
+  */
   const postDetails = (pics) => {
     setPicMessage(null);
     setloading(true);

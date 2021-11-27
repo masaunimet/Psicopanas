@@ -7,6 +7,11 @@ import Loading from "../../components/Loading";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import "../../styles/App.css";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de ver/modificar los roles de premium de los usuarios por el Admin
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const AdminPage = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -16,6 +21,7 @@ const AdminPage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (!userInfo) {
       history.push("/");

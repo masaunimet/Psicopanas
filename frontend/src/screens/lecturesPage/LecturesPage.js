@@ -8,6 +8,11 @@ import MainScreen from "../../components/mainscreen/MainScreen";
 import moment from "moment";
 import "../../styles/App.css";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de Lecturas
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const LecturesPage = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -23,6 +28,7 @@ const LecturesPage = ({ history }) => {
     publicatedLecturesInfo,
   } = getPublicatedLectures;
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -33,6 +39,7 @@ const LecturesPage = ({ history }) => {
     }
   });
 
+  //trae la informacion de getPublicatedLecturesAction a redux
   useEffect(() => {
     dispatch(getPublicatedLecturesAction());
   }, [dispatch]);

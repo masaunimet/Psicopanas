@@ -8,6 +8,11 @@ import axios from "axios";
 import moment from "moment";
 import "../../styles/App.css";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de editar lecturas del Admin
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const AdminEditLecturePage = ({ match, history }) => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
@@ -19,6 +24,7 @@ const AdminEditLecturePage = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+   //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -29,6 +35,7 @@ const AdminEditLecturePage = ({ match, history }) => {
     }
   }, [dispatch, history, userInfo]);
 
+  //encargada de agarrar la informacion desde la backend y ponerla en la pagina
   useEffect(() => {
     const fetching = async () => {
       const { data } = await axios.get(`/api/lectures/edit/${match.params.id}`);
@@ -41,6 +48,11 @@ const AdminEditLecturePage = ({ match, history }) => {
     fetching();
   }, [match.params.id]);
 
+  /**
+  * @desc Llama al import Action, en especifico, updateLectureAction
+  * para editar una lectura en el backend
+  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+  */
   const updateLecture = (e) => {
     e.preventDefault();
     if (
@@ -64,6 +76,10 @@ const AdminEditLecturePage = ({ match, history }) => {
     }
   };
 
+  /**
+  * @desc Permite subir la imagen al servicio de backend de imagenes llamada cloudinary
+  * @param pics imagen que se subira
+  */
   const postDetails = (pics) => {
     setPicMessage(null);
     if (pics.type === "image/jpeg" || pics.type === "image/png") {

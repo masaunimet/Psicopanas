@@ -14,6 +14,11 @@ import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import "../../styles/App.css";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de estadisticas
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const Estadisticas = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -29,6 +34,7 @@ const Estadisticas = ({ history }) => {
 
   const [showTop, setShowTop] = useState(false);
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     dispatch(getStats());
     if (!userInfo) {
@@ -45,10 +51,12 @@ const Estadisticas = ({ history }) => {
     }
   }, [dispatch, history, userInfo, successDiary]);
 
+  //trae la informacion de getTagStats a redux
   useEffect(() => {
     dispatch(getTagStats());
   }, [dispatch]);
 
+  //trae la informacion de getMonthStats a redux
   useEffect(() => {
     dispatch(getMonthStats());
   }, [dispatch]);
@@ -73,6 +81,7 @@ const Estadisticas = ({ history }) => {
     };
   }
 
+  //se encarga de tener informacion placheholder mientras carga la info del backend
   let jsonData2 = null;
   if (datumMonth !== undefined) {
     jsonData2 = {
@@ -99,6 +108,10 @@ const Estadisticas = ({ history }) => {
     };
   }
 
+  /**
+  * @desc La funcion se encarga de agarrar la informacion de las estadisticas para
+  * sacar un valor promedio
+  */
   const emotion = () => {
     const pond =
       5 * datum[0] + 4 * datum[1] + 3 * datum[2] + 2 * datum[3] + 1 * datum[4];
@@ -114,6 +127,10 @@ const Estadisticas = ({ history }) => {
     else if (promedio === 1) return "Muy Mal";
   };
 
+  /**
+  * @desc La funcion se encarga de agarrar la informacion de las estadisticas para
+  * sacar un valor promedio
+  */
   const emotion2 = () => {
     const pond2 =
       5 * datumMonth[0] +

@@ -1,6 +1,10 @@
 import React from "react";
 import { Spinner } from "react-bootstrap";
 
+/**
+  * @desc Es la funcion componente que sirve como elemento para cargar algo
+  * @param size tamaño del Spinner
+*/
 function Loading({ size = 100 }) {
   return (
     <div

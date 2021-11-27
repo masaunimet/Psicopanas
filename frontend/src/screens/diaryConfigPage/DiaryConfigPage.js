@@ -11,6 +11,11 @@ import {
 } from "../../actions/userActions";
 import "../../styles/App.css";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de las configuraciones del diario
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const DiaryConfigPage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -40,6 +45,7 @@ const DiaryConfigPage = ({ history }) => {
 
   const dispatch = useDispatch();
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -70,6 +76,10 @@ const DiaryConfigPage = ({ history }) => {
     }
   }, [history, userInfo, successDiary]);
 
+  /**
+  * @desc La funcion se encarga de cargar los cambios si la pagina del diario tiene seguridad
+  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+  */
   const submitHandlerSecurity = async (e) => {
     e.preventDefault();
     if (isEmpty(diaryPassword) || isEmpty(confirmdiarypassword)) {
@@ -92,6 +102,10 @@ const DiaryConfigPage = ({ history }) => {
     }
   };
 
+  /**
+  * @desc La funcion se encarga de cargar los cambios si la pagina del diario no tiene seguridad
+  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+  */
   const submitHandlerNoSecurity = async (e) => {
     e.preventDefault();
     if (diaryPassword === updateDiaryPassword) {
@@ -112,6 +126,10 @@ const DiaryConfigPage = ({ history }) => {
     }
   };
 
+  /**
+  * @desc La funcion se encarga de guardar los cambios hechos en los tags personales
+  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+  */
   const submitHandler = async (e) => {
     e.preventDefault();
     const arrayTags = [];
@@ -184,6 +202,10 @@ const DiaryConfigPage = ({ history }) => {
     history.push("/mensaje-configurar-diario");
   };
 
+  /**
+   * @desc Comprueba si el parametro esta vacio
+   * @param str string
+   */
   function isEmpty(str) {
     return !str || 0 === str.length;
   }

@@ -13,6 +13,11 @@ import "../../styles/App.css";
 
 let setEmotion = "";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de crear entrada del diario
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 function CreateEntryPage({ history }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -25,6 +30,7 @@ function CreateEntryPage({ history }) {
   const entryCreate = useSelector((state) => state.entryCreate);
   const { loading, error } = entryCreate;
 
+  /**@desc resetea los valores de title y content */
   const resetHandler = () => {
     setTitle("");
     setContent("");
@@ -48,6 +54,7 @@ function CreateEntryPage({ history }) {
   const diaryAuth = useSelector((state) => state.diaryAuth);
   const { successDiary } = diaryAuth;
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -72,14 +79,21 @@ function CreateEntryPage({ history }) {
   //   dispatch(lastEntry());
   // }, [dispatch]);
 
+  //trae la informacion de listEmotions a redux
   useEffect(() => {
     dispatch(listEmotions());
   }, [dispatch, history, userInfo]);
 
+  //trae la informacion de listTags a redux
   useEffect(() => {
     dispatch(listTags());
   }, [dispatch]);
 
+  /**
+  * @desc La funcion se encarga de verificar si todos los datos necesarios estan puestos
+  * y mandarlos al backend gracias al action impotado createEntryAction
+  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+  */
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -138,10 +152,21 @@ function CreateEntryPage({ history }) {
     resetHandler();
   };
 
+  /**
+   * @desc Comprueba si el parametro esta vacio
+   * @param str string
+   */
   function isEmpty(str) {
     return !str || 0 === str.length;
   }
 
+  /**
+   * @desc Se encarga de comparar los botones con el id del backend para 
+   * ponerle un valor a la informacion sobre la imagen que se muestra
+   * @param id string que va a ser comparada con el backend de emotions
+   * @param icon string si emotion._id no es igual a icon, entonces la
+   * imagen va a tener el src del valor de icon
+   */
   const visualButtons = (id, icon) => {
     emotions?.forEach((emotion) => {
       if (emotion._id !== id) {
@@ -187,6 +212,10 @@ function CreateEntryPage({ history }) {
     });
   };
 
+  /**
+   * @desc Se encarga de comparar los valores del id de los botones para 
+   * ponerle un valor a la informacion sobre la imagen que se muestra
+   */
   const visualButtons2 = () => {
     emotions?.forEach((emotion) => {
       if (emotion._id === "6169efd6152f0e9299ff6810") {

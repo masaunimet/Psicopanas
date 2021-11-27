@@ -7,6 +7,11 @@ import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import "../../styles/App.css";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de editar perfil
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const UpdateProfilePage = ({ history }) => {
   const [name, setName] = useState("");
   const [profilePicture, setProfilePicture] = useState();
@@ -22,6 +27,7 @@ const UpdateProfilePage = ({ history }) => {
   const userUpdate = useSelector((state) => state.userUpdate);
   const { loading, error, success } = userUpdate;
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -35,6 +41,10 @@ const UpdateProfilePage = ({ history }) => {
     }
   }, [history, userInfo]);
 
+  /**
+  * @desc Permite subir la imagen al servicio de backend de imagenes llamada cloudinary
+  * @param pics imagen que se subira
+  */
   const postDetails = (pics) => {
     setPicMessage(null);
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
@@ -59,6 +69,11 @@ const UpdateProfilePage = ({ history }) => {
     }
   };
 
+  /**
+  * @desc La funcion se encarga de llamar a la funcion del action importado llamado
+  * updateProfile con los parametros de tu informacion
+  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+  */
   const submitHandler = (e) => {
     e.preventDefault();
 

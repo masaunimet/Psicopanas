@@ -3,6 +3,11 @@ import { Container, Row } from "react-bootstrap";
 import "./MainScreen.css";
 import Media from "react-media";
 
+/**
+  * @desc Es la funcion componente que sirve como fondo y placheholder de pagina
+  * @param children codigo de la pagina
+  * @param title string titulo de la pagina
+*/
 function MainScreen({ children, title }) {
   return (
     <>

@@ -6,6 +6,11 @@ import MainScreen from "../../components/mainscreen/MainScreen";
 import "../../styles/App.css";
 import Loading from "../../components/Loading";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de pagos
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const PaySreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -16,6 +21,7 @@ const PaySreen = ({ history }) => {
   const [foto, setFoto] = useState("");
   const [loading, setloading] = useState(false);
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -26,6 +32,10 @@ const PaySreen = ({ history }) => {
     }
   });
 
+  /**
+  * @desc La funcion se encarga de enviar el email al equipo de PsicoPanas
+  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+  */
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -58,6 +68,10 @@ const PaySreen = ({ history }) => {
     }
   };
 
+  /**
+  * @desc Permite subir la imagen al servicio de backend de imagenes llamada cloudinary
+  * @param e imagen que se subira
+  */
   const uploadImage = async (e) => {
     if (e.type === "image/jpeg" || e.type === "image/png") {
       const data = new FormData();

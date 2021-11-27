@@ -8,6 +8,11 @@ import { register } from "../../actions/userActions";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import "../../styles/App.css";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de Registrar un usuario
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const RegisterPage = ({ history }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -23,6 +28,7 @@ const RegisterPage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (userInfo) {
       history.push("/diario");
@@ -33,6 +39,11 @@ const RegisterPage = ({ history }) => {
     }
   }, [history, userInfo]);
 
+  /**
+  * @desc La funcion se encarga de verificar si se puede registrar 
+  * con la funcion importada register
+  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+  */
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmpassword) {

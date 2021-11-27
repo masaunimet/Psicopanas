@@ -3,7 +3,6 @@ import { Accordion, Button, Card, Container, Row, Col } from "react-bootstrap";
 import MainScreen from "../../components/mainscreen/MainScreen";
 import { Link } from "react-router-dom";
 import moment from "moment";
-
 import { useDispatch, useSelector } from "react-redux";
 import { listEntries } from "../../actions/entryActions";
 import { listTags } from "../../actions/tagActions";
@@ -11,6 +10,11 @@ import { listEmotions } from "../../actions/emotionAction";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * principal del diario, donde puedes ver y editar entradas del diario
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const Diario = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -32,6 +36,7 @@ const Diario = ({ history }) => {
   const diaryAuth = useSelector((state) => state.diaryAuth);
   const { successDiary } = diaryAuth;
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -47,14 +52,17 @@ const Diario = ({ history }) => {
     }
   });
 
+  //trae la informacion de listEntries a redux
   useEffect(() => {
     dispatch(listEntries());
   }, [dispatch, history, userInfo, successCreate, successUpdate]);
 
+  //trae la informacion de listTags a redux
   useEffect(() => {
     dispatch(listTags());
   }, [dispatch]);
 
+  //trae la informacion de listEmotions a redux
   useEffect(() => {
     dispatch(listEmotions());
   }, [dispatch]);

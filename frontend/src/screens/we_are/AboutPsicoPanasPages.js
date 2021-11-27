@@ -6,6 +6,10 @@ import i1 from "../../images/instrucc_paso1.png";
 import i2 from "../../images/Configuracion.png";
 import i3 from "../../images/Foro.png";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * de que es la pagina PsicoPanas
+*/
 const AboutPsicoPanasPages = () => {
   return (
     <MainScreen title="Sobre PsicoPanas">

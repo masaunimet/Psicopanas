@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 
+/**
+  * @desc Es un componente que gracias a la api de estadisticas, react-chartjs-2, se puede hacer graficas
+*/
 class EstadisticasColumna extends Component {
   constructor(props) {
     super(props);

@@ -25,6 +25,11 @@ import moment from "moment";
 import "moment/locale/es";
 import "../../styles/App.css";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * del foro
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const ForoPage = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -75,6 +80,7 @@ const ForoPage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -85,26 +91,38 @@ const ForoPage = ({ history }) => {
     }
   });
 
+  //trae la informacion de listForomessages a redux
   useEffect(() => {
     dispatch(listForomessages());
   }, [dispatch]);
 
+  //trae la informacion de listForomessagessalud a redux
   useEffect(() => {
     dispatch(listForomessagessalud());
   }, [dispatch]);
 
+  //trae la informacion de listForomessagesvivencias a redux
   useEffect(() => {
     dispatch(listForomessagesvivencias());
   }, [dispatch]);
 
+  //trae la informacion de listForomessageshobbies a redux
   useEffect(() => {
     dispatch(listForomessageshobbies());
   }, [dispatch]);
 
+  /**
+   * @desc Comprueba si el parametro esta vacio
+   * @param str string
+   */
   function isEmpty(str) {
     return !str || 0 === str.length;
   }
 
+  /**
+  * @desc La funcion se encarga de subir el mensage al backend con una imagen y nombre generico
+  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+  */
   const submitHandlerAnon = (e) => {
     e.preventDefault();
 
@@ -124,6 +142,10 @@ const ForoPage = ({ history }) => {
     }
   };
 
+  /**
+  * @desc La funcion se encarga de subir el mensage al backend con tu imagen y tu nombre 
+  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+  */
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -163,6 +185,10 @@ const ForoPage = ({ history }) => {
     }
   };
 
+  /**
+  * @desc La funcion se encarga de listar todos los mensajes de "foromessages",
+  * "foromessagessalud","foromessagesvivencias" o "foromessageshobbies" al revez y retornarlos
+  */
   const forodisplay = () => {
     if (option === 0) {
       return foromessages

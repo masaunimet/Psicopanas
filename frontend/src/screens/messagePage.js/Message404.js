@@ -6,9 +6,15 @@ import MainScreen from "../../components/mainscreen/MainScreen";
 import Goti from "../../images/Goti.png";
 import "../../styles/App.css";
 
+/**
+  * @desc Es la funcion encargada de traer funcionar la pagina
+  * donde no hay ninguna ruta creada o 404
+  * @param history variable encargada de redireccionar a otras paginas o URL's
+*/
 const Message404 = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
