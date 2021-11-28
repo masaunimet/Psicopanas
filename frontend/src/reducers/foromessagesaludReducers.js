@@ -7,6 +7,10 @@ import {
   FOROMESSAGESALUD_CREATE_FAIL
 } from "../constants/foromessagesaludConstants";
 
+/**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de la lista de los mensajes del foro salud
+ */
 export const foromessagesaludreducer = (state = { foromessagessalud: [] }, action) => {
     switch (action.type) {
       case FOROMESSAGESALUD_LIST_REQUEST:
@@ -21,6 +25,10 @@ export const foromessagesaludreducer = (state = { foromessagessalud: [] }, actio
     }
   };
 
+    /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de crear un mensaje del foro salud
+ */
   export const Createforomessagesaludreducer = (state = {}, action) => {
     switch (action.type) {
       case FOROMESSAGESALUD_CREATE_REQUEST:

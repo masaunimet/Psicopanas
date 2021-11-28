@@ -7,6 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./store";
 
+/**
+  * @desc es la clase donde se ve el codigo
+*/
 ReactDOM.render(
   
   <Provider store={store}>

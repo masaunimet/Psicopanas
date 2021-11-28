@@ -26,6 +26,10 @@ import {
   GET_USERS_FAIL,
 } from "../constants/userConstants";
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de logear al usuario
+ */
 export const userLoginReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_LOGIN_REQUEST:
@@ -41,6 +45,10 @@ export const userLoginReducer = (state = {}, action) => {
   }
 };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de Registrar al usuario
+ */
 export const userRegisterReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_REGISTER_REQUEST:
@@ -54,6 +62,10 @@ export const userRegisterReducer = (state = {}, action) => {
   }
 };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de editar informacion del usuario
+ */
 export const userUpdateReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_UPDATE_REQUEST:
@@ -67,6 +79,10 @@ export const userUpdateReducer = (state = {}, action) => {
   }
 };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de tener seguridad para el diario del usuario
+ */
 export const userSecurityReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_SECURITY_REQUEST:
@@ -80,6 +96,10 @@ export const userSecurityReducer = (state = {}, action) => {
   }
 };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de no tener seguridad para el diario del usuario
+ */
 export const userNoSecurityReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_NOSECURITY_REQUEST:
@@ -93,6 +113,10 @@ export const userNoSecurityReducer = (state = {}, action) => {
   }
 };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de especificar las etiquetas personales del usuario
+ */
 export const userSetTagsReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_SETTAGS_REQUEST:
@@ -106,6 +130,10 @@ export const userSetTagsReducer = (state = {}, action) => {
   }
 };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * del diario del usuario
+ */
 export const userDiaryReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_DIARY_REQUEST:
@@ -119,6 +147,10 @@ export const userDiaryReducer = (state = {}, action) => {
   }
 };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de la lista de todos los usuarios no premium
+ */
 export const getUsersReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_USERS_REQUEST:
@@ -132,6 +164,10 @@ export const getUsersReducer = (state = {}, action) => {
   }
 };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de cambio de roles al usuario
+ */
 export const changeUserStatusReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_USERS_REQUEST:

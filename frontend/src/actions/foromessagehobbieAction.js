@@ -8,6 +8,10 @@ import {
 } from "../constants/foromessagehobbieConstants";
 import axios from "axios";
 
+/**
+  * @desc Es el action que permite ver todos los mensajes del foro hobbies
+  *  en la ruta /api/foromessageshobbies del backend
+*/
 export const listForomessageshobbies = () => async (dispatch) => {
   try {
     dispatch({ type: FOROMESSAGEHOBBIE_LIST_REQUEST });
@@ -27,6 +31,13 @@ export const listForomessageshobbies = () => async (dispatch) => {
   }
 };
 
+/**
+  * @desc Es el action que permite crear un mensaje del foro hobbies
+  *  en la ruta /api/foromessageshobbies/create del backend
+  * @param username String - nombre del usuario
+  * @param message String - mensaje creado
+  * @param icon String - foto del usuario
+*/
 export const createForoMessagehobbie =
   (username, message, icon) => async (dispatch, getState) => {
     try {

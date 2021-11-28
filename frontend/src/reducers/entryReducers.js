@@ -22,6 +22,10 @@ import {
   MONTH_STATS_FAIL,
 } from "../constants/entriesConstants";
 
+/**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de la lista de entradas
+ */
 export const entryListReducer = (state = { entries: [] }, action) => {
   switch (action.type) {
     case ENTRY_LIST_REQUEST:
@@ -36,6 +40,10 @@ export const entryListReducer = (state = { entries: [] }, action) => {
   }
 };
 
+/**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de crear una entrada
+ */
 export const entryCreateReducer = (state = {}, action) => {
   switch (action.type) {
     case ENTRY_CREATE_REQUEST:
@@ -50,6 +58,10 @@ export const entryCreateReducer = (state = {}, action) => {
   }
 };
 
+/**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de editar una entrada
+ */
 export const entryUpdateReducer = (state = {}, action) => {
   switch (action.type) {
     case ENTRY_UPDATE_REQUEST:
@@ -76,6 +88,10 @@ export const entryUpdateReducer = (state = {}, action) => {
 //   }
 // };
 
+/**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de la lista de estadisticas del diario
+ */
 export const getStatsReducer = (state = {}, action) => {
   switch (action.type) {
     case STATS_REQUEST:
@@ -90,6 +106,10 @@ export const getStatsReducer = (state = {}, action) => {
   }
 };
 
+/**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de la lista de estadisticas mensuales del diario
+ */
 export const getMonthStatsReducer = (state = {}, action) => {
   switch (action.type) {
     case MONTH_STATS_REQUEST:
@@ -104,6 +124,10 @@ export const getMonthStatsReducer = (state = {}, action) => {
   }
 };
 
+/**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de la lista de estadisticas de las etiquetas del diario
+ */
 export const getTagStatsReducer = (state = {}, action) => {
   switch (action.type) {
     case TAGS_STATS_REQUEST:

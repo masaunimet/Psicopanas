@@ -6,7 +6,7 @@ import {
 import axios from "axios";
 
 /**
-  * @desc 
+  * @desc Es el action que permite ver todas las emociones en la ruta /api/emotions del backend
 */
 export const listEmotions = () => async (dispatch, getState) => {
   try {

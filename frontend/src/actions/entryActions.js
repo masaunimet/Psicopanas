@@ -23,6 +23,9 @@ import {
 } from "../constants/entriesConstants";
 import axios from "axios";
 
+/**
+  * @desc Es el action que permite ver todas las entradas en la ruta /api/entries del backend
+*/
 export const listEntries = () => async (dispatch, getState) => {
   try {
     dispatch({
@@ -57,6 +60,13 @@ export const listEntries = () => async (dispatch, getState) => {
   }
 };
 
+/**
+  * @desc Es el action que permite crear una entrada en la ruta /api/entries/create del backend
+  * @param title String - titulo de la entrada
+  * @param content String - contenido o descripcion de la entrada
+  * @param tags Array<String> - etiquetas seleccionadas en la entrada
+  * @param emotion String - emocion seleccionada en la entrada
+*/
 export const createEntryAction =
   (title, content, tags, emotion) => async (dispatch, getState) => {
     try {
@@ -98,6 +108,14 @@ export const createEntryAction =
     }
   };
 
+  /**
+  * @desc Es el action que permite editar una entrada en la ruta /api/entries/${id} del backend
+  * @param id identificador de la entrada en el backend
+  * @param title String - titulo de la entrada
+  * @param content String - contenido o descripcion de la entrada
+  * @param tags Array(String) - etiquetas seleccionadas en la entrada
+  * @param emotion String - emocion seleccionada en la entrada
+*/
 export const updateEntryAction =
   (id, title, content, tags, emotion) => async (dispatch, getState) => {
     try {
@@ -166,6 +184,10 @@ export const updateEntryAction =
 //   }
 // };
 
+/**
+  * @desc Es el action que permite ver las estadisticas de las entradas 
+  * en la ruta /api/users/stats/${userInfo._id} del backend
+*/
 export const getStats = () => async (dispatch, getState) => {
   try {
     dispatch({
@@ -194,6 +216,10 @@ export const getStats = () => async (dispatch, getState) => {
   }
 };
 
+/**
+  * @desc Es el action que permite ver las estadisticas mensuales de las entradas 
+  * en la ruta /api/users/monthstats/${userInfo._id} del backend
+*/
 export const getMonthStats = () => async (dispatch, getState) => {
   try {
     dispatch({
@@ -222,6 +248,10 @@ export const getMonthStats = () => async (dispatch, getState) => {
   }
 };
 
+/**
+  * @desc Es el action que permite ver las estadisticas de las etiquetas de las entradas 
+  * en la ruta /api/users/tagstats/${userInfo._id} del backend
+*/
 export const getTagStats = () => async (dispatch, getState) => {
   try {
     localStorage.removeItem("statsTags");

@@ -8,6 +8,10 @@ import {
 } from "../constants/foromessagesaludConstants";
 import axios from "axios";
 
+/**
+  * @desc Es el action que permite ver todos mensajes del foro salud
+  *  en la ruta /api/foromessagessalud/create del backend
+*/
 export const listForomessagessalud = () => async (dispatch) => {
   try {
     dispatch({ type: FOROMESSAGESALUD_LIST_REQUEST });
@@ -27,6 +31,13 @@ export const listForomessagessalud = () => async (dispatch) => {
   }
 };
 
+/**
+  * @desc Es el action que permite crear un mensaje del foro salud
+  *  en la ruta /api/foromessagessalud/create del backend
+  * @param username String - nombre del usuario
+  * @param message String - mensaje creado
+  * @param icon String - foto del usuario
+*/
 export const createForoMessagesalud =
   (username, message, icon) => async (dispatch, getState) => {
     try {

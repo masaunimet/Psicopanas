@@ -8,6 +8,10 @@ import {
 } from "../constants/foromessagevivenciaConstants";
 import axios from "axios";
 
+/**
+  * @desc Es el action que permite ver todos mensajes del foro vivencias
+  *  en la ruta /api/foromessagesvivencias/create del backend
+*/
 export const listForomessagesvivencias = () => async (dispatch) => {
   try {
     dispatch({ type: FOROMESSAGEVIVENCIA_LIST_REQUEST });
@@ -27,6 +31,13 @@ export const listForomessagesvivencias = () => async (dispatch) => {
   }
 };
 
+/**
+  * @desc Es el action que permite crear un mensaje del foro vivencias
+  *  en la ruta /api/foromessagesvivencias/create del backend
+  * @param username String - nombre del usuario
+  * @param message String - mensaje creado
+  * @param icon String - foto del usuario
+*/
 export const createForoMessagevivencia =
   (username, message, icon) => async (dispatch, getState) => {
     try {

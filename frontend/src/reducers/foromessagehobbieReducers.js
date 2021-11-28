@@ -7,6 +7,10 @@ import {
   FOROMESSAGEHOBBIE_CREATE_FAIL
 } from "../constants/foromessagehobbieConstants";
 
+/**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de la lista de los mensajes del foro hobbie
+ */
 export const foromessagehobbiereducer = (state = { foromessageshobbies: [] }, action) => {
     switch (action.type) {
       case FOROMESSAGEHOBBIE_LIST_REQUEST:
@@ -21,6 +25,10 @@ export const foromessagehobbiereducer = (state = { foromessageshobbies: [] }, ac
     }
   };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de crear un mensaje del foro hobbie
+ */
   export const Createforomessagehobbiereducer = (state = {}, action) => {
     switch (action.type) {
       case FOROMESSAGEHOBBIE_CREATE_REQUEST:

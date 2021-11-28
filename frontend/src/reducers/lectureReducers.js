@@ -13,6 +13,10 @@ import {
   UPDATE_LECTURE_FAIL,
 } from "../constants/lectureConstants";
 
+ /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de crear una lectura
+ */
 export const createLectureReducer = (state = {}, action) => {
   switch (action.type) {
     case CREATE_LECTURE_REQUEST:
@@ -26,6 +30,10 @@ export const createLectureReducer = (state = {}, action) => {
   }
 };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de editar una lectura
+ */
 export const lectureUpdateReducer = (state = {}, action) => {
   switch (action.type) {
     case UPDATE_LECTURE_REQUEST:
@@ -40,6 +48,10 @@ export const lectureUpdateReducer = (state = {}, action) => {
   }
 };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de la lista de las lecturas publicadas
+ */
 export const listPublicatedLecturesReducer = (state = {}, action) => {
   switch (action.type) {
     case LIST_PUBLICATED_LECTURES_REQUEST:
@@ -53,6 +65,10 @@ export const listPublicatedLecturesReducer = (state = {}, action) => {
   }
 };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de la lista de las lecturas no publicadas
+ */
 export const listNonPublicatedLecturesReducer = (state = {}, action) => {
   switch (action.type) {
     case LIST_NON_PUBLICATED_LECTURES_REQUEST:

@@ -46,6 +46,10 @@ import {
   listNonPublicatedLecturesReducer,
   listPublicatedLecturesReducer,
 } from "./reducers/lectureReducers";
+
+/**
+  * @desc es una funcion donde se registran todos los reducers para verlas en el REDUX
+*/
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,

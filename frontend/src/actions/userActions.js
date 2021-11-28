@@ -29,6 +29,11 @@ import {
 } from "../constants/userConstants";
 import axios from "axios";
 
+/**
+  * @desc Es el action que permite a un usuario logearse en la ruta /api/users/login del backend
+  * @param email String - correo electronico del usuario
+  * @param password String - clave del correo electronico del usuario
+*/
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
@@ -61,11 +66,21 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
+/**
+  * @desc Es el action que permite a un usuario deslogearse 
+  * quitando el userinfo del localstorage
+*/
 export const logout = () => async (dispatch) => {
   localStorage.removeItem("userInfo");
   dispatch({ type: USER_LOGOUT });
 };
 
+/**
+  * @desc Es el action que permite a un usuario registrarse en la ruta /api/users del backend
+  * @param name String - nombre del usuario
+  * @param email String - correo electronico del usuario
+  * @param password String - clave del correo electronico del usuario
+*/
 export const register = (name, email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
@@ -98,6 +113,11 @@ export const register = (name, email, password) => async (dispatch) => {
   }
 };
 
+/**
+  * @desc Es el action que permite a un usuario ponerle seguridad a su diario
+  *  en la ruta /api/users/profile/security del backend
+  * @param user Usuario al que se le modificara la seguridad
+*/
 export const diarySetSecurity = (user) => async (dispatch) => {
   try {
     dispatch({ type: USER_SECURITY_REQUEST });
@@ -120,6 +140,11 @@ export const diarySetSecurity = (user) => async (dispatch) => {
   }
 };
 
+/**
+  * @desc Es el action que permite a un usuario quitarle la seguridad a su diario
+  *  en la ruta /api/users/profile/noSecurity del backend
+  * @param user Usuario al que se le modificara la seguridad
+*/
 export const diarySetNoSecurity = (user) => async (dispatch) => {
   try {
     dispatch({ type: USER_NOSECURITY_REQUEST });
@@ -142,6 +167,11 @@ export const diarySetNoSecurity = (user) => async (dispatch) => {
   }
 };
 
+/**
+  * @desc Es el action que permite a un usuario poner etiquetas personales a su diario
+  *  en la ruta /api/users/profile/personalStats del backend
+  * @param user Usuario al que se le modificara sus tags personales
+*/
 export const diarySetPersonalStats = (user) => async (dispatch) => {
   try {
     dispatch({ type: USER_SETTAGS_REQUEST });
@@ -163,6 +193,11 @@ export const diarySetPersonalStats = (user) => async (dispatch) => {
   }
 };
 
+/**
+  * @desc Es el action que permite a un usuario ver el metodo de 
+  * seguridad (que salga para que ponga la contraseña) en su diario
+  * @param booleanData boleano que permite saber si tiene seguridad o no
+*/
 export const authDiary = (booleanData) => async (dispatch) => {
   dispatch({ type: USER_DIARY_REQUEST });
   if (booleanData === true) {
@@ -172,6 +207,11 @@ export const authDiary = (booleanData) => async (dispatch) => {
   }
 };
 
+/**
+  * @desc Es el action que permite a un usuario editar su informacion personal
+  *  en la ruta /api/users/profile/update del backend
+  * @param user Usuario al que se le editara su contenido
+*/
 export const updateProfile = (user) => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_UPDATE_REQUEST });
@@ -209,6 +249,10 @@ export const updateProfile = (user) => async (dispatch, getState) => {
   }
 };
 
+/**
+  * @desc Es el action que permite ver todos los usuarios no premium
+  *  en la ruta /api/users/getAllUsers del backend
+*/
 export const getUsers = () => async (dispatch, getState) => {
   try {
     dispatch({ type: GET_USERS_REQUEST });
@@ -227,6 +271,11 @@ export const getUsers = () => async (dispatch, getState) => {
   }
 };
 
+/**
+  * @desc Es el action que permite cambiar el rol de un usuario usuario a premium
+  *  en la ruta /api/users/changeUserStatus/${id} del backend
+  * @param id Identificador del usuario
+*/
 export const changeUserStatus = (id) => async (dispatch) => {
   try {
     dispatch({ type: CHANGE_USER_STATUS_REQUEST });

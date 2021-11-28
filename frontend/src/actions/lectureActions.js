@@ -14,6 +14,13 @@ import {
   UPDATE_LECTURE_SUCCESS,
 } from "../constants/lectureConstants";
 
+/**
+  * @desc Es el action que permite crear una lectura en la ruta /api/lectures/create del backend
+  * @param title String - titulo de la lectura
+  * @param content String - contenido o descripcion de la lectura
+  * @param image String - imagen de la lectura
+  * @param publicationDate Date - fecha de la lectura
+*/
 export const createLectureAction =
   (title, content, image, publicationDate) => async (dispatch) => {
     try {
@@ -45,6 +52,14 @@ export const createLectureAction =
     }
   };
 
+  /**
+  * @desc Es el action que permite editar una lectura en la ruta /api/lectures/edit/${id} del backend
+  * @param id Identificador de la lectura en el backend
+  * @param title String - titulo de la lectura
+  * @param content String - contenido o descripcion de la lectura
+  * @param image String - imagen de la lectura
+  * @param publicationDate Date - fecha de la lectura
+*/
 export const updateLectureAction =
   (id, title, content, image, publicationDate) => async (dispatch) => {
     try {
@@ -76,6 +91,10 @@ export const updateLectureAction =
     }
   };
 
+/**
+  * @desc Es el action que permite ver todas las lecturas publicadas
+  *  en la ruta /api/lectures/listPublicatedOnes del backend
+*/
 export const getPublicatedLecturesAction = () => async (dispatch) => {
   try {
     dispatch({ type: LIST_PUBLICATED_LECTURES_REQUEST });
@@ -94,6 +113,10 @@ export const getPublicatedLecturesAction = () => async (dispatch) => {
   }
 };
 
+/**
+  * @desc Es el action que permite ver todas las lecturas no publicadas
+  *  en la ruta /api/lectures/listNonPublicatedOnes del backend
+*/
 export const getNonPublicatedLecturesAction = () => async (dispatch) => {
   try {
     dispatch({ type: LIST_NON_PUBLICATED_LECTURES_REQUEST });

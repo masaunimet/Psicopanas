@@ -4,6 +4,10 @@ import {
     EMOTION_LIST_SUCCESS,
   } from "../constants/emotionsConstants";
 
+/**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de la lista de emociones
+ */
 export const emotionListReducer = (state = {emotions:[]},action) =>{
     switch (action.type) {
 

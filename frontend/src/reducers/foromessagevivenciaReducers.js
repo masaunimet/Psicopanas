@@ -7,6 +7,10 @@ import {
   FOROMESSAGEVIVENCIA_CREATE_FAIL
 } from "../constants/foromessagevivenciaConstants";
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de la lista de los mensajes del foro vivencias
+ */
 export const foromessagevivenciareducer = (state = { foromessagesvivencias: [] }, action) => {
     switch (action.type) {
       case FOROMESSAGEVIVENCIA_LIST_REQUEST:
@@ -21,6 +25,10 @@ export const foromessagevivenciareducer = (state = { foromessagesvivencias: [] }
     }
   };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de crear un mensaje del foro vivencias
+ */
   export const Createforomessagevivenciareducer = (state = {}, action) => {
     switch (action.type) {
       case FOROMESSAGEVIVENCIA_CREATE_REQUEST:

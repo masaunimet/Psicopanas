@@ -7,6 +7,10 @@ import {
     FOROMESSAGE_CREATE_FAIL
 } from "../constants/foromessageConstants";
 
+/**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de la lista de los mensajes del foro general
+ */
 export const foromessagereducer = (state = { foromessages: [] }, action) => {
     switch (action.type) {
       case FOROMESSAGE_LIST_REQUEST:
@@ -21,6 +25,10 @@ export const foromessagereducer = (state = { foromessages: [] }, action) => {
     }
   };
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de crear un mensaje del foro general
+ */
   export const Createforomessagereducer = (state = {}, action) => {
     switch (action.type) {
       case FOROMESSAGE_CREATE_REQUEST:

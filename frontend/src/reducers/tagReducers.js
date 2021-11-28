@@ -4,6 +4,10 @@ import {
   TAG_LIST_SUCCESS,
 } from "../constants/tagsConstants";
 
+  /**
+ * @desc Indica al redux el tipo de cambio de estado 
+ * de la lista de las etiquetas
+ */
 export const tagListReducer = (state = { tags: [] }, action) => {
   switch (action.type) {
     case TAG_LIST_REQUEST:

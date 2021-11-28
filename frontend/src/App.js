@@ -37,6 +37,10 @@ import AdminListLecturesPage from "./screens/adminPage.js/AdminListLecturesPage"
 import AdminEditLecturePage from "./screens/adminPage.js/AdminEditLecturePage";
 import AboutPsicoPanasPages from "./screens/we_are/AboutPsicoPanasPages";
 
+/**
+  * @desc es una funcion donde retiene todas las rutas/paginas
+  * de la aplicacion
+*/
 const App = () => (
   <>
     <Router>
