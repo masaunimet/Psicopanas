@@ -2,9 +2,7 @@ import React from "react";
 import { Alert } from "react-bootstrap";
 
 /**
-  * @desc 
-  * @param variant 
-  * @param children
+  * @desc Componente de error para PsicoPanas
 */
 const ErrorMessage = ({ variant = "info", children }) => {
   return (

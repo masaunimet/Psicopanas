@@ -83,6 +83,9 @@ const reducer = combineReducers({
   lectureUpdate: lectureUpdateReducer,
 });
 
+/**
+  * @desc agarra la informacion de localstorage y lo asigna a la informacion del usuario
+*/
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
@@ -93,6 +96,9 @@ const initialState = {
 
 const middleware = [thunk];
 
+/**
+  * @desc el que crea el store.js. No muy seguros
+*/
 const store = createStore(
   reducer,
   initialState,
