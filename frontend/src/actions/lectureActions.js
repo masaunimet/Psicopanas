@@ -15,7 +15,7 @@ import {
 } from "../constants/lectureConstants";
 
 /**
-  * @desc Es el action que permite crear una lectura en la ruta /api/lectures/create del backend
+  * @desc Es el action que permite crear una lectura en la ruta /api/lectures/create
   * @param title String - titulo de la lectura
   * @param content String - contenido o descripcion de la lectura
   * @param image String - imagen de la lectura
@@ -53,7 +53,7 @@ export const createLectureAction =
   };
 
   /**
-  * @desc Es el action que permite editar una lectura en la ruta /api/lectures/edit/${id} del backend
+  * @desc Es el action que permite editar una lectura en la ruta /api/lectures/edit/${id}
   * @param id Identificador de la lectura en el backend
   * @param title String - titulo de la lectura
   * @param content String - contenido o descripcion de la lectura
@@ -93,7 +93,7 @@ export const updateLectureAction =
 
 /**
   * @desc Es el action que permite ver todas las lecturas publicadas
-  *  en la ruta /api/lectures/listPublicatedOnes del backend
+  *  en la ruta /api/lectures/listPublicatedOnes
 */
 export const getPublicatedLecturesAction = () => async (dispatch) => {
   try {
@@ -115,7 +115,7 @@ export const getPublicatedLecturesAction = () => async (dispatch) => {
 
 /**
   * @desc Es el action que permite ver todas las lecturas no publicadas
-  *  en la ruta /api/lectures/listNonPublicatedOnes del backend
+  *  en la ruta /api/lectures/listNonPublicatedOnes
 */
 export const getNonPublicatedLecturesAction = () => async (dispatch) => {
   try {

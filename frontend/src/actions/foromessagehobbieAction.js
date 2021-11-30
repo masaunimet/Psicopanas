@@ -10,7 +10,7 @@ import axios from "axios";
 
 /**
   * @desc Es el action que permite ver todos los mensajes del foro hobbies
-  *  en la ruta /api/foromessageshobbies del backend
+  *  en la ruta /api/foromessageshobbies
 */
 export const listForomessageshobbies = () => async (dispatch) => {
   try {
@@ -33,7 +33,7 @@ export const listForomessageshobbies = () => async (dispatch) => {
 
 /**
   * @desc Es el action que permite crear un mensaje del foro hobbies
-  *  en la ruta /api/foromessageshobbies/create del backend
+  *  en la ruta /api/foromessageshobbies/create
   * @param username String - nombre del usuario
   * @param message String - mensaje creado
   * @param icon String - foto del usuario

@@ -3,6 +3,9 @@
 const asyncHandler = require("express-async-handler");
 const Entry = require("../models/entryModel");
 
+/**
+ * @desc Busca la lista de entradas del diario del backend y la devuelve en un JSON
+ */
 const getEntrys = asyncHandler(async (req, res) => {
   const entries = await Entry.find({ user: req.user._id });
   res.json(entries);
@@ -18,6 +21,10 @@ const getEntrys = asyncHandler(async (req, res) => {
 //   res.json(entry);
 // });
 
+/**
+ * @desc Comprueba si con los datos suministrado pueden crear una entrada para luego devolverlo
+ * como un JSON si pudo ser creada
+ */
 const createEntry = asyncHandler(async (req, res) => {
   const { title, content, tags, emotion } = req.body;
 
@@ -39,6 +46,10 @@ const createEntry = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc Comprueba si con los datos suministrado pueden editar una entrada para luego devolverlo
+ * como un JSON si pudo ser creada
+ */
 const updateEntry = asyncHandler(async (req, res) => {
   const { title, content, tags, emotion } = req.body;
 
@@ -63,6 +74,9 @@ const updateEntry = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc Busca una entrada del diario del backend por el id y la devuelve en un JSON
+ */
 const getEntryById = asyncHandler(async (req, res) => {
   const entry = await Entry.findById(req.params.id);
 

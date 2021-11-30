@@ -1,7 +1,9 @@
 const expressAsyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel.js");
-
+/**
+ * @desc es para autentificar las cosas que estan pasando
+ */
 const protect = expressAsyncHandler(async (req, res, next) => {
   let token;
 

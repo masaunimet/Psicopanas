@@ -6,7 +6,7 @@ import {
 import axios from "axios";
 
 /**
-  * @desc Es el action que permite ver todas las etiquetas en la ruta /api/tags del backend
+  * @desc Es el action que permite ver todas las etiquetas en la ruta /api/tags
 */
 export const listTags = () => async (dispatch) => {
   try {

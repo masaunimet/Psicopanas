@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 
+/**
+ * @desc Es el modelo o esquema que usara la base de datos de entradas del diario
+ *  para guardar su informacion
+ */
 const entrySchema = mongoose.Schema(
   {
     title: {
@@ -31,6 +35,9 @@ const entrySchema = mongoose.Schema(
   }
 );
 
+/**
+ * @desc Transforma el modelo entrySchema en un modelo mongoose de la base de datos mongoDB
+ */
 const Entry = mongoose.model("Entry", entrySchema);
 
 module.exports = Entry;

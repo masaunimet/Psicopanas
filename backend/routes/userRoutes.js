@@ -17,7 +17,7 @@ const {
 const { protect } = require("../middlewares/authMiddleware");
 
 const router = express.Router();
-
+// Rutas del backend encargadas de alojar los distintos controllers 
 router.route("/").post(registerUser);
 router.route("/login").post(authUser);
 router.route("/profile/noSecurity").post(noSecurityUserProfile);

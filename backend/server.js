@@ -19,7 +19,7 @@ const app = express();
 dotenv.config();
 connectDB();
 app.use(express.json());
-
+//rutas del backend
 app.use("/api/users", userRoutes);
 app.use("/api/entries", entryRoutes);
 app.use("/api/tags", tagRoutes);
@@ -32,6 +32,7 @@ app.use("/api/lectures", lectureRoutes);
 
 //---------------Deployment----------------
 
+//funciones necesarias para que funcione el backend y para que al hostaer la aplicacion se hosteen automaticamente el front y el back
 __dirname = path.resolve();
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/frontend/build")));

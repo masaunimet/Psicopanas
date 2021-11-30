@@ -10,7 +10,7 @@ import axios from "axios";
 
 /**
   * @desc Es el action que permite ver todos mensajes del foro vivencias
-  *  en la ruta /api/foromessagesvivencias/create del backend
+  *  en la ruta /api/foromessagesvivencias/create
 */
 export const listForomessagesvivencias = () => async (dispatch) => {
   try {
@@ -33,7 +33,7 @@ export const listForomessagesvivencias = () => async (dispatch) => {
 
 /**
   * @desc Es el action que permite crear un mensaje del foro vivencias
-  *  en la ruta /api/foromessagesvivencias/create del backend
+  *  en la ruta /api/foromessagesvivencias/create
   * @param username String - nombre del usuario
   * @param message String - mensaje creado
   * @param icon String - foto del usuario

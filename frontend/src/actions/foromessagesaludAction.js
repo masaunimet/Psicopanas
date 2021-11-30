@@ -10,7 +10,7 @@ import axios from "axios";
 
 /**
   * @desc Es el action que permite ver todos mensajes del foro salud
-  *  en la ruta /api/foromessagessalud/create del backend
+  *  en la ruta /api/foromessagessalud/create
 */
 export const listForomessagessalud = () => async (dispatch) => {
   try {
@@ -33,7 +33,7 @@ export const listForomessagessalud = () => async (dispatch) => {
 
 /**
   * @desc Es el action que permite crear un mensaje del foro salud
-  *  en la ruta /api/foromessagessalud/create del backend
+  *  en la ruta /api/foromessagessalud/create
   * @param username String - nombre del usuario
   * @param message String - mensaje creado
   * @param icon String - foto del usuario

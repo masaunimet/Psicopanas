@@ -7,7 +7,7 @@ const {
   updateLectureByID,
   getActualLecture,
 } = require("../controllers/lectureControllers");
-
+// Rutas del backend encargadas de alojar los distintos controllers 
 const router = express.Router();
 router.route("/listPublicatedOnes").get(listPublicatedLectures);
 router.route("/listNonPublicatedOnes").get(listNonPublicatedLectures);

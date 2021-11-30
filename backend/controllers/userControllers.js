@@ -2,6 +2,9 @@ const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
 const generateToken = require("../utils/generateToken");
 
+/**
+ * @desc Registra un usuario en el backend con la informacion suministrada y la devuelve en un JSON
+ */
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -39,6 +42,9 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc busca al usuario con la informacion suministrada y la devuelve en un JSON
+ */
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -64,6 +70,9 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc busca al usuario con seguridad en su diario por el id y la devuelve en un JSON
+ */
 const securityUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.body._id);
 
@@ -92,6 +101,9 @@ const securityUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc busca al usuario sin seguridad en su diario por el id y la devuelve en un JSON
+ */
 const noSecurityUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.body._id);
 
@@ -118,7 +130,9 @@ const noSecurityUserProfile = asyncHandler(async (req, res) => {
     throw new Error("El usuario no existe");
   }
 });
-
+/**
+ * @desc busca las estadisticas del usuario por el id y la devuelve en un JSON
+ */
 const personalStatsUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.body._id);
 
@@ -146,6 +160,9 @@ const personalStatsUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc edita la informacion del usuario buscado por el id y la devuelve en un JSON
+ */
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
@@ -177,6 +194,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc edita el rol del usuario buscado por el id y la devuelve en un JSON
+ */
 const changeUserStatus = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
@@ -204,6 +224,9 @@ const changeUserStatus = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc Busca la lista de los usuarios no premium del backend y la devuelve en un JSON
+ */
 const getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find(
     { isPremium: false },

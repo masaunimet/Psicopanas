@@ -30,7 +30,7 @@ import {
 import axios from "axios";
 
 /**
-  * @desc Es el action que permite a un usuario logearse en la ruta /api/users/login del backend
+  * @desc Es el action que permite a un usuario logearse en la ruta /api/users/login
   * @param email String - correo electronico del usuario
   * @param password String - clave del correo electronico del usuario
 */
@@ -76,7 +76,7 @@ export const logout = () => async (dispatch) => {
 };
 
 /**
-  * @desc Es el action que permite a un usuario registrarse en la ruta /api/users del backend
+  * @desc Es el action que permite a un usuario registrarse en la ruta /api/users
   * @param name String - nombre del usuario
   * @param email String - correo electronico del usuario
   * @param password String - clave del correo electronico del usuario
@@ -115,7 +115,7 @@ export const register = (name, email, password) => async (dispatch) => {
 
 /**
   * @desc Es el action que permite a un usuario ponerle seguridad a su diario
-  *  en la ruta /api/users/profile/security del backend
+  *  en la ruta /api/users/profile/security
   * @param user Usuario al que se le modificara la seguridad
 */
 export const diarySetSecurity = (user) => async (dispatch) => {
@@ -142,7 +142,7 @@ export const diarySetSecurity = (user) => async (dispatch) => {
 
 /**
   * @desc Es el action que permite a un usuario quitarle la seguridad a su diario
-  *  en la ruta /api/users/profile/noSecurity del backend
+  *  en la ruta /api/users/profile/noSecurity
   * @param user Usuario al que se le modificara la seguridad
 */
 export const diarySetNoSecurity = (user) => async (dispatch) => {
@@ -169,7 +169,7 @@ export const diarySetNoSecurity = (user) => async (dispatch) => {
 
 /**
   * @desc Es el action que permite a un usuario poner etiquetas personales a su diario
-  *  en la ruta /api/users/profile/personalStats del backend
+  *  en la ruta /api/users/profile/personalStats
   * @param user Usuario al que se le modificara sus tags personales
 */
 export const diarySetPersonalStats = (user) => async (dispatch) => {
@@ -209,7 +209,7 @@ export const authDiary = (booleanData) => async (dispatch) => {
 
 /**
   * @desc Es el action que permite a un usuario editar su informacion personal
-  *  en la ruta /api/users/profile/update del backend
+  *  en la ruta /api/users/profile/update
   * @param user Usuario al que se le editara su contenido
 */
 export const updateProfile = (user) => async (dispatch, getState) => {
@@ -251,7 +251,7 @@ export const updateProfile = (user) => async (dispatch, getState) => {
 
 /**
   * @desc Es el action que permite ver todos los usuarios no premium
-  *  en la ruta /api/users/getAllUsers del backend
+  *  en la ruta /api/users/getAllUsers
 */
 export const getUsers = () => async (dispatch, getState) => {
   try {
@@ -273,7 +273,7 @@ export const getUsers = () => async (dispatch, getState) => {
 
 /**
   * @desc Es el action que permite cambiar el rol de un usuario usuario a premium
-  *  en la ruta /api/users/changeUserStatus/${id} del backend
+  *  en la ruta /api/users/changeUserStatus/${id}
   * @param id Identificador del usuario
 */
 export const changeUserStatus = (id) => async (dispatch) => {

@@ -3,6 +3,10 @@ const moment = require("moment");
 const Emotion = require("../models/emotionModel");
 const Entry = require("../models/entryModel");
 
+/**
+ * @desc Busca la lista de entradas del diario y emociones del backend para generar la data 
+ * necesaria para la api de estadisticas y la devuelve en un JSON
+ */
 const getStats = asyncHandler(async (req, res) => {
   const entries = await Entry.find({ user: req.params.id });
   const emotions = await Emotion.find();
@@ -29,6 +33,10 @@ const getStats = asyncHandler(async (req, res) => {
   res.json(data);
 });
 
+/**
+ * @desc Busca la lista de entradas del diario y emociones del anterior mes del backend para generar la data 
+ * necesaria para la api de estadisticas y la devuelve en un JSON
+ */
 const getMonthStats = asyncHandler(async (req, res) => {
   const start = moment().startOf("month").toDate();
   const end = moment().endOf("month").toDate();
@@ -62,6 +70,10 @@ const getMonthStats = asyncHandler(async (req, res) => {
   res.json(data);
 });
 
+/**
+ * @desc Busca la lista de etiquetas que se ha usado en cada entrada 
+ * del backend y la devuelve en un JSON
+ */
 const getTagsStats = asyncHandler(async (req, res) => {
   const entries = await Entry.find(
     { user: req.params.id },

@@ -2,6 +2,10 @@ const asyncHandler = require("express-async-handler");
 const Lecture = require("../models/lectureModel");
 const moment = require("moment");
 
+/**
+ * @desc Comprueba si con los datos suministrado pueden crear una lectura para luego devolverlo
+ * como un JSON si pudo ser creada
+ */
 const createLecture = asyncHandler(async (req, res) => {
   const { title, content, image, publicationDate } = req.body;
   if (!title || !content || !image || !publicationDate) {
@@ -28,6 +32,9 @@ const createLecture = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc Busca una lectura del backend por el id y la devuelve en un JSON
+ */
 const getLectureByID = asyncHandler(async (req, res) => {
   const lecture = await Lecture.findById(req.params.id);
 
@@ -40,6 +47,9 @@ const getLectureByID = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc Busca una lectura del backend por la fecha y la devuelve en un JSON
+ */
 const getActualLecture = asyncHandler(async (req, res) => {
   const start = moment().startOf("Day").toDate();
   const publicatedLectures = await Lecture.find({
@@ -54,6 +64,9 @@ const getActualLecture = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc Edita una lectura del backend por el id y la devuelve en un JSON
+ */
 const updateLectureByID = asyncHandler(async (req, res) => {
   const { title, content, image, publicationDate } = req.body;
   const lecture = await Lecture.findById(req.params.id);
@@ -72,6 +85,9 @@ const updateLectureByID = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc Busca la lista de lecturas publicadas del backend y la devuelve en un JSON
+ */
 const listPublicatedLectures = asyncHandler(async (req, res) => {
   const start = moment().startOf("Day").toDate();
   const publicatedLectures = await Lecture.find({
@@ -86,6 +102,9 @@ const listPublicatedLectures = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc Busca la lista de lecturas no publicadas del backend y la devuelve en un JSON
+ */
 const listNonPublicatedLectures = asyncHandler(async (req, res) => {
   const start = moment().startOf("Day").toDate();
   const nonPublicatedLectures = await Lecture.find({

@@ -10,7 +10,7 @@ import axios from "axios";
 
 /**
   * @desc Es el action que permite ver todos los mensajes del foro general
-  *  en la ruta /api/foromessages del backend
+  *  en la ruta /api/foromessages
 */
 export const listForomessages = () => async (dispatch) => {
   try {
@@ -33,7 +33,7 @@ export const listForomessages = () => async (dispatch) => {
 
 /**
   * @desc Es el action que permite crear un mensaje del foro general
-  *  en la ruta /api/foromessages/create del backend
+  *  en la ruta /api/foromessages/create
   * @param username String - nombre del usuario
   * @param message String - mensaje creado
   * @param icon String - foto del usuario

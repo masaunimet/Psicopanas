@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
+/**
+ * @desc Es el modelo o esquema que usara la base de datos de Usuario
+ *  para guardar su informacion
+ */
 const userSchema = mongoose.Schema(
   {
     name: {
@@ -67,6 +71,9 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
+/**
+ * @desc Transforma el modelo userSchema en un modelo mongoose de la base de datos mongoDB
+ */
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;

@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 
+/**
+ * @desc Es el modelo o esquema que usara la base de datos de mensajes del foro vivencias
+ *  para guardar su informacion
+ */
 const foromessagevivenciaSchema = mongoose.Schema(
   {
     // user: {
@@ -26,6 +30,9 @@ const foromessagevivenciaSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+/**
+ * @desc Transforma el modelo foromessagevivenciaSchema en un modelo mongoose de la base de datos mongoDB
+ */
 const Foromessagevivencia = mongoose.model(
   "Foromessagevivencias",
   foromessagevivenciaSchema
