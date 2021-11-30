@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
-import Media from "react-media";
-import { Button, Container, Row } from "react-bootstrap";
+import { Button, Container, Row, Col, Card, Image } from "react-bootstrap";
 import "../landingPage/LandingPage.css";
+import "../../styles/App.css";
 import Goti from "../../images/Goti.png";
+import love from "../../images/love.png";
+import chat from "../../images/chat.png";
+import diary from "../../images/diary.png";
+import stats from "../../images/stats.png";
 import { useSelector } from "react-redux";
 import MainScreen from "../../components/mainscreen/MainScreen";
 
@@ -24,95 +28,130 @@ const LandingPage = ({ history }) => {
   return (
     <MainScreen>
       <Container>
-        <Media query={{ maxWidth: 800 }}>
-          {(matches) =>
-            matches ? (
-              <>
-                <Row>
-                  <div className="Centrado">
-                    <h2 className="title">Bienvenido a PsicoPanas</h2>
-                    </div>
-                    <div className="Centrado">
-                    <p className="subtitle">
-                      Este es tu espacio, tu diario personal. 
-                      Donde Goti te aconseja. 
-                      Aquí llevas tus emociones y Goti las estadísticas de ellas.
-                    </p>
-                  </div>
-                  <div className="Centrado">
-                    <img src={Goti} width="200" height="250" alt="Goti" />
-                  </div>
-                </Row>
-                <div>
-                  <div className="buttonContainer">
-                    <a href="/login">
-                      <Button size="lg" className="landingButton">
-                        Iniciar sesión
-                      </Button>
-                    </a>
-                  </div>
-                  <div className="buttonContainer">
-                    <a href="/registro">
-                      <Button
-                        size="lg"
-                        className="landingButton"
-                        variant="outline-primary"
-                      >
-                        Crear una cuenta
-                      </Button>
-                    </a>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <Row>
-                  <div className="welcome">
-                    <img src={Goti} width="200" height="250" alt="Goti" />
-                    <div className="intro-text">
-                      <div>
-                        <h1 className="title">Bienvenido a PsicoPanas</h1>
-                        <h4 className="subtitle">Tu gota de bienestar</h4>
-                        <p className="subtitle">
-                        Este ahora es tu espacio, donde tienes tu diario personal. 
-                        Donde Goti te aconseja. 
-                        Aquí llevas tus emociones y Goti las estadísticas de ellas.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </Row>
-                <div>
-                  <div className="buttonContainer">
-                    <a href="/login">
-                      <Button
-                        size="lg"
-                        className="landingButton"
-                        style={{
-                          border: "none",
-                        }}
-                      >
-                        Iniciar sesión
-                      </Button>
-                    </a>
-                    <a href="/registro">
-                      <Button
-                        size="lg"
-                        className="landingButton"
-                        variant="outline-primary"
-                        style={{
-                          border: "none",
-                        }}
-                      >
-                        Regístrate aquí
-                      </Button>
-                    </a>
-                  </div>
-                </div>
-              </>
-            )
-          }
-        </Media>
+        <Row className="welcome">
+          <Col md={3} className="intro-text">
+            <img src={Goti} fluid alt="Goti" />
+          </Col>
+          <Col className="intro-text">
+            <Row className="title">
+              Bienvenido a <span className="brand">PsicoPanas</span>
+            </Row>
+            <Row className="subtitle">Tu gota de bienestar</Row>
+            <Row className="normal-text">
+              Este ahora es tu espacio, donde tienes tu diario personal. Donde
+              Goti te aconseja. Aquí llevas tus emociones y Goti las
+              estadísticas de ellas.
+            </Row>
+            <Row>
+              <Col>
+                <a href="https://www.youtube.com/embed/DUFsSw2b0Ok">
+                  <Button className="button-all-page">Ver video</Button>
+                </a>
+              </Col>
+              <Col>
+                <a href="/login">
+                  <Button className="button-all-page">Iniciar sesión</Button>
+                </a>
+              </Col>
+              <Col>
+                <a href="/registro">
+                  <Button className="button-all-page" variant="outline-primary">
+                    Regístrate aquí
+                  </Button>
+                </a>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+        <Row className="welcome">
+          <Row className="intro-text">
+            <Col className="title2">¿Por qué elegirnos?</Col>
+          </Row>
+          <Row className="intro-text" style={{ background: "none" }}>
+            <Col className="info-box" style={{ background: "none" }}>
+              <Card>
+                <Image
+                  style={{ alignSelf: "center" }}
+                  src={diary}
+                  width="50px"
+                  height="50px"
+                  alt="Diario"
+                  roundedCircle
+                  className="img"
+                ></Image>
+                <p style={{ fontSize: "20px", marginBottom: "5px" }}>
+                  Diario Personal
+                </p>
+                <p>
+                  Lleva un registro de tu día a día, tantas veces como las
+                  necesites con nuestro diario y con el apoyo de Goti y sus
+                  consejos para hacerte compañia
+                </p>
+              </Card>
+            </Col>
+            <Col className="info-box" style={{ background: "none" }}>
+              <Card>
+                <Image
+                  style={{ alignSelf: "center" }}
+                  src={chat}
+                  width="50"
+                  height="50"
+                  alt="Foro"
+                  className="img"
+                  roundedCircle
+                ></Image>
+                <p style={{ fontSize: "20px", marginBottom: "5px" }}>
+                  Foro Chat
+                </p>
+                <p>
+                  Puedes compartir tus ideas con nuestra comunidad bajo el
+                  cuidado de Goti en el foro, donde podrás participar
+                  anónimamente cuando lo desees
+                </p>
+              </Card>
+            </Col>
+            <Col className="info-box" style={{ background: "none" }}>
+              <Card>
+                <Image
+                  style={{ alignSelf: "center" }}
+                  src={stats}
+                  width="50"
+                  height="50"
+                  alt="Estadísticas"
+                  roundedCircle
+                  className="img"
+                ></Image>
+                <p style={{ fontSize: "20px", marginBottom: "5px" }}>
+                  Estadísticas de diario
+                </p>
+                <p>
+                  Goti se toma muy enserio su labor y te va avisando cómo ha
+                  variado tu estado de ánimo a lo largo del mes y del año
+                </p>
+              </Card>
+            </Col>
+            <Col className="info-box" style={{ background: "none" }}>
+              <Card>
+                <Image
+                  style={{ alignSelf: "center" }}
+                  src={love}
+                  width="50"
+                  height="50"
+                  alt="Consejos"
+                  className="img"
+                  roundedCircle
+                ></Image>
+                <p style={{ fontSize: "20px", marginBottom: "5px" }}>
+                  Orientados a tu bienestar
+                </p>
+                <p>
+                  En PsicoPanas nos interesa tu bienestar y esperamos crear un
+                  espacio para ti donde puedes reencontrarte contigo
+                </p>
+              </Card>
+            </Col>
+          </Row>
+        </Row>
       </Container>
     </MainScreen>
   );

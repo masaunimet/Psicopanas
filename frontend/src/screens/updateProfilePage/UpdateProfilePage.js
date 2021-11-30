@@ -13,6 +13,7 @@ const UpdateProfilePage = ({ history }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [picMessage, setPicMessage] = useState();
+  const [imageUploaded, setimageUploaded] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -49,7 +50,7 @@ const UpdateProfilePage = ({ history }) => {
         .then((res) => res.json())
         .then((data) => {
           setProfilePicture(data.url.toString());
-          console.log(profilePicture);
+          setimageUploaded(true);
         })
         .catch((err) => {
           console.log(err);
@@ -61,19 +62,41 @@ const UpdateProfilePage = ({ history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
     dispatch(updateProfile({ name, password, profilePicture }));
+    setimageUploaded(false);
   };
 
   return (
     <MainScreen title="Modificar Perfil">
       <Row>
+        <Col
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Image
+            src={profilePicture}
+            alt={name}
+            className="profilePic"
+            width="300"
+            height="300"
+            alt="Foto de perfil"
+            roundedCircle
+          />
+        </Col>
         <Col md={6}>
           <Form onSubmit={submitHandler}>
             {loading && <Loading />}
             {success && (
-              <ErrorMessage variant="success">
+              <ErrorMessage variant="danger">
                 Se han actualizado los datos
+              </ErrorMessage>
+            )}
+            {imageUploaded && (
+              <ErrorMessage variant="danger">
+                Se ha subido la imagen por favor guarde los cambios
               </ErrorMessage>
             )}
             {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
@@ -128,7 +151,7 @@ const UpdateProfilePage = ({ history }) => {
               <Col>
                 <Button
                   type="submit"
-                  varient="primary"
+                  variant="secondary"
                   className="button-all-page"
                 >
                   Guardar cambios
@@ -136,23 +159,6 @@ const UpdateProfilePage = ({ history }) => {
               </Col>
             </Row>
           </Form>
-        </Col>
-        <Col
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Image
-            src={profilePicture}
-            alt={name}
-            className="profilePic"
-            width="300"
-            height="300"
-            alt="Foto de perfil"
-            roundedCircle
-          />
         </Col>
       </Row>
     </MainScreen>

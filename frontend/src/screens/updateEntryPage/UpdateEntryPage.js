@@ -39,6 +39,8 @@ function UpdateEntryPage({ match, history }) {
   const diaryAuth = useSelector((state) => state.diaryAuth);
   const { successDiary } = diaryAuth;
 
+  const [message, setmessage] = useState("");
+
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -102,40 +104,18 @@ function UpdateEntryPage({ match, history }) {
       isEmpty(emotion)
     ) {
       visualButtons2();
-      return alert(
-        "Por favor, llena todos los datos e indica cómo te sientes hoy"
+      setmessage(
+        "Por favor, llena todos los datos e indica cómo te sientes hoy. De ser necesario recarga la página"
       );
-    }
-
-    dispatch(
-      updateEntryAction(match.params.id, title, content, entryTags, emotion)
-    );
-    var num = Math.floor(Math.random() * (3 + 1 - 1) + 1);
-
-    if (
-      setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1635980382/muy_triste_igug5p.png"
-    ) {
-      history.push("/mensaje-racha");
-    } else if (
-      setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/triste_q55oyc.png"
-    ) {
-      history.push("/mensaje-triste");
-    } else if (
-      setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/regular_wr2r0j.png"
-    ) {
-      history.push("/mensaje-positivo");
-    } else if (
-      setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1635980381/feliz_vw1muh.png"
-    ) {
-      history.push("/mensaje-feliz");
     } else {
-      history.push("/mensaje-muy-feliz");
+      dispatch(
+        updateEntryAction(match.params.id, title, content, entryTags, emotion)
+      );
+
+      history.push("/mensaje-configurar-diario");
+
+      resetHandler();
     }
-    resetHandler();
   };
 
   const visualButtons = (id, icon) => {
@@ -424,15 +404,15 @@ function UpdateEntryPage({ match, history }) {
                           Personalizadas
                         </p>
                         <Link to="/ajustes-diario">
-                            <Button className="edit-button">
-                              <img
-                                src="https://res.cloudinary.com/psicopanas/image/upload/v1634441688/iconPencil_zngxxh.png"
-                                width="20px"
-                                height="20px"
-                                alt="Editar"
-                              />
-                            </Button>
-                          </Link>
+                          <Button className="edit-button">
+                            <img
+                              src="https://res.cloudinary.com/psicopanas/image/upload/v1634441688/iconPencil_zngxxh.png"
+                              width="20px"
+                              height="20px"
+                              alt="Editar"
+                            />
+                          </Button>
+                        </Link>
                       </div>
                       {mitad.map((ptag) => (
                         <div>
@@ -491,7 +471,7 @@ function UpdateEntryPage({ match, history }) {
 
             <Form.Group controlId="content">
               <Form.Label className="subtitle-text-blue">
-                Cuéntanos mas sobre eso
+                Cuéntanos más sobre eso
               </Form.Label>
               <Form.Control
                 as="textarea"
@@ -503,7 +483,7 @@ function UpdateEntryPage({ match, history }) {
             </Form.Group>
 
             {loading && <Loading size={50} />}
-
+            {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
             <Row>
               <Col>
                 <Link to="/authDiario">

@@ -22,6 +22,23 @@ const ProfilePage = ({ history }) => {
     <MainScreen title="Perfil">
       <Container>
         <Row>
+          <Col
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Image
+              src={userInfo?.profilePicture}
+              alt=""
+              className="profilePic"
+              width="300"
+              height="300"
+              alt="Foto de perfil"
+              roundedCircle
+            />
+          </Col>
           <Col md={6}>
             <Form>
               <Form.Group controlId="name">
@@ -65,29 +82,16 @@ const ProfilePage = ({ history }) => {
                   </Button>
                 </Col>
                 <Col>
-                  <Button className="button-all-page" href="/modificarPerfil">
+                  <Button
+                    variant="secondary"
+                    className="button-all-page"
+                    href="/modificarPerfil"
+                  >
                     Modificar Perfil
                   </Button>
                 </Col>
               </Row>
             </Form>
-          </Col>
-          <Col
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Image
-              src={userInfo?.profilePicture}
-              alt=""
-              className="profilePic"
-              width="300"
-              height="300"
-              alt="Foto de perfil"
-              roundedCircle
-            />
           </Col>
         </Row>
       </Container>

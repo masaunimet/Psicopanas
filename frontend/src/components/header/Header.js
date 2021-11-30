@@ -166,23 +166,26 @@ const Header = () => {
                         </NavLink>
                       )}
                     </Nav.Item>
-                    <Nav.Item>
-                      <NavDropdown
-                        title="Mi cuenta"
-                        id="basic-nav-dropdowm"
+                    <Nav.Item className="padding_butons">
+                      <NavLink
+                        to="/perfil"
                         className="textnavbar"
+                        activeStyle={{
+                          fontWeight: "bold",
+                          color: "#0FA5AE",
+                        }}
                       >
-                        <NavDropdown.Item href="/perfil" className="textnavbar">
-                          Perfil
-                        </NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item
-                          onClick={logoutHandler}
-                          className="textnavbar"
-                        >
-                          Cerrar sesión
-                        </NavDropdown.Item>
-                      </NavDropdown>
+                        Perfil
+                      </NavLink>
+                    </Nav.Item>
+                    <Nav.Item className="padding_butons">
+                      <NavLink
+                        to="/"
+                        className="textnavbar"
+                        onClick={logoutHandler}
+                      >
+                        Cerrar sesión
+                      </NavLink>
                     </Nav.Item>
                   </>
                 )}

@@ -17,7 +17,13 @@ const PagoExitoso = ({ history }) => {
   return (
     <MainScreen title="¡El mensaje fue enviado con exito!">
       <Container>
-        <Row>
+        <Row
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <div className="Centrado">
             <p className="subtitle-text-blue">Vuelve a tu diario</p>
           </div>
@@ -25,7 +31,14 @@ const PagoExitoso = ({ history }) => {
             <img src={Goti} width="200" height="250" alt="Goti" />
           </div>
         </Row>
-        <Row>
+        <Row
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "10px",
+          }}
+        >
           <Link to="/authdiario">
             <Button className="button-all-page">Continuar</Button>
           </Link>

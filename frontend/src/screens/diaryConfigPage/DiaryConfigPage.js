@@ -191,11 +191,6 @@ const DiaryConfigPage = ({ history }) => {
   return (
     <MainScreen title="Configuración de mi diario">
       <Card className="no-background" style={{ margin: "10px" }}>
-        <Link to="/diario">
-          <Button variant="primary" className="button" style={{alignSelf:"end"}}>
-            Volver a mi diario
-          </Button>
-        </Link>
         <Card className="no-background">
           <Card.Header className="no-background-bb">
             <div className="subtitle-text-blue">Seguridad de mi diario</div>
@@ -230,14 +225,28 @@ const DiaryConfigPage = ({ history }) => {
                     onChange={(e) => setConfirmDiaryPassword(e.target.value)}
                   />
                 </Form.Group>
-
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="button"
-                >
-                  Activar seguridad
-                </Button>
+                <Row>
+                  <Col>
+                    <Link to="/diario">
+                      <Button
+                        variant="primary"
+                        className="button-all-page"
+                        style={{ alignSelf: "end" }}
+                      >
+                        Volver a mi diario
+                      </Button>
+                    </Link>
+                  </Col>
+                  <Col>
+                    <Button
+                      variant="secondary"
+                      type="submit"
+                      className="button-all-page"
+                    >
+                      Activar seguridad
+                    </Button>
+                  </Col>
+                </Row>
               </Form>
             </div>
           ) : (
@@ -256,14 +265,28 @@ const DiaryConfigPage = ({ history }) => {
                     onChange={(e) => setUpdateDiaryPassword(e.target.value)}
                   />
                 </Form.Group>
-
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="button-all-page"
-                >
-                  Desactivar seguridad
-                </Button>
+                <Row>
+                  <Col>
+                    <Link to="/diario">
+                      <Button
+                        variant="primary"
+                        className="button-all-page"
+                        style={{ alignSelf: "end" }}
+                      >
+                        Volver a mi diario
+                      </Button>
+                    </Link>
+                  </Col>
+                  <Col>
+                    <Button
+                      variant="secondary"
+                      type="submit"
+                      className="button-all-page"
+                    >
+                      Desactivar seguridad
+                    </Button>
+                  </Col>
+                </Row>
               </Form>
             </div>
           )}
@@ -281,8 +304,6 @@ const DiaryConfigPage = ({ history }) => {
           <div className="subtitle-text-blue">
             Mis actividades personalizadas
           </div>
-
-          
         </Card.Header>
         <Card.Body>
           <Form onSubmit={submitHandler}>
@@ -339,68 +360,86 @@ const DiaryConfigPage = ({ history }) => {
                   />
                 </Form.Group>
               </Col>
+
+              {userInfo?.isPremium ? (
+                <Col>
+                  <Form.Group controlId="tag6">
+                    <Form.Control
+                      type="text"
+                      value={dataTag6}
+                      id="inputTag6"
+                      onChange={(e) => setTag6(e.target.value)}
+                      autocomplete="off"
+                      className="plain-text"
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="tag7">
+                    <Form.Control
+                      type="text"
+                      value={dataTag7}
+                      id="inputTag7"
+                      onChange={(e) => setTag7(e.target.value)}
+                      autocomplete="off"
+                      className="plain-text"
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="tag8">
+                    <Form.Control
+                      type="text"
+                      value={dataTag8}
+                      id="inputTag8"
+                      onChange={(e) => setTag8(e.target.value)}
+                      autocomplete="off"
+                      className="plain-text"
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="tag9">
+                    <Form.Control
+                      type="text"
+                      value={dataTag9}
+                      id="inputTag9"
+                      onChange={(e) => setTag9(e.target.value)}
+                      autocomplete="off"
+                      className="plain-text"
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="tag10">
+                    <Form.Control
+                      type="text"
+                      value={dataTag10}
+                      id="inputTag10"
+                      onChange={(e) => setTag10(e.target.value)}
+                      autocomplete="off"
+                      className="plain-text"
+                    />
+                  </Form.Group>
+                </Col>
+              ) : (
+                <div></div>
+              )}
+            </Row>
+            <Row>
               <Col>
-                {userInfo?.isPremium ? (
-                  <>
-                    <Form.Group controlId="tag6">
-                      <Form.Control
-                        type="text"
-                        value={dataTag6}
-                        id="inputTag6"
-                        onChange={(e) => setTag6(e.target.value)}
-                        autocomplete="off"
-                        className="plain-text"
-                      />
-                    </Form.Group>
-                    <Form.Group controlId="tag7">
-                      <Form.Control
-                        type="text"
-                        value={dataTag7}
-                        id="inputTag7"
-                        onChange={(e) => setTag7(e.target.value)}
-                        autocomplete="off"
-                        className="plain-text"
-                      />
-                    </Form.Group>
-                    <Form.Group controlId="tag8">
-                      <Form.Control
-                        type="text"
-                        value={dataTag8}
-                        id="inputTag8"
-                        onChange={(e) => setTag8(e.target.value)}
-                        autocomplete="off"
-                        className="plain-text"
-                      />
-                    </Form.Group>
-                    <Form.Group controlId="tag9">
-                      <Form.Control
-                        type="text"
-                        value={dataTag9}
-                        id="inputTag9"
-                        onChange={(e) => setTag9(e.target.value)}
-                        autocomplete="off"
-                        className="plain-text"
-                      />
-                    </Form.Group>
-                    <Form.Group controlId="tag10">
-                      <Form.Control
-                        type="text"
-                        value={dataTag10}
-                        id="inputTag10"
-                        onChange={(e) => setTag10(e.target.value)}
-                        autocomplete="off"
-                        className="plain-text"
-                      />
-                    </Form.Group>
-                  </>
-                ) : (
-                  <div></div>
-                )}
+                <Link to="/diario">
+                  <Button
+                    variant="primary"
+                    className="button-all-page"
+                    style={{ alignSelf: "end" }}
+                  >
+                    Volver a mi diario
+                  </Button>
+                </Link>
+              </Col>
+              <Col>
+                <Button
+                  variant="secondary"
+                  type="submit"
+                  className="button-all-page"
+                >
+                  Guardar cambios
+                </Button>
               </Col>
             </Row>
-            <Button variant="secondary" type="submit" className="button">
-              Guardar cambios en mis actividades
-            </Button>
           </Form>
         </Card.Body>
       </Card>

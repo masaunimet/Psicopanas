@@ -33,7 +33,13 @@ const MessageVeryHappy = ({ history }) => {
   return (
     <MainScreen title="¡ ESOOOOOOOOOOO XD !">
       <Container>
-        <Col>
+        <Row
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <div className="Centrado">
             <p className="subtitle-text-blue">{consejo()}</p>
           </div>
@@ -41,8 +47,15 @@ const MessageVeryHappy = ({ history }) => {
           <div className="Centrado">
             <img src={Goti} width="200" height="250" alt="Goti" />
           </div>
-        </Col>
-        <Row>
+        </Row>
+        <Row
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "10px",
+          }}
+        >
           <Link to="/authdiario">
             <Button style={{ border: "none" }}>Continuar</Button>
           </Link>

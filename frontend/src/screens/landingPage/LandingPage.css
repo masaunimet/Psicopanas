@@ -1,20 +1,58 @@
-.welcome{
-
-  display:flex;
+.welcome {
+  display: flex;
+  background: none;
 }
-.Centrado{
-  width: 100%;
-  display:flex;
+.title {
+  font-size: 50px;
   justify-content: center;
   text-align: center;
 }
-.title {
-  font-size: 95px;
+
+.brand {
+  color: #0a656b;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.info-box {
+  background-color: #f6f6f6;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.info-box :hover {
+  background-color: #0a656b;
+  font-weight: bold;
+  color: #f6f6f6;
+  cursor: default;
+}
+
+.img {
+  margin-top: 10px;
+}
+
+.title2 {
+  font-size: 40px;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 .subtitle {
   font-size: 25px;
-  padding-top: 10px;
+  font-style: italic;
+  font-weight: bold;
+  justify-content: center;
+  text-align: center;
 }
+
+.normal-text {
+  font-size: 20px;
+  padding-top: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .intro-text {
   width: 100%;
   text-align: center;
@@ -24,19 +62,9 @@
   display: flex;
   align-items: center;
   background: rgb(131, 206, 210);
-  background: linear-gradient(#F6F6F6, #83CED2);
+  background: linear-gradient(#f6f6f6, #83ced2);
   background-position: center;
   background-size: cover;
-}
-.buttonContainer {
-  margin-top: 50px;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.landingbutton {
-  width: 200px;
-  height: 55px;
 }
 
 @media only screen and (min-width: 1200px) {

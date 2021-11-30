@@ -21,15 +21,28 @@ const MessageConfigDiaryPage = ({ history }) => {
   return (
     <MainScreen title="Configuración de diario">
       <Container>
-        <Row>
-          <div className="Centrado">
+        <Row
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <div>
             <p className="subtitle-text-blue">Se han guardado tus cambios</p>
           </div>
-          <div className="Centrado">
+          <div>
             <img src={Goti} width="200" height="250" alt="Goti" />
           </div>
         </Row>
-        <Row>
+        <Row
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "10px",
+          }}
+        >
           <Link to="/authdiario">
             <Button className="button-all-page">Continuar</Button>
           </Link>
