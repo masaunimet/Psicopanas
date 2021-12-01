@@ -88,7 +88,7 @@ function UpdateEntryPage({ match, history }) {
     const entryTags = [];
 
     tags?.forEach((tag) => {
-      if (document.getElementById(tag._id).checked === true) {
+      if (document.getElementById(tag.name).checked === true) {
         entryTags.push(tag.name);
       }
     });
@@ -273,7 +273,7 @@ function UpdateEntryPage({ match, history }) {
                           <div>
                             <Form.Check
                               type="checkbox"
-                              id={tag._id}
+                              id={tag.name}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
                               <Form.Check.Label
@@ -300,7 +300,7 @@ function UpdateEntryPage({ match, history }) {
                           <div>
                             <Form.Check
                               type="checkbox"
-                              id={tag._id}
+                              id={tag.name}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
                               <Form.Check.Label
@@ -327,7 +327,7 @@ function UpdateEntryPage({ match, history }) {
                           <div>
                             <Form.Check
                               type="checkbox"
-                              id={tag._id}
+                              id={tag.name}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
                               <Form.Check.Label
@@ -354,7 +354,7 @@ function UpdateEntryPage({ match, history }) {
                           <div>
                             <Form.Check
                               type="checkbox"
-                              id={tag._id}
+                              id={tag.name}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
                               <Form.Check.Label
@@ -381,7 +381,7 @@ function UpdateEntryPage({ match, history }) {
                           <div>
                             <Form.Check
                               type="checkbox"
-                              id={tag._id}
+                              id={tag.name}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
                               <Form.Check.Label

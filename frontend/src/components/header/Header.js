@@ -100,7 +100,7 @@ const Header = () => {
                           color: "#0FA5AE",
                         }}
                       >
-                        Sobre PsicoP
+                        PsicoPanas
                       </NavLink>
                     </Nav.Item>
                     <Nav.Item className="padding_butons">

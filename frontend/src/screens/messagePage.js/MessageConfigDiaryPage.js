@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { Button, Container, Row } from "react-bootstrap";
+import { Button, Container, Image, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/mainscreen/MainScreen";
-import Goti from "../../images/Goti.png";
+import Goti from "../../images/goti.gif";
 import "../../styles/App.css";
 
 const MessageConfigDiaryPage = ({ history }) => {
@@ -21,28 +21,20 @@ const MessageConfigDiaryPage = ({ history }) => {
   return (
     <MainScreen title="Configuración de diario">
       <Container>
-        <Row
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <div>
-            <p className="subtitle-text-blue">Se han guardado tus cambios</p>
-          </div>
-          <div>
-            <img src={Goti} width="200" height="250" alt="Goti" />
-          </div>
-        </Row>
-        <Row
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: "10px",
-          }}
-        >
+        <div className="Centrado">
+          <p className="subtitle-text-blue">Se han guardado tus cambios</p>
+        </div>
+        <div className="Centrado">
+          <Image
+            src={Goti}
+            width="250"
+            height="250"
+            alt="Goti"
+            roundedCircle
+            className="goti-box"
+          />
+        </div>
+        <Row className="Centrado" style={{ marginTop: "10px" }}>
           <Link to="/authdiario">
             <Button className="button-all-page">Continuar</Button>
           </Link>

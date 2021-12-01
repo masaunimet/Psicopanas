@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Button, Container, Row, Col, Card, Image } from "react-bootstrap";
 import "../landingPage/LandingPage.css";
 import "../../styles/App.css";
-import Goti from "../../images/Goti.png";
+import Goti from "../../images/goti.gif";
 import love from "../../images/love.png";
 import chat from "../../images/chat.png";
 import diary from "../../images/diary.png";
@@ -30,7 +30,14 @@ const LandingPage = ({ history }) => {
       <Container>
         <Row className="welcome">
           <Col md={3} className="intro-text">
-            <img src={Goti} fluid alt="Goti" />
+            <Image
+              src={Goti}
+              height="250px"
+              width="250px"
+              alt="Goti"
+              roundedCircle
+              className="goti-box"
+            />
           </Col>
           <Col className="intro-text">
             <Row className="title">
@@ -44,7 +51,7 @@ const LandingPage = ({ history }) => {
             </Row>
             <Row>
               <Col>
-                <a href="https://www.youtube.com/embed/DUFsSw2b0Ok">
+                <a href="https://youtu.be/YDvxCfknOk4" target="_blank">
                   <Button className="button-all-page">Ver video</Button>
                 </a>
               </Col>

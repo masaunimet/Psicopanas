@@ -8,6 +8,11 @@
   text-align: center;
 }
 
+.goti-box {
+  border: solid 5px;
+  border-color: #0a656b;
+}
+
 .brand {
   color: #0a656b;
   font-weight: bold;
