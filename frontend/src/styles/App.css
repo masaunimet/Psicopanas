@@ -126,10 +126,6 @@
 }
 
 .checkbox:hover input ~ .check {
-  border-left: 2px solid #90d4de;
-  border-right: 2px solid #90d4de;
-  background-color: #90d4de;
-  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -339,6 +335,13 @@
   padding-right: 20px;
 }
 
-foro_mensajes {
+.goti-box {
+  border: solid 5px;
+  border-color: #0a656b;
+}
+
+.Centrado {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }

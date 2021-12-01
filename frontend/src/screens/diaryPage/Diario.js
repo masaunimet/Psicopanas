@@ -76,28 +76,37 @@ const Diario = ({ history }) => {
   return (
     <MainScreen title="Diario">
       <div className="subtitle-text-blue">Bienvenido {userInfo.name}</div>
-      <div className="flex-container">
-        <Link to="/crearEntrada">
-          <Button
-            size="md"
-            variant="primary"
-            className="button"
-            style={{ marginLeft: "10px" }}
-          >
-            Crear entrada
-          </Button>
-        </Link>
-        <Link to="/estadisticas">
-          <Button size="md" variant="primary" className="button">
-            Ver estadísticas
-          </Button>
-        </Link>
-        <Link to="/ajustes-diario">
-          <Button size="md" variant="primary" className="button">
-            Ajustes
-          </Button>
-        </Link>
-      </div>
+      <Row>
+        <Col>
+          <Link to="/crearEntrada">
+            <Button
+              variant="secondary"
+              className="button-all-page"
+              style={{ marginLeft: "10px" }}
+            >
+              Crear entrada
+            </Button>
+          </Link>
+        </Col>
+        <Col>
+          <Link to="/estadisticas">
+            <Button variant="primary" className="button-all-page">
+              Ver estadísticas
+            </Button>
+          </Link>
+        </Col>
+        <Col>
+          <Link to="/ajustes-diario">
+            <Button
+              variant="primary"
+              className="button-all-page"
+              style={{ marginRight: "10px" }}
+            >
+              Ajustes de diario
+            </Button>
+          </Link>
+        </Col>
+      </Row>
       {error && (
         <ErrorMessage variant="danger">
           {"Ocurrió un error al cargar el diario. Por favor recargue la página"}

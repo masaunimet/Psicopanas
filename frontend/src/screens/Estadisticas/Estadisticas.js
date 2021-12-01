@@ -67,7 +67,7 @@ const Estadisticas = ({ history }) => {
       labels: ["Muy bien", "Bien", "Normal", "Mal", "Muy mal"],
       datasets: [
         {
-          label: "Numero de entradas por emoción",
+          label: "Número de entradas por emoción",
           data: [datum[0], datum[1], datum[2], datum[3], datum[4]],
           backgroundColor: [
             "#90d4de",
@@ -88,7 +88,7 @@ const Estadisticas = ({ history }) => {
       labels: ["Muy bien", "Bien", "Normal", "Mal", "Muy mal"],
       datasets: [
         {
-          label: "Numero de entradas por emoción",
+          label: "Número de entradas por emoción",
           data: [
             datumMonth[0],
             datumMonth[1],
@@ -171,13 +171,23 @@ const Estadisticas = ({ history }) => {
             <Container className="white-background">
               <Row>
                 <Col md={3} className="blue-background">
+                  <Link to="/diario">
+                    <Button
+                      variant="primary"
+                      className="button-all-page"
+                      style={{ marginTop: "10px" }}
+                    >
+                      Volver a mi diario
+                    </Button>
+                  </Link>
                   {userInfo?.isPremium && !showTop ? (
-                    <Col md="auto" className="blue-background">
+                    <div md="auto" className="blue-background">
                       <Button
                         onClick={(e) => {
                           setShowTop(true);
                         }}
                         className="button-all-page"
+                        style={{ marginTop: "10px" }}
                       >
                         Mostrar más
                       </Button>
@@ -227,14 +237,15 @@ const Estadisticas = ({ history }) => {
                       ) : (
                         <Loading />
                       )}
-                    </Col>
+                    </div>
                   ) : (
-                    <Col md="auto" className="blue-background">
+                    <div md="auto" className="blue-background">
                       <Button
                         onClick={(e) => {
                           setShowTop(false);
                         }}
                         className="button-all-page"
+                        style={{ marginTop: "10px" }}
                       >
                         Mostrar menos
                       </Button>
@@ -283,7 +294,7 @@ const Estadisticas = ({ history }) => {
                       ) : (
                         <Loading />
                       )}
-                    </Col>
+                    </div>
                   )}
                 </Col>
                 <Col>
@@ -319,11 +330,6 @@ const Estadisticas = ({ history }) => {
                       margin: "0",
                     }}
                   />
-                  <Link to="/diario">
-                    <Button variant="primary" className="button-all-page">
-                      Volver a mi diario
-                    </Button>
-                  </Link>
                 </Col>
               </Row>
             </Container>

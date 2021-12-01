@@ -14,10 +14,10 @@ import "../../styles/App.css";
 let setEmotion = "";
 
 /**
-  * @desc Es la funcion encargada de traer funcionar la pagina
-  * de crear entrada del diario
-  * @param history variable encargada de redireccionar a otras paginas o URL's
-*/
+ * @desc Es la funcion encargada de traer funcionar la pagina
+ * de crear entrada del diario
+ * @param history variable encargada de redireccionar a otras paginas o URL's
+ */
 function CreateEntryPage({ history }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -34,6 +34,7 @@ function CreateEntryPage({ history }) {
   const resetHandler = () => {
     setTitle("");
     setContent("");
+    setmessage("");
   };
 
   // const last = useSelector((state) => state.lastEntry);
@@ -55,6 +56,8 @@ function CreateEntryPage({ history }) {
   const { successDiary } = diaryAuth;
 
   //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
+  const [message, setmessage] = useState("");
+
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -90,10 +93,10 @@ function CreateEntryPage({ history }) {
   }, [dispatch]);
 
   /**
-  * @desc La funcion se encarga de verificar si todos los datos necesarios estan puestos
-  * y mandarlos al backend gracias al action impotado createEntryAction
-  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
-  */
+   * @desc La funcion se encarga de verificar si todos los datos necesarios estan puestos
+   * y mandarlos al backend gracias al action impotado createEntryAction
+   * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+   */
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -116,40 +119,39 @@ function CreateEntryPage({ history }) {
       isEmpty(setEmotion)
     ) {
       visualButtons2();
-      return alert(
-        "Por favor, llena todos los datos e indica cómo te sientes hoy"
+      setmessage(
+        "Por favor, llena todos los datos e indica cómo te sientes hoy. De ser necesario recarga la página"
       );
-    }
-    dispatch(
-      createEntryAction(title.trim(), content.trim(), entryTags, setEmotion)
-    );
-
-    var num = Math.floor(Math.random() * (3 + 1 - 1) + 1);
-
-    if (
-      setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1635980382/muy_triste_igug5p.png"
-    ) {
-      history.push("/mensaje-racha");
-    } else if (
-      setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/triste_q55oyc.png"
-    ) {
-      history.push("/mensaje-triste");
-    } else if (
-      setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/regular_wr2r0j.png"
-    ) {
-      history.push("/mensaje-positivo");
-    } else if (
-      setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1635980381/feliz_vw1muh.png"
-    ) {
-      history.push("/mensaje-feliz");
     } else {
-      history.push("/mensaje-muy-feliz");
+      dispatch(
+        createEntryAction(title.trim(), content.trim(), entryTags, setEmotion)
+      );
+
+      if (
+        setEmotion ===
+        "https://res.cloudinary.com/psicopanas/image/upload/v1635980382/muy_triste_igug5p.png"
+      ) {
+        history.push("/mensaje-racha");
+      } else if (
+        setEmotion ===
+        "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/triste_q55oyc.png"
+      ) {
+        history.push("/mensaje-triste");
+      } else if (
+        setEmotion ===
+        "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/regular_wr2r0j.png"
+      ) {
+        history.push("/mensaje-positivo");
+      } else if (
+        setEmotion ===
+        "https://res.cloudinary.com/psicopanas/image/upload/v1635980381/feliz_vw1muh.png"
+      ) {
+        history.push("/mensaje-feliz");
+      } else {
+        history.push("/mensaje-muy-feliz");
+      }
+      resetHandler();
     }
-    resetHandler();
   };
 
   /**
@@ -161,7 +163,7 @@ function CreateEntryPage({ history }) {
   }
 
   /**
-   * @desc Se encarga de comparar los botones con el id del backend para 
+   * @desc Se encarga de comparar los botones con el id del backend para
    * ponerle un valor a la informacion sobre la imagen que se muestra
    * @param id string que va a ser comparada con el backend de emotions
    * @param icon string si emotion._id no es igual a icon, entonces la
@@ -213,7 +215,7 @@ function CreateEntryPage({ history }) {
   };
 
   /**
-   * @desc Se encarga de comparar los valores del id de los botones para 
+   * @desc Se encarga de comparar los valores del id de los botones para
    * ponerle un valor a la informacion sobre la imagen que se muestra
    */
   const visualButtons2 = () => {
@@ -526,7 +528,7 @@ function CreateEntryPage({ history }) {
 
               <Form.Group controlId="content">
                 <Form.Label className="subtitle-text-blue">
-                  Cuéntanos mas sobre eso
+                  Cuéntanos más sobre eso
                 </Form.Label>
                 <Form.Control
                   as="textarea"
@@ -538,7 +540,9 @@ function CreateEntryPage({ history }) {
               </Form.Group>
 
               {loading && <Loading size={50} />}
-
+              {message && (
+                <ErrorMessage variant="danger">{message}</ErrorMessage>
+              )}
               <Row>
                 <Col>
                   <Link to="/authDiario">
@@ -550,7 +554,7 @@ function CreateEntryPage({ history }) {
                 <Col>
                   <Button
                     type="submit"
-                    variant="primary"
+                    variant="secondary"
                     className="button-all-page"
                   >
                     Guardar

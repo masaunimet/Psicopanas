@@ -13,10 +13,10 @@ import { Link } from "react-router-dom";
 import "../../styles/App.css";
 
 /**
-  * @desc Es la funcion encargada de traer funcionar la pagina
-  * de editar entrada del diario
-  * @param history variable encargada de redireccionar a otras paginas o URL's
-*/
+ * @desc Es la funcion encargada de traer funcionar la pagina
+ * de editar entrada del diario
+ * @param history variable encargada de redireccionar a otras paginas o URL's
+ */
 function UpdateEntryPage({ match, history }) {
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
@@ -45,6 +45,8 @@ function UpdateEntryPage({ match, history }) {
   const { successDiary } = diaryAuth;
 
   //encargada de redireccionar a otra pagina si no tiene los requisitos necesarios
+  const [message, setmessage] = useState("");
+
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -91,17 +93,17 @@ function UpdateEntryPage({ match, history }) {
   };
 
   /**
-  * @desc La funcion se encarga de verificar si todos los datos necesarios estan puestos
-  * y mandarlos al backend gracias al action impotado updateEntryAction
-  * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
-  */
+   * @desc La funcion se encarga de verificar si todos los datos necesarios estan puestos
+   * y mandarlos al backend gracias al action impotado updateEntryAction
+   * @param e se utiliza para detener una acción por omisión con e.PreventDefault()
+   */
   const updateHandler = (e) => {
     e.preventDefault();
 
     const entryTags = [];
 
     tags?.forEach((tag) => {
-      if (document.getElementById(tag._id).checked === true) {
+      if (document.getElementById(tag.name).checked === true) {
         entryTags.push(tag.name);
       }
     });
@@ -117,44 +119,22 @@ function UpdateEntryPage({ match, history }) {
       isEmpty(emotion)
     ) {
       visualButtons2();
-      return alert(
-        "Por favor, llena todos los datos e indica cómo te sientes hoy"
+      setmessage(
+        "Por favor, llena todos los datos e indica cómo te sientes hoy. De ser necesario recarga la página"
       );
-    }
-
-    dispatch(
-      updateEntryAction(match.params.id, title, content, entryTags, emotion)
-    );
-    var num = Math.floor(Math.random() * (3 + 1 - 1) + 1);
-
-    if (
-      setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1635980382/muy_triste_igug5p.png"
-    ) {
-      history.push("/mensaje-racha");
-    } else if (
-      setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/triste_q55oyc.png"
-    ) {
-      history.push("/mensaje-triste");
-    } else if (
-      setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1635980384/regular_wr2r0j.png"
-    ) {
-      history.push("/mensaje-positivo");
-    } else if (
-      setEmotion ===
-      "https://res.cloudinary.com/psicopanas/image/upload/v1635980381/feliz_vw1muh.png"
-    ) {
-      history.push("/mensaje-feliz");
     } else {
-      history.push("/mensaje-muy-feliz");
+      dispatch(
+        updateEntryAction(match.params.id, title, content, entryTags, emotion)
+      );
+
+      history.push("/mensaje-configurar-diario");
+
+      resetHandler();
     }
-    resetHandler();
   };
 
   /**
-   * @desc Se encarga de comparar los botones con el id del backend para 
+   * @desc Se encarga de comparar los botones con el id del backend para
    * ponerle un valor a la informacion sobre la imagen que se muestra
    * @param id string que va a ser comparada con el backend de emotions
    * @param icon string si emotion._id no es igual a icon, entonces la
@@ -206,7 +186,7 @@ function UpdateEntryPage({ match, history }) {
   };
 
   /**
-   * @desc Se encarga de comparar los valores del id de los botones para 
+   * @desc Se encarga de comparar los valores del id de los botones para
    * ponerle un valor a la informacion sobre la imagen que se muestra
    */
   const visualButtons2 = () => {
@@ -323,7 +303,7 @@ function UpdateEntryPage({ match, history }) {
                           <div>
                             <Form.Check
                               type="checkbox"
-                              id={tag._id}
+                              id={tag.name}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
                               <Form.Check.Label
@@ -350,7 +330,7 @@ function UpdateEntryPage({ match, history }) {
                           <div>
                             <Form.Check
                               type="checkbox"
-                              id={tag._id}
+                              id={tag.name}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
                               <Form.Check.Label
@@ -377,7 +357,7 @@ function UpdateEntryPage({ match, history }) {
                           <div>
                             <Form.Check
                               type="checkbox"
-                              id={tag._id}
+                              id={tag.name}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
                               <Form.Check.Label
@@ -404,7 +384,7 @@ function UpdateEntryPage({ match, history }) {
                           <div>
                             <Form.Check
                               type="checkbox"
-                              id={tag._id}
+                              id={tag.name}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
                               <Form.Check.Label
@@ -431,7 +411,7 @@ function UpdateEntryPage({ match, history }) {
                           <div>
                             <Form.Check
                               type="checkbox"
-                              id={tag._id}
+                              id={tag.name}
                               style={{ margin: "5px", cursor: "pointer" }}
                             >
                               <Form.Check.Label
@@ -453,6 +433,16 @@ function UpdateEntryPage({ match, history }) {
                         <p className="subtitle-text-soft-blue">
                           Personalizadas
                         </p>
+                        <Link to="/ajustes-diario">
+                          <Button className="edit-button">
+                            <img
+                              src="https://res.cloudinary.com/psicopanas/image/upload/v1634441688/iconPencil_zngxxh.png"
+                              width="20px"
+                              height="20px"
+                              alt="Editar"
+                            />
+                          </Button>
+                        </Link>
                       </div>
                       {mitad.map((ptag) => (
                         <div>
@@ -511,7 +501,7 @@ function UpdateEntryPage({ match, history }) {
 
             <Form.Group controlId="content">
               <Form.Label className="subtitle-text-blue">
-                Cuéntanos mas sobre eso
+                Cuéntanos más sobre eso
               </Form.Label>
               <Form.Control
                 as="textarea"
@@ -523,7 +513,7 @@ function UpdateEntryPage({ match, history }) {
             </Form.Group>
 
             {loading && <Loading size={50} />}
-
+            {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
             <Row>
               <Col>
                 <Link to="/authDiario">
@@ -535,7 +525,7 @@ function UpdateEntryPage({ match, history }) {
               <Col>
                 <Button
                   type="submit"
-                  variant="primary"
+                  variant="secondary"
                   className="button-all-page"
                 >
                   Guardar cambios
